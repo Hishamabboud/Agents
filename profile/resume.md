@@ -1,48 +1,54 @@
-# Resume
+# Hisham Abboud
 
-<!-- IMPORTANT: Replace this entire file with your actual resume in markdown format -->
-<!-- Include the following sections at minimum: -->
-
-## Personal Information
-- **Name:** [FILL IN]
+- **Phone:** +31 06 4841 2838
+- **Email:** Hisham123@hotmail.com
 - **Location:** Eindhoven, Netherlands
-- **Email:** [FILL IN]
-- **Phone:** [FILL IN]
-- **LinkedIn:** [FILL IN]
-- **GitHub:** [FILL IN]
 
-## Summary
-[FILL IN: 2-3 sentence professional summary]
+## Professional Experience
 
-## Technical Skills
-- **Languages:** [FILL IN e.g., C#, Python, JavaScript, TypeScript, SQL]
-- **Frameworks:** [FILL IN e.g., .NET, ASP.NET, Flask, React]
-- **Tools:** [FILL IN e.g., Git, Docker, Azure, AWS]
-- **Other:** [FILL IN]
+### Software Service Engineer — Actemium (VINCI Energies), Eindhoven
+*July 2025 — Present*
+- Provide full-stack development and technical support for Manufacturing Execution Systems (MES) across industrial clients
+- Build and maintain applications using .NET, C#, ASP.NET, Python/Flask, and JavaScript
+- Develop custom software solutions and integrations for manufacturing processes, including API connections and database optimizations
+- Troubleshoot and resolve complex technical issues in production environments for clients in diverse industries
 
-## Work Experience
+### Python Developer Intern — ASML, Veldhoven
+*Aug 2023 — Feb 2024*
+- Developed Python test suite using Locust and Pytest for high-efficiency performance and regression testing
+- Collaborated in an agile environment using Azure, Jira, and Kubernetes for continuous integration and deployment
 
-### [Job Title] — [Company Name]
-*[Start Date] – [End Date]*
-- [Achievement/responsibility with quantified impact]
-- [Achievement/responsibility with quantified impact]
+### Software Developer & IT Admin Intern — Delta Electronics, Helmond
+*Feb 2022 — Feb 2023*
+- Developed web application for HR to manage salary adjustments and quarterly budgets across multiple branches
+- Migrated legacy codebase from Visual Basic to C# to improve maintainability and performance
+- Managed Active Directory and provided cross-departmental technical support; mentored new IT interns
 
-### [Job Title] — [Company Name]
-*[Start Date] – [End Date]*
-- [Achievement/responsibility with quantified impact]
-- [Achievement/responsibility with quantified impact]
+## Projects
+
+### CogitatAI — AI Customer Support Platform
+*Founder & Developer, 2024 — Present*
+- Building an AI-powered chatbot platform with personality-adaptive responses and multi-task sentiment analysis
+- Architected full-stack solution using Python/Flask backend and modern frontend, deployed on cloud infrastructure
+
+### GDPR Data Anonymization Solution
+*Fontys ICT Cyber Security Research Group — Graduation Project, Sep 2024 — Feb 2025*
+- Developed a GDPR-compliant data anonymization pipeline enabling secure cross-organization data sharing
 
 ## Education
 
-### [Degree] — [University]
-*[Year]*
+### Bachelor of Science in Software Engineering — Fontys University of Applied Sciences, Eindhoven
+*2020 — 2024*
+Thesis: GDPR-compliant data anonymization for secure data sharing
 
-## Languages
-- Arabic: [Proficiency]
-- Persian: [Proficiency]
-- Dutch: [Proficiency]
-- English: [Proficiency]
+## Skills
+- **Languages:** Python, C#, JavaScript, SQL, Visual Basic
+- **Frameworks:** .NET, ASP.NET, React, Flask, Locust, Pytest
+- **Tools:** Azure, Jira, Kubernetes, Git, Active Directory, Docker
+- **Domains:** MES, Agile/Scrum, GDPR, REST API Development, CI/CD
 
-## Projects
-- **CogitatAI:** [FILL IN description]
-- [Other projects]
+## Spoken Languages
+- English (fluent)
+- Dutch (fluent)
+- Arabic (fluent)
+- Persian (fluent)
