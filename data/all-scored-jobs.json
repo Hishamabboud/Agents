@@ -1,0 +1,578 @@
+[
+  {
+    "id": "scholt-net-engineer",
+    "title": ".NET Software Engineer",
+    "company": "Scholt Energy",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
+    "description": "Join a team of 10-15 developers designing and optimizing software solutions for the energy market. Translate strategic objectives into intelligent information systems and integrations. Requires Bachelor's CS, 5+ years experience, strong .NET C# knowledge, TypeScript/JavaScript, SQL, Azure, Microsoft Power Platform. Benefits: 28 vacation days, unlimited training budget, flexible work.",
+    "salary": "",
+    "date_posted": "",
+    "source": "scholt.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 9.2,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 3.8,
+        "matched": [
+          "azure",
+          "javascript",
+          "sql"
+        ],
+        "job_requires": [
+          "azure",
+          "javascript",
+          "sql",
+          "typescript"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.5
+    }
+  },
+  {
+    "id": "sendent-medior-net",
+    "title": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "company": "Sendent B.V.",
+    "location": "Eindhoven, Netherlands (hybrid)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "description": "Backend developer role focused on owning the Exchange Connector and Outlook integration. Maintain and improve the Exchange Connector, write and improve automated tests, optimize performance and threading. Sustainable software, ownership, and trust in a privacy-first company building secure Microsoft-Nextcloud integrations. Requires professional C# / .NET experience, 2-4 years software engineering, production code maintenance, automated testing, Git.",
+    "salary": "€3,750–€4,350 gross/month",
+    "date_posted": "2026-02-03",
+    "source": "join.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 9.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 4.0,
+        "matched": [
+          "git"
+        ],
+        "job_requires": [
+          "git"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.0,
+      "industry_match": 0.5
+    }
+  },
+  {
+    "id": "flowtec-software-engineer",
+    "title": "Software Engineer (C++ & Python)",
+    "company": "Flowtec Group",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/d36eb17993e67842",
+    "description": "Design and optimize robotic software with C++ and Python focus for material handling systems. Robotics software development in high-tech environment.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 9.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 4.0,
+        "matched": [
+          "python"
+        ],
+        "job_requires": [
+          "python"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "scholt-senior-net",
+    "title": "(Senior) Software Engineer .NET/C#",
+    "company": "Scholt Energy",
+    "location": "High Tech Campus 51, 5656 AG Eindhoven",
+    "url": "https://www.hightechcampus.com/vacancies/scholt/senior-software-engineer-net-c",
+    "description": "Develop and optimize software solutions for the energy market. Work with 10-15 developers translating strategic goals into smart information systems. Requires Bachelor's CS, 5+ years, strong .NET C#, TypeScript, JavaScript, SQL, Azure, Microsoft Power Platform. Integration monitoring, root cause analysis, performance optimization.",
+    "salary": "",
+    "date_posted": "",
+    "source": "hightechcampus.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 8.8,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 3.8,
+        "matched": [
+          "azure",
+          "javascript",
+          "sql"
+        ],
+        "job_requires": [
+          "azure",
+          "javascript",
+          "sql",
+          "typescript"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "prodrive-software",
+    "title": "Software Engineer",
+    "company": "Prodrive Technologies",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://prodrive-technologies.com/careers/vacancies/",
+    "description": "Software engineer at Prodrive Technologies designing and manufacturing high-tech electronics, software, and mechatronic products. Six R&D programs, three automated manufacturing sites. Python, C++, embedded development opportunities.",
+    "salary": "",
+    "date_posted": "",
+    "source": "prodrive-technologies.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 8.8,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 3.3,
+        "matched": [
+          "manufacturing",
+          "python"
+        ],
+        "job_requires": [
+          "manufacturing",
+          "python",
+          "r"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.5
+    }
+  },
+  {
+    "id": "kubus-software-engineer",
+    "title": "Software Engineer",
+    "company": "KUBUS (BIMcollab)",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/41805c1695969dcd",
+    "description": "Software Engineer with backend development experience for BIM model exploration platform. Build tools that allow architects, engineers, and builders to explore BIM models without installing heavy desktop software. Skills: .NET, Azure, cloud architecture.",
+    "salary": "€4,000–€5,000/month",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 8.5,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 4.0,
+        "matched": [
+          "azure"
+        ],
+        "job_requires": [
+          "azure"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.0,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "akkodis-software-engineer",
+    "title": "Software Engineer",
+    "company": "Akkodis",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/19cd3f32f877a695",
+    "description": "Develop workflow automation features in agile multi-site software team environment. Software development and automation in a collaborative setting.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 8.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.5,
+        "matched": [
+          "agile"
+        ],
+        "job_requires": [
+          "agile",
+          "automation"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.5
+    }
+  },
+  {
+    "id": "siemens-devops",
+    "title": "Senior Software Engineer DevOps",
+    "company": "Siemens eMobility",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/62ec0dab2d9169cc",
+    "description": "Senior Software Developer building robust cloud solutions for sustainable mobility platforms. Cloud development, DevOps, CI/CD practices for green technology.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 8.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.5,
+        "matched": [
+          "ci/cd"
+        ],
+        "job_requires": [
+          "ci/cd",
+          "devops"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.5
+    }
+  },
+  {
+    "id": "futures-csharp-dev",
+    "title": "C# Developer Eindhoven Region for High Tech Companies",
+    "company": "Futures.Works",
+    "location": "Eindhoven, NB, Netherlands",
+    "url": "https://www.careers-page.com/futures-works/job/LR994VY6",
+    "description": "Software designers specializing in C# for dynamic project teams in High Tech sector. Product software engineering across High Tech, Medical, and Mechanical Engineering sectors. Requires Bachelor's/Master's in Software Engineering, 2+ years High Tech sector, proficient in C#.NET, SCRUM, CI/CD, Azure, OOP, UML. Benefits: competitive pension, travel reimbursement, 25 holidays.",
+    "salary": "",
+    "date_posted": "",
+    "source": "careers-page.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.5,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 4.0,
+        "matched": [
+          "azure",
+          "ci/cd",
+          "scrum"
+        ],
+        "job_requires": [
+          "azure",
+          "ci/cd",
+          "scrum"
+        ]
+      },
+      "title_match": 1.5,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "stogger-junior-python",
+    "title": "Junior Software Engineer (Python) - Smart Vehicles & Robotics",
+    "company": "Stogger B.V.",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://www.glassdoor.com/Job/eindhoven-software-engineer-jobs-SRCH_IL.0,9_IC3043137_KO10,27.htm",
+    "description": "Develop Python software for intelligent autonomous vehicles that make independent decisions, communicate with environment, and interact with hardware. Requires basic Python experience (internship/project OK), familiarity with Django/Flask/FastAPI, basic knowledge of databases and APIs. Interest in hardware/embedded/robotics. Bachelor's/Master's in CS.",
+    "salary": "",
+    "date_posted": "",
+    "source": "glassdoor.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.5,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.5,
+        "matched": [
+          "flask",
+          "python"
+        ],
+        "job_requires": [
+          "django",
+          "fastapi",
+          "flask",
+          "python"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "linkedin-python-eindhoven",
+    "title": "Python Developer",
+    "company": "Various Companies (LinkedIn)",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://www.linkedin.com/jobs/python-jobs-eindhoven",
+    "description": "2000+ Python jobs in Eindhoven area. Top companies: Canonical, ASML, Sendcloud, Trinamics, Mazars, Nedis B.V., Coosto, Jumbo Supermarkten, Assa Abloy. Python development, Django, Flask, FastAPI.",
+    "salary": "",
+    "date_posted": "",
+    "source": "linkedin.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.5,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.5,
+        "matched": [
+          "flask",
+          "python"
+        ],
+        "job_requires": [
+          "django",
+          "fastapi",
+          "flask",
+          "python"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "tmc-software-engineer",
+    "title": "Software Engineer (C++)",
+    "company": "TMC",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/a30f4de3d9e8935e",
+    "description": "Software Engineer with 5+ years C++ experience to design and develop advanced software solutions for complex mechatronic systems and cutting-edge technologies. Permanent employment contract and individual profit sharing.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.0,
+        "note": "Could not determine skills"
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "gravitas-fullstack",
+    "title": "Full Stack Engineer",
+    "company": "Gravitas Recruitment Group",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/01b20b8ebda441de",
+    "description": "Full Stack Software Engineer for AI & Innovation unit focused on AI application in software. Full stack development combining frontend and backend skills.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.5,
+        "matched": [
+          "ai"
+        ],
+        "job_requires": [
+          "ai",
+          "full stack"
+        ]
+      },
+      "title_match": 2.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.5
+    }
+  },
+  {
+    "id": "vention-embedded",
+    "title": "Embedded Software Engineer",
+    "company": "Vention (High Tech Campus)",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/08bff55ebb5d2acd",
+    "description": "Embedded Software Engineer (32-40 hours/week) for digital product development at High Tech Campus. Rapidly growing team developing embedded solutions.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.0,
+        "note": "Could not determine skills"
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "panda-software-engineer",
+    "title": "Software Engineer (MedTech)",
+    "company": "Panda Intelligence",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/ad733af978c5af46",
+    "description": "Software Engineer for MedTech company developing internal medical products. Healthcare technology software development.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.0,
+        "note": "Could not determine skills"
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "nxp-embedded",
+    "title": "Embedded Software Engineer",
+    "company": "NXP Semiconductors",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/b04a5221ff7f28d6",
+    "description": "Develop embedded software based on specifications with C programming proficiency required. Leading semiconductor company.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.0,
+        "note": "Could not determine skills"
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "linkedin-dotnet-eindhoven",
+    "title": ".NET Developer",
+    "company": "Various Companies (LinkedIn)",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/dotnet-developer-jobs-eindhoven",
+    "description": "191 Dotnet Developer vacancies in Eindhoven. Companies include UnitedConsumers, BOLD Company, Indicia, MatchMatters BV, and many more. .NET, C#, ASP.NET roles with competitive salaries.",
+    "salary": "€4,141–€5,915 gross/month typical",
+    "date_posted": "",
+    "source": "linkedin.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 7.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 4.0,
+        "matched": [
+          ".net",
+          "asp.net"
+        ],
+        "job_requires": [
+          ".net",
+          "asp.net"
+        ]
+      },
+      "title_match": 1.5,
+      "location_match": 1.5,
+      "salary_match": 0.0,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "kubus-lead-engineer",
+    "title": "Lead Software Engineer",
+    "company": "KUBUS (BIMcollab)",
+    "location": "Eindhoven, Noord-Brabant, Netherlands (Hybrid)",
+    "url": "https://jobs.bimcollab.com/o/lead-software-engineer",
+    "description": "Shape the technical direction of a Cloud SaaS team as technical architect ensuring platform performance, security, maintainability. Guide backend/frontend modernization, mentor engineers. Tech stack: .NET-based services, Azure integrations, Vue-based frontend. Requires strong backend and cloud architecture background, Azure experience.",
+    "salary": "€5,600–€7,900 per month",
+    "date_posted": "2025-03-18",
+    "source": "recruitee",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 6.7,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 1.7,
+        "matched": [
+          "azure"
+        ],
+        "job_requires": [
+          "azure",
+          "saas",
+          "vue"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.0,
+      "industry_match": 0.5
+    }
+  },
+  {
+    "id": "evoke-django",
+    "title": "Django Developer",
+    "company": "Evoke",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://www.wearedevelopers.com/en/jobs/ls/netherlands/eindhoven/django",
+    "description": "Django developer role with skills in API, Azure, NoSQL, Flask, and Django. Full stack Python development with modern cloud technologies.",
+    "salary": "",
+    "date_posted": "",
+    "source": "wearedevelopers.com",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 6.5,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 3.0,
+        "matched": [
+          "azure",
+          "flask",
+          "python"
+        ],
+        "job_requires": [
+          "azure",
+          "django",
+          "flask",
+          "full stack",
+          "python"
+        ]
+      },
+      "title_match": 1.5,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "topic-test-designer",
+    "title": "Senior Software Test Designer",
+    "company": "Topic Software Development",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/421cb17357cbcf9f",
+    "description": "Senior Software Test Designer overseeing testing architecture for UI, Web, Mobile applications. Software quality assurance and test automation.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T12:00:00",
+    "score": 4.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 0.0,
+        "matched": [],
+        "job_requires": [
+          "automation"
+        ]
+      },
+      "title_match": 1.5,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.5
+    }
+  }
+]

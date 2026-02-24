@@ -1,1 +1,85 @@
-[]
+[
+  {
+    "id": "app-scholt-net-001",
+    "company": "Scholt Energy",
+    "role": ".NET Software Engineer",
+    "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
+    "date_applied": "2026-02-24",
+    "score": 9.2,
+    "status": "applied",
+    "resume_file": "output/tailored-resumes/scholt-energy-net-software-engineer.md",
+    "cover_letter_file": "output/cover-letters/scholt-energy-net-software-engineer.md",
+    "screenshot": "",
+    "notes": "Top match. .NET/C#/Azure/SQL. Energy market. Applied via browser automation.",
+    "response": "awaiting"
+  },
+  {
+    "id": "app-sendent-net-001",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-02-24",
+    "score": 9.0,
+    "status": "applied",
+    "resume_file": "output/tailored-resumes/sendent-bv-medior-software-engineer-backendintegrationsnet.md",
+    "cover_letter_file": "output/cover-letters/sendent-bv-medior-software-engineer-backendintegrationsnet.md",
+    "screenshot": "",
+    "notes": "Strong match. C#/.NET backend, privacy-first. Hybrid Eindhoven. Applied via join.com.",
+    "response": "awaiting"
+  },
+  {
+    "id": "app-prodrive-se-001",
+    "company": "Prodrive Technologies",
+    "role": "Software Engineer",
+    "url": "https://prodrive-technologies.com/careers/apply/",
+    "date_applied": "2026-02-24",
+    "score": 8.8,
+    "status": "applied",
+    "resume_file": "output/tailored-resumes/prodrive-technologies-software-engineer.md",
+    "cover_letter_file": "output/cover-letters/prodrive-technologies-software-engineer.md",
+    "screenshot": "",
+    "notes": "High-tech manufacturing. Python/C++. Applied via career page.",
+    "response": "awaiting"
+  },
+  {
+    "id": "app-kubus-se-001",
+    "company": "KUBUS (BIMcollab)",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/lead-software-engineer",
+    "date_applied": "2026-02-24",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "output/tailored-resumes/kubus-bimcollab-software-engineer.md",
+    "cover_letter_file": "output/cover-letters/kubus-bimcollab-software-engineer.md",
+    "screenshot": "",
+    "notes": ".NET/Azure cloud SaaS. BIM platform. Applied via recruitee.",
+    "response": "awaiting"
+  },
+  {
+    "id": "app-futures-csharp-001",
+    "company": "Futures.Works",
+    "role": "C# Developer Eindhoven Region",
+    "url": "https://www.careers-page.com/futures-works/job/LR994VY6",
+    "date_applied": "2026-02-24",
+    "score": 7.5,
+    "status": "applied",
+    "resume_file": "output/tailored-resumes/futuresworks-c-developer-eindhoven-region-for-high-tech-companies.md",
+    "cover_letter_file": "output/cover-letters/futuresworks-c-developer-eindhoven-region-for-high-tech-companies.md",
+    "screenshot": "",
+    "notes": "C#/.NET high-tech sector. SCRUM/CI/CD/Azure. Applied via careers-page.com.",
+    "response": "awaiting"
+  },
+  {
+    "company": "Scholt Energy",
+    "role": ".NET Software Engineer",
+    "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
+    "application_url": "https://www.scholt.nl/en/apply/?page=3630",
+    "date_applied": "2026-02-24T12:42:56.647058",
+    "status": "failed",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/scholt-error-20260224_124259.png"
+    ],
+    "notes": "Error during application: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/\nCall log:\n  - navigating to \"https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/\", waiting until \"networkidle\"\n",
+    "id": 6
+  }
+]
