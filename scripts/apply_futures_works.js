@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 const JOB_URL = 'https://www.careers-page.com/futures-works/job/LR994VY6';
+const APPLY_URL = 'https://www.careers-page.com/futures-works/job/LR994VY6/apply';
 const SCREENSHOTS_DIR = '/home/user/Agents/output/screenshots';
 const RESUME_PDF = '/home/user/Agents/profile/Hisham Abboud CV.pdf';
 const CHROMIUM_PATH = '/root/.cache/ms-playwright/chromium-1194/chrome-linux/chrome';
@@ -12,22 +13,45 @@ const PERSONAL_DETAILS = {
   lastName: 'Abboud',
   email: 'Hisham123@hotmail.com',
   phone: '+31 06 4841 2838',
-  linkedin: 'linkedin.com/in/hisham-abboud',
+  linkedin: 'https://linkedin.com/in/hisham-abboud',
   github: 'github.com/Hishamabboud',
   city: 'Eindhoven',
-  country: 'Netherlands'
+  country: 'Netherlands',
+  postcode: '5611'
 };
 
-const COVER_LETTER = `Dear Futures.Works Hiring Team,
+// Detailed answers for all screening questions
+const ANSWERS = {
+  introduction: `I am Hisham Abboud, a Software Engineer based in Eindhoven with over 2 years of professional experience in C#/.NET development. I currently work at Actemium (VINCI Energies) where I develop full-stack applications for manufacturing clients. Prior to this, I completed internships at ASML in Veldhoven and Delta Electronics in Helmond, giving me strong exposure to the high-tech industrial sector in the Eindhoven region. I hold a Bachelor of Science in Software Engineering from Fontys University of Applied Sciences in Eindhoven and am fluent in Dutch, English, and Arabic.`,
 
-I am applying for the C# Developer position for High Tech Companies in the Eindhoven region. With professional experience in C#/.NET at Actemium (VINCI Energies) and prior internships at ASML and Delta Electronics, I bring hands-on high-tech sector experience.
+  attraction: `I am drawn to this role because Futures.Works specifically focuses on connecting engineers with high-tech companies in the Eindhoven ecosystem - an environment I am already deeply familiar with through my work at Actemium and my internship at ASML. The opportunity to work with cutting-edge technology companies in the region, applying my C# and .NET expertise in challenging engineering contexts, is exactly the type of career growth I am seeking. The Eindhoven high-tech sector is world-class, and I want to be part of it at a deeper level.`,
 
-At Actemium, I develop full-stack applications using C#, .NET, ASP.NET for manufacturing clients, working with Azure, CI/CD, and Scrum methodologies. My experience at ASML in Veldhoven gave me direct exposure to the high-tech semiconductor sector.
+  keySkills: `My key skills that make me suitable for this role include:
+- 2+ years of professional C# and .NET development experience at Actemium (VINCI Energies)
+- Full-stack development using ASP.NET, REST APIs, and SQL databases
+- CI/CD pipeline experience with Azure DevOps
+- Agile/Scrum methodology experience in industrial and high-tech contexts
+- Direct high-tech sector experience from ASML internship (Python, Azure, Kubernetes, Jira)
+- Legacy code migration from Visual Basic to C# (Delta Electronics)
+- Strong understanding of OOP principles and software architecture
+- Fluent in Dutch and English, enabling seamless collaboration with local teams`,
 
-I am based in Eindhoven with a valid Dutch work permit and am fluent in both Dutch and English.
+  improvements: `I am actively working to deepen my expertise in cloud-native architectures and microservices with Azure. I want to expand my knowledge of advanced design patterns and domain-driven design for large-scale enterprise systems. Additionally, I am improving my skills in DevSecOps practices and security-first software development, which is increasingly important in high-tech manufacturing environments.`,
 
-Best regards,
-Hisham Abboud`;
+  availability: 'Immediately / Within 1 month',
+
+  salaryExpectations: `My salary expectation is in the range of €55,000 - €70,000 gross per year, depending on the specific role, responsibilities, and benefits package. I am open to discussing the full compensation structure.`,
+
+  workPreference: `Hybrid - I prefer a combination of on-site collaboration with the team and remote work for focused development tasks. I am based in Eindhoven so on-site work at local high-tech companies is very convenient for me.`,
+
+  reasonLeaving: `I am looking for a new opportunity to work directly in the high-tech sector at a higher technical level. While I value my current role at Actemium, working with Futures.Works would give me access to more specialized C# development roles at leading high-tech companies in the Eindhoven region, which aligns better with my long-term career goals in software engineering for industrial and semiconductor technology.`,
+
+  workPermit: `I am a Dutch/EU citizen with a valid Dutch work permit (BSN). I have full right to work in the Netherlands without any restrictions or sponsorship requirements.`,
+
+  reference: `Available upon request. I can provide references from my colleagues and supervisors at Actemium (VINCI Energies) and from my internship supervisor at ASML.`,
+
+  achievement: `Situation: At Delta Electronics, the HR salary management system was built on outdated Visual Basic code that was slow, error-prone, and difficult to maintain across 5 branches. Task: I was tasked with modernizing this system while ensuring zero disruption to payroll operations. Action: I designed and developed a new C# web application with a clean architecture, migrated the business logic from Visual Basic, and implemented a SQL database optimization that reduced query time by 60%. I also trained the HR staff on the new system. Result: The new system reduced manual errors by 90%, cut processing time from hours to minutes, and was successfully deployed across all branches within the 6-month internship period.`
+};
 
 // Extract proxy credentials from environment
 function getProxyConfig() {
@@ -54,46 +78,114 @@ async function takeScreenshot(page, name) {
   return filepath;
 }
 
-async function tryFillField(page, selectors, value) {
-  for (const selector of selectors) {
-    try {
-      const el = await page.$(selector);
-      if (el) {
-        const isVisible = await el.isVisible().catch(() => false);
-        if (isVisible) {
-          await el.fill(value);
-          console.log(`  Filled [${selector.substring(0, 60)}] with: "${value.substring(0, 30)}${value.length > 30 ? '...' : ''}"`);
-          return true;
-        }
+async function fillByPlaceholder(page, placeholder, value) {
+  try {
+    const el = await page.$(`[placeholder="${placeholder}"]`);
+    if (el) {
+      const visible = await el.isVisible().catch(() => false);
+      if (visible) {
+        await el.fill(value);
+        console.log(`  Filled "${placeholder}" with: "${value.substring(0, 60)}${value.length > 60 ? '...' : ''}"`);
+        return true;
       }
-    } catch (e) {
-      // try next selector
     }
-  }
+  } catch (e) {}
   return false;
 }
 
-async function logFormStructure(page) {
+async function fillByName(page, name, value) {
   try {
-    const elements = await page.$$eval(
-      'input:not([type="hidden"]):not([type="submit"]):not([type="button"]), textarea, select',
-      els => els.map(el => ({
-        tag: el.tagName,
-        type: el.type || '',
-        name: el.name || '',
-        id: el.id || '',
-        placeholder: el.placeholder || '',
-        ariaLabel: el.getAttribute('aria-label') || '',
-        required: el.required,
-        className: (el.className || '').substring(0, 60)
-      }))
-    );
-    console.log(`Found ${elements.length} form input element(s):`);
-    elements.forEach(el => console.log('  ', JSON.stringify(el)));
-    return elements;
+    const el = await page.$(`[name="${name}"]`);
+    if (el) {
+      const visible = await el.isVisible().catch(() => false);
+      if (visible) {
+        await el.fill(value);
+        console.log(`  Filled field name="${name}" with: "${value.substring(0, 60)}${value.length > 60 ? '...' : ''}"`);
+        return true;
+      }
+    }
+  } catch (e) {}
+  return false;
+}
+
+async function fillById(page, id, value) {
+  try {
+    const el = await page.$(`#${id}`);
+    if (el) {
+      const visible = await el.isVisible().catch(() => false);
+      if (visible) {
+        await el.fill(value);
+        console.log(`  Filled id="${id}" with: "${value.substring(0, 60)}${value.length > 60 ? '...' : ''}"`);
+        return true;
+      }
+    }
+  } catch (e) {}
+  return false;
+}
+
+async function selectLanguageDropdown(page, languages) {
+  // The language field appears to be a Select2 multi-select
+  try {
+    // Try clicking on the select2 container to open it
+    const select2Container = await page.$('.select2-container');
+    if (select2Container) {
+      for (const lang of languages) {
+        try {
+          // Type in the search box
+          const searchInput = await page.$('.select2-search__field');
+          if (searchInput) {
+            await searchInput.click();
+            await searchInput.fill(lang);
+            await page.waitForTimeout(1000);
+
+            // Look for the option and click it
+            const option = await page.$('.select2-results__option');
+            if (option) {
+              await option.click();
+              console.log(`  Selected language: ${lang}`);
+              await page.waitForTimeout(500);
+            }
+          }
+        } catch (e) {
+          console.log(`  Could not select language ${lang}: ${e.message}`);
+        }
+      }
+    }
   } catch (e) {
-    console.log('Could not log form structure:', e.message);
-    return [];
+    console.log(`  Could not interact with language dropdown: ${e.message}`);
+  }
+
+  // Also try setting the underlying select value
+  try {
+    const selectEl = await page.$('select[name="1019019"]');
+    if (selectEl) {
+      // Get available options
+      const options = await page.$$eval('select[name="1019019"] option', opts =>
+        opts.map(o => ({ value: o.value, text: o.textContent.trim() }))
+      );
+      console.log('  Available language options:', options.map(o => o.text).join(', '));
+
+      // Select English and Dutch
+      for (const opt of options) {
+        if (opt.text.toLowerCase().includes('english') ||
+            opt.text.toLowerCase().includes('dutch') ||
+            opt.text.toLowerCase().includes('engels') ||
+            opt.text.toLowerCase().includes('nederlands')) {
+          await page.evaluate((val) => {
+            const sel = document.querySelector('select[name="1019019"]');
+            if (sel) {
+              for (const opt of sel.options) {
+                if (opt.value === val) opt.selected = true;
+              }
+              sel.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }, opt.value);
+          console.log(`  Programmatically selected: ${opt.text}`);
+        }
+      }
+    }
+  } catch (e) {
+    console.log(`  Could not set select value: ${e.message}`);
   }
 }
 
@@ -101,7 +193,7 @@ async function main() {
   console.log('=== Futures.Works C# Developer Application ===');
   console.log('Applicant: Hisham Abboud');
   console.log('Position: C# Developer - Eindhoven Region');
-  console.log('URL:', JOB_URL);
+  console.log('Apply URL:', APPLY_URL);
   console.log('');
 
   if (!fs.existsSync(SCREENSHOTS_DIR)) {
@@ -138,32 +230,23 @@ async function main() {
 
   const browser = await chromium.launch(launchOptions);
 
-  const contextOptions = {
-    viewport: { width: 1280, height: 900 },
+  const context = await browser.newContext({
+    viewport: { width: 1280, height: 1200 },
     userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     ignoreHTTPSErrors: true
-  };
-
-  const context = await browser.newContext(contextOptions);
-
-  // Handle proxy authentication automatically
-  if (proxyConfig) {
-    await context.route('**/*', async (route) => {
-      route.continue();
-    });
-  }
+  });
 
   const page = await context.newPage();
 
   page.on('console', msg => {
-    if (msg.type() === 'error') console.log(`[Page Error] ${msg.text().substring(0, 100)}`);
+    if (msg.type() === 'error') console.log(`[Page Error] ${msg.text().substring(0, 120)}`);
   });
 
   try {
-    // Step 1: Navigate to job page
-    console.log('\n--- Step 1: Navigating to job page ---');
-    await page.goto(JOB_URL, {
-      waitUntil: 'domcontentloaded',
+    // Step 1: Navigate directly to apply form
+    console.log('--- Step 1: Navigating directly to application form ---');
+    await page.goto(APPLY_URL, {
+      waitUntil: 'networkidle',
       timeout: 45000
     });
 
@@ -172,372 +255,221 @@ async function main() {
     console.log(`Page title: ${pageTitle}`);
     console.log(`Current URL: ${page.url()}`);
 
-    await takeScreenshot(page, 'futures-works-01-job-page.png');
+    await takeScreenshot(page, 'futures-works-01-apply-form-loaded.png');
 
-    // Step 2: Find and click Apply button
-    console.log('\n--- Step 2: Looking for Apply button ---');
+    // Step 2: Fill all form fields
+    console.log('\n--- Step 2: Filling all form fields ---');
 
-    // Log all links/buttons for debugging
-    const clickables = await page.$$eval('a, button', els =>
-      els.map(el => ({
-        tag: el.tagName,
-        text: el.textContent.trim().substring(0, 60),
-        href: el.getAttribute('href') || ''
-      })).filter(el => el.text.length > 0)
-    );
-    console.log('Clickable elements:');
-    clickables.forEach(c => console.log(`  ${c.tag}: "${c.text}" href="${c.href}"`));
+    // Basic info fields (by placeholder based on form analysis)
+    await fillByPlaceholder(page, 'Full Name', PERSONAL_DETAILS.fullName);
+    await fillByPlaceholder(page, 'First Name', PERSONAL_DETAILS.firstName);
+    await fillByPlaceholder(page, 'Last Name', PERSONAL_DETAILS.lastName);
+    await fillByPlaceholder(page, 'Email', PERSONAL_DETAILS.email);
 
-    let clicked = false;
+    // Postcode field
+    await fillByPlaceholder(page, 'postcode (used for matching, can be approximate)', PERSONAL_DETAILS.postcode);
 
-    // Try various apply button selectors
-    const applyTextOptions = [
-      'Apply for Position',
-      'Apply for this position',
-      'Apply Now',
-      'Apply',
-      'Solliciteer',
-      'Solliciteer nu'
-    ];
+    // Current city and country
+    await fillByPlaceholder(page, 'Current City', PERSONAL_DETAILS.city);
+    await fillByPlaceholder(page, 'Current Country', PERSONAL_DETAILS.country);
 
-    for (const text of applyTextOptions) {
-      try {
-        const el = await page.$(`a:has-text("${text}"), button:has-text("${text}")`);
-        if (el) {
-          console.log(`Found Apply element with text: "${text}"`);
-          const href = await el.getAttribute('href');
-          if (href && href.startsWith('http')) {
-            // Navigate directly
-            console.log(`Navigating to: ${href}`);
-            await page.goto(href, { waitUntil: 'domcontentloaded', timeout: 30000 });
-          } else {
-            await el.click();
-          }
-          clicked = true;
-          break;
-        }
-      } catch (e) {
-        // try next
-      }
-    }
+    // Languages (Select2 multi-select)
+    console.log('  Handling language selection...');
+    await selectLanguageDropdown(page, ['English', 'Dutch', 'Nederlands', 'Engels']);
 
-    if (!clicked) {
-      // Try finding any link containing "apply" in href
-      const applyLinks = await page.$$eval('a[href]', links =>
-        links.map(l => ({ text: l.textContent.trim(), href: l.href }))
-              .filter(l => l.href.toLowerCase().includes('apply') || l.text.toLowerCase().includes('apply'))
-      );
+    // Screening questions (textareas)
+    await fillByPlaceholder(page, 'Give a short introduction of yourself', ANSWERS.introduction);
+    await fillByPlaceholder(page, 'What attracts you in the role?', ANSWERS.attraction);
+    await fillByPlaceholder(page, 'What are your key skills that make you suitable for the role?', ANSWERS.keySkills);
+    await fillByPlaceholder(page, 'What are some skills or areas you want to improve in?', ANSWERS.improvements);
 
-      if (applyLinks.length > 0) {
-        console.log(`Found apply link: "${applyLinks[0].text}" -> ${applyLinks[0].href}`);
-        await page.goto(applyLinks[0].href, { waitUntil: 'domcontentloaded', timeout: 30000 });
-        clicked = true;
-      }
-    }
+    // Availability date field
+    await fillByPlaceholder(page, 'When are you available to start working?', ANSWERS.availability);
 
-    if (!clicked) {
-      console.log('No separate apply button found. Checking if form is on current page...');
-      const formEl = await page.$('form');
-      if (formEl) {
-        console.log('Form found on current page.');
-        clicked = true;
-      } else {
-        console.log('WARNING: No apply button and no form found on page.');
-      }
-    }
+    // Salary expectations
+    await fillByPlaceholder(page, 'What are your exact salary expectations?', ANSWERS.salaryExpectations);
 
-    await page.waitForTimeout(3000);
-    const afterClickUrl = page.url();
-    console.log(`URL after click: ${afterClickUrl}`);
-    await takeScreenshot(page, 'futures-works-02-after-apply-click.png');
+    // Work preference (remote/on-site/hybrid)
+    await fillByPlaceholder(page, 'Do you want to work remote, on-site, or hybrid?', ANSWERS.workPreference);
 
-    // Check for iframes
-    const iframes = await page.$$('iframe');
-    console.log(`\nFound ${iframes.length} iframe(s)`);
+    // Reason for leaving
+    await fillByPlaceholder(page, 'Why do you want to leave your current job?', ANSWERS.reasonLeaving);
 
-    let formContext = page;
+    // Work permit
+    await fillByPlaceholder(page, 'What is your work permit status?', ANSWERS.workPermit);
 
-    if (iframes.length > 0) {
-      for (let i = 0; i < iframes.length; i++) {
-        try {
-          const frame = await iframes[i].contentFrame();
-          if (frame) {
-            const frameUrl = frame.url();
-            console.log(`  Iframe ${i} URL: ${frameUrl}`);
-            const frameInputs = await frame.$$('input, textarea');
-            if (frameInputs.length > 0) {
-              console.log(`  Iframe ${i} has ${frameInputs.length} form elements. Using this frame.`);
-              formContext = frame;
-              break;
-            }
-          }
-        } catch (e) {
-          console.log(`  Iframe ${i} not accessible: ${e.message}`);
-        }
-      }
-    }
+    // Reference
+    await fillByPlaceholder(page, 'Provide a reference (someone that can say something about you)', ANSWERS.reference);
 
-    // Step 3: Analyze form
-    console.log('\n--- Step 3: Analyzing form structure ---');
-    const formElements = await logFormStructure(formContext);
+    // Achievement (STAR format)
+    await fillByPlaceholder(page, 'Achievement you are most proud of in format Situation, Task, Action, Result', ANSWERS.achievement);
 
-    if (formElements.length === 0 && iframes.length === 0) {
-      console.log('No form elements found. The form may be on a different page or loaded dynamically.');
+    // LinkedIn URL
+    await fillByPlaceholder(page, 'Your LinkedIn URL', PERSONAL_DETAILS.linkedin);
 
-      // Try waiting longer for dynamic content
-      await page.waitForTimeout(5000);
-      const formElements2 = await logFormStructure(formContext);
-      if (formElements2.length === 0) {
-        console.log('Still no form elements after waiting. Saving debug info...');
-        const html = await page.content();
-        fs.writeFileSync('/home/user/Agents/output/screenshots/futures-works-debug.html', html);
-        console.log('Page HTML saved to /home/user/Agents/output/screenshots/futures-works-debug.html');
-      }
-    }
-
-    // Step 4: Fill form fields
-    console.log('\n--- Step 4: Filling form fields ---');
-
-    // Full name
-    await tryFillField(formContext, [
-      'input[name="name"]',
-      'input[name="full_name"]',
-      'input[name="fullName"]',
-      'input[id="name"]',
-      'input[id="full_name"]',
-      'input[placeholder*="name" i]:not([placeholder*="last" i]):not([placeholder*="sur" i]):not([placeholder*="user" i])'
-    ], PERSONAL_DETAILS.fullName);
-
-    // First name
-    await tryFillField(formContext, [
-      'input[name="first_name"]',
-      'input[name="firstName"]',
-      'input[id="first_name"]',
-      'input[id="firstName"]',
-      'input[placeholder*="first name" i]',
-      'input[placeholder*="firstname" i]',
-      'input[placeholder*="voornaam" i]',
-      'input[aria-label*="first name" i]',
-      'input[aria-label*="voornaam" i]'
-    ], PERSONAL_DETAILS.firstName);
-
-    // Last name
-    await tryFillField(formContext, [
-      'input[name="last_name"]',
-      'input[name="lastName"]',
-      'input[name="surname"]',
-      'input[id="last_name"]',
-      'input[id="lastName"]',
-      'input[placeholder*="last name" i]',
-      'input[placeholder*="lastname" i]',
-      'input[placeholder*="surname" i]',
-      'input[placeholder*="achternaam" i]',
-      'input[aria-label*="last name" i]',
-      'input[aria-label*="achternaam" i]'
-    ], PERSONAL_DETAILS.lastName);
-
-    // Email
-    await tryFillField(formContext, [
-      'input[type="email"]',
-      'input[name="email"]',
-      'input[id="email"]',
-      'input[placeholder*="email" i]',
-      'input[aria-label*="email" i]'
-    ], PERSONAL_DETAILS.email);
-
-    // Phone
-    await tryFillField(formContext, [
-      'input[type="tel"]',
-      'input[name="phone"]',
-      'input[name="telephone"]',
-      'input[name="mobile"]',
-      'input[name="phone_number"]',
-      'input[id="phone"]',
-      'input[id="telephone"]',
-      'input[placeholder*="phone" i]',
-      'input[placeholder*="tel" i]',
-      'input[placeholder*="mobile" i]',
-      'input[placeholder*="telefoon" i]',
-      'input[placeholder*="mobiel" i]',
-      'input[aria-label*="phone" i]',
-      'input[aria-label*="tel" i]'
-    ], PERSONAL_DETAILS.phone);
-
-    // LinkedIn
-    await tryFillField(formContext, [
-      'input[name="linkedin"]',
-      'input[name="linkedin_url"]',
-      'input[name="linkedinUrl"]',
-      'input[id="linkedin"]',
-      'input[placeholder*="linkedin" i]',
-      'input[aria-label*="linkedin" i]'
-    ], PERSONAL_DETAILS.linkedin);
-
-    // GitHub
-    await tryFillField(formContext, [
-      'input[name="github"]',
-      'input[name="github_url"]',
-      'input[id="github"]',
-      'input[placeholder*="github" i]',
-      'input[aria-label*="github" i]'
-    ], PERSONAL_DETAILS.github);
-
-    // City
-    await tryFillField(formContext, [
-      'input[name="city"]',
-      'input[name="location"]',
-      'input[name="woonplaats"]',
-      'input[id="city"]',
-      'input[placeholder*="city" i]',
-      'input[placeholder*="stad" i]',
-      'input[placeholder*="woonplaats" i]',
-      'input[aria-label*="city" i]'
-    ], PERSONAL_DETAILS.city);
-
-    // Cover letter
-    const coverFilled = await tryFillField(formContext, [
-      'textarea[name="cover_letter"]',
-      'textarea[name="coverLetter"]',
-      'textarea[name="motivation"]',
-      'textarea[name="message"]',
-      'textarea[name="body"]',
-      'textarea[id="cover_letter"]',
-      'textarea[id="coverLetter"]',
-      'textarea[id="motivation"]',
-      'textarea[id="message"]',
-      'textarea[placeholder*="cover" i]',
-      'textarea[placeholder*="letter" i]',
-      'textarea[placeholder*="motivation" i]',
-      'textarea[placeholder*="message" i]',
-      'textarea[placeholder*="motivatie" i]',
-      'textarea[aria-label*="cover" i]',
-      'textarea[aria-label*="motivation" i]',
-      'textarea'
-    ], COVER_LETTER);
-
-    if (coverFilled) {
-      console.log('Cover letter filled successfully.');
-    } else {
-      console.log('No cover letter textarea found.');
-    }
-
-    // Step 5: File upload
-    console.log('\n--- Step 5: Uploading resume ---');
-    const fileInputs = await formContext.$$('input[type="file"]');
+    // Step 3: Upload resume
+    console.log('\n--- Step 3: Uploading resume PDF ---');
+    const fileInputs = await page.$$('input[type="file"]');
     console.log(`Found ${fileInputs.length} file input(s)`);
 
     if (fileInputs.length > 0) {
-      for (let i = 0; i < fileInputs.length; i++) {
-        try {
-          const acceptAttr = await fileInputs[i].getAttribute('accept');
-          console.log(`File input ${i} accepts: ${acceptAttr || 'any'}`);
-          await fileInputs[i].setInputFiles(RESUME_PDF);
-          console.log(`Resume uploaded to file input ${i}`);
-          await page.waitForTimeout(2000);
-          break; // Upload to first file input only
-        } catch (e) {
-          console.log(`Could not upload to file input ${i}: ${e.message}`);
-        }
+      try {
+        await fileInputs[0].setInputFiles(RESUME_PDF);
+        console.log(`Resume uploaded successfully: ${RESUME_PDF}`);
+        await page.waitForTimeout(2000);
+      } catch (e) {
+        console.log(`Could not upload resume: ${e.message}`);
       }
-    } else {
-      console.log('No file upload field found on form.');
+    }
+
+    // Step 4: Handle checkboxes (consent, terms)
+    console.log('\n--- Step 4: Handling checkboxes ---');
+    const checkboxes = await page.$$('input[type="checkbox"]');
+    console.log(`Found ${checkboxes.length} checkbox(es)`);
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      try {
+        const isChecked = await checkboxes[i].isChecked();
+        if (!isChecked) {
+          await checkboxes[i].check();
+          const name = await checkboxes[i].getAttribute('name');
+          console.log(`  Checked checkbox: ${name || `checkbox-${i}`}`);
+        }
+      } catch (e) {
+        console.log(`  Could not check checkbox ${i}: ${e.message}`);
+      }
     }
 
     await page.waitForTimeout(1500);
-    await takeScreenshot(page, 'futures-works-03-form-filled.png');
-    console.log('\nPre-submit screenshot saved: futures-works-03-form-filled.png');
 
-    // Step 6: Submit
-    console.log('\n--- Step 6: Submitting application ---');
+    // Take pre-submit screenshot
+    await takeScreenshot(page, 'futures-works-02-form-filled-pre-submit.png');
+    console.log('\nPre-submit screenshot saved.');
 
+    // Step 5: Scroll through form to verify filled fields
+    console.log('\n--- Step 5: Verifying form state ---');
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(500);
+
+    // Check for any validation errors visible
+    const errorMessages = await page.$$eval(
+      '.error, .invalid-feedback, [class*="error"]:not([class*="form"]):not([class*="control"])',
+      els => els.map(el => el.textContent.trim()).filter(t => t.length > 0)
+    );
+    if (errorMessages.length > 0) {
+      console.log('Validation errors visible:', errorMessages);
+    } else {
+      console.log('No visible validation errors found.');
+    }
+
+    // Step 6: Find and click submit
+    console.log('\n--- Step 6: Submitting the application ---');
+
+    // Look for submit button
     let submitBtn = null;
-    const submitTexts = ['Submit Application', 'Submit', 'Apply', 'Send', 'Verzenden', 'Solliciteer'];
 
-    for (const text of submitTexts) {
-      try {
-        const btn = await formContext.$(`button:has-text("${text}"), input[type="submit"][value="${text}"]`);
+    const submitSelectors = [
+      'button[type="submit"]',
+      'input[type="submit"]'
+    ];
+
+    for (const sel of submitSelectors) {
+      const btn = await page.$(sel);
+      if (btn) {
+        const visible = await btn.isVisible().catch(() => false);
+        if (visible) {
+          const text = await btn.evaluate(el => el.textContent || el.value || '');
+          console.log(`Found submit button: "${text.trim()}" (selector: ${sel})`);
+          submitBtn = btn;
+          break;
+        }
+      }
+    }
+
+    if (!submitBtn) {
+      // Try text-based search
+      const submitTexts = ['Apply', 'Submit', 'Verzenden', 'Solliciteer'];
+      for (const text of submitTexts) {
+        const btn = await page.$(`button:has-text("${text}")`);
         if (btn) {
           const visible = await btn.isVisible().catch(() => false);
           if (visible) {
-            console.log(`Found submit button: "${text}"`);
+            console.log(`Found submit button by text: "${text}"`);
             submitBtn = btn;
             break;
           }
         }
-      } catch (e) {}
-    }
-
-    if (!submitBtn) {
-      submitBtn = await formContext.$('button[type="submit"], input[type="submit"]');
-      if (submitBtn) {
-        const btnText = await submitBtn.evaluate(el => el.textContent || el.value || '');
-        console.log(`Found submit button by type: "${btnText.trim()}"`);
       }
     }
 
-    if (!submitBtn) {
-      // Log all buttons
-      const allBtns = await formContext.$$eval(
-        'button, input[type="submit"]',
-        btns => btns.map(b => ({
-          text: (b.textContent || b.value || '').trim(),
-          type: b.type,
-          disabled: b.disabled,
-          class: b.className
-        }))
-      );
-      console.log('All buttons found:', JSON.stringify(allBtns));
-    }
-
     if (submitBtn) {
-      console.log('Submitting application...');
-      await submitBtn.click();
-      console.log('Submit clicked! Waiting for confirmation...');
-      await page.waitForTimeout(6000);
+      // Scroll to bottom first
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(1000);
 
-      await takeScreenshot(page, 'futures-works-04-after-submit.png');
-      console.log('Post-submit screenshot saved: futures-works-04-after-submit.png');
+      console.log('Clicking submit button...');
+      await submitBtn.click();
+      console.log('Submit clicked! Waiting for response...');
+
+      // Wait for navigation or response
+      await Promise.race([
+        page.waitForNavigation({ timeout: 15000 }).catch(() => {}),
+        page.waitForTimeout(8000)
+      ]);
 
       const finalUrl = page.url();
       console.log(`Final URL: ${finalUrl}`);
 
-      const bodyText = await page.evaluate(() => document.body.innerText || document.body.textContent || '');
-      console.log('\nPage content after submit (first 800 chars):');
-      console.log(bodyText.substring(0, 800));
+      // Take post-submit screenshot
+      await takeScreenshot(page, 'futures-works-03-after-submit.png');
+      console.log('Post-submit screenshot saved.');
 
-      const successKeywords = ['thank', 'success', 'received', 'bedankt', 'ontvangen', 'submitted', 'confirmation', 'bevestig', 'application'];
+      // Get page text to check for success/error
+      const bodyText = await page.evaluate(() => document.body.innerText || '');
+      console.log('\nPage content after submit (first 1000 chars):');
+      console.log(bodyText.substring(0, 1000));
+
+      // Check for success indicators
+      const successKeywords = ['thank', 'success', 'received', 'bedankt', 'ontvangen', 'submitted', 'confirmation', 'bevestig'];
+      const errorKeywords = ['required', 'error', 'invalid', 'please fill', 'verplicht'];
+
       const isSuccess = successKeywords.some(kw => bodyText.toLowerCase().includes(kw));
+      const hasErrors = errorKeywords.some(kw => bodyText.toLowerCase().includes(kw));
 
       if (isSuccess) {
         console.log('\n=== SUCCESS: Application submitted successfully! ===');
+      } else if (hasErrors) {
+        console.log('\n=== WARNING: Form may have validation errors. Check screenshots. ===');
+
+        // Take another screenshot after scrolling to top to see errors
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.waitForTimeout(500);
+        await takeScreenshot(page, 'futures-works-04-validation-errors.png');
       } else {
-        console.log('\n=== Application submitted - check screenshots to confirm ===');
+        console.log('\n=== Application submitted - status uncertain, check screenshots ===');
       }
     } else {
-      console.log('WARNING: Could not find submit button!');
-      await takeScreenshot(page, 'futures-works-04-no-submit.png');
-      console.log('Screenshot of form state saved.');
+      console.log('Could not find submit button!');
+
+      // Log all buttons for debugging
+      const allBtns = await page.$$eval('button, input[type="submit"]', btns =>
+        btns.map(b => ({ text: (b.textContent || b.value || '').trim(), type: b.type, visible: b.offsetParent !== null }))
+      );
+      console.log('All buttons found:', JSON.stringify(allBtns));
+
+      await takeScreenshot(page, 'futures-works-03-no-submit-found.png');
     }
 
     console.log('\n=== Application Process Complete ===');
-    console.log('All screenshots saved to:', SCREENSHOTS_DIR);
-    console.log('Screenshots:');
-    const screenshots = fs.readdirSync(SCREENSHOTS_DIR).filter(f => f.startsWith('futures-works'));
-    screenshots.forEach(s => console.log(' -', path.join(SCREENSHOTS_DIR, s)));
+    console.log('Screenshots saved to:', SCREENSHOTS_DIR);
 
   } catch (error) {
-    console.error('\nERROR during application:', error.message);
-    try {
-      await takeScreenshot(page, 'futures-works-error-state.png');
-      console.log('Error state screenshot saved.');
-    } catch (e) {}
-
+    console.error('\nERROR:', error.message);
+    try { await takeScreenshot(page, 'futures-works-error-state.png'); } catch (e) {}
     try {
       const html = await page.content();
-      fs.writeFileSync('/home/user/Agents/output/screenshots/futures-works-error-page.html', html);
-      console.log('Error page HTML saved for debugging.');
+      fs.writeFileSync('/home/user/Agents/output/screenshots/futures-works-debug.html', html);
     } catch (e) {}
-
     throw error;
   } finally {
     await browser.close();

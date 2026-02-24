@@ -121,5 +121,28 @@
     ],
     "notes": "Form fully completed and ready to submit (Name: Hisham Abboud, Email: Hisham123@hotmail.com, Phone: +31 06 4841 2838, CV uploaded, cover letter uploaded, consent checked). Blocked by Google reCAPTCHA v2 on automated submission. Cannot bypass reCAPTCHA without human interaction. Recommend: (1) Manual submission at https://www.scholt.nl/en/apply/?page=3630 OR (2) Email application to recruitment@scholt.nl (Ward, recruiter: +31 06 51 943 493).",
     "response": null
+  },
+  {
+    "id": "bimcollab-software-engineer-20260224125054",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24 12:50:54",
+    "score": 8,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-v2-01-application-form-initial-20260224_125029.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-02-after-cookies-20260224_125032.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-03-personal-details-filled-20260224_125034.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-04-cv-uploaded-20260224_125039.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-05-cover-letter-20260224_125041.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-06-screening-questions-20260224_125045.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-07-pre-submit-20260224_125047.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-08-post-submit-20260224_125054.png"
+    ],
+    "notes": "Form had validation errors. Check screenshot.",
+    "response": null
   }
 ]
