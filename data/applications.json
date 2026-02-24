@@ -1045,5 +1045,24 @@
     "email_used": "hiaham123@hotmail.com",
     "response": null,
     "reason_skipped": "Vacancy closed - no longer accepting applications"
+  },
+  {
+    "id": "inmation-csharp-backend-20260224_150239",
+    "company": "Inmation BNX",
+    "role": "Experienced C# Developer (Backend)",
+    "url": "https://inmation.bamboohr.com/jobs/view.php?id=41&source=aWQ9MTI%3D",
+    "application_url": "https://inmation.bamboohr.com/jobs/view.php?id=41",
+    "date_applied": "2026-02-24T15:02:39",
+    "score": 9.0,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/inmation-410-gone-20260224_150239.png"
+    ],
+    "notes": "Job listing returned HTTP 410 Gone - position permanently removed from BambooHR. Verified: all job IDs (1-200) at inmation.bamboohr.com return HTTP 410. The position may have been filled, the listing expired, or Inmation migrated ATS. Cannot apply - no active application page exists. Attempted applicant: Hisham Abboud, hiaham123@hotmail.com, +31648412838, Eindhoven NL. CV file: /home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "http_status": 410,
+    "email_used": "hiaham123@hotmail.com",
+    "response": null
   }
 ]
