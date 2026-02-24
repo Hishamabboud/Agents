@@ -816,5 +816,21 @@
     "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://www.coolblue.nl/en/vacancies/c-developer\nCall log:\n  - navigating to \"https://www.coolblue.nl/en/vacancies/c-developer\", waiting until \"domcontentloaded\"\n",
     "email_used": "hiaham123@hotmail.com",
     "response": null
+  },
+  {
+    "id": "goodhabitz-backend-engineer-20260224",
+    "company": "GoodHabitz",
+    "role": "Backend Engineer (C# & NodeJS)",
+    "url": "https://builtin.com/job/backend-engineer/3511984",
+    "application_url": "https://apply.workable.com/goodhabitz/j/31039C3C22/",
+    "date_applied": "2026-02-24",
+    "score": 9.0,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [],
+    "notes": "Job posting is CLOSED. The position was removed from builtin.com on December 11, 2024. Workable job ID 31039C3C22 returns HTTP 404 Not Found. GoodHabitz Workable API (apply.workable.com/api/v3/accounts/goodhabitz/jobs) confirmed 5 current open positions - none are engineering/backend roles. Current openings are: Sales Operations Manager, Senior Product Manager, Creative/Graphic Design Internship, Customer Success Operations Manager, Demand Generation Manager. No Backend Engineer or C# position found on any platform (LinkedIn, Indeed, Workable, GoodHabitz careers page). REASON SKIPPED: Job no longer accepting applications.",
+    "response": null,
+    "email_used": "hiaham123@hotmail.com"
   }
 ]
