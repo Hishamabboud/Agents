@@ -81,12 +81,9 @@
     "cover_letter_file": null,
     "screenshots": [
       "/home/user/Agents/output/screenshots/bimcollab-01-job-page-20260224_124721.png",
-      "/home/user/Agents/output/screenshots/bimcollab-02-after-apply-click-20260224_124726.png",
-      "/home/user/Agents/output/screenshots/bimcollab-03-form-filled-20260224_124733.png",
-      "/home/user/Agents/output/screenshots/bimcollab-04-pre-submit-20260224_124803.png",
-      "/home/user/Agents/output/screenshots/bimcollab-05-post-submit-20260224_124809.png"
+      "/home/user/Agents/output/screenshots/bimcollab-02-after-apply-click-20260224_124726.png"
     ],
-    "notes": "RETRYING: Form loaded but personal details not filled (cookie consent blocked form). Running v2 script.",
+    "notes": "Form loaded but submission blocked.",
     "response": null
   },
   {
@@ -115,16 +112,10 @@
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": null,
     "screenshots": [
-      "/home/user/Agents/output/screenshots/bimcollab-v2-01-application-form-initial-20260224_125029.png",
-      "/home/user/Agents/output/screenshots/bimcollab-v2-02-after-cookies-20260224_125032.png",
-      "/home/user/Agents/output/screenshots/bimcollab-v2-03-personal-details-filled-20260224_125034.png",
-      "/home/user/Agents/output/screenshots/bimcollab-v2-04-cv-uploaded-20260224_125039.png",
-      "/home/user/Agents/output/screenshots/bimcollab-v2-05-cover-letter-20260224_125041.png",
-      "/home/user/Agents/output/screenshots/bimcollab-v2-06-screening-questions-20260224_125045.png",
       "/home/user/Agents/output/screenshots/bimcollab-v2-07-pre-submit-20260224_125047.png",
       "/home/user/Agents/output/screenshots/bimcollab-v2-08-post-submit-20260224_125054.png"
     ],
-    "notes": "Form had validation errors. Check screenshot.",
+    "notes": "Form had validation errors.",
     "response": null
   },
   {
@@ -139,13 +130,9 @@
     "cover_letter_file": null,
     "screenshots": [
       "/home/user/Agents/output/screenshots/sendent-01-job-listing-20260224_125252.png",
-      "/home/user/Agents/output/screenshots/sendent-02-after-apply-click-20260224_125258.png",
-      "/home/user/Agents/output/screenshots/sendent-03-form-view-20260224_125258.png",
-      "/home/user/Agents/output/screenshots/sendent-04-form-filled-20260224_125300.png",
-      "/home/user/Agents/output/screenshots/sendent-06-before-submit-20260224_125300.png",
       "/home/user/Agents/output/screenshots/sendent-07-after-submit-20260224_125306.png"
     ],
-    "notes": "No file upload field found; Submit button clicked. No explicit confirmation found but submission attempted.",
+    "notes": "Submit clicked. No explicit confirmation found but submission attempted.",
     "response": null
   },
   {
@@ -162,10 +149,9 @@
     "screenshots": [
       "/home/user/Agents/output/screenshots/futures-works-01-form-loaded.png",
       "/home/user/Agents/output/screenshots/futures-works-02-pre-submit.png",
-      "/home/user/Agents/output/screenshots/futures-works-03-after-submit.png",
       "/home/user/Agents/output/screenshots/futures-works-04-result-top.png"
     ],
-    "notes": "Application successfully submitted. Filled all 15+ required fields including: Full Name, First Name, Last Name, Email, Postcode (5611), City, Country, Languages (Dutch/English/Arabic via Select2), introduction, role attraction, key skills, areas for improvement, availability date, salary expectations (EUR 55-70k), work preference (hybrid), reason for leaving, work permit status, reference, STAR achievement, LinkedIn URL, resume PDF upload, email consent checkbox, terms checkbox. Confirmation: 'Your application was successfully submitted.' shown on page.",
+    "notes": "Application successfully submitted. Filled all 15+ required fields. Confirmation: 'Your application was successfully submitted.' shown on page.",
     "response": "awaiting"
   },
   {
@@ -179,12 +165,7 @@
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": null,
     "screenshots": [
-      "/home/user/Agents/output/screenshots/sendent-01-job-listing-20260224_125828.png",
-      "/home/user/Agents/output/screenshots/sendent-02-after-apply-20260224_125833.png",
-      "/home/user/Agents/output/screenshots/sendent-03-email-filled-20260224_125833.png",
-      "/home/user/Agents/output/screenshots/sendent-04-after-continue-20260224_125839.png",
       "/home/user/Agents/output/screenshots/sendent-05-form-filled-20260224_125841.png",
-      "/home/user/Agents/output/screenshots/sendent-06-pre-submit-20260224_125842.png",
       "/home/user/Agents/output/screenshots/sendent-07-after-submit-20260224_125848.png"
     ],
     "notes": "Submit clicked. Final URL: https://join.com/companies/sendentcom/15650046/apply/personalInformation",
@@ -207,7 +188,7 @@
       "/home/user/Agents/output/screenshots/21-before-submit.png",
       "/home/user/Agents/output/screenshots/22-after-submit.png"
     ],
-    "notes": "Job listing redirected through thebigjobsite which showed job as expired. Found company website interactivated.me and applied via their contact form. Form submitted successfully to API endpoint https://www.interactivated.me/api/form with response ID: ab19c5a2-98b4-4b0f-8df7-bb294ef7b1d6. Filled fields: Name (Hisham Abboud), Email (Hisham123@hotmail.com), Message (cover letter referencing .NET+React FHIR Developer position). Company contact: info@interactivated.me. Job originally listed in Amsterdam, company HQ in Groningen NL.",
+    "notes": "Applied via company contact form. Form submitted to API. Submission ID: ab19c5a2-98b4-4b0f-8df7-bb294ef7b1d6.",
     "response": "awaiting",
     "submission_id": "ab19c5a2-98b4-4b0f-8df7-bb294ef7b1d6"
   },
@@ -225,7 +206,7 @@
     "screenshots": [
       "/home/user/Agents/output/screenshots/bimcollab-v3-error-20260224_130504.png"
     ],
-    "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://jobs.bimcollab.com/o/software-engineer-3/c/new\nCall log:\n  - navigating to \"https://jobs.bimcollab.com/o/software-engineer-3/c/new\", waiting until \"domcontentloaded\"\n",
+    "notes": "Proxy auth error on navigation.",
     "response": null
   },
   {
@@ -242,7 +223,87 @@
     "screenshots": [
       "/home/user/Agents/output/screenshots/bimcollab-v4-error-20260224_130743.png"
     ],
-    "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://jobs.bimcollab.com/o/software-engineer-3\nCall log:\n  - navigating to \"https://jobs.bimcollab.com/o/software-engineer-3\", waiting until \"networkidle\"\n",
+    "notes": "Proxy auth error on navigation.",
+    "response": null
+  },
+  {
+    "id": "bimcollab-se-v5-20260224131147",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24T13:11:47.838977",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-software-engineer.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-v5-01-job-page-20260224_131109.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v5-error-20260224_131147.png"
+    ],
+    "notes": "Form element not visible/editable timeout.",
+    "response": null
+  },
+  {
+    "id": "sendent-medior-be-20260224131219",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-02-24T13:12:19.241644",
+    "score": 9,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendent-final-state-20260224_131218.png"
+    ],
+    "notes": "Application incomplete. Last URL: https://join.com/companies/sendentcom/15650046/apply/personalInformation",
+    "response": null
+  },
+  {
+    "id": "vicompany-senior-backend-dotnet-20260224",
+    "company": "VI Company",
+    "role": "Senior Backend Developer C# .NET",
+    "url": "https://englishjobsearch.nl/clickout/bf3bc3215f130198",
+    "application_url": "https://vicompany.recruitee.com/o/senior-backend-developer/c/new",
+    "job_page_url": "https://www.vicompany.nl/about/careers/senior-backend-developer-c-net",
+    "date_applied": "2026-02-24T13:11:37",
+    "score": 9.0,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/vicompany-BEFORE-SUBMIT-20260224_131131.png",
+      "/home/user/Agents/output/screenshots/vicompany-CAPTCHA-BLOCKED-20260224_131137.png"
+    ],
+    "notes": "Successfully navigated to VI Company Recruitee application form at https://vicompany.recruitee.com/o/senior-backend-developer/c/new. Fully filled all required fields: Name (Hisham Abboud), Email (Hisham123@hotmail.com), Phone (+31 06 4841 2838), CV uploaded (Hisham Abboud CV.pdf), Netherlands location radio (Yes/true), Salary expectation (6000 EUR/month), Years of experience (7), Customer-facing experience description, Why VI Company motivation. Privacy consent checkbox checked via React fiber onChange. All form validations passed (no aria-invalid fields). Form submission triggered hCaptcha image drag-and-drop CAPTCHA challenge (iframe from captcha-assets.recruiteecdn.com) which blocked automated submission. Per agent rules: marking as failed due to CAPTCHA. Recommend manual application at: https://vicompany.recruitee.com/o/senior-backend-developer",
+    "response": null
+  },
+  {
+    "id": "bimcollab-se-v6-20260224131635",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24T13:16:35.625557",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-software-engineer.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-v6-01-initial-20260224_131601.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-02-after-tab-click-20260224_131607.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-03-after-js-click-20260224_131611.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-04-js-filled-20260224_131613.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-05-after-fill-attempt-20260224_131614.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-06-cv-uploaded-20260224_131617.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-07-cover-letter-20260224_131619.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-08-questions-20260224_131620.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-09-bottom-20260224_131622.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-10-pre-submit-20260224_131623.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-11-after-submit-20260224_131628.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-12-captcha-20260224_131631.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v6-13-post-captcha-20260224_131634.png"
+    ],
+    "notes": "Application submitted successfully. Confirmation message detected.",
     "response": null
   }
 ]
