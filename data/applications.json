@@ -801,23 +801,6 @@
     "email_used": "hiaham123@hotmail.com"
   },
   {
-    "id": "coolblue-csharp-developer-20260224_145258",
-    "company": "Coolblue",
-    "role": "C# Developer",
-    "url": "https://www.coolblue.nl/en/vacancies/c-developer",
-    "date_applied": "2026-02-24T14:52:58.841425",
-    "score": 9.0,
-    "status": "failed",
-    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": null,
-    "screenshots": [
-      "/home/user/Agents/output/screenshots/coolblue-error-20260224_145258.png"
-    ],
-    "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://www.coolblue.nl/en/vacancies/c-developer\nCall log:\n  - navigating to \"https://www.coolblue.nl/en/vacancies/c-developer\", waiting until \"domcontentloaded\"\n",
-    "email_used": "hiaham123@hotmail.com",
-    "response": null
-  },
-  {
     "id": "goodhabitz-backend-engineer-20260224",
     "company": "GoodHabitz",
     "role": "Backend Engineer (C# & NodeJS)",
@@ -889,23 +872,6 @@
       "/home/user/Agents/output/screenshots/sendcloud-06-after-submit-20260224_145456.png"
     ],
     "notes": "Blocked by reCAPTCHA. Form fully filled but CAPTCHA prevents automated submission.",
-    "email_used": "hiaham123@hotmail.com",
-    "response": null
-  },
-  {
-    "id": "coolblue-csharp-developer-20260224_145631",
-    "company": "Coolblue",
-    "role": "C# Developer",
-    "url": "https://www.coolblue.nl/en/vacancies/c-developer",
-    "date_applied": "2026-02-24T14:56:31.920374",
-    "score": 9.0,
-    "status": "failed",
-    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": null,
-    "screenshots": [
-      "/home/user/Agents/output/screenshots/coolblue-error-20260224_145631.png"
-    ],
-    "notes": "Exception: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.coolblue.nl/en/vacancies/c-developer\nCall log:\n  - navigating to \"https://www.coolblue.nl/en/vacancies/c-developer\", waiting until \"domcontentloaded\"\n",
     "email_used": "hiaham123@hotmail.com",
     "response": null
   },
@@ -1040,24 +1006,6 @@
     "response": null
   },
   {
-    "id": "coolblue-csharp-developer-20260224_150015",
-    "company": "Coolblue",
-    "role": "C# Developer",
-    "url": "https://www.coolblue.nl/en/vacancies/c-developer",
-    "date_applied": "2026-02-24T15:00:15.856009",
-    "score": 9.0,
-    "status": "failed",
-    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": null,
-    "screenshots": [
-      "/home/user/Agents/output/screenshots/coolblue-01-job-page-20260224_150015.png",
-      "/home/user/Agents/output/screenshots/coolblue-error-20260224_150015.png"
-    ],
-    "notes": "Exception: Page.goto: net::ERR_ABORTED at mailto:solliciteren@coolblue.nl\nCall log:\n  - navigating to \"mailto:solliciteren@coolblue.nl\", waiting until \"domcontentloaded\"\n",
-    "email_used": "hiaham123@hotmail.com",
-    "response": null
-  },
-  {
     "id": "bimcollab-final-clean-20260224150120",
     "company": "KUBUS / BIMcollab",
     "role": "Software Engineer",
@@ -1078,5 +1026,24 @@
     ],
     "notes": "Validation errors after captcha. URL: https://jobs.bimcollab.com/o/software-engineer-3/c/new",
     "response": null
+  },
+  {
+    "id": "coolblue-csharp-developer-20260224-final",
+    "company": "Coolblue",
+    "role": "C# Developer",
+    "url": "https://www.coolblue.nl/en/vacancies/c-developer",
+    "date_applied": "2026-02-24",
+    "score": 9.0,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/coolblue-01-job-page-20260224_150015.png",
+      "/home/user/Agents/output/screenshots/coolblue-careers-page.png"
+    ],
+    "notes": "VACANCY CLOSED. Coolblue C# Developer vacancy at https://www.coolblue.nl/en/vacancies/c-developer confirmed closed: page states \"This vacancy is closed - It not you, it us. We have enough candidates, so you can not apply anymore.\" No apply button present. Investigated careersatcoolblue.com/vacancies/ - 11 open roles but none are C# Developer. Current developer openings: Identity and Access Developer, Senior Front-End React/Next.js Developer, Medior Java Developer. Application not submitted - vacancy no longer accepting applications. Contact for future opportunities: solliciteren@coolblue.nl or WhatsApp +31 6 5911 1599 (Eleonora Cagar).",
+    "email_used": "hiaham123@hotmail.com",
+    "response": null,
+    "reason_skipped": "Vacancy closed - no longer accepting applications"
   }
 ]
