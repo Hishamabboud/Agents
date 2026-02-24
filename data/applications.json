@@ -159,5 +159,20 @@
     ],
     "notes": "Submitted but no clear confirmation message. Check screenshot.",
     "response": null
+  },
+  {
+    "company": "Scholt Energy",
+    "role": ".NET Software Engineer",
+    "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
+    "application_url": "https://www.scholt.nl/en/apply/?page=3630",
+    "date_applied": "2026-02-24T12:48:44.218482",
+    "status": "failed",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/scholt-v2-01-loaded-20260224_124854.png",
+      "/home/user/Agents/output/screenshots/scholt-v2-02-before-submit-20260224_124907.png",
+      "/home/user/Agents/output/screenshots/scholt-v2-03-after-submit-20260224_124919.png"
+    ],
+    "notes": "reCAPTCHA validation failed - automated browsers cannot pass Google reCAPTCHA. Form was filled correctly with all details. Recommend manual submission or email to recruitment@scholt.nl. Screenshots show completed form before and after attempt.",
+    "id": "scholt-v2-20260224124920"
   }
 ]
