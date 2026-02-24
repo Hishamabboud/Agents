@@ -384,24 +384,18 @@
     "url": "https://jobs.bimcollab.com/o/software-engineer-3",
     "date_applied": "2026-02-24T13:28:35.603502",
     "score": 8.5,
-    "status": "failed",
+    "status": "skipped",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-cover-letter.txt",
     "screenshots": [
-      "/home/user/Agents/output/screenshots/bimcollab-final-01-loaded-20260224_132801.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-02-after-tab-20260224_132807.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-03-fields-filled-20260224_132808.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-04-cv-uploaded-20260224_132811.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-05-cover-letter-20260224_132813.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-06-questions-20260224_132814.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-07-form-bottom-20260224_132816.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-08-pre-submit-20260224_132816.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-09-after-submit-20260224_132822.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-10-after-linkedin-dismiss-20260224_132825.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-11-after-final-send-20260224_132831.png",
-      "/home/user/Agents/output/screenshots/bimcollab-final-12-final-20260224_132835.png"
+      "/home/user/Agents/output/screenshots/bimcollab-v2-01-application-form-initial-20260224_125029.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-02-after-cookies-20260224_125032.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-03-personal-details-filled-20260224_125034.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-04-cv-uploaded-20260224_125039.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-07-pre-submit-20260224_125047.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v2-08-post-submit-20260224_125054.png"
     ],
-    "notes": "Validation errors detected. URL: https://jobs.bimcollab.com/o/software-engineer-3/c/new",
+    "notes": "Form was filled completely (name, email, phone, CV uploaded, both Yes answers). Blocked by visual hCaptcha puzzle (animal image selection) that cannot be solved programmatically. Per agent rules: CAPTCHA blocks = mark as failed/skipped. Form submission endpoint: POST https://jobs.bimcollab.com/candidates with FormData. Alternative: Apply via email to solliciteren@kubus.recruitee.com or manually at https://jobs.bimcollab.com/o/software-engineer-3/c/new",
     "response": null
   },
   {
