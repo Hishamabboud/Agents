@@ -6,6 +6,7 @@ Apply to Funda Medior Backend .NET Engineer position via jobs.funda.nl (Recruite
 import asyncio
 import json
 import os
+import re
 from datetime import datetime
 from playwright.async_api import async_playwright
 
@@ -15,6 +16,7 @@ SCREENSHOTS_DIR = "/home/user/Agents/output/screenshots"
 CV_PATH = "/home/user/Agents/profile/Hisham Abboud CV.pdf"
 COVER_LETTER_PATH = "/home/user/Agents/output/cover-letters/funda-medior-backend-net-engineer.txt"
 APPLICATIONS_JSON = "/home/user/Agents/data/applications.json"
+CHROMIUM_EXEC = "/root/.cache/ms-playwright/chromium-1194/chrome-linux/chrome"
 
 APPLICANT = {
     "full_name": "Hisham Abboud",
@@ -28,8 +30,36 @@ COVER_LETTER_TEXT = open(COVER_LETTER_PATH).read()
 
 ts = datetime.now().strftime("%Y%m%d_%H%M%S")
 
+
 def screenshot_path(name):
     return os.path.join(SCREENSHOTS_DIR, f"funda-{name}-{ts}.png")
+
+
+def get_proxy_config():
+    proxy_url = (
+        os.environ.get("HTTPS_PROXY") or os.environ.get("HTTP_PROXY") or
+        os.environ.get("https_proxy") or os.environ.get("http_proxy")
+    )
+    if not proxy_url:
+        return None
+    try:
+        scheme_end = proxy_url.index("://") + 3
+        rest = proxy_url[scheme_end:]
+        last_at = rest.rfind("@")
+        credentials = rest[:last_at]
+        hostport = rest[last_at + 1:]
+        colon_pos = credentials.index(":")
+        username = credentials[:colon_pos]
+        password = credentials[colon_pos + 1:]
+        host, port = hostport.rsplit(":", 1)
+        return {
+            "server": f"http://{host}:{port}",
+            "username": username,
+            "password": password,
+        }
+    except Exception as e:
+        print(f"Proxy parse error: {e}")
+        return None
 
 
 async def run():
@@ -37,24 +67,44 @@ async def run():
     status = "failed"
     notes = ""
 
+    proxy_config = get_proxy_config()
+    if proxy_config:
+        print(f"Using proxy: {proxy_config['server']}")
+    else:
+        print("No proxy configured")
+
     async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True,
-            args=[
+        launch_kwargs = {
+            "headless": True,
+            "executable_path": CHROMIUM_EXEC,
+            "args": [
                 "--no-sandbox",
                 "--disable-blink-features=AutomationControlled",
                 "--disable-infobars",
+                "--disable-dev-shm-usage",
+                "--ignore-certificate-errors",
+                "--ignore-ssl-errors",
             ],
-        )
-        context = await browser.new_context(
-            user_agent=(
+        }
+        if proxy_config:
+            launch_kwargs["proxy"] = proxy_config
+
+        browser = await p.chromium.launch(**launch_kwargs)
+
+        context_kwargs = {
+            "user_agent": (
                 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                 "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
             ),
-            locale="en-US",
-            timezone_id="Europe/Amsterdam",
-            viewport={"width": 1280, "height": 900},
-        )
+            "locale": "en-US",
+            "timezone_id": "Europe/Amsterdam",
+            "viewport": {"width": 1280, "height": 900},
+            "ignore_https_errors": True,
+        }
+        if proxy_config:
+            context_kwargs["proxy"] = proxy_config
+
+        context = await browser.new_context(**context_kwargs)
         page = await context.new_page()
 
         # Mask webdriver flag
@@ -63,7 +113,7 @@ async def run():
         """)
 
         try:
-            # Step 1: Navigate to job listing page first
+            # Step 1: Navigate to job listing page first (warm up)
             print(f"[1] Loading job listing: {JOB_URL}")
             await page.goto(JOB_URL, wait_until="networkidle", timeout=30000)
             await page.wait_for_timeout(2000)
@@ -85,7 +135,11 @@ async def run():
 
             # Accept cookies if present
             try:
-                cookie_btn = page.locator("button:has-text('Accept'), button:has-text('accept'), button:has-text('Akkoord'), button:has-text('OK')")
+                cookie_btn = page.locator(
+                    "button:has-text('Accept'), button:has-text('accept'), "
+                    "button:has-text('Akkoord'), button:has-text('Accepteren'), "
+                    "button:has-text('OK'), button:has-text('Allow')"
+                )
                 if await cookie_btn.first.is_visible(timeout=3000):
                     await cookie_btn.first.click()
                     await page.wait_for_timeout(1000)
@@ -93,208 +147,349 @@ async def run():
             except Exception:
                 pass
 
-            # Step 3: Fill in full name
-            print("[3] Filling personal details...")
-            name_input = page.locator("input[name='name'], input[placeholder*='name' i], input[placeholder*='naam' i], input[id*='name' i]").first
-            await name_input.wait_for(timeout=10000)
-            await name_input.click()
-            await page.wait_for_timeout(300)
-            await name_input.fill(APPLICANT["full_name"])
-            await page.wait_for_timeout(300)
-            print(f"    Name: {APPLICANT['full_name']}")
+            # Inspect the page to understand the form structure
+            print("[3] Inspecting form structure...")
+            all_inputs = await page.evaluate("""
+                () => {
+                    const inputs = Array.from(document.querySelectorAll('input, textarea, select'));
+                    return inputs.map(el => ({
+                        tag: el.tagName,
+                        type: el.type || '',
+                        name: el.name || '',
+                        id: el.id || '',
+                        placeholder: el.placeholder || '',
+                        'aria-label': el.getAttribute('aria-label') || '',
+                        className: el.className ? el.className.substring(0, 60) : ''
+                    }));
+                }
+            """)
+            for inp in all_inputs:
+                print(f"    Input: {inp}")
 
-            # Step 4: Fill email
-            email_input = page.locator("input[type='email'], input[name='email'], input[placeholder*='email' i]").first
-            await email_input.click()
-            await page.wait_for_timeout(300)
-            await email_input.fill(APPLICANT["email"])
-            await page.wait_for_timeout(300)
-            print(f"    Email: {APPLICANT['email']}")
+            # Step 4: Fill in full name
+            print("[4] Filling personal details...")
 
-            # Step 5: Fill phone
+            # Try multiple selectors for name
+            name_filled = False
+            for selector in [
+                "input[name='name']",
+                "input[placeholder*='name' i]",
+                "input[placeholder*='naam' i]",
+                "input[id*='name' i]",
+                "input[aria-label*='name' i]",
+                "input[type='text']:first-of-type",
+            ]:
+                try:
+                    el = page.locator(selector).first
+                    if await el.is_visible(timeout=2000):
+                        await el.click()
+                        await page.wait_for_timeout(200)
+                        await el.fill(APPLICANT["full_name"])
+                        await page.wait_for_timeout(200)
+                        name_filled = True
+                        print(f"    Name filled using selector: {selector}")
+                        break
+                except Exception:
+                    continue
+            if not name_filled:
+                print("    WARNING: Could not fill name field")
+
+            # Fill email
+            email_filled = False
+            for selector in [
+                "input[type='email']",
+                "input[name='email']",
+                "input[placeholder*='email' i]",
+                "input[id*='email' i]",
+            ]:
+                try:
+                    el = page.locator(selector).first
+                    if await el.is_visible(timeout=2000):
+                        await el.click()
+                        await page.wait_for_timeout(200)
+                        await el.fill(APPLICANT["email"])
+                        await page.wait_for_timeout(200)
+                        email_filled = True
+                        print(f"    Email filled using selector: {selector}")
+                        break
+                except Exception:
+                    continue
+            if not email_filled:
+                print("    WARNING: Could not fill email field")
+
+            # Fill phone
+            for selector in [
+                "input[type='tel']",
+                "input[name*='phone' i]",
+                "input[placeholder*='phone' i]",
+                "input[placeholder*='telefoon' i]",
+                "input[id*='phone' i]",
+                "input[aria-label*='phone' i]",
+            ]:
+                try:
+                    el = page.locator(selector).first
+                    if await el.is_visible(timeout=2000):
+                        await el.click()
+                        await page.wait_for_timeout(200)
+                        await el.fill(APPLICANT["phone"])
+                        await page.wait_for_timeout(200)
+                        print(f"    Phone filled using selector: {selector}")
+                        break
+                except Exception:
+                    continue
+
+            # Step 5: Upload CV
+            print("[5] Uploading CV...")
             try:
-                phone_input = page.locator("input[type='tel'], input[name='phone'], input[placeholder*='phone' i], input[placeholder*='telefoon' i]").first
-                await phone_input.click()
-                await page.wait_for_timeout(300)
-                await phone_input.fill(APPLICANT["phone"])
-                await page.wait_for_timeout(300)
-                print(f"    Phone: {APPLICANT['phone']}")
-            except Exception as e:
-                print(f"    Phone field not found: {e}")
-
-            # Step 6: Upload CV
-            print("[6] Uploading CV...")
-            try:
-                cv_input = page.locator("input[type='file']").first
-                await cv_input.set_input_files(CV_PATH)
-                await page.wait_for_timeout(2000)
-                print(f"    CV uploaded: {CV_PATH}")
+                file_inputs = await page.locator("input[type='file']").all()
+                print(f"    Found {len(file_inputs)} file input(s)")
+                if len(file_inputs) > 0:
+                    await file_inputs[0].set_input_files(CV_PATH)
+                    await page.wait_for_timeout(2000)
+                    print(f"    CV uploaded: {CV_PATH}")
             except Exception as e:
                 print(f"    CV upload error: {e}")
 
-            path = screenshot_path("03-fields-filled")
+            path = screenshot_path("03-personal-filled")
             await page.screenshot(path=path)
             screenshots.append(path)
             print(f"    Screenshot: {path}")
 
-            # Step 7: Look for cover letter field (text or file upload)
-            print("[7] Handling cover letter...")
-            try:
-                # Try text area for cover letter
-                cl_textarea = page.locator("textarea[name*='cover' i], textarea[placeholder*='cover' i], textarea[placeholder*='motivation' i], textarea[name*='letter' i]").first
-                if await cl_textarea.is_visible(timeout=3000):
-                    await cl_textarea.click()
-                    await cl_textarea.fill(COVER_LETTER_TEXT)
-                    print("    Cover letter text entered in textarea")
-                else:
-                    # Try file upload for cover letter
+            # Scroll down to see more fields
+            await page.evaluate("window.scrollTo(0, 400)")
+            await page.wait_for_timeout(500)
+
+            # Step 6: Cover letter
+            print("[6] Handling cover letter...")
+            cl_done = False
+            for selector in [
+                "textarea[name*='cover' i]",
+                "textarea[placeholder*='cover' i]",
+                "textarea[placeholder*='motivation' i]",
+                "textarea[placeholder*='letter' i]",
+                "textarea[name*='letter' i]",
+                "textarea[name*='motivat' i]",
+            ]:
+                try:
+                    el = page.locator(selector).first
+                    if await el.is_visible(timeout=2000):
+                        await el.click()
+                        await el.fill(COVER_LETTER_TEXT)
+                        cl_done = True
+                        print(f"    Cover letter text filled using selector: {selector}")
+                        break
+                except Exception:
+                    continue
+
+            if not cl_done:
+                try:
                     file_inputs = await page.locator("input[type='file']").all()
                     if len(file_inputs) >= 2:
-                        # Convert text to a temp .txt file for upload
                         await file_inputs[1].set_input_files(COVER_LETTER_PATH)
-                        print("    Cover letter file uploaded")
-            except Exception as e:
-                print(f"    Cover letter: {e}")
-
-            # Step 8: Fill screening questions
-            print("[8] Filling screening questions...")
-
-            # "How did you hear about this job?" - look for dropdown
-            try:
-                source_dropdown = page.locator("select[name*='source' i], select[name*='hear' i], select[id*='source' i]").first
-                if await source_dropdown.is_visible(timeout=3000):
-                    await source_dropdown.select_option(index=1)
-                    print("    Selected how heard source")
-            except Exception:
-                try:
-                    # Try to find any dropdown
-                    dropdowns = await page.locator("select").all()
-                    for dd in dropdowns:
-                        label_text = await dd.evaluate("el => el.closest('label,div')?.textContent || ''")
-                        if "hear" in label_text.lower() or "source" in label_text.lower() or "where" in label_text.lower():
-                            await dd.select_option(index=1)
-                            print(f"    Selected dropdown option for: {label_text[:50]}")
-                            break
+                        print("    Cover letter uploaded via second file input")
+                        cl_done = True
                 except Exception as e:
-                    print(f"    Source dropdown: {e}")
+                    print(f"    Cover letter upload error: {e}")
 
-            # "Where do you currently live?"
-            try:
-                location_inputs = page.locator("input[name*='live' i], input[name*='location' i], input[name*='city' i], input[placeholder*='live' i], input[placeholder*='woon' i]")
-                if await location_inputs.first.is_visible(timeout=3000):
-                    await location_inputs.first.fill("Eindhoven, Netherlands")
-                    print("    Location filled: Eindhoven, Netherlands")
-            except Exception as e:
-                print(f"    Location field: {e}")
+            if not cl_done:
+                print("    WARNING: Could not add cover letter")
 
-            # "Notice period"
-            try:
-                notice_inputs = page.locator("input[name*='notice' i], textarea[name*='notice' i], input[placeholder*='notice' i], input[placeholder*='opzegtermijn' i]")
-                if await notice_inputs.first.is_visible(timeout=3000):
-                    await notice_inputs.first.fill("1 month notice period")
-                    print("    Notice period filled")
-            except Exception as e:
-                print(f"    Notice period field: {e}")
+            # Step 7: Fill screening questions
+            print("[7] Filling screening questions...")
+            await page.evaluate("window.scrollTo(0, 600)")
+            await page.wait_for_timeout(500)
 
-            # "Why do you want to work at Funda?"
+            page_text_now = await page.evaluate("document.body.innerText")
+            print(f"    Page text preview: {page_text_now[:500]}")
+
+            all_visible_inputs = await page.evaluate("""
+                () => {
+                    const inputs = Array.from(document.querySelectorAll('input:not([type="file"]):not([type="hidden"]):not([type="checkbox"]):not([type="radio"]), textarea'));
+                    return inputs.map((el, i) => ({
+                        index: i,
+                        tag: el.tagName,
+                        type: el.type || '',
+                        name: el.name || '',
+                        id: el.id || '',
+                        placeholder: el.placeholder || '',
+                        value: el.value || '',
+                        label: (document.querySelector('label[for="' + el.id + '"]') || {}).innerText || ''
+                    }));
+                }
+            """)
+            print(f"    All visible inputs: {all_visible_inputs}")
+
+            # Fill location/where do you live
+            for selector in [
+                "input[name*='live' i]",
+                "input[name*='location' i]",
+                "input[placeholder*='where' i]",
+                "input[placeholder*='live' i]",
+                "input[placeholder*='woon' i]",
+                "input[placeholder*='city' i]",
+                "input[placeholder*='stad' i]",
+            ]:
+                try:
+                    el = page.locator(selector).first
+                    if await el.is_visible(timeout=1500):
+                        await el.fill("Eindhoven, Netherlands")
+                        print(f"    Location filled: {selector}")
+                        break
+                except Exception:
+                    continue
+
+            # Notice period
+            for selector in [
+                "input[name*='notice' i]",
+                "textarea[name*='notice' i]",
+                "input[placeholder*='notice' i]",
+                "input[placeholder*='opzegtermijn' i]",
+                "textarea[placeholder*='notice' i]",
+            ]:
+                try:
+                    el = page.locator(selector).first
+                    if await el.is_visible(timeout=1500):
+                        await el.fill("1 month notice period")
+                        print(f"    Notice period filled: {selector}")
+                        break
+                except Exception:
+                    continue
+
+            # Why Funda
+            for selector in [
+                "textarea[name*='why' i]",
+                "textarea[placeholder*='funda' i]",
+                "textarea[placeholder*='why' i]",
+                "textarea[placeholder*='waarom' i]",
+                "textarea[placeholder*='motivat' i]",
+            ]:
+                try:
+                    el = page.locator(selector).first
+                    if await el.is_visible(timeout=1500):
+                        await el.fill(
+                            "I am drawn to Funda because of its scale and the engineering challenges "
+                            "of building performant microservices for millions of users. My background "
+                            "in .NET/C# backend systems at Actemium and cloud/Kubernetes experience at ASML "
+                            "align well with the technical requirements of this role."
+                        )
+                        print(f"    'Why Funda' filled: {selector}")
+                        break
+                except Exception:
+                    continue
+
+            # "How did you hear" dropdown
             try:
-                why_inputs = page.locator("textarea[name*='why' i], textarea[placeholder*='funda' i], textarea[placeholder*='why' i], textarea[placeholder*='waarom' i]")
-                if await why_inputs.first.is_visible(timeout=3000):
-                    await why_inputs.first.fill(
-                        "I am drawn to Funda because of its scale and engineering challenges. "
-                        "Building performant microservices for millions of users searching for homes in the Netherlands "
-                        "aligns perfectly with my backend .NET experience and my drive to work on impactful, high-traffic systems."
+                selects = await page.locator("select").all()
+                for sel in selects:
+                    label_text = await sel.evaluate(
+                        "el => (document.querySelector('label[for=\"' + el.id + '\"]') || {}).innerText || "
+                        "el.closest('div')?.querySelector('label')?.innerText || ''"
                     )
-                    print("    'Why Funda' filled")
+                    print(f"    Dropdown label: '{label_text}'")
+                    options = await sel.evaluate("el => Array.from(el.options).map(o => o.text)")
+                    print(f"    Options: {options}")
+                    if options and len(options) > 1:
+                        await sel.select_option(index=1)
+                        print(f"    Selected option index 1 for dropdown: '{label_text}'")
             except Exception as e:
-                print(f"    Why Funda field: {e}")
-
-            # Scroll down to see all fields
-            await page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2)")
-            await page.wait_for_timeout(1000)
-
-            path = screenshot_path("04-mid-form")
-            await page.screenshot(path=path)
-            screenshots.append(path)
-            print(f"    Screenshot: {path}")
+                print(f"    Dropdown handling: {e}")
 
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
             await page.wait_for_timeout(1000)
 
-            path = screenshot_path("05-form-bottom")
-            await page.screenshot(path=path)
+            path = screenshot_path("04-form-bottom")
+            await page.screenshot(path=path, full_page=True)
             screenshots.append(path)
             print(f"    Screenshot: {path}")
 
-            # Step 9: Check privacy/consent checkbox
-            print("[9] Checking consent checkbox...")
+            # Step 8: Consent checkboxes
+            print("[8] Handling checkboxes...")
             try:
-                consent_checkbox = page.locator("input[type='checkbox'][name*='gdpr' i], input[type='checkbox'][name*='privacy' i], input[type='checkbox'][name*='consent' i], input[type='checkbox'][name*='acknowledge' i]").first
-                if await consent_checkbox.is_visible(timeout=3000):
-                    if not await consent_checkbox.is_checked():
-                        await consent_checkbox.check()
-                        print("    Privacy consent checkbox checked")
-                else:
-                    # Try any unchecked checkboxes
-                    checkboxes = await page.locator("input[type='checkbox']").all()
-                    for cb in checkboxes:
-                        if not await cb.is_checked():
+                checkboxes = await page.locator("input[type='checkbox']").all()
+                for cb in checkboxes:
+                    is_checked = await cb.is_checked()
+                    if not is_checked:
+                        try:
                             await cb.check()
                             print("    Checked a checkbox")
+                        except Exception as e:
+                            print(f"    Could not check checkbox: {e}")
             except Exception as e:
-                print(f"    Consent checkbox: {e}")
+                print(f"    Checkboxes: {e}")
 
+            # Pre-submit screenshot
             await page.evaluate("window.scrollTo(0, 0)")
             await page.wait_for_timeout(500)
 
-            # Take pre-submit screenshot
-            path = screenshot_path("06-before-submit")
+            path = screenshot_path("05-before-submit")
             await page.screenshot(path=path, full_page=True)
             screenshots.append(path)
-            print(f"[10] Pre-submit screenshot: {path}")
+            print(f"[9] Pre-submit screenshot: {path}")
 
-            # Step 10: Submit the form
-            print("[11] Submitting form...")
-            submit_btn = page.locator(
-                "button[type='submit'], button:has-text('Submit'), button:has-text('Apply'), "
-                "button:has-text('Send application'), button:has-text('Verzenden'), "
-                "input[type='submit']"
-            ).first
+            # Step 9: Submit the form
+            print("[10] Submitting form...")
+            submit_clicked = False
 
-            if await submit_btn.is_visible(timeout=5000):
-                await submit_btn.scroll_into_view_if_needed()
-                await page.wait_for_timeout(500)
-                await submit_btn.click()
-                print("    Submit button clicked")
-                await page.wait_for_timeout(5000)
-            else:
-                print("    Submit button not found via standard selectors, trying broader search...")
-                btns = await page.locator("button").all()
-                for btn in btns:
-                    txt = await btn.text_content()
-                    if txt and any(w in txt.lower() for w in ["submit", "apply", "send", "verzend", "solliciteer"]):
+            for selector in [
+                "button[type='submit']",
+                "button:has-text('Submit application')",
+                "button:has-text('Apply')",
+                "button:has-text('Send application')",
+                "button:has-text('Solliciteer')",
+                "button:has-text('Verstuur')",
+                "button:has-text('Send')",
+                "input[type='submit']",
+            ]:
+                try:
+                    btn = page.locator(selector).first
+                    if await btn.is_visible(timeout=3000):
                         await btn.scroll_into_view_if_needed()
+                        await page.wait_for_timeout(500)
                         await btn.click()
-                        print(f"    Clicked button: '{txt}'")
+                        print(f"    Clicked submit using selector: {selector}")
+                        submit_clicked = True
                         await page.wait_for_timeout(5000)
                         break
+                except Exception:
+                    continue
 
-            path = screenshot_path("07-after-submit")
+            if not submit_clicked:
+                print("    Trying broader button search...")
+                btns = await page.locator("button").all()
+                for btn in btns:
+                    try:
+                        txt = await btn.text_content()
+                        if txt and any(w in txt.lower() for w in ["submit", "apply", "send", "verzend", "solliciteer", "verstuur"]):
+                            await btn.scroll_into_view_if_needed()
+                            await btn.click()
+                            print(f"    Clicked button: '{txt}'")
+                            submit_clicked = True
+                            await page.wait_for_timeout(5000)
+                            break
+                    except Exception:
+                        continue
+
+            if not submit_clicked:
+                notes = "Could not find submit button"
+                print(f"    ERROR: {notes}")
+
+            path = screenshot_path("06-after-submit")
             await page.screenshot(path=path, full_page=True)
             screenshots.append(path)
             print(f"    Post-submit screenshot: {path}")
 
-            # Check for success indicators
+            # Check for success/failure/captcha
             current_url = page.url
-            page_content = await page.content()
             page_text = await page.evaluate("document.body.innerText")
+            print(f"    Final URL: {current_url}")
+            print(f"    Page text snippet: {page_text[:300]}")
 
             success_indicators = [
                 "thank you", "bedankt", "application received", "application submitted",
-                "sollicitatie ontvangen", "we'll be in touch", "confirmation", "success"
+                "sollicitatie ontvangen", "we'll be in touch", "confirmation", "success",
+                "your application", "we have received"
             ]
-            captcha_indicators = ["captcha", "hcaptcha", "recaptcha", "i am not a robot"]
-            error_indicators = ["error", "failed", "invalid", "required"]
+            captcha_indicators = ["captcha", "hcaptcha", "recaptcha", "i am not a robot", "prove you are human"]
 
             page_lower = page_text.lower()
 
@@ -304,18 +499,24 @@ async def run():
                 print(f"    SUCCESS: {notes}")
             elif any(ind in page_lower for ind in captcha_indicators):
                 status = "skipped"
-                notes = f"CAPTCHA detected after submit. Manual completion required. URL: {current_url}"
-                print(f"    CAPTCHA: {notes}")
+                notes = f"CAPTCHA detected. Manual completion required. URL: {current_url}"
+                print(f"    CAPTCHA blocked: {notes}")
+            elif not submit_clicked:
+                status = "failed"
+                notes = "Could not find and click submit button"
             else:
-                # Check if URL changed (often indicates success on Recruitee)
-                if "/c/new" not in current_url and "funda" in current_url:
+                if "/c/new" not in current_url and ("funda" in current_url or "jobs" in current_url):
                     status = "applied"
                     notes = f"Form submitted, URL changed to: {current_url}. Likely success."
-                    print(f"    URL changed: {notes}")
-                else:
+                    print(f"    URL changed (likely success): {notes}")
+                elif current_url == APPLICATION_URL or "/c/new" in current_url:
                     status = "failed"
-                    notes = f"Submission result unclear. URL: {current_url}. Page text snippet: {page_text[:200]}"
-                    print(f"    UNCLEAR: {notes}")
+                    notes = f"Still on form page after submit. URL: {current_url}. May have validation errors. Page: {page_text[:300]}"
+                    print(f"    STILL ON FORM: {notes}")
+                else:
+                    status = "applied"
+                    notes = f"Submit clicked, URL: {current_url}. Page text: {page_text[:200]}"
+                    print(f"    SUBMITTED (unclear confirmation): {notes}")
 
         except Exception as e:
             notes = f"Exception during application: {str(e)}"
