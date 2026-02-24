@@ -1206,5 +1206,67 @@
     "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
+  },
+  {
+    "id": "funda-medior-net-int-20260224151314",
+    "company": "Funda Real Estate B.V.",
+    "role": "Medior Backend .NET Engineer",
+    "url": "https://jobs.funda.nl/o/medior-backend-net-engineer",
+    "application_url": "https://jobs.funda.nl/o/medior-backend-net-engineer/c/new",
+    "date_applied": "2026-02-24T15:13:14.887096",
+    "score": 9.0,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/funda-medior-backend-net-engineer.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/funda-int-01-form-loaded-20260224_151252.png",
+      "/home/user/Agents/output/screenshots/funda-int-02-before-submit-20260224_151252.png",
+      "/home/user/Agents/output/screenshots/funda-int-03-after-submit-20260224_151252.png"
+    ],
+    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplicatio",
+    "response": null,
+    "email_used": "hiaham123@hotmail.com"
+  },
+  {
+    "id": "sendcloud-medior-backend-python-20260224_151554",
+    "company": "Sendcloud",
+    "role": "Medior Backend Engineer (Python)",
+    "url": "https://jobs.sendcloud.com/jobs/8390536002-cg",
+    "date_applied": "2026-02-24T15:16:20.978345",
+    "score": 9.0,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendcloud-01-job-page-20260224_151554.png",
+      "/home/user/Agents/output/screenshots/sendcloud-02-personal-filled-20260224_151554.png",
+      "/home/user/Agents/output/screenshots/sendcloud-03-cv-uploaded-20260224_151554.png",
+      "/home/user/Agents/output/screenshots/sendcloud-04-questions-filled-20260224_151554.png",
+      "/home/user/Agents/output/screenshots/sendcloud-05-pre-submit-20260224_151554.png",
+      "/home/user/Agents/output/screenshots/sendcloud-06-after-submit-20260224_151554.png"
+    ],
+    "notes": "Form fully completed on Sendcloud Greenhouse.io but blocked by Google reCAPTCHA Enterprise. reCAPTCHA site key: 6LfmcbcpAAAAAChNTbhUShzUOAMj_wY9LQIvLFX0. CV was successfully uploaded to S3 (key: stash/applications/resumes/...). Fields filled: First=Hisham, Last=Abboud, Email=hiaham123@hotmail.com, Phone=+31648412838, City=Eindhoven, Netherlands, LinkedIn=linkedin.com/in/hisham-abboud, Website=cogitatai.com, Netherlands resident=Yes, Salary=EUR 55,000-65,000, GDPR=checked. MANUAL ACTION REQUIRED: Navigate to https://jobs.sendcloud.com/jobs/8390536002-cg and submit the form manually with these details. reCAPTCHA invisible will pass in a real browser.",
+    "email_used": "hiaham123@hotmail.com",
+    "response": null
+  },
+  {
+    "id": "cmcom-medior-backend-dev-conversational-ai-20260224151811",
+    "company": "CM.com",
+    "role": "Medior Backend Developer (Conversational AI Cloud / Conversational Router)",
+    "url": "https://jobs.cm.com/o/medior-backend-developer",
+    "application_url": "https://jobs.cm.com/o/medior-backend-developer/c/new",
+    "recruitee_api_url": "https://cmcom.recruitee.com/api/offers/medior-backend-developer/candidates?async=true",
+    "date_applied": "2026-02-24T15:18:11.902616",
+    "score": 9.0,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/cm-com-medior-backend-developer-conversational-ai.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/cmcom-submission-20260224_151811.txt"
+    ],
+    "notes": "Application submitted via Recruitee API. Response: {\"ok\":true}",
+    "email_used": "hiaham123@hotmail.com",
+    "offer_id": 2354529,
+    "response": null
   }
 ]
