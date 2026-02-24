@@ -36,10 +36,10 @@
 6. ICTerGezocht (ictergezocht.nl)
 
 ## My Details for Forms
-- Full Name: [FILL IN]
-- Email: [FILL IN]
-- Phone: [FILL IN]
-- LinkedIn: [FILL IN]
-- GitHub: [FILL IN]
+- Full Name: Hisham Abboud
+- Email: Hisham123@hotmail.com
+- Phone: +31 06 4841 2838
+- LinkedIn: linkedin.com/in/hisham-abboud
+- GitHub: github.com/Hishamabboud
 - City: Eindhoven
 - Country: Netherlands
