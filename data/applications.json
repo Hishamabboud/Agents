@@ -465,8 +465,9 @@
       "/home/user/Agents/output/screenshots/sendent-11-review-before-submit-20260224_133953.png",
       "/home/user/Agents/output/screenshots/sendent-12-after-submit-20260224_133959.png"
     ],
-    "notes": "Confirm & apply clicked. Final URL: https://join.com/companies/sendentcom/15650046/apply/verification",
-    "response": null
+    "notes": "Form FULLY completed and Confirm & apply clicked on join.com. All steps done: CV uploaded (Hisham Abboud CV.pdf), Personal info (Hisham Abboud, Netherlands, +31648412838), Professional links (LinkedIn, GitHub), Cover letter uploaded, Screening questions answered (start date: 2026-02-10, work permit: Yes, visa sponsorship: No). HOWEVER: Auth was done with WRONG email Hisham123@hotmail.com (existing join.com account). Final URL: https://join.com/companies/sendentcom/15650046/apply/verification. join.com sent email verification to Hisham123@hotmail.com to finalize the application. For correct-email version, see id: sendent-correct-email-hiaham-20260224",
+    "response": null,
+    "email_used": "Hisham123@hotmail.com (WRONG - existing account bypassed auth)"
   },
   {
     "id": "bimcollab-se-v8-20260224134214",
@@ -491,6 +492,64 @@
       "/home/user/Agents/output/screenshots/bimcollab-v8-12-final-20260224_134214.png"
     ],
     "notes": "Validation errors. URL: https://jobs.bimcollab.com/o/software-engineer-3/c/new",
+    "response": null
+  },
+  {
+    "id": "bimcollab-se-captcha-20260224134622",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24T13:46:22.030258",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-cover-letter.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-cap-01-start-20260224_134359.png",
+      "/home/user/Agents/output/screenshots/bimcollab-cap-02-after-submit-20260224_134412.png",
+      "/home/user/Agents/output/screenshots/bimcollab-cap-03-after-second-send-20260224_134615.png",
+      "/home/user/Agents/output/screenshots/bimcollab-cap-04-captcha-attempt-20260224_134621.png",
+      "/home/user/Agents/output/screenshots/bimcollab-cap-05-final-20260224_134621.png"
+    ],
+    "notes": "Form successfully filled with all required fields. Blocked by hCaptcha (invisible mode, sitekey: d111bc04-7616-4e05-a1da-9840968d2b88). Manual CAPTCHA solving required to complete submission. All data verified: name=Hisham Abboud, email=hiaham123@hotmail.com, CV uploaded, CL entered, Q1=Yes, Q2=Yes",
+    "response": null
+  },
+  {
+    "id": "sendent-correct-email-hiaham-20260224",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-02-24T13:47:00",
+    "score": 9,
+    "status": "action_required",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/sendent-cover-letter-v2.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendent-full-01-auth-page.png",
+      "/home/user/Agents/output/screenshots/sendent-full-02-email-filled.png",
+      "/home/user/Agents/output/screenshots/sendent-full-03-after-continue.png"
+    ],
+    "notes": "RE-APPLICATION INITIATED with CORRECT email hiaham123@hotmail.com. Confirmed: email hiaham123@hotmail.com was entered on join.com auth page and Continue was clicked. join.com confirmed: checkCandidate.exists=true, sendCandidateLoginLinkToApply=true. Magic link / secure login email was sent to hiaham123@hotmail.com. IMPORTANT: join.com uses passwordless magic-link authentication for new accounts. The account hiaham123@hotmail.com exists in join.com system (hasPassword=false). ACTION REQUIRED: 1. Check hiaham123@hotmail.com inbox for email from join.com with subject like \"Your secure login link\". 2. Click the link in that email to authenticate. 3. The browser will redirect to the application form - complete CV upload, personal info (Hisham Abboud, Netherlands, +31648412838), LinkedIn URL, cover letter, and screening questions, then click Submit. 4. OR: Run python3 /home/user/Agents/scripts/apply_sendent_after_magic_link.py with the magic link URL as argument. Cover letter text saved at: /home/user/Agents/output/cover-letters/sendent-cover-letter-v2.txt. All form data ready: Name=Hisham Abboud, Country=Netherlands, Phone=+31 648412838, LinkedIn=linkedin.com/in/hisham-abboud, CV=Hisham Abboud CV.pdf.",
+    "email_used": "hiaham123@hotmail.com",
+    "response": null,
+    "action_required": "Check hiaham123@hotmail.com for secure login link from join.com, click it, then complete application form"
+  },
+  {
+    "id": "bimcollab-kb-20260224134855",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24T13:48:55.032757",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-cover-letter.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-kb-01-form-filled-20260224_134848.png",
+      "/home/user/Agents/output/screenshots/bimcollab-kb-02-after-send-20260224_134852.png",
+      "/home/user/Agents/output/screenshots/bimcollab-kb-05-final-20260224_134854.png"
+    ],
+    "notes": "Form correctly filled with: Hisham Abboud, hiaham123@hotmail.com, CV uploaded, cover letter added, Q1=Yes, Q2=Yes, legal=checked. Blocked by hCaptcha invisible (sitekey d111bc04-7616-4e05-a1da-9840968d2b88). The form is ready to submit but requires manual CAPTCHA solving.",
     "response": null
   }
 ]
