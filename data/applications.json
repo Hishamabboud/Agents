@@ -440,5 +440,57 @@
     "notes": "Stuck at unknown step: https://join.com/companies/sendentcom/15650046/apply/authentication",
     "email_used": "hiaham123@hotmail.com",
     "response": null
+  },
+  {
+    "id": "sendent-medior-be-20260224134000",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-02-24T13:40:00.270542",
+    "score": 9,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letter-sendent.pdf",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendent-01-job-listing-20260224_133853.png",
+      "/home/user/Agents/output/screenshots/sendent-02-apply-clicked-20260224_133858.png",
+      "/home/user/Agents/output/screenshots/sendent-03-email-entered-20260224_133858.png",
+      "/home/user/Agents/output/screenshots/sendent-04-cv-uploaded-20260224_133905.png",
+      "/home/user/Agents/output/screenshots/sendent-05-personal-info-filled-20260224_133920.png",
+      "/home/user/Agents/output/screenshots/sendent-06-professional-links-filled-20260224_133925.png",
+      "/home/user/Agents/output/screenshots/sendent-07-cover-letter-uploaded-20260224_133932.png",
+      "/home/user/Agents/output/screenshots/sendent-08-q1-date-selected-20260224_133937.png",
+      "/home/user/Agents/output/screenshots/sendent-09-q2-work-permit-yes-20260224_133943.png",
+      "/home/user/Agents/output/screenshots/sendent-10-q3-visa-no-20260224_133949.png",
+      "/home/user/Agents/output/screenshots/sendent-11-review-before-submit-20260224_133953.png",
+      "/home/user/Agents/output/screenshots/sendent-12-after-submit-20260224_133959.png"
+    ],
+    "notes": "Confirm & apply clicked. Final URL: https://join.com/companies/sendentcom/15650046/apply/verification",
+    "response": null
+  },
+  {
+    "id": "bimcollab-se-v8-20260224134214",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24T13:42:14.711581",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-cover-letter.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-v8-01-loaded-20260224_134150.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-02-apply-tab-clicked-20260224_134157.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-03-personal-filled-20260224_134159.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-04-cv-uploaded-20260224_134201.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-05-cover-letter-20260224_134203.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-06-questions-answered-20260224_134204.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-07-bottom-20260224_134205.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-08-pre-submit-20260224_134206.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-09-after-submit-20260224_134211.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v8-12-final-20260224_134214.png"
+    ],
+    "notes": "Validation errors. URL: https://jobs.bimcollab.com/o/software-engineer-3/c/new",
+    "response": null
   }
 ]
