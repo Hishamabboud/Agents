@@ -87,18 +87,22 @@
     "response": null
   },
   {
-    "id": "scholt-post-20260224_131054",
+    "id": "scholt-v4-20260224_131846",
     "company": "Scholt Energy",
     "role": ".NET Software Engineer",
     "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
     "application_url": "https://www.scholt.nl/en/apply/?page=3630",
-    "date_applied": "2026-02-24T13:10:54.878029",
+    "date_applied": "2026-02-24T13:18:46.029380",
     "score": 9.2,
     "status": "skipped",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": "/home/user/Agents/output/cover-letters/scholt-net-software-engineer.txt",
-    "screenshots": [],
-    "notes": "Direct POST blocked by server-side reCAPTCHA validation. Form was fully filled but reCAPTCHA token required. Manual application required.",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/scholt-cover-letter.pdf",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/scholt-v4-01-form-loaded-20260224_131846.png",
+      "/home/user/Agents/output/screenshots/scholt-v4-02-before-submit-20260224_131846.png",
+      "/home/user/Agents/output/screenshots/scholt-v4-03-after-submit-20260224_131846.png"
+    ],
+    "notes": "Blocked by Google reCAPTCHA v3. Form was fully and correctly filled: First name=Hisham, Last name=Abboud, Email=hiaham123@hotmail.com, Phone=+31 06 4841 2838, CV uploaded (PDF), cover letter uploaded (PDF), consent checkbox checked. reCAPTCHA v3 score-based validation requires human browser interaction. Manual submission required at: https://www.scholt.nl/en/apply/?page=3630",
     "response": null
   },
   {
@@ -304,6 +308,34 @@
       "/home/user/Agents/output/screenshots/bimcollab-v6-13-post-captcha-20260224_131634.png"
     ],
     "notes": "Application submitted successfully. Confirmation message detected.",
+    "response": null
+  },
+  {
+    "id": "bimcollab-se-v7-20260224132018",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24T13:20:18.023112",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-cover-letter.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-v7-01-initial-20260224_131943.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-02-after-tab-20260224_131947.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-03-details-filled-20260224_131949.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-04-cv-uploaded-20260224_131951.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-05-cover-letter-20260224_131953.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-06-questions-20260224_131954.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-07-form-bottom-20260224_131956.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-08-pre-submit-20260224_131957.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-09-after-submit-click-20260224_132002.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-10-after-linkedin-dismiss-20260224_132007.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-11-after-final-submit-20260224_132012.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-12-captcha-20260224_132014.png",
+      "/home/user/Agents/output/screenshots/bimcollab-v7-13-final-20260224_132017.png"
+    ],
+    "notes": "Application submitted successfully. Confirmation detected.",
     "response": null
   }
 ]
