@@ -81,5 +81,83 @@
     ],
     "notes": "Error during application: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/\nCall log:\n  - navigating to \"https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/\", waiting until \"networkidle\"\n",
     "id": 6
+  },
+  {
+    "id": "bimcollab-software-engineer-20260224124459",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24 12:44:59",
+    "score": 8,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-error-general-20260224_124459.png"
+    ],
+    "notes": "Error: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://jobs.bimcollab.com/o/software-engineer-3\nCall log:\n  - navigating to \"https://jobs.bimcollab.com/o/software-engineer-3\", waiting until \"domcontent",
+    "response": null
+  },
+  {
+    "company": "Scholt Energy",
+    "role": ".NET Software Engineer",
+    "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
+    "application_url": "https://www.scholt.nl/en/apply/?page=3630",
+    "date_applied": "2026-02-24T12:46:05.955352",
+    "status": "failed",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/scholt-error-20260224_124609.png"
+    ],
+    "notes": "Error during application: Page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.scholt.nl/en/apply/?page=3630\nCall log:\n  - navigating to \"https://www.scholt.nl/en/apply/?page=3630\", waiting until \"domcontentloaded\"\n",
+    "id": 8
+  },
+  {
+    "id": "prodrive-145273-20260224_124639",
+    "company": "Prodrive Technologies",
+    "role": "Embedded Software Engineer",
+    "url": "https://prodrive-technologies.com/careers/apply/",
+    "date_applied": "2026-02-24T12:46:39.437893",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshot": "/home/user/Agents/output/screenshots/prodrive_after_submit_20260224_124639.txt",
+    "notes": "Application submitted successfully via API. Vacancy: Embedded Software Engineer (ID: 145273)",
+    "response": null
+  },
+  {
+    "company": "Scholt Energy",
+    "role": ".NET Software Engineer",
+    "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
+    "application_url": "https://www.scholt.nl/en/apply/?page=3630",
+    "date_applied": "2026-02-24T12:46:40.817564",
+    "status": "applied",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/scholt-01-application-form-20260224_124649.png",
+      "/home/user/Agents/output/screenshots/scholt-02-before-submit-20260224_124657.png",
+      "/home/user/Agents/output/screenshots/scholt-03-after-submit-20260224_124703.png"
+    ],
+    "notes": "Application submitted successfully - confirmation message detected",
+    "id": 10
+  },
+  {
+    "id": "bimcollab-software-engineer-20260224124809",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24 12:48:09",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-01-job-page-20260224_124721.png",
+      "/home/user/Agents/output/screenshots/bimcollab-02-after-apply-click-20260224_124726.png",
+      "/home/user/Agents/output/screenshots/bimcollab-03-form-filled-20260224_124733.png",
+      "/home/user/Agents/output/screenshots/bimcollab-04-pre-submit-20260224_124803.png",
+      "/home/user/Agents/output/screenshots/bimcollab-05-post-submit-20260224_124809.png"
+    ],
+    "notes": "Submitted but no clear confirmation message. Check screenshot.",
+    "response": null
   }
 ]

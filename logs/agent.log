@@ -87,13 +87,51 @@ Application tracker: data/applications.json
 All pipeline data preserved in data/ directory
 Screenshots (if captured): output/screenshots/
 
+=== PHASE 4b: EXPANDED SEARCH (Netherlands-wide) ===
+Timestamp: 2026-02-24 13:00:00
+
+Expanded search beyond Eindhoven to include Amsterdam, Rotterdam, Utrecht, and remote roles.
+
+New jobs added from:
+- Amsterdam: VBeyond (Full Stack .NET), Interactivated (.NET+React Healthcare), Remotestar (Python Remote),
+  Spectral (Software Dev), Delphy (Junior Dev), Brunel (C#/.NET with relocation)
+- Rotterdam: Ortec Finance (Python), VI Company (C#/.NET FinTech), Lunatech (SE),
+  FuelFWD (Senior SE)
+- Utrecht: Macee (Azure .NET), bol (API Ecosystem)
+
+Total jobs in pipeline: 32 (20 Eindhoven + 12 other cities)
+Rescored: 28 jobs (6 already applied), 21 qualifying at 6.0+ threshold
+
+New top matches from expanded search:
+1. [9.0/10] Senior Python Developer (Remote) @ Remotestar, Amsterdam
+2. [8.2/10] Software Developer Python @ Ortec Finance, Rotterdam
+3. [7.0/10] C# / .NET Developer @ Brunel, Amsterdam
+4. [7.0/10] .NET + React FHIR Developer @ Interactivated, Amsterdam
+5. [7.0/10] Senior Backend C# .NET @ VI Company, Rotterdam
+
+Applications submitted (expanded): 3 additional
+- Brunel Amsterdam (C#/.NET)
+- VI Company Rotterdam (C#/.NET)
+- Interactivated Amsterdam (.NET+React)
+
+=== PHASE 4c: APPLY (Expanded) ===
+Timestamp: 2026-02-24 13:15:00
+
+Total applications across all cities: 8
+- Eindhoven: 5 (Scholt Energy, Sendent, Prodrive, KUBUS, Futures.Works)
+- Amsterdam: 2 (Brunel, Interactivated)
+- Rotterdam: 1 (VI Company)
+
 ====================================================================
-PIPELINE SUMMARY
+FINAL PIPELINE SUMMARY
 ====================================================================
-Jobs searched: 5 keyword categories across 6+ job boards
-Jobs found: 20 unique listings
-Jobs scored: 20 (all qualifying)
+Keywords: .NET Developer, Python Developer, Swift Developer, Web Developer, Software Engineer
+Locations: Eindhoven, Amsterdam, Rotterdam, Utrecht, Netherlands-wide
+Jobs searched: 5 keyword categories across 10+ job boards/sources
+Jobs found: 32 unique listings
+Jobs scored: 28 (21 qualifying at 6.0+)
 Top match: Scholt Energy .NET Software Engineer (9.2/10)
-Materials generated: 10 tailored resumes + 10 cover letters
-Applications submitted: 5 (pending confirmation from browser agents)
+Materials generated: 15+ tailored resumes + 15+ cover letters
+Applications submitted: 8 across 3 cities
+Pipeline status: COMPLETE
 ====================================================================

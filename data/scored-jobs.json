@@ -1,66 +1,5 @@
 [
   {
-    "id": "scholt-net-engineer",
-    "title": ".NET Software Engineer",
-    "company": "Scholt Energy",
-    "location": "Eindhoven, Netherlands",
-    "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
-    "description": "Join a team of 10-15 developers designing and optimizing software solutions for the energy market. Translate strategic objectives into intelligent information systems and integrations. Requires Bachelor's CS, 5+ years experience, strong .NET C# knowledge, TypeScript/JavaScript, SQL, Azure, Microsoft Power Platform. Benefits: 28 vacation days, unlimited training budget, flexible work.",
-    "salary": "",
-    "date_posted": "",
-    "source": "scholt.nl",
-    "scraped_at": "2026-02-24T12:00:00",
-    "score": 9.2,
-    "score_breakdown": {
-      "skills_match": {
-        "score": 3.8,
-        "matched": [
-          "azure",
-          "javascript",
-          "sql"
-        ],
-        "job_requires": [
-          "azure",
-          "javascript",
-          "sql",
-          "typescript"
-        ]
-      },
-      "title_match": 3.0,
-      "location_match": 1.5,
-      "salary_match": 0.5,
-      "industry_match": 0.5
-    }
-  },
-  {
-    "id": "sendent-medior-net",
-    "title": "Medior Software Engineer (Backend/Integrations/.NET)",
-    "company": "Sendent B.V.",
-    "location": "Eindhoven, Netherlands (hybrid)",
-    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
-    "description": "Backend developer role focused on owning the Exchange Connector and Outlook integration. Maintain and improve the Exchange Connector, write and improve automated tests, optimize performance and threading. Sustainable software, ownership, and trust in a privacy-first company building secure Microsoft-Nextcloud integrations. Requires professional C# / .NET experience, 2-4 years software engineering, production code maintenance, automated testing, Git.",
-    "salary": "€3,750–€4,350 gross/month",
-    "date_posted": "2026-02-03",
-    "source": "join.com",
-    "scraped_at": "2026-02-24T12:00:00",
-    "score": 9.0,
-    "score_breakdown": {
-      "skills_match": {
-        "score": 4.0,
-        "matched": [
-          "git"
-        ],
-        "job_requires": [
-          "git"
-        ]
-      },
-      "title_match": 3.0,
-      "location_match": 1.5,
-      "salary_match": 0.0,
-      "industry_match": 0.5
-    }
-  },
-  {
     "id": "flowtec-software-engineer",
     "title": "Software Engineer (C++ & Python)",
     "company": "Flowtec Group",
@@ -71,6 +10,34 @@
     "date_posted": "",
     "source": "englishjobsearch.nl",
     "scraped_at": "2026-02-24T12:00:00",
+    "score": 9.0,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 4.0,
+        "matched": [
+          "python"
+        ],
+        "job_requires": [
+          "python"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 1.5,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "remotestar-senior-python-amsterdam",
+    "title": "Senior Python Developer (Remote)",
+    "company": "Remotestar",
+    "location": "Amsterdam, Netherlands (Remote)",
+    "url": "https://englishjobsearch.nl/clickout/73f9908e963f4077",
+    "description": "Dynamic, creative role architecting, designing, and implementing software for unique, diverse organisation. Remote Python development position.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T13:00:00",
     "score": 9.0,
     "score_breakdown": {
       "skills_match": {
@@ -181,6 +148,34 @@
     }
   },
   {
+    "id": "ortec-python-rotterdam",
+    "title": "Software Developer Python (NL Based)",
+    "company": "Ortec Finance",
+    "location": "Rotterdam, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/d92edcc010ac6288",
+    "description": "Python developer role focused on elevating team capabilities. Financial technology software development with strong communication skills.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T13:00:00",
+    "score": 8.2,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 4.0,
+        "matched": [
+          "python"
+        ],
+        "job_requires": [
+          "python"
+        ]
+      },
+      "title_match": 3.0,
+      "location_match": 0.8,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
     "id": "akkodis-software-engineer",
     "title": "Software Engineer",
     "company": "Akkodis",
@@ -236,38 +231,6 @@
       "location_match": 1.5,
       "salary_match": 0.5,
       "industry_match": 0.5
-    }
-  },
-  {
-    "id": "futures-csharp-dev",
-    "title": "C# Developer Eindhoven Region for High Tech Companies",
-    "company": "Futures.Works",
-    "location": "Eindhoven, NB, Netherlands",
-    "url": "https://www.careers-page.com/futures-works/job/LR994VY6",
-    "description": "Software designers specializing in C# for dynamic project teams in High Tech sector. Product software engineering across High Tech, Medical, and Mechanical Engineering sectors. Requires Bachelor's/Master's in Software Engineering, 2+ years High Tech sector, proficient in C#.NET, SCRUM, CI/CD, Azure, OOP, UML. Benefits: competitive pension, travel reimbursement, 25 holidays.",
-    "salary": "",
-    "date_posted": "",
-    "source": "careers-page.com",
-    "scraped_at": "2026-02-24T12:00:00",
-    "score": 7.5,
-    "score_breakdown": {
-      "skills_match": {
-        "score": 4.0,
-        "matched": [
-          "azure",
-          "ci/cd",
-          "scrum"
-        ],
-        "job_requires": [
-          "azure",
-          "ci/cd",
-          "scrum"
-        ]
-      },
-      "title_match": 1.5,
-      "location_match": 1.5,
-      "salary_match": 0.5,
-      "industry_match": 0.0
     }
   },
   {
@@ -486,33 +449,31 @@
     }
   },
   {
-    "id": "kubus-lead-engineer",
-    "title": "Lead Software Engineer",
-    "company": "KUBUS (BIMcollab)",
-    "location": "Eindhoven, Noord-Brabant, Netherlands (Hybrid)",
-    "url": "https://jobs.bimcollab.com/o/lead-software-engineer",
-    "description": "Shape the technical direction of a Cloud SaaS team as technical architect ensuring platform performance, security, maintainability. Guide backend/frontend modernization, mentor engineers. Tech stack: .NET-based services, Azure integrations, Vue-based frontend. Requires strong backend and cloud architecture background, Azure experience.",
-    "salary": "€5,600–€7,900 per month",
-    "date_posted": "2025-03-18",
-    "source": "recruitee",
-    "scraped_at": "2026-02-24T12:00:00",
-    "score": 6.7,
+    "id": "macee-azure-net-utrecht",
+    "title": "Developer-Azure Cloud .NET",
+    "company": "Macee",
+    "location": "Utrecht, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/182c1ce917026e2e",
+    "description": "Senior Azure Cloud .NET Developer requiring 7+ years .NET experience (C#) with hands-on Azure Cloud knowledge.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T13:00:00",
+    "score": 6.8,
     "score_breakdown": {
       "skills_match": {
-        "score": 1.7,
+        "score": 4.0,
         "matched": [
           "azure"
         ],
         "job_requires": [
-          "azure",
-          "saas",
-          "vue"
+          "azure"
         ]
       },
-      "title_match": 3.0,
-      "location_match": 1.5,
-      "salary_match": 0.0,
-      "industry_match": 0.5
+      "title_match": 1.5,
+      "location_match": 0.8,
+      "salary_match": 0.5,
+      "industry_match": 0.0
     }
   },
   {
@@ -550,29 +511,72 @@
     }
   },
   {
-    "id": "topic-test-designer",
-    "title": "Senior Software Test Designer",
-    "company": "Topic Software Development",
-    "location": "Eindhoven, Netherlands",
-    "url": "https://englishjobsearch.nl/clickout/421cb17357cbcf9f",
-    "description": "Senior Software Test Designer overseeing testing architecture for UI, Web, Mobile applications. Software quality assurance and test automation.",
+    "id": "brunel-csharp-net-amsterdam",
+    "title": "C# / .NET Developer",
+    "company": "Brunel",
+    "location": "Amsterdam, Netherlands",
+    "url": "https://relocate.me/the-netherlands/amsterdam/brunel/c-net-developer-2420",
+    "description": "C# .NET Developer in new team at beginning of development of an eco-system with new and existing components. Focus on cloud, security, and networking. Full relocation assistance and visa sponsorship.",
+    "salary": "",
+    "date_posted": "",
+    "source": "relocate.me",
+    "scraped_at": "2026-02-24T13:00:00",
+    "score": 6.2,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.0,
+        "note": "Could not determine skills"
+      },
+      "title_match": 3.0,
+      "location_match": 0.8,
+      "salary_match": 0.5,
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "fuelforward-se-rotterdam",
+    "title": "Senior Software Engineer",
+    "company": "FuelFWD",
+    "location": "Rotterdam, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/77a2acab5aabfdb5",
+    "description": "Monitor and improve performance, reliability, and developer ergonomics for compliance tech. Senior engineering role.",
     "salary": "",
     "date_posted": "",
     "source": "englishjobsearch.nl",
-    "scraped_at": "2026-02-24T12:00:00",
-    "score": 4.0,
+    "scraped_at": "2026-02-24T13:00:00",
+    "score": 6.2,
     "score_breakdown": {
       "skills_match": {
-        "score": 0.0,
-        "matched": [],
-        "job_requires": [
-          "automation"
-        ]
+        "score": 2.0,
+        "note": "Could not determine skills"
       },
-      "title_match": 1.5,
-      "location_match": 1.5,
+      "title_match": 3.0,
+      "location_match": 0.8,
       "salary_match": 0.5,
-      "industry_match": 0.5
+      "industry_match": 0.0
+    }
+  },
+  {
+    "id": "bol-se-api-utrecht",
+    "title": "Software Engineer – API EcoSystem",
+    "company": "bol",
+    "location": "Utrecht, Netherlands",
+    "url": "https://englishjobsearch.nl/clickout/2098b97af09fa6f5",
+    "description": "Develop API registry and tooling to ensure governance while balancing developer freedom and accelerating API development at bol.com.",
+    "salary": "",
+    "date_posted": "",
+    "source": "englishjobsearch.nl",
+    "scraped_at": "2026-02-24T13:00:00",
+    "score": 6.2,
+    "score_breakdown": {
+      "skills_match": {
+        "score": 2.0,
+        "note": "Could not determine skills"
+      },
+      "title_match": 3.0,
+      "location_match": 0.8,
+      "salary_match": 0.5,
+      "industry_match": 0.0
     }
   }
 ]
