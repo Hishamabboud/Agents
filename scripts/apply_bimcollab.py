@@ -21,7 +21,7 @@ APPLICATIONS_JSON = "/home/user/Agents/data/applications.json"
 
 PERSONAL_DETAILS = {
     "full_name": "Hisham Abboud",
-    "email": "Hisham123@hotmail.com",
+    "email": "hiaham123@hotmail.com",
     "phone": "+31 06 4841 2838",
     "linkedin": "linkedin.com/in/hisham-abboud",
     "github": "github.com/Hishamabboud",

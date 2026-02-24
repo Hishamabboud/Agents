@@ -37,7 +37,7 @@
 
 ## My Details for Forms
 - Full Name: Hisham Abboud
-- Email: Hisham123@hotmail.com
+- Email: hiaham123@hotmail.com
 - Phone: +31 06 4841 2838
 - LinkedIn: linkedin.com/in/hisham-abboud
 - GitHub: github.com/Hishamabboud

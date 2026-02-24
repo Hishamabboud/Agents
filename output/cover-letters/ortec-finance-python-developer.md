@@ -6,4 +6,4 @@ At Actemium, I develop solutions using Python/Flask and .NET for industrial clie
 
 Best regards,
 Hisham Abboud
-+31 06 4841 2838 | Hisham123@hotmail.com
++31 06 4841 2838 | hiaham123@hotmail.com

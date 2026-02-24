@@ -4,4 +4,4 @@ I am applying for the Full Stack .NET Developer position in Amsterdam. At Actemi
 
 Best regards,
 Hisham Abboud
-+31 06 4841 2838 | Hisham123@hotmail.com
++31 06 4841 2838 | hiaham123@hotmail.com

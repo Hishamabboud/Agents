@@ -144,5 +144,26 @@
     ],
     "notes": "Form had validation errors. Check screenshot.",
     "response": null
+  },
+  {
+    "id": "sendent-medior-be-20260224125306",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-02-24T12:53:06.921515",
+    "score": 9,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendent-01-job-listing-20260224_125252.png",
+      "/home/user/Agents/output/screenshots/sendent-02-after-apply-click-20260224_125258.png",
+      "/home/user/Agents/output/screenshots/sendent-03-form-view-20260224_125258.png",
+      "/home/user/Agents/output/screenshots/sendent-04-form-filled-20260224_125300.png",
+      "/home/user/Agents/output/screenshots/sendent-06-before-submit-20260224_125300.png",
+      "/home/user/Agents/output/screenshots/sendent-07-after-submit-20260224_125306.png"
+    ],
+    "notes": "No file upload field found; Submit button clicked. No explicit confirmation found but submission attempted.",
+    "response": null
   }
 ]

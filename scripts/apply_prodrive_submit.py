@@ -26,7 +26,7 @@ API_URL = 'https://prodrive-technologies.com/umbraco/api/form/postvacancy/'
 # Personal details
 FIRST_NAME = 'Hisham'
 LAST_NAME = 'Abboud'
-EMAIL = 'Hisham123@hotmail.com'
+EMAIL = 'hiaham123@hotmail.com'
 PHONE = '+31 06 4841 2838'
 
 # Form field values (extracted from page inspection)

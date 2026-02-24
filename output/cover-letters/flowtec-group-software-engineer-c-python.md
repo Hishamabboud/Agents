@@ -10,4 +10,4 @@ I am based in Eindhoven and available to discuss how my background in Python and
 
 Best regards,
 Hisham Abboud
-+31 06 4841 2838 | Hisham123@hotmail.com
++31 06 4841 2838 | hiaham123@hotmail.com

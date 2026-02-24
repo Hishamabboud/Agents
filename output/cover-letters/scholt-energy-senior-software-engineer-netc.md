@@ -10,4 +10,4 @@ I am based in Eindhoven with a valid Dutch work permit and am enthusiastic about
 
 Best regards,
 Hisham Abboud
-+31 06 4841 2838 | Hisham123@hotmail.com
++31 06 4841 2838 | hiaham123@hotmail.com

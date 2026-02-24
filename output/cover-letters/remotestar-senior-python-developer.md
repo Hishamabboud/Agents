@@ -8,4 +8,4 @@ I bring strong remote work capabilities, Azure/Docker/Kubernetes experience, and
 
 Best regards,
 Hisham Abboud
-+31 06 4841 2838 | Hisham123@hotmail.com
++31 06 4841 2838 | hiaham123@hotmail.com

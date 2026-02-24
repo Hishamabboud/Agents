@@ -1,7 +1,7 @@
 # Hisham Abboud
 
 - **Phone:** +31 06 4841 2838
-- **Email:** Hisham123@hotmail.com
+- **Email:** hiaham123@hotmail.com
 - **Location:** Eindhoven, Netherlands (willing to commute to Rotterdam)
 
 ## Professional Summary

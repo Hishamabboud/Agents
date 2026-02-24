@@ -13,7 +13,7 @@ const PERSONAL_DETAILS = {
   fullName: 'Hisham Abboud',
   firstName: 'Hisham',
   lastName: 'Abboud',
-  email: 'Hisham123@hotmail.com',
+  email: 'hiaham123@hotmail.com',
   phone: '+31 06 4841 2838',
   linkedin: 'linkedin.com/in/hisham-abboud',
   github: 'github.com/Hishamabboud',

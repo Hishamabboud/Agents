@@ -23,7 +23,7 @@ COVER_LETTER_PATH = "/home/user/Agents/output/cover-letters/scholt-net-software-
 PERSONAL_DETAILS = {
     "first_name": "Hisham",
     "last_name": "Abboud",
-    "email": "Hisham123@hotmail.com",
+    "email": "hiaham123@hotmail.com",
     "phone": "+31 06 4841 2838",
 }
 

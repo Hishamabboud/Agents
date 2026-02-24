@@ -26,7 +26,7 @@ PERSONAL = {
     'full_name': 'Hisham Abboud',
     'first_name': 'Hisham',
     'last_name': 'Abboud',
-    'email': 'Hisham123@hotmail.com',
+    'email': 'hiaham123@hotmail.com',
     'phone': '+31 06 4841 2838',
     'linkedin': 'linkedin.com/in/hisham-abboud',
     'github': 'github.com/Hishamabboud',
@@ -65,7 +65,6 @@ def get_proxy_config():
             'password': password,
         }
     else:
-        # No credentials in URL, just use the server
         return {'server': proxy_url}
 
 
@@ -150,6 +149,8 @@ def main():
                 '--disable-setuid-sandbox',
                 '--disable-dev-shm-usage',
                 '--disable-blink-features=AutomationControlled',
+                '--ignore-certificate-errors',
+                '--ignore-ssl-errors',
             ]
         )
         context = browser.new_context(
@@ -159,6 +160,7 @@ def main():
                 '(KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36'
             ),
             proxy=proxy_config,
+            ignore_https_errors=True,
         )
         page = context.new_page()
 
