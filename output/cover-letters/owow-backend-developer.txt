@@ -1,0 +1,15 @@
+Dear OWOW Hiring Team,
+
+I am excited to apply for the Backend Developer position at OWOW in Eindhoven. OWOW's reputation for building innovative digital products and its creative, purpose-driven studio model make it an environment where I would thrive and contribute meaningfully.
+
+In my current role as Software Service Engineer at Actemium (VINCI Energies), I build and maintain backend systems using .NET, C#, Python/Flask, and JavaScript, developing REST API integrations and database optimizations for industrial clients. Prior to this, I completed an internship at ASML as a Python Developer, where I built high-performance test suites using Locust and Pytest in an agile Azure/Kubernetes environment.
+
+My background in Node.js, REST APIs, PostgreSQL, and cloud infrastructure aligns well with your tech stack. I hold a BSc in Software Engineering from Fontys University of Applied Sciences in Eindhoven and am based locally, making me available for hybrid collaboration at your studio.
+
+I am eager to bring my backend expertise and problem-solving mindset to OWOW's product team.
+
+Best regards,
+Hisham Abboud
++31 06 4841 2838
+hiaham123@hotmail.com
+linkedin.com/in/hisham-abboud

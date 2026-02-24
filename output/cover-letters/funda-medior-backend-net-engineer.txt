@@ -1,0 +1,16 @@
+Dear Funda Hiring Team,
+
+I am excited to apply for the Medior Backend .NET Engineer position at Funda. As a software engineer with hands-on .NET/C# experience building production backend systems at Actemium (VINCI Energies), combined with exposure to Azure, Kubernetes, Docker, and CI/CD pipelines during my internship at ASML, I believe I am a strong fit for this role.
+
+At Actemium, I build and maintain backend applications using .NET, C#, and ASP.NET for Manufacturing Execution Systems serving industrial clients. This involves REST API development, database optimizations, and delivering reliable software in production environments — exactly the kind of ownership-driven development Funda values.
+
+During my internship at ASML, I worked in an agile environment with Azure and Kubernetes, giving me practical experience with the cloud-native stack your engineering teams rely on. My graduation project at Fontys further sharpened my ability to architect scalable, compliant data solutions.
+
+I am drawn to Funda because of its scale — millions of users searching for homes in the Netherlands — and the engineering challenge of building performant microservices that power that experience. I currently live in Eindhoven and am open to the hybrid arrangement at your Amsterdam office.
+
+I would love the opportunity to contribute to Funda's platform and grow alongside the team.
+
+Kind regards,
+Hisham Abboud
+hiaham123@hotmail.com | +31 06 4841 2838
+linkedin.com/in/hisham-abboud

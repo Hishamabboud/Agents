@@ -773,5 +773,48 @@
     ],
     "notes": "Form fully filled. hCaptcha visual challenge not solved after vision analysis. Attempted 12 captcha solutions. All form data: name=Hisham Abboud, email=hiaham123@hotmail.com, CV=Hisham Abboud CV.pdf, cover letter=text, Q1=Yes, Q2=Yes, legal=checked.",
     "response": null
+  },
+  {
+    "id": "owow-backend-developer-20260224145122",
+    "company": "OWOW",
+    "role": "Backend Developer",
+    "url": "https://owow.breezy.hr/p/c661f142975701-backend-developer",
+    "application_url": "https://owow.breezy.hr/p/c661f142975701-backend-developer/apply",
+    "date_applied": "2026-02-24T14:51:22.557489",
+    "score": 8.0,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/owow-backend-developer.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/owow-01-apply-page-loaded-20260224_145029.png",
+      "/home/user/Agents/output/screenshots/owow-02-form-fields-filled-20260224_145033.png",
+      "/home/user/Agents/output/screenshots/owow-03-cv-uploaded-20260224_145106.png",
+      "/home/user/Agents/output/screenshots/owow-04-cover-letter-20260224_145108.png",
+      "/home/user/Agents/output/screenshots/owow-05-questions-answered-20260224_145110.png",
+      "/home/user/Agents/output/screenshots/owow-06-form-bottom-20260224_145112.png",
+      "/home/user/Agents/output/screenshots/owow-07-pre-submit-20260224_145113.png",
+      "/home/user/Agents/output/screenshots/owow-08-after-submit-20260224_145118.png",
+      "/home/user/Agents/output/screenshots/owow-09-captcha-detected-20260224_145121.png"
+    ],
+    "notes": "Application submitted successfully via Breezy HR. Form fully filled: Name=Hisham Abboud, Email=hiaham123@hotmail.com, CV=Hisham Abboud CV.pdf uploaded, cover letter filled, screening questions answered (3x Yes: visa sponsorship=No, office work=Yes, NL resident=Yes). Confirmation page showed: \"Application Submitted - Your application has been submitted successfully. Good luck!\" Note: Breezy HR page source contains the word captcha in its template but no CAPTCHA challenge was presented.",
+    "response": null,
+    "email_used": "hiaham123@hotmail.com"
+  },
+  {
+    "id": "coolblue-csharp-developer-20260224_145258",
+    "company": "Coolblue",
+    "role": "C# Developer",
+    "url": "https://www.coolblue.nl/en/vacancies/c-developer",
+    "date_applied": "2026-02-24T14:52:58.841425",
+    "score": 9.0,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/coolblue-error-20260224_145258.png"
+    ],
+    "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://www.coolblue.nl/en/vacancies/c-developer\nCall log:\n  - navigating to \"https://www.coolblue.nl/en/vacancies/c-developer\", waiting until \"domcontentloaded\"\n",
+    "email_used": "hiaham123@hotmail.com",
+    "response": null
   }
 ]
