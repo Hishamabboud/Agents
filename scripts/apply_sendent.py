@@ -5,9 +5,9 @@ Uses Playwright (Python) for browser automation.
 """
 
 import os
+import re
 import sys
 import json
-import time
 from datetime import datetime
 from pathlib import Path
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
@@ -46,6 +46,28 @@ I am based in Eindhoven with a valid Dutch work permit and am comfortable with h
 
 Best regards,
 Hisham Abboud"""
+
+
+def get_proxy_config():
+    """Extract proxy settings from environment variables for Playwright."""
+    proxy_url = os.environ.get('HTTPS_PROXY') or os.environ.get('HTTP_PROXY') or ''
+    if not proxy_url:
+        return None
+
+    # Format: http://user:password@host:port
+    match = re.match(r'(https?://)([^:]+):([^@]+)@(.+)', proxy_url)
+    if match:
+        scheme, username, password, hostport = match.groups()
+        server = f'http://{hostport}'
+        return {
+            'server': server,
+            'username': username,
+            'password': password,
+        }
+    else:
+        # No credentials in URL, just use the server
+        return {'server': proxy_url}
+
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -97,6 +119,7 @@ def find_and_click(page, selectors, text_hints=None, label: str = '') -> bool:
 
     return False
 
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -111,10 +134,17 @@ def main():
     log(f'Job URL: {JOB_URL}')
     log(f'Chrome executable: {CHROME_EXECUTABLE}')
 
+    proxy_config = get_proxy_config()
+    if proxy_config:
+        log(f'Using proxy: {proxy_config["server"]}')
+    else:
+        log('No proxy configured')
+
     with sync_playwright() as pw:
         browser = pw.chromium.launch(
             executable_path=CHROME_EXECUTABLE,
             headless=True,
+            proxy=proxy_config,
             args=[
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
@@ -127,7 +157,8 @@ def main():
             user_agent=(
                 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
                 '(KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36'
-            )
+            ),
+            proxy=proxy_config,
         )
         page = context.new_page()
 
