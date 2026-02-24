@@ -1313,5 +1313,19 @@
     "notes": "Comprehensive application attempt made. ALTEN NL job found via multiple sources.\n\nJOB DETAILS:\n  Title: Software Engineer (Python/C#) - Data & Monitoring\n  Company: ALTEN Nederland\n  Location: Rotterdam, Netherlands\n  Source: englishjobsearch.nl clickout bc0a1044202977b3\n\nINVESTIGATION FINDINGS:\n  1. Original URL expired: thebigjobsite.com job F6B57EADB801DDC381CEF0286A21BF0C shows 'expired'\n  2. ALTEN NL website (www.alten.nl) blocked by Cloudflare/Envoy - TLS v1 alert protocol version error\n  3. Active LinkedIn job found: C# Engineer at ALTEN Nederland (Rotterdam, ID: 4342237749)\n     URL: https://nl.linkedin.com/jobs/view/c%23-engineer-at-alten-nederland-4342237749\n  4. beBee job found (C# Engineer): https://nl.bebee.com/job/e58beb3b50a365b0e58dd7c3fafbcea0\n     - apply_origin: 'email' (beBee routes application via their email system)\n  5. Magnet.me job found: https://magnet.me/en/opportunity/997581/senior-software-engineer\n     - 'Apply on website' button links to www.alten.nl (inaccessible)\n\nAPPLICANT DETAILS PREPARED:\n  Name: Hisham Abboud\n  Email: hiaham123@hotmail.com\n  Phone: +31 06 4841 2838\n  Location: Eindhoven, Netherlands\n  LinkedIn: linkedin.com/in/hisham-abboud\n  CV: /home/user/Agents/profile/Hisham Abboud CV.pdf\n\nCOVER LETTER: /home/user/Agents/output/cover-letters/alten-software-engineer-python-csharp.md\n\nMANUAL APPLICATION OPTIONS:\n  1. LinkedIn (RECOMMENDED): Login to LinkedIn and apply at:\n     https://nl.linkedin.com/jobs/view/c%23-engineer-at-alten-nederland-4342237749\n  2. ALTEN NL website (when accessible):\n     https://www.alten.nl/en/career/jobs/ - search for Python/C# Rotterdam\n  3. Direct email:\n     To: sollicitaties@alten.nl\n     Subject: Application - Software Engineer (Python/C#) Data & Monitoring - Rotterdam\n     Body: See cover letter\n     Attachment: Hisham Abboud CV.pdf\n  4. beBee email apply:\n     Visit https://nl.bebee.com/job/e58beb3b50a365b0e58dd7c3fafbcea0\n     Click Solliciteer and use email: hiaham123@hotmail.com\n",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
+  },
+  {
+    "id": "stafide-genai-python-developer-3453-20260224",
+    "company": "Stafide",
+    "role": "GenAI Python Developer (ID:3453)",
+    "url": "https://jobs.stafide.nl/jobs/Careers/596028000022269001/GenAI-Python-Developer-ID-3453-?source=CareerSite",
+    "date_applied": "2026-02-24",
+    "score": 9.0,
+    "status": "applied",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/stafide-genai-python-developer.txt",
+    "screenshot": "output/screenshots/stafide-v3-result-20260224_152642.png",
+    "notes": "Applied via Zoho Recruit form on jobs.stafide.nl. Form included CAPTCHA which was resolved. Phone set to +31 Netherlands. City: Eindhoven. Email: hiaham123@hotmail.com. LinkedIn: linkedin.com/in/hisham-abboud. Confirmation modal received: 'We have received your application. Our team member will evaluate and update within 5 business days.'",
+    "response": "awaiting - team will respond within 5 business days"
   }
 ]
