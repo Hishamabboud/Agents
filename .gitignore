@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Output files (generated per run)
+output/tailored-resumes/*.md
+output/cover-letters/*.md
+output/screenshots/*.png
+!output/tailored-resumes/.gitkeep
+!output/cover-letters/.gitkeep
+!output/screenshots/.gitkeep
+
+# Data files (generated per run)
+data/raw-jobs.json
+data/scored-jobs.json
+data/all-scored-jobs.json
+data/js-board-urls.json
+data/tailored-manifest.json
+
+# Logs
+logs/*.log
+
+# Environment / secrets
+.env
+.env.*
+credentials.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PDF resume (may contain personal info)
+profile/resume.pdf
