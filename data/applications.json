@@ -155,7 +155,7 @@
       "/home/user/Agents/output/screenshots/futures-works-02-pre-submit.png",
       "/home/user/Agents/output/screenshots/futures-works-04-result-top.png"
     ],
-    "notes": "Application successfully submitted. Filled all 15+ required fields. Confirmation: 'Your application was successfully submitted.' shown on page.",
+    "notes": "ORIGINAL APPLICATION - used incorrect email (Hisham123@hotmail.com instead of hiaham123@hotmail.com). Re-applied with corrected email - see id: futures-works-csharp-corrected-email-20260224.",
     "response": "awaiting"
   },
   {
@@ -316,5 +316,113 @@
     ],
     "notes": "Application submitted successfully. Confirmation detected.",
     "response": null
+  },
+  {
+    "id": "prodrive-reapply-145273-20260224_132556",
+    "company": "Prodrive Technologies",
+    "role": "Software Engineer",
+    "url": "https://prodrive-technologies.com/careers/apply/",
+    "date_applied": "2026-02-24T13:25:57.240511",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/prodrive-reapply-confirmation-20260224_132556.png",
+      "/home/user/Agents/output/screenshots/prodrive-reapply-record-20260224_132556.txt"
+    ],
+    "notes": "RE-APPLICATION with CORRECT email (hiaham123@hotmail.com). Application submitted successfully via API. Vacancy: Software Engineer (ID: 145273). HTTP Status: 200 OK. API Response: {\"success\": true, \"errorMessage\": \"OK\"}. Previous application used wrong email (Hisham123@hotmail.com). Form fields: nodeId=6206, lang=en, vacancyID=145273, jobType=105631 (Fulltime), location=6099 (Eindhoven NL). CV attached: Hisham Abboud CV.pdf.",
+    "response": null,
+    "api_endpoint": "https://prodrive-technologies.com/umbraco/api/form/postvacancy/",
+    "http_status": 200,
+    "api_response": {
+      "success": true,
+      "errorMessage": "OK"
+    },
+    "email_used": "hiaham123@hotmail.com",
+    "vacancy_id": "145273"
+  },
+  {
+    "id": "sendent-reapply-correct-email-20260224132640",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-02-24T13:26:40.275759",
+    "score": 9,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendent-reapply-error-20260224_132639.png"
+    ],
+    "notes": "Error: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net\nCall log:\n  - navigating to \"https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net\", waiting until \"networkidle\"\n",
+    "email_used": "hiaham123@hotmail.com",
+    "response": null
+  },
+  {
+    "id": "brunel-csharp-net-developer-amsterdam-20260224",
+    "company": "Brunel",
+    "role": "C# / .NET Developer",
+    "url": "https://relocate.me/the-netherlands/amsterdam/brunel/c-net-developer-2420",
+    "application_url": "https://relocate.me/company/468/vacancy/2420/apply",
+    "date_applied": "2026-02-24",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/brunel-19-filled-form-visible.png",
+      "/home/user/Agents/output/screenshots/brunel-20-post-submit.png"
+    ],
+    "notes": "Applied via relocate.me platform (company 468, vacancy 2420). Created new Relocate.me account (Hisham123@hotmail.com, password: HishamJobs2024!). Form filled: been to Netherlands=More than once, plan to visit=No (already lives there), preferred contact=Email+Phone+LinkedIn, cover letter included. HTTP 302 redirect received on form submission - success indicator. No CAPTCHA encountered.",
+    "response": "awaiting"
+  },
+  {
+    "id": "bimcollab-se-final-20260224132835",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "date_applied": "2026-02-24T13:28:35.603502",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-cover-letter.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-final-01-loaded-20260224_132801.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-02-after-tab-20260224_132807.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-03-fields-filled-20260224_132808.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-04-cv-uploaded-20260224_132811.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-05-cover-letter-20260224_132813.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-06-questions-20260224_132814.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-07-form-bottom-20260224_132816.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-08-pre-submit-20260224_132816.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-09-after-submit-20260224_132822.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-10-after-linkedin-dismiss-20260224_132825.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-11-after-final-send-20260224_132831.png",
+      "/home/user/Agents/output/screenshots/bimcollab-final-12-final-20260224_132835.png"
+    ],
+    "notes": "Validation errors detected. URL: https://jobs.bimcollab.com/o/software-engineer-3/c/new",
+    "response": null
+  },
+  {
+    "id": "futures-works-csharp-corrected-email-20260224",
+    "company": "Futures.Works",
+    "role": "C# Developer Eindhoven Region for High Tech Companies",
+    "url": "https://www.careers-page.com/futures-works/job/LR994VY6",
+    "application_url": "https://www.careers-page.com/futures-works/job/LR994VY6/apply",
+    "date_applied": "2026-02-24T13:26:22",
+    "score": 8.5,
+    "status": "applied",
+    "email_used": "hiaham123@hotmail.com",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/futures-works-v2-01-form-loaded-2026-02-24T13_26_22.png",
+      "/home/user/Agents/output/screenshots/futures-works-v2-02-pre-submit-2026-02-24T13_26_22.png",
+      "/home/user/Agents/output/screenshots/futures-works-v2-03-after-submit-2026-02-24T13_26_22.png",
+      "/home/user/Agents/output/screenshots/futures-works-v2-04-result-top-2026-02-24T13_26_22.png"
+    ],
+    "notes": "RE-APPLICATION with CORRECTED email (hiaham123@hotmail.com). Previous application (id: futures-works-csharp-eindhoven-20260224) used wrong email (Hisham123@hotmail.com). All 15+ fields filled: Full Name, First Name, Last Name, Email (hiaham123@hotmail.com VERIFIED before submit), Postcode (5611), City (Eindhoven), Country (Netherlands), Languages (Arabic/Dutch/English via Select2), Introduction, Attraction, Key Skills, Improvements, Salary Expectations (EUR 55k-70k), Work Preference (Hybrid), Reason for Leaving, Work Permit (EU citizen, BSN), Reference, Achievement (STAR format), Availability Date (2025-03-17), LinkedIn URL, Resume PDF uploaded, Consent checkboxes checked. Confirmation: \"Thank you for your application! Your application was successfully submitted.\"",
+    "response": "awaiting"
   }
 ]
