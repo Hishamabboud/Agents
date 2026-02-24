@@ -2,6 +2,7 @@
 """
 Scholt Energy application - v3 with enhanced stealth + form inspection.
 Attempts human-like interaction with warm-up browsing to build a realistic session.
+Correctly handles JWT-token proxy with @ in the password.
 """
 
 import os
@@ -29,6 +30,36 @@ PERSONAL_DETAILS = {
 }
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+
+def get_proxy_config():
+    """Parse proxy URL handling JWT tokens (which contain '@' in password)."""
+    proxy_url = (os.environ.get("HTTPS_PROXY") or os.environ.get("HTTP_PROXY") or
+                 os.environ.get("https_proxy") or os.environ.get("http_proxy"))
+    if not proxy_url:
+        return None
+    try:
+        # Extract scheme
+        scheme_end = proxy_url.index("://") + 3
+        rest = proxy_url[scheme_end:]
+        # Split on last '@' to separate credentials from host:port
+        last_at = rest.rfind("@")
+        if last_at == -1:
+            # No credentials
+            return {"server": proxy_url}
+        credentials = rest[:last_at]
+        hostport = rest[last_at + 1:]
+        # Split credentials: everything before first ':' is username
+        colon_pos = credentials.index(":")
+        username = credentials[:colon_pos]
+        password = credentials[colon_pos + 1:]
+        host, port = hostport.rsplit(":", 1)
+        server = f"http://{host}:{port}"
+        print(f"  Proxy: {server} (user: {username[:30]}...)")
+        return {"server": server, "username": username, "password": password}
+    except Exception as e:
+        print(f"  Proxy parse error: {e}")
+        return None
 
 
 def screenshot(page, label):
@@ -93,7 +124,6 @@ def inspect_form(page):
                 placeholder = inp.get_attribute("placeholder") or ""
                 label_text = ""
                 try:
-                    # Try to find associated label
                     label_text = inp.evaluate("""el => {
                         if (el.id) {
                             const lbl = document.querySelector('label[for="' + el.id + '"]');
@@ -107,7 +137,7 @@ def inspect_form(page):
                     pass
                 print(f"  [{i}] {tag} type={typ!r} name={name!r} id={pid!r} placeholder={placeholder!r} label={label_text!r}")
             except Exception as e:
-                print(f"  [{i}] Error inspecting: {e}")
+                print(f"  [{i}] Error: {e}")
     except Exception as e:
         print(f"  Inspection error: {e}")
     print("--- End Form Inspection ---\n")
@@ -116,7 +146,6 @@ def inspect_form(page):
 def fill_field_by_strategies(page, value, strategies):
     """
     Try multiple strategies to fill a form field.
-    strategies: list of (strategy_name, locator_or_callable)
     Returns True if successful.
     """
     for name, locator_fn in strategies:
@@ -136,7 +165,6 @@ def fill_field_by_strategies(page, value, strategies):
                 rand_delay(0.3, 0.7)
                 return True
         except Exception as e:
-            print(f"  Strategy '{name}' failed: {e}")
             continue
     return False
 
@@ -160,8 +188,10 @@ def apply():
         "response": None,
     }
 
+    proxy_config = get_proxy_config()
+
     with sync_playwright() as p:
-        browser = p.chromium.launch(
+        launch_kwargs = dict(
             headless=True,
             executable_path="/root/.cache/ms-playwright/chromium-1194/chrome-linux/chrome",
             args=[
@@ -172,19 +202,18 @@ def apply():
                 "--ignore-ssl-errors",
                 "--disable-blink-features=AutomationControlled",
                 "--disable-features=IsolateOrigins,site-per-process",
-                "--disable-web-security",
-                "--allow-running-insecure-content",
                 "--window-size=1366,768",
-                "--start-maximized",
                 "--disable-infobars",
-                "--disable-extensions",
                 "--no-first-run",
                 "--no-default-browser-check",
-                "--disable-default-apps",
             ],
         )
+        if proxy_config:
+            launch_kwargs["proxy"] = proxy_config
 
-        context = browser.new_context(
+        browser = p.chromium.launch(**launch_kwargs)
+
+        context_kwargs = dict(
             viewport={"width": 1366, "height": 768},
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -199,26 +228,20 @@ def apply():
                 "Accept-Language": "en-US,en;q=0.9,nl;q=0.8",
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
                 "Accept-Encoding": "gzip, deflate, br",
-                "Connection": "keep-alive",
-                "Upgrade-Insecure-Requests": "1",
-                "Sec-Fetch-Dest": "document",
-                "Sec-Fetch-Mode": "navigate",
-                "Sec-Fetch-Site": "none",
                 "Sec-Ch-Ua": '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
                 "Sec-Ch-Ua-Mobile": "?0",
                 "Sec-Ch-Ua-Platform": '"Windows"',
             },
         )
+        if proxy_config:
+            context_kwargs["proxy"] = proxy_config
 
-        # Mask webdriver
+        context = browser.new_context(**context_kwargs)
+
+        # Mask automation signals
         context.add_init_script("""
-            // Remove webdriver property
             delete Object.getPrototypeOf(navigator).webdriver;
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => undefined,
-                configurable: true,
-            });
-            // Fake plugins
+            Object.defineProperty(navigator, 'webdriver', { get: () => undefined, configurable: true });
             Object.defineProperty(navigator, 'plugins', {
                 get: () => {
                     const arr = [
@@ -226,19 +249,14 @@ def apply():
                         { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '' },
                         { name: 'Native Client', filename: 'internal-nacl-plugin', description: '' },
                     ];
-                    arr.item = (i) => arr[i];
-                    arr.namedItem = (n) => arr.find(p => p.name === n);
+                    arr.item = i => arr[i];
+                    arr.namedItem = n => arr.find(p => p.name === n);
                     arr.refresh = () => {};
                     return arr;
                 },
             });
-            // Fake languages
-            Object.defineProperty(navigator, 'languages', {
-                get: () => ['en-US', 'en', 'nl'],
-            });
-            // Fake chrome object
+            Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en', 'nl'] });
             window.chrome = { runtime: {}, loadTimes: () => null, csi: () => null, app: {} };
-            // Hide automation indicator
             const origQuery = window.navigator.permissions.query;
             window.navigator.permissions.query = (parameters) => (
                 parameters.name === 'notifications'
@@ -254,7 +272,6 @@ def apply():
             print("Step 1: Warming up - visiting job listing page...")
             page.goto(JOB_URL, wait_until="domcontentloaded", timeout=60000)
             rand_delay(2, 4)
-            # Simulate reading the page
             page.mouse.move(400, 300)
             rand_delay(0.5, 1.0)
             page.mouse.wheel(0, 300)
@@ -289,18 +306,16 @@ def apply():
             # ---- Fill form fields ----
             print("\nStep 3: Filling personal details...")
 
-            # Scroll down to see the form
             page.mouse.wheel(0, 200)
             rand_delay(0.5, 1.0)
 
             # First Name
             filled = fill_field_by_strategies(page, PERSONAL_DETAILS["first_name"], [
-                ("label[for=first*]", lambda: page.locator('label[for*="first" i] + input, label[for*="voornaam" i] + input')),
                 ("get_by_label first_name", lambda: page.get_by_label("First name", exact=False)),
                 ("get_by_label voornaam", lambda: page.get_by_label("Voornaam", exact=False)),
                 ("input[name*=first]", lambda: page.locator('input[name*="first" i], input[name*="voornaam" i]')),
                 ("input[id*=first]", lambda: page.locator('input[id*="first" i], input[id*="voornaam" i]')),
-                ("input[placeholder*=first]", lambda: page.locator('input[placeholder*="first" i], input[placeholder*="voornaam" i]')),
+                ("input[placeholder*=first]", lambda: page.locator('input[placeholder*="first" i]')),
                 ("text input [0]", lambda: page.locator('input[type="text"]').nth(0)),
             ])
             if not filled:
@@ -313,7 +328,7 @@ def apply():
                 ("get_by_label surname", lambda: page.get_by_label("Surname", exact=False)),
                 ("input[name*=last]", lambda: page.locator('input[name*="last" i], input[name*="achternaam" i]')),
                 ("input[id*=last]", lambda: page.locator('input[id*="last" i], input[id*="achternaam" i]')),
-                ("input[placeholder*=last]", lambda: page.locator('input[placeholder*="last" i], input[placeholder*="achternaam" i]')),
+                ("input[placeholder*=last]", lambda: page.locator('input[placeholder*="last" i]')),
                 ("text input [1]", lambda: page.locator('input[type="text"]').nth(1)),
             ])
             if not filled:
@@ -350,12 +365,9 @@ def apply():
                 file_inputs = page.locator('input[type="file"]').all()
                 print(f"  Found {len(file_inputs)} file input(s)")
                 if file_inputs:
-                    # Upload CV to first file input
                     file_inputs[0].set_input_files(RESUME_PATH)
                     print(f"  CV uploaded: {RESUME_PATH}")
                     rand_delay(2, 3)
-
-                # Upload cover letter to second file input if it exists
                 if len(file_inputs) > 1:
                     file_inputs[1].set_input_files(COVER_LETTER_PATH)
                     print(f"  Cover letter uploaded: {COVER_LETTER_PATH}")
@@ -371,8 +383,7 @@ def apply():
                 for i, cb in enumerate(checkboxes):
                     try:
                         if cb.is_visible(timeout=1000):
-                            is_checked = cb.is_checked()
-                            if not is_checked:
+                            if not cb.is_checked():
                                 cb.scroll_into_view_if_needed()
                                 rand_delay(0.3, 0.6)
                                 cb.check()
@@ -387,7 +398,7 @@ def apply():
 
             rand_delay(2, 3)
 
-            # Scroll through form to trigger any validation and appear human
+            # Scroll through form to appear human
             page.mouse.wheel(0, 500)
             rand_delay(0.5, 1.0)
             page.mouse.wheel(0, -200)
@@ -403,16 +414,13 @@ def apply():
             print(f"\nreCAPTCHA present in page: {has_recaptcha}")
 
             if has_recaptcha:
-                print("  Checking if reCAPTCHA iframe is visible...")
                 try:
                     recaptcha_visible = page.locator('.g-recaptcha, iframe[src*="recaptcha"]').is_visible(timeout=3000)
                     print(f"  reCAPTCHA iframe visible: {recaptcha_visible}")
                 except Exception:
-                    print("  reCAPTCHA iframe not found as visible element (may be invisible/v3)")
-
-                # Wait a few seconds — invisible reCAPTCHA v3 self-validates
-                print("  Waiting 8s for invisible reCAPTCHA to auto-validate...")
-                time.sleep(8)
+                    print("  reCAPTCHA element not visible (may be invisible v3)")
+                print("  Waiting 10s for invisible reCAPTCHA v3 to auto-validate...")
+                time.sleep(10)
 
             # ---- Find and click submit ----
             print("\nStep 6: Submitting application...")
@@ -436,20 +444,20 @@ def apply():
                     btn = page.locator(sel).first
                     if btn.count() > 0 and btn.is_visible(timeout=2000):
                         btn_text = btn.inner_text().strip()
-                        print(f"  Found submit button: '{btn_text}' via '{sel}'")
+                        print(f"  Found: '{btn_text}' via '{sel}'")
                         btn.scroll_into_view_if_needed()
                         rand_delay(0.5, 1.0)
                         btn.hover()
                         rand_delay(0.3, 0.7)
                         btn.click()
                         submitted = True
-                        print(f"  Clicked submit button")
+                        print("  Clicked submit button")
                         break
-                except Exception as e:
+                except Exception:
                     continue
 
             if not submitted:
-                print("  No standard submit button found. Listing all buttons...")
+                print("  No standard submit button found. Trying all visible buttons...")
                 buttons = page.locator("button").all()
                 for i, btn in enumerate(buttons):
                     try:
@@ -457,7 +465,6 @@ def apply():
                         visible = btn.is_visible(timeout=500)
                         print(f"    button[{i}]: '{txt}' visible={visible}")
                         if visible and txt and txt not in ["", "X", "x", "Accept", "Accepteer"]:
-                            print(f"    Trying button[{i}]: '{txt}'")
                             btn.scroll_into_view_if_needed()
                             rand_delay(0.5, 1.0)
                             btn.click()
@@ -468,7 +475,7 @@ def apply():
 
             if submitted:
                 print("  Waiting for response...")
-                time.sleep(7)
+                time.sleep(8)
 
                 shot = screenshot(page, "03-after-submit")
                 results["screenshots"].append(shot)
@@ -486,7 +493,6 @@ def apply():
                 failure_keywords = [
                     "recaptcha failed", "captcha failed", "captcha error",
                     "failed to validate", "validation failed",
-                    "please verify", "verifieer",
                 ]
 
                 is_success = any(kw in page_content for kw in success_keywords)
@@ -500,23 +506,21 @@ def apply():
                     results["status"] = "skipped"
                     results["notes"] = (
                         "Form fully filled and submit attempted, but blocked by Google reCAPTCHA. "
-                        "Automated browsers cannot pass reCAPTCHA without human intervention. "
-                        "Manual submission recommended."
+                        "Automated browsers cannot pass reCAPTCHA without human intervention."
                     )
                     print("\nBLOCKED: reCAPTCHA prevented submission")
                 else:
-                    # Check if URL changed (may indicate redirect to thank you page)
-                    if final_url != APPLICATION_URL and "apply" not in final_url:
+                    if final_url != APPLICATION_URL and "apply" not in final_url.lower():
                         results["status"] = "applied"
                         results["notes"] = f"Page redirected after submit to: {final_url} - likely successful"
                         print(f"\nLIKELY SUCCESS: Redirected to {final_url}")
                     else:
                         results["status"] = "failed"
                         results["notes"] = (
-                            f"Submit clicked but no clear success/failure indicator found. "
+                            f"Submit clicked but no clear success/failure indicator. "
                             f"Final URL: {final_url}. Check screenshots."
                         )
-                        print("\nUNCLEAR: No definitive outcome detected. Check screenshots.")
+                        print("\nUNCLEAR: No definitive outcome. Check screenshots.")
             else:
                 results["status"] = "failed"
                 results["notes"] = "Could not find or click submit button"
@@ -545,7 +549,7 @@ def apply():
 
 if __name__ == "__main__":
     print("=" * 70)
-    print("Scholt Energy — .NET Software Engineer Application (v3 enhanced stealth)")
+    print("Scholt Energy - .NET Software Engineer Application (v3 stealth+proxy)")
     print("=" * 70)
 
     res = apply()
@@ -564,7 +568,7 @@ if __name__ == "__main__":
     except Exception:
         apps = []
 
-    # Update the existing skipped entry if found, otherwise append
+    # Update the existing skipped/failed Scholt entry, or append
     updated = False
     for i, app in enumerate(apps):
         if (app.get("company") == "Scholt Energy" and

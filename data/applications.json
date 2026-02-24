@@ -90,20 +90,18 @@
     "response": null
   },
   {
-    "id": "scholt-v3-20260224_130518",
+    "id": "scholt-post-20260224_131054",
     "company": "Scholt Energy",
     "role": ".NET Software Engineer",
     "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
     "application_url": "https://www.scholt.nl/en/apply/?page=3630",
-    "date_applied": "2026-02-24T13:05:18.998992",
+    "date_applied": "2026-02-24T13:10:54.878029",
     "score": 9.2,
-    "status": "failed",
+    "status": "skipped",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/scholt-net-software-engineer.txt",
-    "screenshots": [
-      "/home/user/Agents/output/screenshots/scholt-v3-error-20260224_130518.png"
-    ],
-    "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/\nCall log:\n  - navigating to \"https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/\", waiting until \"domcontentloaded\"\n",
+    "screenshots": [],
+    "notes": "Direct POST blocked by server-side reCAPTCHA validation. Form was fully filled but reCAPTCHA token required. Manual application required.",
     "response": null
   },
   {
@@ -228,6 +226,23 @@
       "/home/user/Agents/output/screenshots/bimcollab-v3-error-20260224_130504.png"
     ],
     "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://jobs.bimcollab.com/o/software-engineer-3/c/new\nCall log:\n  - navigating to \"https://jobs.bimcollab.com/o/software-engineer-3/c/new\", waiting until \"domcontentloaded\"\n",
+    "response": null
+  },
+  {
+    "id": "bimcollab-se-v4-20260224130744",
+    "company": "KUBUS / BIMcollab",
+    "role": "Software Engineer",
+    "url": "https://jobs.bimcollab.com/o/software-engineer-3",
+    "application_url": "https://jobs.bimcollab.com/o/software-engineer-3/c/new",
+    "date_applied": "2026-02-24T13:07:44.306970",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/bimcollab-software-engineer.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bimcollab-v4-error-20260224_130743.png"
+    ],
+    "notes": "Exception: Page.goto: net::ERR_INVALID_AUTH_CREDENTIALS at https://jobs.bimcollab.com/o/software-engineer-3\nCall log:\n  - navigating to \"https://jobs.bimcollab.com/o/software-engineer-3\", waiting until \"networkidle\"\n",
     "response": null
   }
 ]
