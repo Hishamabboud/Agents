@@ -424,5 +424,27 @@
     ],
     "notes": "RE-APPLICATION with CORRECTED email (hiaham123@hotmail.com). Previous application (id: futures-works-csharp-eindhoven-20260224) used wrong email (Hisham123@hotmail.com). All 15+ fields filled: Full Name, First Name, Last Name, Email (hiaham123@hotmail.com VERIFIED before submit), Postcode (5611), City (Eindhoven), Country (Netherlands), Languages (Arabic/Dutch/English via Select2), Introduction, Attraction, Key Skills, Improvements, Salary Expectations (EUR 55k-70k), Work Preference (Hybrid), Reason for Leaving, Work Permit (EU citizen, BSN), Reference, Achievement (STAR format), Availability Date (2025-03-17), LinkedIn URL, Resume PDF uploaded, Consent checkboxes checked. Confirmation: \"Thank you for your application! Your application was successfully submitted.\"",
     "response": "awaiting"
+  },
+  {
+    "id": "sendent-v2-correct-email-20260224133437",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-02-24T13:34:37.460449",
+    "score": 9,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/sendent-cover-letter-v2.txt",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendent-v2-01-job-listing-20260224_133227.png",
+      "/home/user/Agents/output/screenshots/sendent-v2-02-after-apply-click-20260224_133231.png",
+      "/home/user/Agents/output/screenshots/sendent-v2-03-email-entered-20260224_133231.png",
+      "/home/user/Agents/output/screenshots/sendent-v2-04-after-email-continue-20260224_133336.png",
+      "/home/user/Agents/output/screenshots/sendent-v2-unknown-step-1-20260224_133337.png",
+      "/home/user/Agents/output/screenshots/sendent-v2-final-state-20260224_133437.png"
+    ],
+    "notes": "Stuck at unknown step: https://join.com/companies/sendentcom/15650046/apply/authentication",
+    "email_used": "hiaham123@hotmail.com",
+    "response": null
   }
 ]
