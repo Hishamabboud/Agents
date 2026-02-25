@@ -1,0 +1,113 @@
+[
+  {
+    "title": "Fullstack Python/React Engineer",
+    "company": "Lumenalta",
+    "location": "Eindhoven, North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/fullstack-python-react-engineer-at-lumenalta-4376524358",
+    "date_posted": "2026-02-23",
+    "source": "LinkedIn",
+    "search_query": ".NET developer Eindhoven",
+    "score": 8.8
+  },
+  {
+    "title": "Medior .NET Developer",
+    "company": "Trifork",
+    "location": "Eindhoven, North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/medior-net-developer-at-trifork-4374535155",
+    "date_posted": "2026-02-24",
+    "source": "LinkedIn",
+    "search_query": ".NET developer Eindhoven",
+    "score": 8.3
+  },
+  {
+    "title": "Senior .NET Developer",
+    "company": "Evoke",
+    "location": "Eindhoven, North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/senior-net-developer-at-evoke-4374023598",
+    "date_posted": "2026-02-19",
+    "source": "LinkedIn",
+    "search_query": ".NET developer Eindhoven",
+    "score": 8.0
+  },
+  {
+    "title": "Senior Fullstack .NET Developer",
+    "company": "Jumbo Supermarkten",
+    "location": "Veghel, North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/senior-fullstack-net-developer-at-jumbo-supermarkten-4314535134",
+    "date_posted": "2026-02-22",
+    "source": "LinkedIn",
+    "search_query": ".NET developer Eindhoven",
+    "score": 7.8
+  },
+  {
+    "title": "Python Engineer - Data Acquisition",
+    "company": "Datenna",
+    "location": "Eindhoven Area",
+    "url": "https://nl.linkedin.com/jobs/view/python-engineer-data-acquisition-at-datenna-4374043276",
+    "date_posted": "2026-02-19",
+    "source": "LinkedIn",
+    "search_query": "Python developer Eindhoven",
+    "score": 7.5
+  },
+  {
+    "title": ".NET developer",
+    "company": "Io",
+    "location": "Den Bosch, North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/net-developer-at-io-4375718232",
+    "date_posted": "2026-02-23",
+    "source": "LinkedIn",
+    "search_query": "C# developer Noord-Brabant",
+    "score": 7.5
+  },
+  {
+    "id": "406829",
+    "title": "Full Stack Developer regio Eindhoven",
+    "company": "Nubes ontwikkel",
+    "company_type": "Directe werkgever",
+    "location": "Eindhoven",
+    "url": "https://www.ictergezocht.nl/ict-vacature/406829-full-stack-developer-regio-eindhoven/",
+    "salary_text": "",
+    "salary_min_eur": "0.00",
+    "category": "developer",
+    "hours": "38 - 40 uur",
+    "contract_type": "Loondienst (vast)",
+    "education": "MBO",
+    "experience": "Ervaren,Starter",
+    "posted": "7 dagen geleden",
+    "matched_searches": [
+      "developer"
+    ],
+    "score": 7.3,
+    "source": "ictergezocht"
+  },
+  {
+    "title": "Lead .NET Developer",
+    "company": "Vaa",
+    "location": "\u2019s-Hertogenbosch, North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/lead-net-developer-at-vaa-4376843084",
+    "date_posted": "2026-02-23",
+    "source": "LinkedIn",
+    "search_query": ".NET developer Eindhoven",
+    "score": 7.2
+  },
+  {
+    "title": "Senior Full Stack Web Engineer",
+    "company": "Keyrock",
+    "location": "Eindhoven, North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/senior-full-stack-web-engineer-at-keyrock-4324648646",
+    "date_posted": "2026-02-21",
+    "source": "LinkedIn",
+    "search_query": ".NET developer Eindhoven",
+    "score": 7.1
+  },
+  {
+    "title": "Python Software Engineer",
+    "company": "Cimsolutions",
+    "location": "North Brabant, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/python-software-engineer-at-cimsolutions-4375358398",
+    "date_posted": "2026-02-23",
+    "source": "LinkedIn",
+    "search_query": "Python developer Eindhoven",
+    "score": 7.0
+  }
+]
