@@ -1,0 +1,15 @@
+Dear CM.com Hiring Team,
+
+I am writing to apply for the Medior Backend Developer position on your Conversational Router team. The role sits at the intersection of two areas I am deeply passionate about: scalable backend systems in C#/.NET and conversational AI — making it an ideal fit for my background.
+
+In my current role at Actemium (VINCI Energies), I build and maintain production applications using C#, ASP.NET, and REST APIs for industrial clients. Before that, at Delta Electronics, I migrated a legacy Visual Basic codebase to C# and developed a web application handling multi-branch HR workflows — work that gave me strong discipline around clean, maintainable code and database optimisation. Alongside my professional work, I founded CogitatAI, an AI-powered chatbot platform with multi-task sentiment analysis and personality-adaptive responses. Building CogitatAI gave me direct hands-on experience with the technical challenges that your Conversational AI Cloud solves at scale: message routing, AI agent handovers, and delivering seamless conversational experiences across channels.
+
+I hold a BSc in Software Engineering from Fontys University of Applied Sciences and have a permanent right to work in the Netherlands (EU citizen, based in Eindhoven).
+
+To your open question about where I want to be in a year: I want to be the person on the team who others turn to when a routing edge case appears — someone who has learned the Conversational Router deeply enough to propose improvements, not just fix bugs. I am drawn to CM.com because you build infrastructure that reaches millions of users, and that scale demands the kind of rigorous engineering I want to grow in.
+
+I look forward to the opportunity to discuss how my experience with C#/.NET, REST APIs, and AI-driven applications maps to what you are building.
+
+Kind regards,
+Hisham Abboud
+hiaham123@hotmail.com | +31 06 4841 2838 | linkedin.com/in/hisham-abboud

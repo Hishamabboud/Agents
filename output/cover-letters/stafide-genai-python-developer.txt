@@ -1,0 +1,25 @@
+Dear Stafide Recruitment Team,
+
+I am writing to apply for the GenAI Python Developer position (ID:3453) based in Eindhoven. As a Python developer with hands-on experience in AI-powered applications and a strong background in building production systems, I am excited about the opportunity to contribute to cutting-edge GenAI solutions.
+
+In my current role as a Software Service Engineer at Actemium (VINCI Energies), I develop and maintain applications using Python, Flask, and REST APIs for industrial clients. Previously, during my internship at ASML in Veldhoven, I developed Python test suites using Pytest and Locust in an Agile/Scrum environment with Azure and Kubernetes.
+
+Beyond my professional experience, I founded CogitatAI — an AI-powered chatbot platform with personality-adaptive responses and multi-task sentiment analysis, built on Python/Flask with cloud infrastructure. This project directly aligns with the role's focus on agentic AI architectures, LLM integration, and chatbot development.
+
+I bring:
+- Strong Python development skills (3+ years hands-on)
+- Experience building AI/chatbot applications (CogitatAI project)
+- API integration expertise including async and REST patterns
+- Agile/Scrum team experience from ASML and current role
+- Azure and CI/CD experience
+- BSc Software Engineering from Fontys University, Eindhoven
+
+I am based in Eindhoven, making the on-site requirement of two days per week very convenient. I am eager to deepen my expertise in LangChain, LangGraph, and agentic AI systems in a collaborative environment focused on real-world impact.
+
+Thank you for considering my application. I welcome the opportunity to discuss how my skills align with your team's goals.
+
+Kind regards,
+Hisham Abboud
+hiaham123@hotmail.com
++31 06 4841 2838
+linkedin.com/in/hisham-abboud

@@ -1,0 +1,9 @@
+POST-SUBMISSION SCREENSHOT
+Time: 2026-02-24T12:46:39.435296
+API URL: https://prodrive-technologies.com/umbraco/api/form/postvacancy/
+HTTP Status: 200
+Success: True
+Response: {
+  "success": true,
+  "errorMessage": "OK"
+}

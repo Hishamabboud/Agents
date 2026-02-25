@@ -1,0 +1,77 @@
+[
+  {
+    "board": "LinkedIn",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=.NET+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "note": "Requires login. Use Playwright MCP to navigate and scrape."
+  },
+  {
+    "board": "Glassdoor NL",
+    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-.NET+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,24.htm",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "StepStone NL",
+    "search_url": "https://www.stepstone.nl/vacatures/.NET+Developer/in-Eindhoven",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "LinkedIn",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Python+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "note": "Requires login. Use Playwright MCP to navigate and scrape."
+  },
+  {
+    "board": "Glassdoor NL",
+    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Python+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,26.htm",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "StepStone NL",
+    "search_url": "https://www.stepstone.nl/vacatures/Python+Developer/in-Eindhoven",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "LinkedIn",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Swift+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "note": "Requires login. Use Playwright MCP to navigate and scrape."
+  },
+  {
+    "board": "Glassdoor NL",
+    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Swift+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,25.htm",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "StepStone NL",
+    "search_url": "https://www.stepstone.nl/vacatures/Swift+Developer/in-Eindhoven",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "LinkedIn",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Web+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "note": "Requires login. Use Playwright MCP to navigate and scrape."
+  },
+  {
+    "board": "Glassdoor NL",
+    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Web+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,23.htm",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "StepStone NL",
+    "search_url": "https://www.stepstone.nl/vacatures/Web+Developer/in-Eindhoven",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "LinkedIn",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Software+Engineer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "note": "Requires login. Use Playwright MCP to navigate and scrape."
+  },
+  {
+    "board": "Glassdoor NL",
+    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Software+Engineer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,27.htm",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "StepStone NL",
+    "search_url": "https://www.stepstone.nl/vacatures/Software+Engineer/in-Eindhoven",
+    "note": "May require Playwright MCP for full rendering."
+  }
+]

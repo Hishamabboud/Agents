@@ -1,0 +1,82 @@
+[
+  {
+    "company": "Trifork",
+    "role": "Medior .NET Developer",
+    "location": "Eindhoven",
+    "url": "https://trifork.homerun.co/medior-net-developer-eindhoven",
+    "tech": ".NET, C#, Azure Cloud Native",
+    "score": 9.0
+  },
+  {
+    "company": "Wolfpack",
+    "role": "Medior Backend Developer (C#)",
+    "location": "Eindhoven (TU/e Campus)",
+    "url": "https://jointhewolfpack.nl/l/en",
+    "tech": "C#, .NET, Vue",
+    "score": 8.5
+  },
+  {
+    "company": "Shoxl",
+    "role": "Senior Back-end Developer (.NET)",
+    "location": "Eindhoven (De Witte Dame)",
+    "url": "https://www.shoxl.com/nl/vacature-senior-developer",
+    "tech": "C#, .NET 7, Azure, MVC",
+    "score": 8.5
+  },
+  {
+    "company": "e-Boekhouden.nl",
+    "role": "Software Developer",
+    "location": "Geldrop (near Eindhoven)",
+    "url": "https://werkenbij.e-boekhouden.nl/vacatures/software-developer",
+    "tech": "ASP.NET, C#, Angular, JavaScript",
+    "score": 8.3
+  },
+  {
+    "company": "Bright Cubes",
+    "role": "AI/ML Engineer",
+    "location": "Eindhoven (High Tech Campus)",
+    "url": "https://brightcubes.nl/vacatures/machine-learning-engineer/",
+    "tech": "TensorFlow, Azure, AWS, ML",
+    "score": 8.0
+  },
+  {
+    "company": "Lumenalta",
+    "role": "Fullstack Python/React Engineer",
+    "location": "Eindhoven",
+    "url": "https://nl.linkedin.com/jobs/view/fullstack-python-react-engineer-at-lumenalta-4376524358",
+    "tech": "Python, React",
+    "score": 8.8
+  },
+  {
+    "company": "Indicia",
+    "role": "Junior/Medior C# .NET Developer",
+    "location": "Tilburg",
+    "url": "https://www.indicia.nl/werken-bij/vacature/junior-medior-c-net-developer/",
+    "tech": "C#, .NET",
+    "score": 7.8
+  },
+  {
+    "company": "Datenna",
+    "role": "Python Engineer - Data Acquisition",
+    "location": "Eindhoven",
+    "url": "https://nl.linkedin.com/jobs/view/python-engineer-data-acquisition-at-datenna-4374043276",
+    "tech": "Python, Data",
+    "score": 7.5
+  },
+  {
+    "company": "ViNotion",
+    "role": "Medior Software Engineer",
+    "location": "Eindhoven",
+    "url": "https://vinotion.com/nl/over-vinotion/werken-bij-vinotion/",
+    "tech": "C++, Rust, Python, JavaScript",
+    "score": 7.5
+  },
+  {
+    "company": "Coosto",
+    "role": "Backend Software Developer",
+    "location": "Eindhoven",
+    "url": "https://www.coosto.com/en/vacatures/backend-software-developer",
+    "tech": "Go, Elixir, Docker, K8s",
+    "score": 7.0
+  }
+]

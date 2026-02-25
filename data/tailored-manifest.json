@@ -1,0 +1,345 @@
+[
+  {
+    "job": {
+      "id": "scholt-net-engineer",
+      "title": ".NET Software Engineer",
+      "company": "Scholt Energy",
+      "location": "Eindhoven, Netherlands",
+      "url": "https://www.scholt.nl/en/working-at/job-vacancy-overview/net-software-engineer/",
+      "description": "Join a team of 10-15 developers designing and optimizing software solutions for the energy market. Translate strategic objectives into intelligent information systems and integrations. Requires Bachelor's CS, 5+ years experience, strong .NET C# knowledge, TypeScript/JavaScript, SQL, Azure, Microsoft Power Platform. Benefits: 28 vacation days, unlimited training budget, flexible work.",
+      "salary": "",
+      "date_posted": "",
+      "source": "scholt.nl",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 9.2,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 3.8,
+          "matched": [
+            "azure",
+            "javascript",
+            "sql"
+          ],
+          "job_requires": [
+            "azure",
+            "javascript",
+            "sql",
+            "typescript"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.5
+      }
+    },
+    "resume_file": "output/tailored-resumes/scholt-energy-net-software-engineer.md",
+    "cover_letter_file": "output/cover-letters/scholt-energy-net-software-engineer.md"
+  },
+  {
+    "job": {
+      "id": "sendent-medior-net",
+      "title": "Medior Software Engineer (Backend/Integrations/.NET)",
+      "company": "Sendent B.V.",
+      "location": "Eindhoven, Netherlands (hybrid)",
+      "url": "https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net",
+      "description": "Backend developer role focused on owning the Exchange Connector and Outlook integration. Maintain and improve the Exchange Connector, write and improve automated tests, optimize performance and threading. Sustainable software, ownership, and trust in a privacy-first company building secure Microsoft-Nextcloud integrations. Requires professional C# / .NET experience, 2-4 years software engineering, production code maintenance, automated testing, Git.",
+      "salary": "€3,750–€4,350 gross/month",
+      "date_posted": "2026-02-03",
+      "source": "join.com",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 9.0,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 4.0,
+          "matched": [
+            "git"
+          ],
+          "job_requires": [
+            "git"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.0,
+        "industry_match": 0.5
+      }
+    },
+    "resume_file": "output/tailored-resumes/sendent-bv-medior-software-engineer-backendintegrationsnet.md",
+    "cover_letter_file": "output/cover-letters/sendent-bv-medior-software-engineer-backendintegrationsnet.md"
+  },
+  {
+    "job": {
+      "id": "flowtec-software-engineer",
+      "title": "Software Engineer (C++ & Python)",
+      "company": "Flowtec Group",
+      "location": "Eindhoven, Netherlands",
+      "url": "https://englishjobsearch.nl/clickout/d36eb17993e67842",
+      "description": "Design and optimize robotic software with C++ and Python focus for material handling systems. Robotics software development in high-tech environment.",
+      "salary": "",
+      "date_posted": "",
+      "source": "englishjobsearch.nl",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 9.0,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 4.0,
+          "matched": [
+            "python"
+          ],
+          "job_requires": [
+            "python"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.0
+      }
+    },
+    "resume_file": "output/tailored-resumes/flowtec-group-software-engineer-c-python.md",
+    "cover_letter_file": "output/cover-letters/flowtec-group-software-engineer-c-python.md"
+  },
+  {
+    "job": {
+      "id": "scholt-senior-net",
+      "title": "(Senior) Software Engineer .NET/C#",
+      "company": "Scholt Energy",
+      "location": "High Tech Campus 51, 5656 AG Eindhoven",
+      "url": "https://www.hightechcampus.com/vacancies/scholt/senior-software-engineer-net-c",
+      "description": "Develop and optimize software solutions for the energy market. Work with 10-15 developers translating strategic goals into smart information systems. Requires Bachelor's CS, 5+ years, strong .NET C#, TypeScript, JavaScript, SQL, Azure, Microsoft Power Platform. Integration monitoring, root cause analysis, performance optimization.",
+      "salary": "",
+      "date_posted": "",
+      "source": "hightechcampus.com",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 8.8,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 3.8,
+          "matched": [
+            "azure",
+            "javascript",
+            "sql"
+          ],
+          "job_requires": [
+            "azure",
+            "javascript",
+            "sql",
+            "typescript"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.0
+      }
+    },
+    "resume_file": "output/tailored-resumes/scholt-energy-senior-software-engineer-netc.md",
+    "cover_letter_file": "output/cover-letters/scholt-energy-senior-software-engineer-netc.md"
+  },
+  {
+    "job": {
+      "id": "prodrive-software",
+      "title": "Software Engineer",
+      "company": "Prodrive Technologies",
+      "location": "Eindhoven, Netherlands",
+      "url": "https://prodrive-technologies.com/careers/vacancies/",
+      "description": "Software engineer at Prodrive Technologies designing and manufacturing high-tech electronics, software, and mechatronic products. Six R&D programs, three automated manufacturing sites. Python, C++, embedded development opportunities.",
+      "salary": "",
+      "date_posted": "",
+      "source": "prodrive-technologies.com",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 8.8,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 3.3,
+          "matched": [
+            "manufacturing",
+            "python"
+          ],
+          "job_requires": [
+            "manufacturing",
+            "python",
+            "r"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.5
+      }
+    },
+    "resume_file": "output/tailored-resumes/prodrive-technologies-software-engineer.md",
+    "cover_letter_file": "output/cover-letters/prodrive-technologies-software-engineer.md"
+  },
+  {
+    "job": {
+      "id": "kubus-software-engineer",
+      "title": "Software Engineer",
+      "company": "KUBUS (BIMcollab)",
+      "location": "Eindhoven, Netherlands",
+      "url": "https://englishjobsearch.nl/clickout/41805c1695969dcd",
+      "description": "Software Engineer with backend development experience for BIM model exploration platform. Build tools that allow architects, engineers, and builders to explore BIM models without installing heavy desktop software. Skills: .NET, Azure, cloud architecture.",
+      "salary": "€4,000–€5,000/month",
+      "date_posted": "",
+      "source": "englishjobsearch.nl",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 8.5,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 4.0,
+          "matched": [
+            "azure"
+          ],
+          "job_requires": [
+            "azure"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.0,
+        "industry_match": 0.0
+      }
+    },
+    "resume_file": "output/tailored-resumes/kubus-bimcollab-software-engineer.md",
+    "cover_letter_file": "output/cover-letters/kubus-bimcollab-software-engineer.md"
+  },
+  {
+    "job": {
+      "id": "akkodis-software-engineer",
+      "title": "Software Engineer",
+      "company": "Akkodis",
+      "location": "Eindhoven, Netherlands",
+      "url": "https://englishjobsearch.nl/clickout/19cd3f32f877a695",
+      "description": "Develop workflow automation features in agile multi-site software team environment. Software development and automation in a collaborative setting.",
+      "salary": "",
+      "date_posted": "",
+      "source": "englishjobsearch.nl",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 8.0,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 2.5,
+          "matched": [
+            "agile"
+          ],
+          "job_requires": [
+            "agile",
+            "automation"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.5
+      }
+    },
+    "resume_file": "output/tailored-resumes/akkodis-software-engineer.md",
+    "cover_letter_file": "output/cover-letters/akkodis-software-engineer.md"
+  },
+  {
+    "job": {
+      "id": "siemens-devops",
+      "title": "Senior Software Engineer DevOps",
+      "company": "Siemens eMobility",
+      "location": "Eindhoven, Netherlands",
+      "url": "https://englishjobsearch.nl/clickout/62ec0dab2d9169cc",
+      "description": "Senior Software Developer building robust cloud solutions for sustainable mobility platforms. Cloud development, DevOps, CI/CD practices for green technology.",
+      "salary": "",
+      "date_posted": "",
+      "source": "englishjobsearch.nl",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 8.0,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 2.5,
+          "matched": [
+            "ci/cd"
+          ],
+          "job_requires": [
+            "ci/cd",
+            "devops"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.5
+      }
+    },
+    "resume_file": "output/tailored-resumes/siemens-emobility-senior-software-engineer-devops.md",
+    "cover_letter_file": "output/cover-letters/siemens-emobility-senior-software-engineer-devops.md"
+  },
+  {
+    "job": {
+      "id": "futures-csharp-dev",
+      "title": "C# Developer Eindhoven Region for High Tech Companies",
+      "company": "Futures.Works",
+      "location": "Eindhoven, NB, Netherlands",
+      "url": "https://www.careers-page.com/futures-works/job/LR994VY6",
+      "description": "Software designers specializing in C# for dynamic project teams in High Tech sector. Product software engineering across High Tech, Medical, and Mechanical Engineering sectors. Requires Bachelor's/Master's in Software Engineering, 2+ years High Tech sector, proficient in C#.NET, SCRUM, CI/CD, Azure, OOP, UML. Benefits: competitive pension, travel reimbursement, 25 holidays.",
+      "salary": "",
+      "date_posted": "",
+      "source": "careers-page.com",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 7.5,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 4.0,
+          "matched": [
+            "azure",
+            "ci/cd",
+            "scrum"
+          ],
+          "job_requires": [
+            "azure",
+            "ci/cd",
+            "scrum"
+          ]
+        },
+        "title_match": 1.5,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.0
+      }
+    },
+    "resume_file": "output/tailored-resumes/futuresworks-c-developer-eindhoven-region-for-high-tech-companies.md",
+    "cover_letter_file": "output/cover-letters/futuresworks-c-developer-eindhoven-region-for-high-tech-companies.md"
+  },
+  {
+    "job": {
+      "id": "stogger-junior-python",
+      "title": "Junior Software Engineer (Python) - Smart Vehicles & Robotics",
+      "company": "Stogger B.V.",
+      "location": "Eindhoven, Netherlands",
+      "url": "https://www.glassdoor.com/Job/eindhoven-software-engineer-jobs-SRCH_IL.0,9_IC3043137_KO10,27.htm",
+      "description": "Develop Python software for intelligent autonomous vehicles that make independent decisions, communicate with environment, and interact with hardware. Requires basic Python experience (internship/project OK), familiarity with Django/Flask/FastAPI, basic knowledge of databases and APIs. Interest in hardware/embedded/robotics. Bachelor's/Master's in CS.",
+      "salary": "",
+      "date_posted": "",
+      "source": "glassdoor.com",
+      "scraped_at": "2026-02-24T12:00:00",
+      "score": 7.5,
+      "score_breakdown": {
+        "skills_match": {
+          "score": 2.5,
+          "matched": [
+            "flask",
+            "python"
+          ],
+          "job_requires": [
+            "django",
+            "fastapi",
+            "flask",
+            "python"
+          ]
+        },
+        "title_match": 3.0,
+        "location_match": 1.5,
+        "salary_match": 0.5,
+        "industry_match": 0.0
+      }
+    },
+    "resume_file": "output/tailored-resumes/stogger-bv-junior-software-engineer-python---smart-vehicles-robotics.md",
+    "cover_letter_file": "output/cover-letters/stogger-bv-junior-software-engineer-python---smart-vehicles-robotics.md"
+  }
+]

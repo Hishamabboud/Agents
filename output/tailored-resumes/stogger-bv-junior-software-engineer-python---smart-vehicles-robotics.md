@@ -1,3 +1,5 @@
+<!-- Tailored for: Junior Software Engineer (Python) - Smart Vehicles & Robotics at Stogger B.V. -->
+
 # Hisham Abboud
 
 - **Phone:** +31 06 4841 2838

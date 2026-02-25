@@ -1,0 +1,12 @@
+{
+  "status": "skipped",
+  "final_url": "https://lumenalta.com/jobs/python-engineer-senior-python-react-engineer-92",
+  "filled": {},
+  "screenshots": {
+    "01_job_page": "/home/user/Agents/output/screenshots/lumenalta-01-job-page-20260225_120233.png",
+    "02_after_click": "/home/user/Agents/output/screenshots/lumenalta-02-after-click-20260225_120233.png",
+    "03_form_filled": "/home/user/Agents/output/screenshots/lumenalta-03-form-filled-20260225_120233.png",
+    "04_pre_submit": "/home/user/Agents/output/screenshots/lumenalta-04-pre-submit-20260225_120233.png",
+    "05_after_submit": "/home/user/Agents/output/screenshots/lumenalta-05-after-submit-20260225_120233.png"
+  }
+}
