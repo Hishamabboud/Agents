@@ -1124,7 +1124,7 @@
       "/home/user/Agents/output/screenshots/funda-05-before-submit-20260224_150225.png",
       "/home/user/Agents/output/screenshots/funda-06-after-submit-20260224_150225.png"
     ],
-    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
+    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1203,7 +1203,7 @@
       "/home/user/Agents/output/screenshots/funda-v2-04-before-submit-20260224_150917.png",
       "/home/user/Agents/output/screenshots/funda-v2-05-after-submit-20260224_150917.png"
     ],
-    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
+    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1223,7 +1223,7 @@
       "/home/user/Agents/output/screenshots/funda-int-02-before-submit-20260224_151252.png",
       "/home/user/Agents/output/screenshots/funda-int-03-after-submit-20260224_151252.png"
     ],
-    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplicatio",
+    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplicatio",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1347,5 +1347,32 @@
     "response": "awaiting",
     "hubspot_portal_id": "5923754",
     "hubspot_form_id": "74702e29-a714-49ed-b9cc-a6a51a2f99d8"
+  },
+  {
+    "id": "shoxl-senior-backend-developer-net-20260225",
+    "company": "Shoxl",
+    "role": "Senior Back-end Developer (.NET)",
+    "url": "https://www.shoxl.com/nl/vacature-senior-developer",
+    "application_url": "https://www.shoxl.com/nl/contact (FormKeep: https://formkeep.com/f/fb1d78f40f3b)",
+    "date_applied": "2026-02-25T12:04:52",
+    "score": 9.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/shoxl-senior-backend-developer-net.md",
+    "tailored_resume_file": "/home/user/Agents/output/tailored-resumes/shoxl-senior-backend-developer-net.md",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/shoxl-01-job-page-20260225_120450.png",
+      "/home/user/Agents/output/screenshots/shoxl-02-form-filled-20260225_120450.png",
+      "/home/user/Agents/output/screenshots/shoxl-03-confirmation-20260225_120450.png"
+    ],
+    "notes": "Applied via Shoxl contact form at shoxl.com/nl/contact, which submits to FormKeep (formkeep.com/f/fb1d78f40f3b). HTTP POST with multipart/form-data. HTTP 200 OK received. Final redirect URL: shoxl.com/nl/thankyou (confirmation page). All fields filled: FirstName=Hisham, LastName=Abboud, EmailAddress=hiaham123@hotmail.com, PhoneNumber=+31648412838, Message=application motivation letter in Dutch. CV attached as Hisham_Abboud_CV.pdf. Application method: Shoxl.com does not have an embedded apply form on the vacancy page - it links to werkenmet.net (requires registration) and Roland Vonk's email/phone. Submitted via contact form with full motivation. Stack match: C#/.NET/Azure/MVC/ERP-integrations. Applicant lives in Eindhoven, BSc Software Engineering from Fontys. Contact person: Roland Vonk (Director).",
+    "response": "awaiting",
+    "email_used": "hiaham123@hotmail.com",
+    "http_status": 200,
+    "form_backend": "FormKeep",
+    "form_id": "fb1d78f40f3b",
+    "confirmation_url": "https://www.shoxl.com/nl/thankyou",
+    "contact_email": "[email protected]",
+    "contact_person": "Roland Vonk (Director)"
   }
 ]

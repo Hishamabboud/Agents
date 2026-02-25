@@ -60,7 +60,6 @@ async def take_screenshot(page, name, timeout=20000):
         return path
     except Exception as e:
         print(f"Screenshot failed: {e}")
-        # Try CDP fallback
         try:
             import base64
             client = await page.context.new_cdp_session(page)
@@ -90,7 +89,8 @@ async def main():
                 "--disable-dev-shm-usage",
                 "--disable-gpu",
                 "--font-render-hinting=none",
-                "--disable-extensions",
+                "--ignore-certificate-errors",
+                "--ignore-ssl-errors",
             ]
         }
         if proxy_config:
@@ -100,6 +100,7 @@ async def main():
 
         context_kwargs = {
             "viewport": {"width": 1280, "height": 900},
+            "ignore_https_errors": True,
         }
         if proxy_config:
             context_kwargs["proxy"] = proxy_config
@@ -107,7 +108,7 @@ async def main():
         context = await browser.new_context(**context_kwargs)
         page = await context.new_page()
 
-        # Block fonts only
+        # Block fonts only to speed up loading
         async def block_fonts(route):
             if route.request.resource_type == "font":
                 await route.abort()
@@ -124,7 +125,6 @@ async def main():
         except Exception as e:
             print(f"Navigation warning: {e}")
 
-        # Wait for DOM to be ready
         try:
             await page.wait_for_load_state("domcontentloaded", timeout=30000)
             print("DOM content loaded")
@@ -134,7 +134,6 @@ async def main():
         await page.wait_for_timeout(3000)
         await take_screenshot(page, "01-job-page")
 
-        # Print page title
         try:
             title = await page.title()
             print(f"Page title: {title}")
@@ -162,6 +161,18 @@ async def main():
                 print(f"  {el}")
         except Exception as e:
             print(f"Could not inspect inputs: {e}")
+
+        # Also get the full page HTML to understand structure
+        try:
+            html_snippet = await page.evaluate("""
+                () => {
+                    const form = document.querySelector('form');
+                    return form ? form.outerHTML.substring(0, 3000) : 'No form found';
+                }
+            """)
+            print(f"\nForm HTML snippet:\n{html_snippet[:1500]}")
+        except Exception as e:
+            print(f"Could not get form HTML: {e}")
 
         # Scroll to form area
         try:
@@ -249,7 +260,7 @@ async def main():
 
         await take_screenshot(page, "04-after-cv-upload")
 
-        # Step 5: Fill motivation/message textarea
+        # Step 5: Fill motivation/message
         print("\nFilling motivation message...")
         for sel in [
             "textarea[name*='message']", "textarea[id*='message']",
@@ -266,7 +277,7 @@ async def main():
             except Exception:
                 continue
 
-        # Step 6: Handle source dropdown
+        # Step 6: Source dropdown
         print("\nHandling source dropdown...")
         try:
             loc = page.locator("select")
@@ -307,7 +318,6 @@ async def main():
 
         await page.wait_for_timeout(300)
 
-        # Scroll to bottom for pre-submit screenshot
         try:
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
         except Exception:
@@ -354,7 +364,6 @@ async def main():
         post_submit_path = await take_screenshot(page, "07-post-submit")
         print(f"Post-submit screenshot: {post_submit_path}")
 
-        # Get page text
         try:
             content = await page.inner_text("body")
             print(f"Page text (first 800 chars):\n{content[:800]}")
