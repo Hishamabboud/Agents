@@ -1,0 +1,25 @@
+============================================================
+BRIGHT CUBES APPLICATION CONFIRMATION
+============================================================
+Status: APPLIED
+Timestamp: 2026-02-25T12:04:17.188650
+Job URL: https://brightcubes.nl/vacatures/machine-learning-engineer/
+HubSpot Portal ID: 5923754
+HubSpot Form ID: 74702e29-a714-49ed-b9cc-a6a51a2f99d8
+Submit URL: https://api.hsforms.com/submissions/v3/integration/submit/5923754/74702e29-a714-49ed-b9cc-a6a51a2f99d8
+API Response: {
+  "inlineMessage": ""
+}
+
+APPLICANT DETAILS:
+  Name: Hisham Abboud
+  Email: hiaham123@hotmail.com
+  Phone: +31648412838
+  LinkedIn: https://linkedin.com/in/hisham-abboud
+  City: Eindhoven
+  Country: Netherlands
+
+MOTIVATION:
+I am excited to apply for the AI/ML Engineer position at Bright Cubes. I am currently building CogitatAI, an AI chatbot platform featuring sentiment analysis and NLP capabilities, demonstrating hands-on experience with ML in production. At ASML, I developed Python-based software solutions for high-tech systems, and I have extensive experience with Azure cloud infrastructure including CI/CD pipelines and cloud-native deployments. My BSc from Fontys University of Applied Sciences (ICT - Software Engineering) and my strong passion for AI/ML make me a great fit for this role. I am eager to join Bright Cubes and help clients derive real value from their data.
+
+SCREENSHOTS:

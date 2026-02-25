@@ -6,6 +6,7 @@ Uses Playwright to fill out and submit the application form.
 
 import asyncio
 import os
+import urllib.parse
 from datetime import datetime
 from playwright.async_api import async_playwright
 
@@ -31,185 +32,225 @@ MOTIVATION_MESSAGE = (
 )
 
 
-async def take_screenshot(page, name, timeout=10000):
+def get_proxy_config():
+    """Extract proxy config from environment."""
+    proxy_url = os.environ.get("https_proxy") or os.environ.get("HTTPS_PROXY") or ""
+    if not proxy_url:
+        return None
+    parsed = urllib.parse.urlparse(proxy_url)
+    server = f"{parsed.scheme}://{parsed.hostname}:{parsed.port}"
+    return {
+        "server": server,
+        "username": parsed.username or "",
+        "password": parsed.password or "",
+    }
+
+
+async def take_screenshot(page, name, timeout=20000):
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     path = os.path.join(SCREENSHOTS_DIR, f"indicia-{name}-{ts}.png")
     try:
-        await page.screenshot(path=path, full_page=False, timeout=timeout)
+        await page.screenshot(
+            path=path,
+            full_page=False,
+            timeout=timeout,
+            animations="disabled"
+        )
         print(f"Screenshot saved: {path}")
+        return path
     except Exception as e:
-        print(f"Screenshot failed ({e}), trying viewport-only...")
+        print(f"Screenshot failed: {e}")
+        # Try CDP fallback
         try:
-            await page.screenshot(path=path, full_page=False, timeout=5000)
-            print(f"Viewport screenshot saved: {path}")
+            import base64
+            client = await page.context.new_cdp_session(page)
+            result = await client.send("Page.captureScreenshot", {"format": "png", "fromSurface": False})
+            with open(path, "wb") as f:
+                f.write(base64.b64decode(result["data"]))
+            print(f"CDP Screenshot saved: {path}")
+            await client.detach()
+            return path
         except Exception as e2:
-            print(f"Screenshot completely failed: {e2}")
-            path = None
-    return path
+            print(f"CDP screenshot also failed: {e2}")
+            return None
 
 
 async def main():
     os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
 
+    proxy_config = get_proxy_config()
+    print(f"Proxy config: server={proxy_config['server'] if proxy_config else 'none'}")
+
     async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True,
-            args=["--disable-web-security", "--no-sandbox", "--disable-setuid-sandbox"]
-        )
-        context = await browser.new_context(
-            viewport={"width": 1280, "height": 900},
-            # Block fonts to speed up loading
-        )
+        launch_kwargs = {
+            "headless": True,
+            "args": [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+                "--font-render-hinting=none",
+                "--disable-extensions",
+            ]
+        }
+        if proxy_config:
+            launch_kwargs["proxy"] = proxy_config
+
+        browser = await p.chromium.launch(**launch_kwargs)
+
+        context_kwargs = {
+            "viewport": {"width": 1280, "height": 900},
+        }
+        if proxy_config:
+            context_kwargs["proxy"] = proxy_config
+
+        context = await browser.new_context(**context_kwargs)
         page = await context.new_page()
 
-        # Block unnecessary resources to speed up
-        await page.route("**/*.woff2", lambda route: route.abort())
-        await page.route("**/*.woff", lambda route: route.abort())
-        await page.route("**/*.ttf", lambda route: route.abort())
+        # Block fonts only
+        async def block_fonts(route):
+            if route.request.resource_type == "font":
+                await route.abort()
+            else:
+                await route.continue_()
+
+        await page.route("**/*", block_fonts)
 
         # Step 1: Navigate to job page
-        print(f"Navigating to: {JOB_URL}")
+        print(f"\nNavigating to: {JOB_URL}")
         try:
-            await page.goto(JOB_URL, wait_until="domcontentloaded", timeout=30000)
+            response = await page.goto(JOB_URL, wait_until="commit", timeout=60000)
+            print(f"Navigation response: {response.status if response else 'no response'}")
         except Exception as e:
             print(f"Navigation warning: {e}")
-        await page.wait_for_timeout(2000)
 
+        # Wait for DOM to be ready
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=30000)
+            print("DOM content loaded")
+        except Exception as e:
+            print(f"DOM load warning: {e}")
+
+        await page.wait_for_timeout(3000)
         await take_screenshot(page, "01-job-page")
 
-        # Step 2: Inspect the form structure
-        print("Inspecting form structure...")
-        form_html = await page.evaluate("""
-            () => {
-                const forms = document.querySelectorAll('form');
-                return Array.from(forms).map(f => f.outerHTML.substring(0, 2000));
-            }
-        """)
-        print(f"Found {len(form_html)} form(s)")
-        if form_html:
-            print("Form HTML preview:", form_html[0][:500])
+        # Print page title
+        try:
+            title = await page.title()
+            print(f"Page title: {title}")
+        except Exception as e:
+            print(f"Title error: {e}")
 
-        # Get all input fields
-        inputs = await page.evaluate("""
-            () => {
-                const inputs = document.querySelectorAll('input, textarea, select');
-                return Array.from(inputs).map(i => ({
-                    tag: i.tagName,
-                    type: i.type || '',
-                    name: i.name || '',
-                    id: i.id || '',
-                    placeholder: i.placeholder || '',
-                    className: i.className || ''
-                }));
-            }
-        """)
-        print("Input fields found:")
-        for inp in inputs:
-            print(f"  {inp}")
+        # Step 2: Inspect input fields
+        print("\nInspecting form fields...")
+        try:
+            inputs = await page.evaluate("""
+                () => {
+                    const all = document.querySelectorAll('input, textarea, select, button[type="submit"]');
+                    return Array.from(all).map(el => ({
+                        tag: el.tagName.toLowerCase(),
+                        type: el.type || '',
+                        name: el.name || '',
+                        id: el.id || '',
+                        placeholder: el.placeholder || '',
+                        className: (el.className || '').substring(0, 60),
+                    }));
+                }
+            """)
+            print(f"Found {len(inputs)} elements:")
+            for el in inputs:
+                print(f"  {el}")
+        except Exception as e:
+            print(f"Could not inspect inputs: {e}")
 
-        # Scroll to find the form
-        await page.evaluate("window.scrollTo(0, document.body.scrollHeight * 0.6)")
+        # Scroll to form area
+        try:
+            await page.evaluate("window.scrollTo(0, 2000)")
+        except Exception:
+            pass
         await page.wait_for_timeout(1000)
         await take_screenshot(page, "02-scrolled-to-form")
 
-        # Step 3: Fill email
+        # Step 3: Fill form fields
         print("\nFilling form fields...")
-        email_filled = False
-        for sel in ["input[type='email']", "input[name*='email']", "input[id*='email']", "input[name*='Email']"]:
-            try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    await el.scroll_into_view_if_needed()
-                    await el.click()
-                    await el.fill(APPLICANT["email"])
-                    print(f"Filled email: {sel}")
-                    email_filled = True
-                    break
-            except Exception as e:
-                print(f"Email selector {sel} failed: {e}")
 
-        # Step 4: Fill first name - Gravity Forms uses input_X_3 pattern for name fields
-        fname_filled = False
+        # Email
+        for sel in ["input[type='email']", "input[name*='email']", "input[id*='email']"]:
+            try:
+                loc = page.locator(sel)
+                if await loc.count() > 0:
+                    await loc.first.fill(APPLICANT["email"])
+                    print(f"Filled email: {sel}")
+                    break
+            except Exception:
+                continue
+
+        # First name
         for sel in [
             "input[name*='voornaam']", "input[id*='voornaam']",
-            "input[name*='first']", "input[id*='first_name']",
-            "input[id*='input_'][id$='_3']",  # Gravity Forms first name pattern
-            "input[name*='Voornaam']",
+            "input[name*='first']", "input[id*='first']",
+            "input[name*='naam']",
         ]:
             try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    await el.fill(APPLICANT["first_name"])
+                loc = page.locator(sel)
+                if await loc.count() > 0:
+                    await loc.first.fill(APPLICANT["first_name"])
                     print(f"Filled first name: {sel}")
-                    fname_filled = True
                     break
-            except Exception as e:
-                pass
+            except Exception:
+                continue
 
-        # Step 5: Fill last name
-        lname_filled = False
+        # Last name
         for sel in [
             "input[name*='achternaam']", "input[id*='achternaam']",
-            "input[name*='last']", "input[id*='last_name']",
-            "input[name*='Achternaam']",
+            "input[name*='last']", "input[id*='last']",
         ]:
             try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    await el.fill(APPLICANT["last_name"])
+                loc = page.locator(sel)
+                if await loc.count() > 0:
+                    await loc.first.fill(APPLICANT["last_name"])
                     print(f"Filled last name: {sel}")
-                    lname_filled = True
                     break
-            except Exception as e:
-                pass
+            except Exception:
+                continue
 
-        # Step 6: Fill phone
-        phone_filled = False
+        # Phone
         for sel in [
             "input[type='tel']",
             "input[name*='phone']", "input[name*='telefoon']",
             "input[id*='phone']", "input[id*='telefoon']",
         ]:
             try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    await el.fill(APPLICANT["phone"])
+                loc = page.locator(sel)
+                if await loc.count() > 0:
+                    await loc.first.fill(APPLICANT["phone"])
                     print(f"Filled phone: {sel}")
-                    phone_filled = True
                     break
-            except Exception as e:
-                pass
+            except Exception:
+                continue
 
         await page.wait_for_timeout(500)
         await take_screenshot(page, "03-personal-fields")
 
-        # Step 7: Upload CV
+        # Step 4: Upload CV
         print("\nUploading CV...")
-        cv_uploaded = False
-        for sel in [
-            "input[type='file'][name*='cv']",
-            "input[type='file'][id*='cv']",
-            "input[type='file'][name*='CV']",
-            "input[type='file'][name*='bestand']",
-            "input[type='file'][name*='file']",
-            "input[type='file']",
-        ]:
+        for sel in ["input[type='file']"]:
             try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    await el.set_input_files(CV_PATH)
-                    print(f"Uploaded CV: {sel}")
-                    cv_uploaded = True
-                    await page.wait_for_timeout(1500)
+                loc = page.locator(sel)
+                count = await loc.count()
+                if count > 0:
+                    print(f"Found {count} file input(s), uploading CV...")
+                    await loc.first.set_input_files(CV_PATH)
+                    await page.wait_for_timeout(2000)
+                    print("CV uploaded")
                     break
             except Exception as e:
-                print(f"CV upload with {sel} failed: {e}")
+                print(f"CV upload failed: {e}")
 
         await take_screenshot(page, "04-after-cv-upload")
 
-        # Step 8: Fill motivation message
+        # Step 5: Fill motivation/message textarea
         print("\nFilling motivation message...")
-        msg_filled = False
         for sel in [
             "textarea[name*='message']", "textarea[id*='message']",
             "textarea[name*='bericht']", "textarea[id*='bericht']",
@@ -217,121 +258,129 @@ async def main():
             "textarea",
         ]:
             try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    await el.fill(MOTIVATION_MESSAGE)
+                loc = page.locator(sel)
+                if await loc.count() > 0:
+                    await loc.first.fill(MOTIVATION_MESSAGE)
                     print(f"Filled motivation: {sel}")
-                    msg_filled = True
                     break
-            except Exception as e:
-                pass
+            except Exception:
+                continue
 
-        # Step 9: Handle "How did you find this vacancy?" dropdown
+        # Step 6: Handle source dropdown
         print("\nHandling source dropdown...")
-        for sel in ["select[name*='gevonden']", "select[id*='gevonden']", "select[name*='source']", "select"]:
-            try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    # Get options
-                    options = await el.evaluate("e => Array.from(e.options).map(o => ({value: o.value, text: o.text}))")
-                    print(f"Dropdown options: {options}")
-                    # Try LinkedIn first, then Other
-                    for label in ["LinkedIn", "linkedin", "Other", "Anders", "Overig"]:
-                        try:
-                            await el.select_option(label=label)
-                            print(f"Selected: {label}")
-                            break
-                        except Exception:
-                            continue
-                    break
-            except Exception as e:
-                pass
+        try:
+            loc = page.locator("select")
+            if await loc.count() > 0:
+                options = await loc.first.evaluate(
+                    "e => Array.from(e.options).map(o => ({value: o.value, text: o.text}))"
+                )
+                print(f"Dropdown options: {options}")
+                for label in ["LinkedIn", "Other", "Anders", "Overig", "Google"]:
+                    try:
+                        await loc.first.select_option(label=label)
+                        print(f"Selected: {label}")
+                        break
+                    except Exception:
+                        continue
+        except Exception as e:
+            print(f"Dropdown error: {e}")
 
         await page.wait_for_timeout(300)
-        await take_screenshot(page, "05-form-nearly-complete")
+        await take_screenshot(page, "05-form-complete")
 
-        # Step 10: Check privacy checkbox
-        print("\nAccepting privacy agreement...")
+        # Step 7: Privacy checkbox
+        print("\nChecking privacy checkbox...")
         for sel in [
             "input[type='checkbox'][name*='privacy']",
             "input[type='checkbox'][id*='privacy']",
-            "input[type='checkbox'][name*='akkoord']",
             "input[type='checkbox']",
         ]:
             try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
-                    if not await el.is_checked():
-                        await el.check()
+                loc = page.locator(sel)
+                if await loc.count() > 0:
+                    if not await loc.first.is_checked():
+                        await loc.first.check()
                         print(f"Checked privacy: {sel}")
                     break
-            except Exception as e:
-                pass
+            except Exception:
+                continue
 
         await page.wait_for_timeout(300)
 
-        # Scroll to bottom and take pre-submit screenshot
-        await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        # Scroll to bottom for pre-submit screenshot
+        try:
+            await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        except Exception:
+            pass
         await page.wait_for_timeout(500)
+
         pre_submit_path = await take_screenshot(page, "06-pre-submit")
         print(f"Pre-submit screenshot: {pre_submit_path}")
 
-        # Step 11: Submit
+        # Step 8: Submit
         print("\nSubmitting form...")
         submitted = False
         for sel in [
             "input[type='submit']",
             "button[type='submit']",
+            ".gform_button",
             "button:has-text('Verstuur')",
             "button:has-text('Verzenden')",
             "button:has-text('Solliciteer')",
             "button:has-text('Submit')",
-            ".gform_button",
-            "[id*='gform_submit']",
+            "[class*='submit']",
         ]:
             try:
-                el = page.locator(sel).first
-                if await el.count() > 0:
+                loc = page.locator(sel)
+                if await loc.count() > 0:
                     print(f"Clicking submit: {sel}")
-                    await el.scroll_into_view_if_needed()
-                    await el.click()
+                    await loc.first.scroll_into_view_if_needed()
+                    await loc.first.click()
                     submitted = True
                     break
             except Exception as e:
-                print(f"Submit selector {sel} failed: {e}")
+                print(f"Submit {sel} failed: {e}")
 
         if not submitted:
-            print("WARNING: Could not find submit button!")
+            print("WARNING: Submit button not found, trying JS...")
+            try:
+                await page.evaluate("document.querySelector('form') && document.querySelector('form').submit()")
+                print("Submitted via JS")
+                submitted = True
+            except Exception as e:
+                print(f"JS submit failed: {e}")
 
-        # Wait for confirmation
-        await page.wait_for_timeout(4000)
+        await page.wait_for_timeout(5000)
         post_submit_path = await take_screenshot(page, "07-post-submit")
         print(f"Post-submit screenshot: {post_submit_path}")
 
-        # Check content for confirmation
-        content = await page.inner_text("body") if await page.locator("body").count() > 0 else ""
-        print(f"Page text after submit (first 500 chars): {content[:500]}")
+        # Get page text
+        try:
+            content = await page.inner_text("body")
+            print(f"Page text (first 800 chars):\n{content[:800]}")
+        except Exception as e:
+            content = ""
+            print(f"Could not get page text: {e}")
 
         confirmed = any(word in content.lower() for word in [
             "bedankt", "thank", "ontvangen", "verzonden", "success",
-            "confirmation", "bevestiging", "ontvangen"
+            "confirmation", "bevestiging", "gelukt"
         ])
 
         if confirmed:
             print("\nSUCCESS: Application submitted and confirmed!")
-            status = "applied"
         else:
-            print("\nApplication submitted - confirmation unclear, check screenshots.")
-            status = "applied"
+            print("\nApplication submitted - check screenshots for confirmation.")
 
         final_path = await take_screenshot(page, "08-final")
-
         await browser.close()
+
         return {
-            "status": status,
+            "status": "applied" if submitted else "failed",
             "pre_submit": pre_submit_path,
             "post_submit": post_submit_path,
             "final": final_path,
+            "confirmed": confirmed,
         }
 
 

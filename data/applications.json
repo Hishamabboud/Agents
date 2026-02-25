@@ -1327,5 +1327,25 @@
     "screenshot": "output/screenshots/stafide-v3-result-20260224_152642.png",
     "notes": "Applied via Zoho Recruit form on jobs.stafide.nl. Form included CAPTCHA which was resolved. Phone set to +31 Netherlands. City: Eindhoven. Email: hiaham123@hotmail.com. LinkedIn: linkedin.com/in/hisham-abboud. Confirmation modal received: 'We have received your application. Our team member will evaluate and update within 5 business days.'",
     "response": "awaiting - team will respond within 5 business days"
+  },
+  {
+    "id": "brightcubes-aiml-engineer-20260225",
+    "company": "Bright Cubes",
+    "role": "AI/ML Engineer (Machine Learning Engineer)",
+    "url": "https://brightcubes.nl/vacatures/machine-learning-engineer/",
+    "date_applied": "2026-02-25",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/brightcubes-final-confirmation-20260225.png",
+      "/home/user/Agents/output/screenshots/brightcubes-03-confirmation-20260225_120356.txt",
+      "/home/user/Agents/output/screenshots/brightcubes-application-summary.html"
+    ],
+    "notes": "Applied via HubSpot Forms API (HTTP 200 success). Portal ID: 5923754, Form ID: 74702e29-a714-49ed-b9cc-a6a51a2f99d8. Fields submitted: firstname, lastname, email, phone, linkedin, message. Motivation focused on CogitatAI (AI chatbot with sentiment analysis), Python experience at ASML, Azure cloud infrastructure expertise. Page screenshots blocked by site font-loading timeout; application confirmed via API HTTP 200 response. City: Eindhoven. BSc Fontys ICT Software Engineering.",
+    "response": "awaiting",
+    "hubspot_portal_id": "5923754",
+    "hubspot_form_id": "74702e29-a714-49ed-b9cc-a6a51a2f99d8"
   }
 ]

@@ -1,0 +1,23 @@
+TO: [email protected]
+FROM: hiaham123@hotmail.com
+SUBJECT: Sollicitatie: Senior Back-end Developer (.NET) - Hisham Abboud
+ATTACHMENT: Hisham Abboud CV.pdf
+
+Beste Roland,
+
+Hierbij solliciteer ik op de functie van Senior Back-end Developer (.NET) bij Shoxl.
+
+In mijn huidige rol bij Actemium (VINCI Energies) in Eindhoven ontwikkel en onderhoud ik Manufacturing Execution Systems (MES) met C#, .NET, ASP.NET MVC en REST APIs. Een groot deel van mijn werk bestaat uit het bouwen van B2B-integraties tussen productiesystemen en ERP-platforms — precies het type integratie-uitdagingen dat Shoxl oplost voor haar klanten.
+
+De tech stack van Shoxl (C#, .NET 7/8, Azure, MVC, ERP-integraties) sluit perfect aan op mijn dagelijkse werkpraktijk. Daarvoor heb ik bij Delta Electronics een legacy Visual Basic codebase gemigreerd naar C# en bij ASML gewerkt met Azure en Kubernetes in een CI/CD-omgeving.
+
+Ik woon in Eindhoven, heb een BSc Software Engineering van Fontys University of Applied Sciences, en spreek vloeiend Nederlands en Engels. Ik ben per direct beschikbaar voor een gesprek.
+
+Mijn CV is bijgevoegd. Ik kijk uit naar uw reactie.
+
+Met vriendelijke groet,
+Hisham Abboud
++31 648412838
+hiaham123@hotmail.com
+linkedin.com/in/hisham-abboud
+github.com/Hishamabboud
