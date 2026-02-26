@@ -1435,5 +1435,19 @@
     "screenshot": "/home/user/Agents/output/screenshots/indicia-07-post-submit-20260226_064333.png",
     "notes": "Form submitted via GravityForms button. Email, phone, motivation, and CV uploaded. Name fields filled by GravityForms ID selectors. Post-submit page showed job content (common with AJAX forms that do not navigate away).",
     "response": ""
+  },
+  {
+    "id": 75,
+    "company": "Datenna",
+    "role": "Python Engineer - Data Acquisition",
+    "url": "https://jobs.datenna.com/o/python-engineer-data-acquisition",
+    "date_applied": "2026-02-26",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/datenna-python-engineer-data-acquisition.md",
+    "screenshot": "/home/user/Agents/output/screenshots/datenna-v5-05-post-submit-20260226_064729.png",
+    "notes": "Application submitted via Recruitee ATS. Filled: full name, email, phone. CV uploaded. Invisible hCaptcha present. Send button clicked successfully. Form fields confirmed in post-submit view.",
+    "response": ""
   }
 ]
