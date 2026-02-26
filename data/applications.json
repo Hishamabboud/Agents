@@ -1635,5 +1635,25 @@
     "response": null,
     "email_used": "hiaham123@hotmail.com",
     "reason_skipped": "Garmin Workday ATS blocked by proxy (connection timeout). Manual application required."
+  },
+  {
+    "id": "lumenalta-fullstack-python-react-20260226",
+    "company": "Lumenalta",
+    "role": "Fullstack Python/React Engineer (Senior Python/React Engineer)",
+    "url": "https://lumenalta.com/jobs/python-engineer-senior-python-react-engineer-92",
+    "application_url": "https://lumenalta.com/jobs/python-engineer-senior-python-react-engineer-92/apply",
+    "date_applied": "2026-02-26",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/fix-pre-submit.png",
+      "/home/user/Agents/output/screenshots/fix-post-step1.png",
+      "/home/user/Agents/output/screenshots/full-02-post-step1.png",
+      "/home/user/Agents/output/screenshots/full-06-final.png"
+    ],
+    "notes": "Successfully applied via 3-step form. Application ID: 69a0052a10e84d4a4f72a96b. Key fix: location field required Google Places object {city, state, country, lat, lng} set via React Hook Form setValue (not nativeInputValueSetter). Sponsorship: No, can work natively (W2/T4). Completed steps 1-2, skipped optional extra questions. Confirmation: You have applied successfully for Fullstack Python/React Engineer.",
+    "response": "awaiting"
   }
 ]
