@@ -1,0 +1,4 @@
+Application submitted to: https://jobs.cm.com/o/backend-developer-customer-data-platform
+Timestamp: 20260226_082444
+Status: Applied via Recruitee API (HTTP 201 OK)
+Company: CM.com CDP

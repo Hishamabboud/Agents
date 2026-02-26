@@ -1,0 +1,4 @@
+Application submitted to: https://123inkt.recruitee.com/o/c-developer-1
+Timestamp: 20260226_082444
+Status: Applied via Recruitee API (HTTP 201 OK)
+Company: 123inkt
