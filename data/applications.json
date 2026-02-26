@@ -1463,5 +1463,33 @@
     "screenshot": "/home/user/Agents/output/screenshots/keyrock-v3-04-pre-submit-20260226_065750.png",
     "notes": "Application submitted via Ashby ATS. Filled: full_name, email, 3x textareas (why Keyrock, digital assets, compensation). CV uploaded. Submit Application button clicked.",
     "response": ""
+  },
+  {
+    "id": 77,
+    "company": "CIMSOLUTIONS",
+    "role": "Python Software Engineer",
+    "url": "https://www.cimsolutions.nl/solliciteren/?python-software-engineer-ah5ashpvv9cksst8",
+    "date_applied": "2026-02-26",
+    "score": 8,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/cimsolutions-python-software-engineer.pdf",
+    "screenshot": "/home/user/Agents/output/screenshots/cimsolutions-final-attempt.png",
+    "notes": "Application blocked by Cloudflare Turnstile CAPTCHA on GravityForms. Form fields filled correctly (first name, last name, city, phone, email, vestiging=Best, source=LinkedIn, privacy consent, CV uploaded, motivation letter uploaded) but Turnstile token never populated in headless browser. Alternative: email to recruitment@cimsolutions.nl",
+    "response": ""
+  },
+  {
+    "id": 78,
+    "company": "iO Digital",
+    "role": ".NET Developer (Campus Antwerpen)",
+    "url": "https://www.iodigital.com/nl/carriere/vacatures/net-developer-7",
+    "date_applied": "2026-02-26",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/io-digital-net-developer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/iodigital-v3-pre-submit.png",
+    "notes": "Applied via iO Digital embedded application form (Solliciteer nu). Filled: full name (Hisham Abboud), phone, email, motivation message, professional references (open question), privacy consent. CV uploaded. Form submitted, redirected to /nl/contact (possible success redirect or form endpoint). Position is in Antwerp, Belgium campus.",
+    "response": ""
   }
 ]
