@@ -1,0 +1,24 @@
+{
+  "status": "skipped",
+  "final_url": "https://lumenalta.com/jobs/python-engineer-senior-python-react-engineer-92",
+  "filled_fields": [],
+  "api_calls": [
+    "https://lumenalta.com/jobs/python-engineer-senior-python-react-engineer-92",
+    "https://lumenalta.com/_next/static/chunks/app/(pagebuilder)/jobs/%5Bslug%5D/page-831d6e83294a61b6.js",
+    "https://o36721.ingest.us.sentry.io/api/4506196770750464/envelope/?sentry_key=8c88004071547e729bb5d87396f4eb7b&sentry_version=7&sentry_client=sentry.javascript.nextjs%2F7.92.0",
+    "https://www.google.com/recaptcha/api.js?render=6LesniQrAAAAAFVA6qTnniSoCRDJYZEPFfzYeYCV",
+    "https://lumenalta.com/api/auth/session",
+    "https://lumenalta.com/remote-jobs?_rsc=1t2cy",
+    "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LesniQrAAAAAFVA6qTnniSoCRDJYZEPFfzYeYCV&co=aHR0cHM6Ly9sdW1lbmFsdGEuY29tOjQ0Mw..&hl=en&v=AWtrSI7lAmTAfV1rzWqEqz54&size=invisible&anchor-ms=20000&execute-ms=30000&cb=oumu8kf7c4q5",
+    "https://www.gstatic.com/recaptcha/api2/logo_48.png",
+    "https://www.google.com/recaptcha/api2/webworker.js?hl=en&v=AWtrSI7lAmTAfV1rzWqEqz54",
+    "https://api.joinvalley.co/intent-event"
+  ],
+  "screenshots": {
+    "01_job_page": "/home/user/Agents/output/screenshots/lumenalta-01-job-page-20260226_071238.png",
+    "02_after_click": "/home/user/Agents/output/screenshots/lumenalta-02-after-click-20260226_071238.png",
+    "03": "/home/user/Agents/output/screenshots/lumenalta-03-form-filled-20260226_071238.png",
+    "04_pre_submit": "/home/user/Agents/output/screenshots/lumenalta-04-pre-submit-20260226_071238.png",
+    "05_after_submit": "/home/user/Agents/output/screenshots/lumenalta-05-after-submit-20260226_071238.png"
+  }
+}

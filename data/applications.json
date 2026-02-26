@@ -1124,7 +1124,7 @@
       "/home/user/Agents/output/screenshots/funda-05-before-submit-20260224_150225.png",
       "/home/user/Agents/output/screenshots/funda-06-after-submit-20260224_150225.png"
     ],
-    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
+    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1203,7 +1203,7 @@
       "/home/user/Agents/output/screenshots/funda-v2-04-before-submit-20260224_150917.png",
       "/home/user/Agents/output/screenshots/funda-v2-05-after-submit-20260224_150917.png"
     ],
-    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
+    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1223,7 +1223,7 @@
       "/home/user/Agents/output/screenshots/funda-int-02-before-submit-20260224_151252.png",
       "/home/user/Agents/output/screenshots/funda-int-03-after-submit-20260224_151252.png"
     ],
-    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplicatio",
+    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplicatio",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1374,5 +1374,122 @@
     "confirmation_url": "https://www.shoxl.com/nl/thankyou",
     "contact_email": "[email protected]",
     "contact_person": "Roland Vonk (Director)"
+  },
+  {
+    "id": "eboekhouden-software-developer-20260225",
+    "company": "e-Boekhouden.nl",
+    "role": "Software Developer",
+    "url": "https://werkenbij.e-boekhouden.nl/vacatures/software-developer",
+    "date_applied": "2026-02-25T12:10:00",
+    "score": 9.0,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/eboekhouden-software-developer-motivation.pdf",
+    "motivation_letter_md": "/home/user/Agents/output/cover-letters/eboekhouden-software-developer.md",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/eboekhouden-01-job-page.png",
+      "/home/user/Agents/output/screenshots/eboekhouden-05-pre-submit.png",
+      "/home/user/Agents/output/screenshots/eboekhouden-13-headful-xvfb.png"
+    ],
+    "notes": "Applied via web form at werkenbij.e-boekhouden.nl using Playwright with Xvfb (headful browser). Form submitted to web3forms.com API. Confirmation page reached: 'Bedankt voor je sollicitatie!' (Thank you for your application!) at https://werkenbij.e-boekhouden.nl/bedankt. Response promised within 3 business days ('Binnen 3 werkdagen reactie'). Fields filled: Voornaam=Hisham, Achternaam=Abboud, Email=hiaham123@hotmail.com, Phone=+31 648412838. CV uploaded: Hisham Abboud CV.pdf. Motivation letter uploaded: eboekhouden-software-developer-motivation.pdf. Privacy checkbox checked. Role: 80% backend ASP.NET/C#, 20% frontend JS/Angular. Location: Geldrop (very close to Eindhoven). e-Boekhouden.nl is a 20+ year Dutch online accounting software company. Strong skills match: ASP.NET/C# backend (Actemium), JavaScript, SQL Server.",
+    "response": "awaiting - binnen 3 werkdagen",
+    "email_used": "hiaham123@hotmail.com",
+    "form_backend": "web3forms.com",
+    "confirmation_url": "https://werkenbij.e-boekhouden.nl/bedankt",
+    "contact_email": "werkenbij@e-boekhouden.nl",
+    "location": "Geldrop, Netherlands",
+    "tech_stack": [
+      "ASP.NET",
+      "C#",
+      "JavaScript",
+      "Angular",
+      "SQL Server"
+    ],
+    "hours": "32-40 uur",
+    "experience_required": "3-5 jaar"
+  },
+  {
+    "id": 73,
+    "company": "Trifork",
+    "role": "Medior .NET Developer",
+    "url": "https://trifork.homerun.co/medior-net-developer-eindhoven/en/apply",
+    "date_applied": "2026-02-26",
+    "score": 9,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/trifork-medior-net-developer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/trifork-01-apply-page-20260226_064041.png",
+    "notes": "Application form not accessible - Homerun ATS shows form elements as hidden/not visible. Page shows \"Applying for this job is currently not possible\" error. Position may be temporarily paused or closed.",
+    "response": ""
+  },
+  {
+    "id": 74,
+    "company": "Indicia",
+    "role": "Junior/Medior C# .NET Developer",
+    "url": "https://www.indicia.nl/werken-bij/vacature/junior-medior-c-net-developer/",
+    "date_applied": "2026-02-26",
+    "score": 9,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/indicia-junior-medior-csharp-net-developer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/indicia-07-post-submit-20260226_064333.png",
+    "notes": "Form submitted via GravityForms button. Email, phone, motivation, and CV uploaded. Name fields filled by GravityForms ID selectors. Post-submit page showed job content (common with AJAX forms that do not navigate away).",
+    "response": ""
+  },
+  {
+    "id": 75,
+    "company": "Datenna",
+    "role": "Python Engineer - Data Acquisition",
+    "url": "https://jobs.datenna.com/o/python-engineer-data-acquisition",
+    "date_applied": "2026-02-26",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/datenna-python-engineer-data-acquisition.md",
+    "screenshot": "/home/user/Agents/output/screenshots/datenna-v5-05-post-submit-20260226_064729.png",
+    "notes": "Application submitted via Recruitee ATS. Filled: full name, email, phone. CV uploaded. Invisible hCaptcha present. Send button clicked successfully. Form fields confirmed in post-submit view.",
+    "response": ""
+  },
+  {
+    "id": 76,
+    "company": "Keyrock",
+    "role": "Senior Full Stack Web Engineer",
+    "url": "https://jobs.ashbyhq.com/keyrock/13432bba-3821-4ca9-a994-9a13ba307fd2/application",
+    "date_applied": "2026-02-26",
+    "score": 7,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "",
+    "screenshot": "/home/user/Agents/output/screenshots/keyrock-v3-04-pre-submit-20260226_065750.png",
+    "notes": "Application submitted via Ashby ATS. Filled: full_name, email, 3x textareas (why Keyrock, digital assets, compensation). CV uploaded. Submit Application button clicked.",
+    "response": ""
+  },
+  {
+    "id": 77,
+    "company": "CIMSOLUTIONS",
+    "role": "Python Software Engineer",
+    "url": "https://www.cimsolutions.nl/solliciteren/?python-software-engineer-ah5ashpvv9cksst8",
+    "date_applied": "2026-02-26",
+    "score": 8,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/cimsolutions-python-software-engineer.pdf",
+    "screenshot": "/home/user/Agents/output/screenshots/cimsolutions-final-attempt.png",
+    "notes": "Application blocked by Cloudflare Turnstile CAPTCHA on GravityForms. Form fields filled correctly (first name, last name, city, phone, email, vestiging=Best, source=LinkedIn, privacy consent, CV uploaded, motivation letter uploaded) but Turnstile token never populated in headless browser. Alternative: email to recruitment@cimsolutions.nl",
+    "response": ""
+  },
+  {
+    "id": 78,
+    "company": "iO Digital",
+    "role": ".NET Developer (Campus Antwerpen)",
+    "url": "https://www.iodigital.com/nl/carriere/vacatures/net-developer-7",
+    "date_applied": "2026-02-26",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/io-digital-net-developer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/iodigital-v3-pre-submit.png",
+    "notes": "Applied via iO Digital embedded application form (Solliciteer nu). Filled: full name (Hisham Abboud), phone, email, motivation message, professional references (open question), privacy consent. CV uploaded. Form submitted, redirected to /nl/contact (possible success redirect or form endpoint). Position is in Antwerp, Belgium campus.",
+    "response": ""
   }
 ]

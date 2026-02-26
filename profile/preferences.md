@@ -9,7 +9,7 @@
 - AI/ML Engineer
 
 ## Required
-- Location: Eindhoven, Noord-Brabant, or Remote (Netherlands)
+- Location: Anywhere in the Netherlands, or Remote
 - Language: English or Dutch
 - Minimum salary: €50,000/year (or skip if not listed)
 - Visa: Not needed (I have work authorization in NL)
