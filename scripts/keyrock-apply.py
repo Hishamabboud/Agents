@@ -31,7 +31,7 @@ APPLICANT = {
 ANSWERS = {
     'name': 'Hisham Abboud',
     'email': 'hiaham123@hotmail.com',
-    'gender': 'Male ',  # optional
+    'gender': 'Male ',
     'how_learned': 'LinkedIn',
     'why_keyrock': (
         "I want to join Keyrock because it sits at the intersection of cutting-edge technology "
@@ -56,35 +56,29 @@ ANSWERS = {
         "deepen this expertise at Keyrock."
     ),
     'expected_compensation': (
-        "I am looking for a competitive compensation package in the range of EUR 70,000 - 85,000 "
-        "per year, depending on the full benefits package and growth opportunities. I am open to "
-        "discussing this further based on the role scope and Keyrock's compensation structure."
+        "EUR 70,000 - 85,000 per year, depending on the full benefits package and growth "
+        "opportunities. Open to discussing further based on role scope and Keyrock's compensation structure."
     ),
     'country': 'Netherlands',
     'fullstack_years': '4',
     'rust_cpp_years': (
-        "I have 0 years of professional Rust experience, but I have hands-on experience with "
-        "strongly-typed backend languages: 3+ years with C# (.NET) at Actemium and Delta "
-        "Electronics, and 2+ years with Python. I am actively learning Rust and understand "
-        "its ownership model, making me confident I can ramp up quickly."
+        "0 years of professional Rust experience, but 3+ years with C# (.NET) at Actemium and "
+        "Delta Electronics, and 2+ years with Python. Actively learning Rust and understand its "
+        "ownership model - confident I can ramp up quickly."
     ),
     'privacy_consent': 'Yes',
     'cicd_gitlab': (
-        "Yes - I have experience with CI/CD pipelines. At ASML I worked with Azure DevOps "
-        "pipelines and Kubernetes for containerized deployments. At Actemium I work with "
-        "Git-based workflows and automated testing pipelines. I have hands-on experience "
-        "with Docker, Kubernetes, and infrastructure-as-code principles."
+        "Yes - experience with CI/CD pipelines via Azure DevOps at ASML and Git-based workflows "
+        "at Actemium. Hands-on experience with Docker, Kubernetes, and infrastructure-as-code principles."
     ),
     'financial_datasets_years': (
-        "1 year - I have built analytics dashboards and worked with structured data pipelines "
-        "in industrial contexts (MES data, performance metrics). While not exclusively financial "
-        "data, the skills of data modeling, query optimization, and dashboard development are "
-        "directly transferable."
+        "1 year - built analytics dashboards and worked with structured data pipelines in "
+        "industrial contexts (MES data, performance metrics). Skills directly transferable to financial data."
     ),
     'fintech_years': (
         "I do not have direct fintech/crypto industry experience, but I have strong engineering "
-        "foundations and deep interest in financial technology. I am transitioning into the fintech "
-        "space and Keyrock represents an excellent opportunity to apply my skills in this domain."
+        "foundations and deep interest in financial technology. Transitioning into fintech and "
+        "Keyrock represents an excellent opportunity to apply my skills in this domain."
     ),
 }
 
@@ -104,40 +98,27 @@ def screenshot(page, name):
     return filepath
 
 
-def fill_input(page, selector, value, description=''):
-    """Fill an input field by selector."""
-    try:
-        el = page.wait_for_selector(selector, timeout=5000, state='visible')
-        if el:
-            el.click()
-            el.fill(value)
-            print(f'Filled {description or selector}: {value[:60]}')
-            return True
-    except Exception as e:
-        print(f'Failed to fill {description or selector}: {e}')
-    return False
-
-
-def block_external_resources(route, request):
-    """Block external resources that cause DNS failures."""
-    blocked_domains = [
+def handle_route(route, request):
+    """Intercept requests - block external slow resources, allow main site."""
+    url = request.url
+    blocked_patterns = [
         'fullstory.com',
         'datadoghq.com',
         'sentry.io',
-        'recaptcha',
+        'www.recaptcha.net',
+        'www.google.com/recaptcha',
         'gstatic.com',
-        'fonts.googleapis.com',
-        'fonts.gstatic.com',
         'seondnsresolve.com',
         'seondfresolver.com',
         'deviceinfresolver.com',
         'seonintelligence.com',
+        'cdn.ashbyprd.com',  # CDN assets (fonts, etc.)
     ]
-    url = request.url
-    if any(domain in url for domain in blocked_domains):
+    # Only block non-essential external resources
+    if any(pattern in url for pattern in blocked_patterns):
         route.abort()
-    else:
-        route.continue_()
+        return
+    route.continue_()
 
 
 def main():
@@ -151,120 +132,47 @@ def main():
                 '--disable-setuid-sandbox',
                 '--disable-dev-shm-usage',
                 '--disable-web-security',
-                '--font-render-hinting=none',
                 '--disable-font-subpixel-positioning',
-                '--disable-remote-fonts',
             ]
         )
         context = browser.new_context(
             user_agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             viewport={'width': 1280, 'height': 900},
-            # Block external fonts/tracking to avoid DNS issues
         )
-
         page = context.new_page()
 
-        # Block external resources that fail DNS resolution
-        page.route('**/*', block_external_resources)
+        # Block slow/external resources BEFORE navigation
+        page.route('**/*', handle_route)
 
         try:
-            print('Step 1: Navigating to Keyrock job page...')
-            page.goto(APPLICATION_URL, wait_until='domcontentloaded', timeout=30000)
-            print('Page loaded (domcontentloaded)')
-            time.sleep(3)
+            print('Step 1: Navigating to Keyrock job page (blocking external resources)...')
+            # Use 'commit' to get past the initial load even if external resources fail
+            page.goto(APPLICATION_URL, wait_until='commit', timeout=15000)
+            print(f'Initial response received. URL: {page.url}')
+
+            # Wait for main app content to render
+            time.sleep(8)
 
             title = page.title()
             print(f'Page title: {title}')
-            print(f'Current URL: {page.url}')
 
             screenshot(page, 'keyrock-01-job-page.png')
 
-            # Check page text
             body_text = page.evaluate('() => document.body.innerText')
-            print('Page text (first 1000 chars):')
-            print(body_text[:1000])
-
-            # Step 2: Find and click the Apply button
-            print('\nStep 2: Looking for Apply button...')
-
-            # Wait for the Apply button
-            apply_selectors = [
-                'button:has-text("Apply")',
-                'a:has-text("Apply")',
-                '[data-testid*="apply"]',
-                'button:has-text("Apply for this job")',
-            ]
-
-            apply_clicked = False
-            for sel in apply_selectors:
-                try:
-                    btn = page.wait_for_selector(sel, timeout=3000, state='visible')
-                    if btn:
-                        print(f'Found apply button: {sel}')
-                        btn.click()
-                        apply_clicked = True
-                        time.sleep(3)
-                        break
-                except Exception:
-                    pass
-
-            if not apply_clicked:
-                # Maybe we're already on the form, or navigate directly to /application
-                print('No apply button found, navigating to application URL...')
-                page.goto(APPLICATION_URL + '/application', wait_until='domcontentloaded', timeout=30000)
-                time.sleep(3)
-
-            screenshot(page, 'keyrock-02-after-apply-click.png')
-            print('After apply navigation - screenshot saved')
-
-            # Check what's visible now
-            body_text2 = page.evaluate('() => document.body.innerText')
-            print('Page text after navigation (first 2000):')
-            print(body_text2[:2000])
-
-            # Find all inputs
-            inputs = page.evaluate('''() => {
-                const inputs = Array.from(document.querySelectorAll('input, textarea, select'));
-                return inputs.map(el => ({
-                    type: el.type || el.tagName.toLowerCase(),
-                    name: el.name || '',
-                    id: el.id || '',
-                    placeholder: (el.placeholder || '').substring(0, 50),
-                    required: el.required,
-                    visible: el.offsetParent !== null,
-                    ariaLabel: el.getAttribute('aria-label') || '',
-                    dataField: el.getAttribute('data-field-path') || el.getAttribute('data-testid') || ''
-                }));
-            }''')
-            print(f'\nForm inputs ({len(inputs)} total):')
-            for inp in inputs:
-                if inp['visible']:
-                    print(f"  [{inp['type']}] name={inp['name']} id={inp['id'][:40]} placeholder={inp['placeholder']} dataField={inp['dataField']} required={inp['required']}")
-
-            # Get all buttons
-            buttons = page.evaluate('''() => {
-                return Array.from(document.querySelectorAll('button, [role="button"]')).map(el => ({
-                    text: (el.textContent || '').trim().substring(0, 60),
-                    type: el.type || '',
-                    id: el.id || '',
-                    class: (el.className || '').substring(0, 60)
-                }));
-            }''')
-            print('\nButtons found:')
-            for btn in buttons:
-                print(f"  [button] '{btn['text']}' type={btn['type']} id={btn['id']}")
+            print('Page text (first 1500 chars):')
+            print(body_text[:1500])
 
         except Exception as e:
-            print(f'Error in inspection: {e}')
+            print(f'Error: {e}')
             import traceback
             traceback.print_exc()
             try:
-                screenshot(page, 'keyrock-inspect-error.png')
+                screenshot(page, 'keyrock-error.png')
             except Exception:
                 pass
 
         browser.close()
-        print('\nInspection phase complete.')
+        print('\nDone.')
 
 
 if __name__ == '__main__':

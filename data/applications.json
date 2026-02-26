@@ -1374,5 +1374,38 @@
     "confirmation_url": "https://www.shoxl.com/nl/thankyou",
     "contact_email": "[email protected]",
     "contact_person": "Roland Vonk (Director)"
+  },
+  {
+    "id": "eboekhouden-software-developer-20260225",
+    "company": "e-Boekhouden.nl",
+    "role": "Software Developer",
+    "url": "https://werkenbij.e-boekhouden.nl/vacatures/software-developer",
+    "date_applied": "2026-02-25T12:10:00",
+    "score": 9.0,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/eboekhouden-software-developer-motivation.pdf",
+    "motivation_letter_md": "/home/user/Agents/output/cover-letters/eboekhouden-software-developer.md",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/eboekhouden-01-job-page.png",
+      "/home/user/Agents/output/screenshots/eboekhouden-05-pre-submit.png",
+      "/home/user/Agents/output/screenshots/eboekhouden-13-headful-xvfb.png"
+    ],
+    "notes": "Applied via web form at werkenbij.e-boekhouden.nl using Playwright with Xvfb (headful browser). Form submitted to web3forms.com API. Confirmation page reached: 'Bedankt voor je sollicitatie!' (Thank you for your application!) at https://werkenbij.e-boekhouden.nl/bedankt. Response promised within 3 business days ('Binnen 3 werkdagen reactie'). Fields filled: Voornaam=Hisham, Achternaam=Abboud, Email=hiaham123@hotmail.com, Phone=+31 648412838. CV uploaded: Hisham Abboud CV.pdf. Motivation letter uploaded: eboekhouden-software-developer-motivation.pdf. Privacy checkbox checked. Role: 80% backend ASP.NET/C#, 20% frontend JS/Angular. Location: Geldrop (very close to Eindhoven). e-Boekhouden.nl is a 20+ year Dutch online accounting software company. Strong skills match: ASP.NET/C# backend (Actemium), JavaScript, SQL Server.",
+    "response": "awaiting - binnen 3 werkdagen",
+    "email_used": "hiaham123@hotmail.com",
+    "form_backend": "web3forms.com",
+    "confirmation_url": "https://werkenbij.e-boekhouden.nl/bedankt",
+    "contact_email": "werkenbij@e-boekhouden.nl",
+    "location": "Geldrop, Netherlands",
+    "tech_stack": [
+      "ASP.NET",
+      "C#",
+      "JavaScript",
+      "Angular",
+      "SQL Server"
+    ],
+    "hours": "32-40 uur",
+    "experience_required": "3-5 jaar"
   }
 ]
