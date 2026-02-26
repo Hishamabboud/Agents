@@ -51,4 +51,3 @@ Thesis: GDPR-compliant data anonymization for secure data sharing
 - English (fluent)
 - Dutch (fluent)
 - Arabic (fluent)
-- Persian (fluent)
