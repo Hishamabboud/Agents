@@ -1124,7 +1124,7 @@
       "/home/user/Agents/output/screenshots/funda-05-before-submit-20260224_150225.png",
       "/home/user/Agents/output/screenshots/funda-06-after-submit-20260224_150225.png"
     ],
-    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
+    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1203,7 +1203,7 @@
       "/home/user/Agents/output/screenshots/funda-v2-04-before-submit-20260224_150917.png",
       "/home/user/Agents/output/screenshots/funda-v2-05-after-submit-20260224_150917.png"
     ],
-    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
+    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1223,7 +1223,7 @@
       "/home/user/Agents/output/screenshots/funda-int-02-before-submit-20260224_151252.png",
       "/home/user/Agents/output/screenshots/funda-int-03-after-submit-20260224_151252.png"
     ],
-    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplicatio",
+    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplicatio",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1407,5 +1407,19 @@
     ],
     "hours": "32-40 uur",
     "experience_required": "3-5 jaar"
+  },
+  {
+    "id": 73,
+    "company": "Trifork",
+    "role": "Medior .NET Developer",
+    "url": "https://trifork.homerun.co/medior-net-developer-eindhoven/en/apply",
+    "date_applied": "2026-02-26",
+    "score": 9,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/trifork-medior-net-developer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/trifork-01-apply-page-20260226_064041.png",
+    "notes": "Application form not accessible - Homerun ATS shows form elements as hidden/not visible. Page shows \"Applying for this job is currently not possible\" error. Position may be temporarily paused or closed.",
+    "response": ""
   }
 ]
