@@ -1124,7 +1124,7 @@
       "/home/user/Agents/output/screenshots/funda-05-before-submit-20260224_150225.png",
       "/home/user/Agents/output/screenshots/funda-06-after-submit-20260224_150225.png"
     ],
-    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
+    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1203,7 +1203,7 @@
       "/home/user/Agents/output/screenshots/funda-v2-04-before-submit-20260224_150917.png",
       "/home/user/Agents/output/screenshots/funda-v2-05-after-submit-20260224_150917.png"
     ],
-    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
+    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1223,7 +1223,7 @@
       "/home/user/Agents/output/screenshots/funda-int-02-before-submit-20260224_151252.png",
       "/home/user/Agents/output/screenshots/funda-int-03-after-submit-20260224_151252.png"
     ],
-    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplicatio",
+    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplicatio",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1992,7 +1992,7 @@
   {
     "id": "swisscom-devops-engineer-junior-20260226",
     "company": "Swisscom DevOps Center",
-    "role": "DevOps Engineer – Applied GenAI and Software Engineering (Junior)",
+    "role": "DevOps Engineer \u2013 Applied GenAI and Software Engineering (Junior)",
     "url": "https://swisscom.recruitee.com/o/devops-engineer-applied-genai-and-software-engineering-junior",
     "application_url": "https://swisscom.recruitee.com/api/offers/devops-engineer-applied-genai-and-software-engineering-junior/candidates",
     "date_applied": "2026-02-26",
@@ -2134,5 +2134,79 @@
     "response": null,
     "email_used": "hiaham123@hotmail.com",
     "reason_skipped": "Lever ATS uses hCaptcha - cannot automate form submission"
+  },
+  {
+    "id": "ey-software-developer-amsterdam-20260226",
+    "company": "EY (Ernst & Young)",
+    "role": "Software Developer - HR Department",
+    "url": "https://ey.recruitee.com/o/software-developer-1",
+    "application_url": "https://ey.recruitee.com/api/offers/software-developer-1/candidates",
+    "date_applied": "2026-02-26",
+    "score": 7.0,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/ey-software-developer-amsterdam.md",
+    "screenshot": null,
+    "notes": "Applied via Recruitee API (HTTP 201 OK). Candidate ID: 116708811. No screening questions. Vague role description - building software solutions for HR processes. Location: Amsterdam. CV + cover letter submitted. At EY Human Resources department.",
+    "response": null,
+    "email_used": "hiaham123@hotmail.com",
+    "recruitee_subdomain": "ey",
+    "offer_slug": "software-developer-1",
+    "candidate_id": 116708811
+  },
+  {
+    "id": "dpgmedia-software-engineer-agentic-ai-20260226",
+    "company": "DPG Media",
+    "role": "Software Engineer \u2013 Agentic AI Platform",
+    "url": "https://dpgmedia.recruitee.com/o/software-engineer-agentic-ai-platform",
+    "application_url": "https://dpgmedia.recruitee.com/api/offers/software-engineer-agentic-ai-platform/candidates",
+    "date_applied": "2026-02-26",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/dpgmedia-software-engineer-agentic-ai.md",
+    "screenshot": null,
+    "notes": "Applied via Recruitee API (HTTP 201 OK). Candidate ID: 116708861. Dutch cover letter. Dutch language required. Tech: Python, AI agents, cloud, agentic workflows, B2B AI platform. Location: Amsterdam (hybrid). Screening: LinkedIn, no previous RTL/DPG employment, privacy policy accepted, looking for permanent employment=yes, Dutch fluency=yes. Role: Building AI agents for Digital Advertising operations at DPG Media.",
+    "response": null,
+    "email_used": "hiaham123@hotmail.com",
+    "recruitee_subdomain": "dpgmedia",
+    "offer_slug": "software-engineer-agentic-ai-platform",
+    "candidate_id": 116708861
+  },
+  {
+    "id": "greenchoice-azure-cloud-engineer-20260226",
+    "company": "Greenchoice",
+    "role": "Azure Cloud Engineer",
+    "url": "https://greenchoice.recruitee.com/o/azure-cloud-engineer",
+    "application_url": null,
+    "date_applied": "2026-02-26",
+    "score": 7.0,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshot": null,
+    "notes": "Skipped. This is an Azure Cloud Ops/DevOps role requiring extensive Azure platform management experience and Dutch language. Questions ask specifically about Azure environment management, which is more ops than development. Already applied to Greenchoice .NET Developer role in same session. Score 7.0 - borderline.",
+    "response": null,
+    "email_used": "hiaham123@hotmail.com",
+    "reason_skipped": "Azure Ops role requires extensive platform management experience beyond current level. Already applied to Greenchoice .NET Developer role."
+  },
+  {
+    "id": "inshared-ai-engineer-20260226",
+    "company": "InShared",
+    "role": "AI Engineer",
+    "url": "https://inshared.recruitee.com/o/ai-engineer",
+    "application_url": "https://inshared.recruitee.com/api/offers/ai-engineer/candidates",
+    "date_applied": "2026-02-26",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/inshared-ai-engineer.md",
+    "screenshots": [],
+    "notes": "Applied via Recruitee API directly. HTTP 201 received. candidate_id: 116709041. Location: Leusden, Netherlands. AI Engineer role at digital-first insurance company. Stack match: Python, LLM/AI engineering, cloud-native platform. CogitatAI project and AI experience highlighted.",
+    "response": "awaiting",
+    "http_status": 201,
+    "candidate_id": 116709041,
+    "ats": "Recruitee",
+    "location": "Leusden, Netherlands"
   }
 ]
