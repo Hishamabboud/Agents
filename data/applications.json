@@ -1449,5 +1449,19 @@
     "screenshot": "/home/user/Agents/output/screenshots/datenna-v5-05-post-submit-20260226_064729.png",
     "notes": "Application submitted via Recruitee ATS. Filled: full name, email, phone. CV uploaded. Invisible hCaptcha present. Send button clicked successfully. Form fields confirmed in post-submit view.",
     "response": ""
+  },
+  {
+    "id": 76,
+    "company": "Keyrock",
+    "role": "Senior Full Stack Web Engineer",
+    "url": "https://jobs.ashbyhq.com/keyrock/13432bba-3821-4ca9-a994-9a13ba307fd2/application",
+    "date_applied": "2026-02-26",
+    "score": 7,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "",
+    "screenshot": "/home/user/Agents/output/screenshots/keyrock-v3-04-pre-submit-20260226_065750.png",
+    "notes": "Application submitted via Ashby ATS. Filled: full_name, email, 3x textareas (why Keyrock, digital assets, compensation). CV uploaded. Submit Application button clicked.",
+    "response": ""
   }
 ]
