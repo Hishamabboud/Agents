@@ -1730,7 +1730,9 @@
     "status": "applied",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/bryder-software-engineer-azure-net.md",
-    "screenshots": [],
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/bryder-software-engineer-azure-net-20260226_105200.png"
+    ],
     "notes": "Applied via Recruitee API (HTTP 201 OK). Candidate ID: 116695113. CV uploaded. Cover letter submitted. Screening questions answered: Azure/DevOps experience=true, Frontend tech (JS/TS/Angular) experience=true, Gets energy from developing software=true, Speaks Dutch=true. Tech stack: C#/.NET, Azure, Azure DevOps, CI/CD, JavaScript/TypeScript. Location: Delft. Salary: EUR 3,000-5,000/month. Cover letter at /home/user/Agents/output/cover-letters/bryder-software-engineer-azure-net.md",
     "email_used": "hiaham123@hotmail.com",
     "response": null,
@@ -1739,5 +1741,26 @@
     "recruitee_subdomain": "bryder",
     "offer_slug": "software-engineer-azure-net",
     "candidate_id": 116695113
+  },
+  {
+    "id": "wolfpack-medior-backend-csharp-20260226",
+    "company": "Wolfpack IT",
+    "role": "Medior Backend Developer [C#]",
+    "url": "https://jointhewolfpack.nl/o/medior-backend-developer",
+    "application_url": "https://wolfpackit.recruitee.com/api/offers/medior-backend-developer/candidates",
+    "date_applied": "2026-02-26T10:45:14.449349",
+    "score": 9.0,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/wolfpack-medior-backend-developer-csharp.md",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/wolfpack-medior-backend-csharp-20260226_105200.png"
+    ],
+    "notes": "Applied via Recruitee API (HTTP 201 OK). Candidate ID: 116697138. CV uploaded. Cover letter submitted. Screening questions: Found via Wolfpack website, No visa sponsorship needed, Not applying from abroad. Tech stack: C#/.NET, Azure, event-driven microservices, Docker, CI/CD. Location: Eindhoven TU/e campus. Hybrid work. Contact: Klaas de Boer (People Advisor), join@wolfpackit.nl",
+    "email_used": "hiaham123@hotmail.com",
+    "response": null,
+    "recruitee_subdomain": "wolfpackit",
+    "offer_slug": "medior-backend-developer",
+    "candidate_id": 116697138
   }
 ]

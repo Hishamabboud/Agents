@@ -207,5 +207,71 @@
     "posted_date": "2026-02-17",
     "score": 5.0,
     "notes": "SKIP - Citrus is an IT consultancy placing engineers at clients. Dutch required. 5+ years experience."
+  },
+  {
+    "id": "wolfpack-medior-backend-csharp",
+    "title": "Medior Backend Developer [C#]",
+    "company": "Wolfpack IT",
+    "location": "Eindhoven, Noord-Brabant, Netherlands",
+    "url": "https://jointhewolfpack.nl/o/medior-backend-developer",
+    "source": "Recruitee",
+    "date_found": "2026-02-26",
+    "description": "Medior C# backend developer at Wolfpack IT (Eindhoven TU/e campus). Tech: C#, .NET, Azure, microservices, CI/CD.",
+    "score": 9.0
+  },
+  {
+    "id": "bryder-software-engineer-azure-net",
+    "title": "Software Engineer Azure / .NET",
+    "company": "Bryder BV",
+    "location": "Delft, Zuid-Holland, Netherlands",
+    "url": "https://bryder.recruitee.com/o/software-engineer-azure-net",
+    "source": "Recruitee",
+    "date_found": "2026-02-26",
+    "description": "Software Engineer Azure/.NET at Bryder in Delft. Tech: C#/.NET, Azure, Azure DevOps, PowerShell, CI/CD.",
+    "score": 8.0
+  },
+  {
+    "id": "watch-e-net-developer",
+    "title": ".NET Software Developer",
+    "company": "Watch-E",
+    "location": "Arnhem, Netherlands",
+    "url": "https://www.watch-e.nl/vacature/vacature-software-developer",
+    "source": "LinkedIn",
+    "date_found": "2026-02-26",
+    "description": "NET Software Developer at Watch-E energy management company. Tech: .NET, Docker, Azure, React, Kubernetes, NoSQL. Salary: EUR 4,500-6,250/month.",
+    "score": 8.5
+  },
+  {
+    "id": "visionplanner-software-engineer-net",
+    "title": "Software Engineer (.NET)",
+    "company": "Visionplanner (Visma)",
+    "location": "Veenendaal, Netherlands",
+    "url": "https://www.visionplanner.com/werken-bij/software-engineer-net",
+    "source": "LinkedIn",
+    "date_found": "2026-02-26",
+    "description": "Software Engineer .NET at Visionplanner (part of Visma). Tech: C#, .NET Core, ASP.NET, Azure, React. Email: peter.westmeijer@visma.com",
+    "score": 8.5
+  },
+  {
+    "id": "new-orange-backend-net",
+    "title": "Backend Developer (.NET)",
+    "company": "New Orange",
+    "location": "'s-Hertogenbosch, Netherlands",
+    "url": "https://neworange.agency/en/careers/backend-developer-net",
+    "source": "LinkedIn",
+    "date_found": "2026-02-26",
+    "description": "Backend Developer .NET at New Orange. Tech: .NET Core, Azure, Azure SQL, Azure DevOps. Salary: EUR 4,500-6,500/month. Email: solliciteer@neworange.agency",
+    "score": 8.5
+  },
+  {
+    "id": "zetes-software-engineer",
+    "title": "Software Engineer",
+    "company": "Zetes Goods ID",
+    "location": "Eindhoven, Netherlands",
+    "url": "https://nl.linkedin.com/jobs/view/software-engineer-at-zetes-goods-id-4375182087",
+    "source": "LinkedIn",
+    "date_found": "2026-02-26",
+    "description": "Software Engineer at Zetes Goods ID in Eindhoven. Tech: C#, .NET, Azure, Angular, TypeScript, MS SQL. Requires LinkedIn login.",
+    "score": 8.5
   }
 ]
