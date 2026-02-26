@@ -1724,16 +1724,20 @@
     "id": "bryder-software-engineer-azure-net-20260226",
     "company": "Bryder BV",
     "role": "Software Engineer Azure / .NET",
-    "url": "https://join.com/companies/bryder/15736329-software-engineer-azure-net",
+    "url": "https://bryder.recruitee.com/o/software-engineer-azure-net",
     "date_applied": "2026-02-26T10:17:28.380590",
     "score": 8.0,
-    "status": "action_required",
+    "status": "applied",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/bryder-software-engineer-azure-net.md",
     "screenshots": [],
-    "notes": "Error: Page.goto: Timeout 15000ms exceeded.\nCall log:\n  - navigating to \"https://join.com/companies/bryder/15736329-software-engineer-azure-net\", waiting until \"domcontentloaded\"\n. Manual application required at join.com/companies/bryder/15736329-software-engineer-azure-net",
+    "notes": "Applied via Recruitee API (HTTP 201 OK). Candidate ID: 116695113. CV uploaded. Cover letter submitted. Screening questions answered: Azure/DevOps experience=true, Frontend tech (JS/TS/Angular) experience=true, Gets energy from developing software=true, Speaks Dutch=true. Tech stack: C#/.NET, Azure, Azure DevOps, CI/CD, JavaScript/TypeScript. Location: Delft. Salary: EUR 3,000-5,000/month. Cover letter at /home/user/Agents/output/cover-letters/bryder-software-engineer-azure-net.md",
     "email_used": "hiaham123@hotmail.com",
     "response": null,
-    "action_required": "Check hiaham123@hotmail.com for join.com magic link and complete application"
+    "action_required": "Check hiaham123@hotmail.com for join.com magic link and complete application",
+    "application_url": "https://bryder.recruitee.com/api/offers/software-engineer-azure-net/candidates",
+    "recruitee_subdomain": "bryder",
+    "offer_slug": "software-engineer-azure-net",
+    "candidate_id": 116695113
   }
 ]
