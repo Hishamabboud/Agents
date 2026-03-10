@@ -2682,14 +2682,14 @@
     "company": "Hexapole Automatisering",
     "role": ".NET Developer | Industrial Automation",
     "url": "https://hexapole.com/en/vacancies/net-developer-net-core-industrial-automation/",
-    "date_applied": "",
+    "date_applied": "2026-03-10",
     "score": 9.0,
-    "status": "new",
+    "status": "pending-manual-email",
     "resume_file": "output/tailored-resumes/hexapole-automatisering-net-developer.md",
     "cover_letter_file": "output/cover-letters/hexapole-automatisering-net-developer.md",
-    "screenshot": "",
-    "notes": "Industrial automation, logistics. .NET Core, C#. Strong match with Actemium MES experience. Alkmaar, hybrid. \u20ac3800-5000/mo.",
-    "response": ""
+    "screenshot": "output/screenshots/hexapole-01-job-page.png",
+    "notes": "Application is email-only. Recipient: w.rebel@hexapole.com. Email drafted and saved to output/cover-letters/hexapole-automatisering-net-developer.md. Outlook login blocked by Microsoft 2FA verification step (no stored password). Ready-to-send email saved to output/emails/hexapole-application.eml. ACTION REQUIRED: send email manually to w.rebel@hexapole.com.",
+    "response": "awaiting"
   },
   {
     "id": "miniclip-senior-backend-net-20260306",
@@ -2724,13 +2724,13 @@
     "company": "Fortanix",
     "role": "Software Engineer",
     "url": "https://apply.workable.com/fortanix/",
-    "date_applied": "",
+    "date_applied": "2026-03-10",
     "score": 7.8,
-    "status": "new",
-    "resume_file": "",
-    "cover_letter_file": "",
+    "status": "failed",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/fortanix-software-engineer.md",
     "screenshot": "",
-    "notes": "Eindhoven, mostly remote (1 day/week office). Data security startup. High Tech Campus.",
+    "notes": "Error: Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n  -   - waiting for fonts to load...\n",
     "response": ""
   },
   {
@@ -2752,13 +2752,13 @@
     "company": "Greenwheels",
     "role": ".NET Developer",
     "url": "https://jobs.greenwheels.com/?lang=en",
-    "date_applied": "",
+    "date_applied": "2026-03-10",
     "score": 8.3,
-    "status": "new",
+    "status": "applied",
     "resume_file": "output/tailored-resumes/greenwheels-net-developer.md",
     "cover_letter_file": "output/cover-letters/greenwheels-net-developer.md",
-    "screenshot": "",
-    "notes": "Car sharing company. .NET developer. Rotterdam. Green/sustainable mobility.",
+    "screenshot": "output/screenshots/greenwheels-02-submission-response.json",
+    "notes": "Car sharing company. .NET developer. Rotterdam. Green/sustainable mobility. Applied via Open sollicitatie (open application) at jobs.greenwheels.com/open-sollicitatie/en/apply as no specific .NET Developer vacancy was listed at time of application (only \"Open sollicitatie\", \"Werkstudent Customer Care\", and vacancy alert). Resume (Hisham Abboud CV.pdf) uploaded to S3. Cover letter included as answer to question 1966322. Specified \".NET Developer / Software Developer - IT & Development\" for role type question. API response: {\"error\":false,\"data\":null,\"code\":200}",
     "response": ""
   },
   {
@@ -2766,13 +2766,13 @@
     "company": "Eagle Eye Networks",
     "role": "Python Developer",
     "url": "https://eagleeyenetworksinc.applytojob.com/apply",
-    "date_applied": "",
+    "date_applied": "2026-03-10",
     "score": 7.8,
-    "status": "new",
+    "status": "skipped",
     "resume_file": "",
     "cover_letter_file": "",
-    "screenshot": "",
-    "notes": "AI cloud security. Python, Django, PostgreSQL, Redis, Docker, K8s. Amsterdam.",
+    "screenshot": "output/screenshots/eagle-eye-01-careers-page-20260310_094917.png",
+    "notes": "AI cloud security. Python, Django, PostgreSQL, Redis, Docker, K8s. Amsterdam. SKIPPED: Careers portal shows no open positions at this time (eagleeyenetworksinc.applytojob.com/apply returned no job listings). Job listing may have expired or been filled.",
     "response": ""
   },
   {
@@ -2858,5 +2858,19 @@
     "screenshot": "",
     "notes": "ICT solutions. Full Stack Developer role. Multiple NL locations.",
     "response": ""
+  },
+  {
+    "id": "chipsoft-net-developer-20260310_095214",
+    "company": "ChipSoft",
+    "role": ".NET Developer Zorg-ICT",
+    "url": "https://www.chipsoft.nl/vacatures",
+    "date_applied": "2026-03-10T09:53:19.354493",
+    "score": 7.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshot": "/home/user/Agents/output/screenshots/chipsoft-07-post-submit-20260310_095214.png",
+    "notes": "Error: Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n  -   - waiting for fonts to load...\n",
+    "response": null
   }
 ]
