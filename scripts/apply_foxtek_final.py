@@ -5,8 +5,7 @@ available role to the original .NET Developer position (which returned 404).
 
 Form: WordPress Contact Form 7 (wpcf7), form ID 447
 Fields: your-name, your-email, your-phone, file (CV upload), acceptance-123
-Note: No cover letter textarea in the application form — only CV file upload.
-reCAPTCHA: v3 invisible (executes via JS automatically)
+reCAPTCHA: v3 invisible
 """
 
 import asyncio
@@ -52,11 +51,12 @@ def ts():
 
 async def take_screenshot(page, label):
     path = SCREENSHOTS_DIR / f"foxtek-{label}-{ts()}.png"
+    # Disable external fonts to avoid screenshot timeout
     try:
         await page.evaluate("""
             () => {
-                document.querySelectorAll('link[rel="stylesheet"]').forEach(el => {
-                    if (el.href && (el.href.includes('fonts.') || el.href.includes('typekit')))
+                document.querySelectorAll('link[rel="stylesheet"]').forEach(function(el) {
+                    if (el.href && (el.href.indexOf('fonts.') > -1 || el.href.indexOf('typekit') > -1))
                         el.disabled = true;
                 });
             }
@@ -82,24 +82,6 @@ async def safe_goto(page, url, timeout=20000):
         return None
 
 
-async def fill_via_js(page, selector, value):
-    """Fill a field using JavaScript evaluation — bypasses visibility checks."""
-    try:
-        result = await page.evaluate(f"""
-            (value) => {{
-                const el = document.querySelector('{selector}');
-                if (!el) return 'not found';
-                el.value = value;
-                el.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                el.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                return 'ok: ' + el.value.substring(0, 20);
-            }}
-        """, value)
-        return result
-    except Exception as e:
-        return f"error: {e}"
-
-
 async def main():
     SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -113,7 +95,7 @@ async def main():
         "notes": (
             "Original .NET Developer job (dot-net-developer-1) returned 404 — listing removed. "
             "Applying to nearest available match: Senior Full Stack Engineer (C#/Angular). "
-            "Application form fields: name, email, phone, CV upload (no cover letter textarea). "
+            "Application form has: name, email, phone, CV file upload (no cover letter field). "
         ),
     }
 
@@ -129,7 +111,7 @@ async def main():
             ignore_https_errors=True,
         )
 
-        # Block font resources that cause screenshot timeout
+        # Block font resources
         async def block_resources(route):
             url = route.request.url
             if any(x in url for x in ["fonts.gstatic", "fonts.googleapis", "typekit",
@@ -143,7 +125,7 @@ async def main():
         page = await context.new_page()
         page.set_default_timeout(15000)
 
-        # ---- Step 1: Navigate to target job ----
+        # ---- Step 1: Navigate ----
         print(f"\n[1] Navigating to: {TARGET_URL}")
         status = await safe_goto(page, TARGET_URL)
         print(f"  HTTP {status}, URL: {page.url}")
@@ -167,169 +149,158 @@ async def main():
             try:
                 el = await page.query_selector(sel)
                 if el and await el.is_visible():
-                    print(f"  Accepting cookies via: {sel!r}")
+                    print(f"  Accepting cookies...")
                     await el.click()
                     await asyncio.sleep(0.8)
                     break
             except Exception:
                 pass
 
-        # Scroll down to the form to ensure it's in viewport
-        await page.evaluate("window.scrollTo(0, document.body.scrollHeight * 0.6)")
+        # Scroll to form area
+        await page.evaluate("window.scrollTo(0, document.body.scrollHeight * 0.5)")
         await asyncio.sleep(0.5)
 
-        # ---- Step 3: Verify form 447 is present ----
-        form_447 = await page.query_selector("form.wpcf7-form[action*='wpcf7-f447']")
-        if not form_447:
-            # Try generic wpcf7 form
-            form_447 = await page.query_selector("form.wpcf7-form")
-        print(f"  Application form found: {form_447 is not None}")
+        # ---- Step 3: Fill using locator with force ----
+        print("\n[2] Filling application form...")
 
-        # ---- Step 4: Fill fields using JS (bypasses visibility) ----
-        print("\n[2] Filling application form fields via JS...")
+        # Use locator().fill() with force=True to bypass visibility
+        try:
+            await page.locator("input[name='your-name']").first.fill(
+                APPLICANT["name"], force=True, timeout=5000
+            )
+            print(f"  + your-name: {APPLICANT['name']!r}")
+        except Exception as e:
+            print(f"  ! your-name error: {e}")
 
-        r = await fill_via_js(page, "input[name='your-name']", APPLICANT["name"])
-        print(f"  your-name: {r}")
+        try:
+            await page.locator("input[name='your-email']").first.fill(
+                APPLICANT["email"], force=True, timeout=5000
+            )
+            print(f"  + your-email: {APPLICANT['email']!r}")
+        except Exception as e:
+            print(f"  ! your-email error: {e}")
 
-        r = await fill_via_js(page, "input[name='your-email']", APPLICANT["email"])
-        print(f"  your-email: {r}")
+        try:
+            await page.locator("input[name='your-phone']").first.fill(
+                APPLICANT["phone"], force=True, timeout=5000
+            )
+            print(f"  + your-phone: {APPLICANT['phone']!r}")
+        except Exception as e:
+            print(f"  ! your-phone error: {e}")
 
-        r = await fill_via_js(page, "input[name='your-phone']", APPLICANT["phone"])
-        print(f"  your-phone: {r}")
+        # Acceptance checkbox
+        try:
+            cb = page.locator("input[name='acceptance-123']").first
+            await cb.check(force=True, timeout=5000)
+            print("  + acceptance-123: checked")
+        except Exception as e:
+            print(f"  ! acceptance-123: {e}")
 
-        # Check acceptance checkbox for form 447
-        checkbox_checked = await page.evaluate("""
-            () => {
-                // Find the checkbox in the application form (form 447, not form 8)
-                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
-                             document.querySelector('.wpcf7-form');
-                if (!form) return 'no form';
-                const cb = form.querySelector('input[type="checkbox"]');
-                if (!cb) return 'no checkbox';
-                if (!cb.checked) {
-                    cb.checked = true;
-                    cb.dispatchEvent(new Event('change', {bubbles: true}));
-                    cb.dispatchEvent(new Event('click', {bubbles: true}));
-                }
-                return 'checked: ' + cb.checked;
-            }
-        """)
-        print(f"  acceptance: {checkbox_checked}")
-
-        # CV upload — must be done via Playwright (can't set file via JS)
+        # CV file upload
         if RESUME_PDF.exists():
-            # Find the file input within the application form
             try:
-                file_input = await page.query_selector(
-                    "form[action*='wpcf7-f447'] input[type='file'], "
-                    "input[name='file'][type='file']"
-                )
-                if file_input:
-                    await file_input.set_input_files(str(RESUME_PDF))
-                    print(f"  file: {RESUME_PDF.name} uploaded")
-                    await asyncio.sleep(1)
-                else:
-                    print("  file: no file input found in form 447")
+                file_input = page.locator("input[type='file']").first
+                await file_input.set_input_files(str(RESUME_PDF), timeout=8000)
+                print(f"  + file: {RESUME_PDF.name}")
+                await asyncio.sleep(1)
             except Exception as e:
-                print(f"  file upload error: {e}")
+                print(f"  ! file upload: {e}")
+        else:
+            print(f"  ! Resume not found: {RESUME_PDF}")
 
         ss = await take_screenshot(page, "02-form-filled")
         if ss:
             result["screenshots"].append(ss)
 
-        # Verify values were set
-        verification = await page.evaluate("""
-            () => {
-                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
-                             document.querySelector('.wpcf7-form');
-                if (!form) return {};
-                return {
-                    name: (form.querySelector('input[name="your-name"]') || {}).value || '',
-                    email: (form.querySelector('input[name="your-email"]') || {}).value || '',
-                    phone: (form.querySelector('input[name="your-phone"]') || {}).value || '',
-                    checkbox: (form.querySelector('input[type="checkbox"]') || {}).checked || false,
-                    fileCount: (form.querySelector('input[type="file"]') || {}).files ?
-                               (form.querySelector('input[type="file"]') || {}).files.length : 0,
-                };
-            }
-        """)
-        print(f"\n  Form values: {verification}")
+        # Verify form values
+        try:
+            v = await page.evaluate("""
+                function() {
+                    var form = document.querySelector('form.wpcf7-form');
+                    if (!form) return {error: 'no form'};
+                    var nameEl = form.querySelector('input[name="your-name"]');
+                    var emailEl = form.querySelector('input[name="your-email"]');
+                    var phoneEl = form.querySelector('input[name="your-phone"]');
+                    var cbEl = form.querySelector('input[type="checkbox"]');
+                    return {
+                        name: nameEl ? nameEl.value : '',
+                        email: emailEl ? emailEl.value : '',
+                        phone: phoneEl ? phoneEl.value : '',
+                        checkbox: cbEl ? cbEl.checked : false
+                    };
+                }
+            """)
+            print(f"\n  Verification: {v}")
 
-        if not verification.get("name") and not verification.get("email"):
-            result["status"] = "failed"
-            result["notes"] += " Could not populate form fields (JavaScript fill failed)."
-            await browser.close()
-            return result
+            if not v.get("name") and not v.get("email"):
+                result["status"] = "failed"
+                result["notes"] += " Form fields could not be populated."
+                await browser.close()
+                return result
+        except Exception as e:
+            print(f"  Verification error: {e}")
 
-        # ---- Step 5: Submit ----
-        print("\n[3] Submitting application...")
+        # ---- Step 4: Submit ----
+        print("\n[3] Submitting...")
 
-        # Find submit button in form 447
-        submit_in_form = await page.evaluate("""
-            () => {
-                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
-                             document.querySelector('.wpcf7-form');
-                if (!form) return null;
-                const btn = form.querySelector('input[type="submit"], button[type="submit"]');
-                return btn ? (btn.value || btn.textContent || 'found') : null;
-            }
-        """)
-        print(f"  Submit button: {submit_in_form!r}")
-
+        # Take pre-submit screenshot
         ss = await take_screenshot(page, "03-pre-submit")
         if ss:
             result["screenshots"].append(ss)
 
-        # Click submit via JS to avoid visibility issues
-        submit_result = await page.evaluate("""
-            () => {
-                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
-                             document.querySelector('.wpcf7-form');
-                if (!form) return 'no form';
-                const btn = form.querySelector('input[type="submit"], button[type="submit"]');
-                if (!btn) return 'no submit button';
-                btn.click();
-                return 'clicked: ' + (btn.value || btn.textContent || '?');
-            }
-        """)
-        print(f"  Submit JS click: {submit_result!r}")
-
-        # Wait for form submission
-        await asyncio.sleep(4)
-        print(f"  URL after submit: {page.url}")
+        submitted = False
+        for sel in ["input[type='submit'][value='Apply Now']",
+                    "input[type='submit']",
+                    "button[type='submit']",
+                    ".wpcf7-submit"]:
+            try:
+                loc = page.locator(sel).first
+                count = await loc.count()
+                if count > 0:
+                    label = await loc.get_attribute("value") or await loc.inner_text()
+                    print(f"  Submit via: {sel!r} ({label!r})")
+                    await loc.click(force=True, timeout=8000)
+                    await asyncio.sleep(4)
+                    submitted = True
+                    print(f"  Submitted. URL: {page.url}")
+                    break
+            except Exception as e:
+                print(f"  Submit {sel!r}: {e}")
 
         ss = await take_screenshot(page, "04-post-submit")
         if ss:
             result["screenshots"].append(ss)
 
-        # ---- Step 6: Check result ----
+        # ---- Step 5: Check result ----
         try:
-            final_text = await page.evaluate("() => document.body ? document.body.innerText : ''")
+            final_text = await page.evaluate(
+                "function() { return document.body ? document.body.innerText : ''; }"
+            )
         except Exception:
             final_text = ""
         print(f"\n  Post-submit text (500): {final_text[:500]!r}")
 
         # wpcf7 form status
         try:
-            form_class = await page.evaluate("""
-                () => {
-                    const form = document.querySelector('.wpcf7-form');
-                    return form ? form.getAttribute('data-status') || form.className : '';
+            form_status = await page.evaluate("""
+                function() {
+                    var form = document.querySelector('.wpcf7-form');
+                    if (!form) return '';
+                    return form.getAttribute('data-status') || form.className;
                 }
             """)
-            print(f"  wpcf7 status: {form_class!r}")
+            print(f"  wpcf7 data-status: {form_status!r}")
         except Exception:
-            form_class = ""
+            form_status = ""
 
-        # Check for success/error indicators
-        wpcf7_success = "sent" in form_class.lower() or "mail-sent" in form_class.lower()
+        wpcf7_success = "sent" in form_status.lower() or "mail-sent" in form_status.lower()
         text_success = any(p in final_text.lower() for p in [
             "thank you", "application received", "successfully", "message has been sent",
-            "your message was sent", "mail sent", "bedankt", "confirmation"
+            "your message was sent", "mail sent", "bedankt", "sent successfully"
         ])
         has_error = any(p in final_text.lower() for p in [
             "validation failed", "there was an error", "failed to send",
-            "recaptcha failed", "spam detected", "invalid"
+            "recaptcha failed", "spam", "invalid"
         ])
 
         if wpcf7_success or text_success:
@@ -337,14 +308,13 @@ async def main():
             result["notes"] += " Application submitted — success confirmed."
         elif has_error:
             result["status"] = "failed"
-            result["notes"] += f" Submission error. wpcf7 status: {form_class!r}"
-        elif "no form" in submit_result or "no submit" in submit_result:
-            result["status"] = "failed"
-            result["notes"] += " Could not find form or submit button."
-        else:
-            # Submitted but status unclear
+            result["notes"] += f" Submission error detected. wpcf7 status: {form_status!r}"
+        elif submitted:
             result["status"] = "applied"
-            result["notes"] += f" Form submitted. wpcf7 status: {form_class!r}"
+            result["notes"] += f" Form submitted. wpcf7 status: {form_status!r}"
+        else:
+            result["status"] = "failed"
+            result["notes"] += " Could not click submit button."
 
         await browser.close()
         return result
@@ -359,19 +329,9 @@ def update_applications_log(result):
         except Exception:
             apps = []
 
-    # Check for duplicate
-    for app in apps:
-        if app.get("company") == result["company"] and app.get("role") == result["role"]:
-            print(f"  [log] Updating existing entry")
-            app.update({
-                "date_applied": datetime.now().strftime("%Y-%m-%d"),
-                "status": result["status"],
-                "url": result.get("url", ""),
-                "screenshots": result.get("screenshots", []),
-                "notes": result.get("notes", ""),
-            })
-            APPLICATIONS_JSON.write_text(json.dumps(apps, indent=2))
-            return
+    # Remove existing Foxtek entry to avoid duplicates
+    apps = [a for a in apps if not (a.get("company") == "Foxtek" and
+                                     a.get("role") == result["role"])]
 
     entry = {
         "id": f"foxtek-{datetime.now().strftime('%Y%m%d%H%M%S')}",
