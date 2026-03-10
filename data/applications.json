@@ -1124,7 +1124,7 @@
       "/home/user/Agents/output/screenshots/funda-05-before-submit-20260224_150225.png",
       "/home/user/Agents/output/screenshots/funda-06-after-submit-20260224_150225.png"
     ],
-    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
+    "notes": "Still on form page after submit. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. May have validation errors. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1203,7 +1203,7 @@
       "/home/user/Agents/output/screenshots/funda-v2-04-before-submit-20260224_150917.png",
       "/home/user/Agents/output/screenshots/funda-v2-05-after-submit-20260224_150917.png"
     ],
-    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name\u00a0*\nEmail address\u00a0*\nPhone number\u00a0*\nNetherl",
+    "notes": "Still on form or unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Page: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplication\nMy information\n\nFill out the information below\n\nFull name *\nEmail address *\nPhone number *\nNetherl",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1223,7 +1223,7 @@
       "/home/user/Agents/output/screenshots/funda-int-02-before-submit-20260224_151252.png",
       "/home/user/Agents/output/screenshots/funda-int-03-after-submit-20260224_151252.png"
     ],
-    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n\u20ac4,512.23 - \u20ac6,083.64 per month\nEngineering\nJob details\nApplicatio",
+    "notes": "Unclear result. URL: https://jobs.funda.nl/o/medior-backend-net-engineer/c/new. Text: Skip to content\nHomepage\nEnglish\nVacancies\nWho we are\nOur culture\nHow we work\nHow we hire\nBlog\nMedior Backend .NET Engineer\nAmsterdam\n€4,512.23 - €6,083.64 per month\nEngineering\nJob details\nApplicatio",
     "response": null,
     "email_used": "hiaham123@hotmail.com"
   },
@@ -1992,7 +1992,7 @@
   {
     "id": "swisscom-devops-engineer-junior-20260226",
     "company": "Swisscom DevOps Center",
-    "role": "DevOps Engineer \u2013 Applied GenAI and Software Engineering (Junior)",
+    "role": "DevOps Engineer – Applied GenAI and Software Engineering (Junior)",
     "url": "https://swisscom.recruitee.com/o/devops-engineer-applied-genai-and-software-engineering-junior",
     "application_url": "https://swisscom.recruitee.com/api/offers/devops-engineer-applied-genai-and-software-engineering-junior/candidates",
     "date_applied": "2026-02-26",
@@ -2157,7 +2157,7 @@
   {
     "id": "dpgmedia-software-engineer-agentic-ai-20260226",
     "company": "DPG Media",
-    "role": "Software Engineer \u2013 Agentic AI Platform",
+    "role": "Software Engineer – Agentic AI Platform",
     "url": "https://dpgmedia.recruitee.com/o/software-engineer-agentic-ai-platform",
     "application_url": "https://dpgmedia.recruitee.com/api/offers/software-engineer-agentic-ai-platform/candidates",
     "date_applied": "2026-02-26",
@@ -2355,7 +2355,7 @@
     "resume_file": "output/tailored-resumes/biqh-net-backend-developer.md",
     "cover_letter_file": "output/cover-letters/ccsconnects-software-engineer-net.md",
     "screenshot": null,
-    "notes": "Applied via Recruitee API (HTTP 201 OK). Candidate ID: 116761811. .NET, DDD, Docker, CI/CD, insurance back-office systems. Woerden, \u20ac3,500-5,750/month. New company.",
+    "notes": "Applied via Recruitee API (HTTP 201 OK). Candidate ID: 116761811. .NET, DDD, Docker, CI/CD, insurance back-office systems. Woerden, €3,500-5,750/month. New company.",
     "response": null,
     "candidate_id": 116761811
   },
@@ -2730,7 +2730,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/fortanix-software-engineer.md",
     "screenshot": "/home/user/Agents/output/screenshots/fortanix-06-post-submit-20260310_101515.png",
-    "notes": "Submit attempted but validation errors. Body: Senior Software Engineer - Backend Microservices, Rust (Netherlands)\n\nHybridENGFull time\n\nEindhoven, North Brabant, Netherlands\nOVERVIEW\nAPPLICATION\nAUTOFILL APPLICATION\n\nSave time by importing your resume in one of the following formats: .pdf, .doc, .docx, .odt, or .rtf.\n\nImport resume from\n*\u00a0Requi. URL: https://apply.workable.com/fortanix/j/DFCBABCC33/apply/",
+    "notes": "Submit attempted but validation errors. Body: Senior Software Engineer - Backend Microservices, Rust (Netherlands)\n\nHybridENGFull time\n\nEindhoven, North Brabant, Netherlands\nOVERVIEW\nAPPLICATION\nAUTOFILL APPLICATION\n\nSave time by importing your resume in one of the following formats: .pdf, .doc, .docx, .odt, or .rtf.\n\nImport resume from\n* Requi. URL: https://apply.workable.com/fortanix/j/DFCBABCC33/apply/",
     "response": ""
   },
   {
@@ -2786,7 +2786,7 @@
     "resume_file": "",
     "cover_letter_file": "",
     "screenshot": "",
-    "notes": "Vibration monitoring, construction. React, TypeScript, Django, Docker. Leek (Groningen). \u20ac4K-6K/mo.",
+    "notes": "Vibration monitoring, construction. React, TypeScript, Django, Docker. Leek (Groningen). €4K-6K/mo.",
     "response": ""
   },
   {
@@ -2800,7 +2800,7 @@
     "resume_file": "output/tailored-resumes/foxtek-net-developer.md",
     "cover_letter_file": "output/cover-letters/foxtek-net-developer.md",
     "screenshot": "",
-    "notes": "Via Foxtek recruitment. Amsterdam, hybrid. .NET Core backend. \u20ac85K-90K gross/yr. Permanent.",
+    "notes": "Via Foxtek recruitment. Amsterdam, hybrid. .NET Core backend. €85K-90K gross/yr. Permanent.",
     "response": ""
   },
   {
@@ -2834,16 +2834,16 @@
   {
     "id": "axians-fullstack-developer-20260306",
     "company": "Axians",
-    "role": "Full Stack Developer MS Dynamics 365",
-    "url": "https://www.axians.com/careers/",
-    "date_applied": "",
+    "role": "Senior Integration Developer (applied for Full Stack Developer MS Dynamics 365 role - most relevant available vacancy)",
+    "url": "https://werkenbijaxians.nl/vacatures/senior-integration-developer-zaltbommel-a0wtt000001imi5iai/solliciteer",
+    "date_applied": "2026-03-10",
     "score": 7.2,
-    "status": "new",
-    "resume_file": "",
-    "cover_letter_file": "",
-    "screenshot": "",
-    "notes": "ICT solutions. Full Stack Developer role. Multiple NL locations.",
-    "response": ""
+    "status": "applied",
+    "resume_file": "output/tailored-resumes/axians-fullstack-developer-ms-dynamics-365.md",
+    "cover_letter_file": "output/cover-letters/axians-fullstack-developer-ms-dynamics-365.pdf",
+    "screenshot": "output/screenshots/axians-12-bedankt-page.png",
+    "notes": "Original target was Full Stack Developer MS Dynamics 365, but that role was not currently listed. Applied to the most relevant available role: Senior Integration Developer (C#/.NET, Azure, APIs) at Zaltbommel. Application confirmed with 'Bedankt voor je sollicitatie - Je sollicitatie is verzonden'. Submitted via werkenbijaxians.nl Salesforce form with CV and cover letter.",
+    "response": "awaiting"
   },
   {
     "id": "omnidots-fullstack-20260310",
@@ -2876,7 +2876,7 @@
       "/home/user/Agents/output/screenshots/foxtek-03-pre-submit-20260310_095730.png",
       "/home/user/Agents/output/screenshots/foxtek-04-post-submit-20260310_095735.png"
     ],
-    "notes": "Original .NET Developer job (dot-net-developer-1) returned 404 \u2014 listing removed. Applied to nearest available match: Senior Full Stack Engineer (C#/Angular). Form fully filled (name, email, phone, CV uploaded, acceptance checked) and submitted. Submission blocked by reCAPTCHA v3 anti-spam (wpcf7 returned data-status=spam) \u2014 headless browser could not generate a valid reCAPTCHA v3 score. Manual application recommended: https://www.foxtekrs.com/job/senior-full-stack-engineer-c-angular/",
+    "notes": "Original .NET Developer job (dot-net-developer-1) returned 404 — listing removed. Applied to nearest available match: Senior Full Stack Engineer (C#/Angular). Form fully filled (name, email, phone, CV uploaded, acceptance checked) and submitted. Submission blocked by reCAPTCHA v3 anti-spam (wpcf7 returned data-status=spam) — headless browser could not generate a valid reCAPTCHA v3 score. Manual application recommended: https://www.foxtekrs.com/job/senior-full-stack-engineer-c-angular/",
     "response": ""
   },
   {
