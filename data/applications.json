@@ -2999,5 +2999,20 @@
     "screenshot": null,
     "notes": "Timeout: Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n  -   - waiting for fonts to load...\n",
     "response": null
+  },
+  {
+    "id": "visionbox-fullstack-developer-20260310",
+    "company": "Vision-Box (Amadeus)",
+    "role": "Fullstack Developer",
+    "url": "https://visionbox.recruitee.com/o/fullstack-developer-the-netherlands",
+    "date_applied": "2026-03-10",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/visionbox-fullstack-developer.md",
+    "screenshot": "",
+    "notes": "Job posting no longer active. URL returns HTTP 301 redirect to https://recruitee.com/careers_not_hosted \u2014 Vision-Box has removed their Recruitee-hosted career page (Vision-Box is now part of Amadeus). Cover letter was generated and saved. Could not submit application. Recommend checking Amadeus careers portal or Vision-Box LinkedIn page for any re-posted version of this role.",
+    "action_required": "Check https://amadeus.com/en/page/detail-careers-job-offers or Vision-Box LinkedIn for re-posted role",
+    "response": "n/a"
   }
 ]
