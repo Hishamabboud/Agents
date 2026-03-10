@@ -3022,11 +3022,11 @@
     "url": "https://boards.greenhouse.io/equalexperts/jobs/4977568002",
     "date_applied": "2026-03-10",
     "score": 8.5,
-    "status": "failed",
+    "status": "skipped",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/equal-experts-software-engineer.md",
-    "screenshot": "/home/user/Agents/output/screenshots/equal-experts-04-after-submit-20260310_111144.png",
-    "notes": "Could not fill application form. Form URL: https://boards.greenhouse.io/equalexperts/jobs/4977568002",
+    "screenshot": "output/screenshots/equal-experts-01-job-status.png",
+    "notes": "Job posting expired/removed. Greenhouse API returned 404 for job ID 4977568002. Browser redirect confirmed: boards.greenhouse.io/equalexperts/jobs/4977568002 -> job-boards.greenhouse.io/equalexperts?error=true (canonical URL confirms error state). Job not present in active listings (16 current jobs, none in Netherlands). Cover letter generated and saved to output/cover-letters/equal-experts-software-engineer.md. PDF resume prepared at profile/Hisham Abboud CV.pdf. No application submitted \u2014 job posting no longer exists. Recommend monitoring Equal Experts careers or applying via general submission (job ID 8154565002).",
     "response": null
   },
   {
