@@ -3063,23 +3063,6 @@
     "response": null
   },
   {
-    "id": "app-clickhouse-cloud-iam-001",
-    "company": "ClickHouse",
-    "role": "Cloud Software Engineer - Identity and Access Management",
-    "url": "https://job-boards.greenhouse.io/clickhouse/jobs/5803692004",
-    "date_applied": "2026-03-10",
-    "score": 8.0,
-    "status": "failed",
-    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": "/home/user/Agents/output/cover-letters/clickhouse-cloud-engineer.md",
-    "screenshot": "",
-    "all_screenshots": [
-      ""
-    ],
-    "notes": "Timeout error: Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://job-boards.greenhouse.io/clickhouse/jobs/5803692004\", waiting until \"domcontentloaded\"\n",
-    "response": ""
-  },
-  {
     "id": "app-conxillium-dotnet-maui-001",
     "company": "Conxillium Group (Progresity)",
     "role": "Fullstack Mobile Software Engineer (.NET / MAUI)",
@@ -3092,5 +3075,20 @@
     "screenshot": "/home/user/Agents/output/screenshots/conxillium-dotnet-developer-submission.html",
     "notes": "Applied via Recruitee API (POST to https://conxillium.recruitee.com/api/offers/2456482/candidates). HTTP 201 Created. Candidate ID: 117564786. Uploaded CV PDF. Submitted LinkedIn URL and cover letter PDF. Location preference: Capelle aan den IJssel (ID 75916). Recruiter: Steven Kruis, recruitment@conxillium.com, 06 57 43 92 61. Salary: EUR 4000-6690/month.",
     "response": "HTTP 201 Created. Candidate ID: 117564786. CV uploaded to Recruitee S3."
+  },
+  {
+    "id": "app-clickhouse-cloud-iam-001",
+    "company": "ClickHouse",
+    "role": "Cloud Software Engineer - Identity and Access Management",
+    "url": "https://job-boards.greenhouse.io/clickhouse/jobs/5803692004",
+    "date_applied": "2026-03-10",
+    "score": 8.0,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/clickhouse-cloud-engineer.md",
+    "screenshot": "",
+    "all_screenshots": [],
+    "notes": "reCAPTCHA Enterprise blocks automated browser submission. Form data confirmed by Greenhouse (response included candidate email), but captcha token required. Candidate must manually complete application at: https://job-boards.greenhouse.io/clickhouse/jobs/5803692004 \u2014 all materials prepared: tailored cover letter saved, resume PDF ready.",
+    "response": ""
   }
 ]
