@@ -3016,46 +3016,36 @@
     "response": "n/a"
   },
   {
-    "id": "cliniko-fullstack-developer-20260310",
-    "company": "Cliniko",
-    "role": "Full Stack Developer",
-    "url": "https://apply.workable.com/cliniko/j/B8F753BB53",
+    "id": "app-equal-experts-sw-001",
+    "company": "Equal Experts",
+    "role": "Software Engineer",
+    "url": "https://boards.greenhouse.io/equalexperts/jobs/4977568002",
     "date_applied": "2026-03-10",
     "score": 8.5,
-    "status": "skipped",
-    "resume_file": "profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": "output/cover-letters/cliniko-fullstack-developer.md",
-    "screenshot": "output/screenshots/cliniko-01-job-page.png",
-    "notes": "Job listing no longer available. Workable redirected to ?not_found=true with message 'This job is no longer available.' Cover letter was prepared. Position was remote Full Stack Developer (server-side focus). Skills match was strong: Python/Flask, .NET/C#, JavaScript, SQL, REST APIs.",
-    "response": "n/a"
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/equal-experts-software-engineer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/equal-experts-04-after-submit-20260310_111144.png",
+    "notes": "Could not fill application form. Form URL: https://boards.greenhouse.io/equalexperts/jobs/4977568002",
+    "response": null
   },
   {
     "id": "planet-software-engineer-integration-platform",
     "company": "Planet",
     "role": "Software Engineer, Integration Platform",
     "url": "https://boards.greenhouse.io/planetlabs/jobs/5034494",
-    "date_applied": "2026-03-10T11:10:29.568260",
+    "date_applied": "2026-03-10T11:14:27.677872",
     "score": 8,
-    "status": "failed",
+    "status": "skipped",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/planet-software-engineer.md",
-    "screenshot": null,
-    "notes": "Error: Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://job-boards.greenhouse.io/planetlabs/jobs/5034494\", waiting until \"domcontentloaded\"\n",
+    "screenshot": "/home/user/Agents/output/screenshots/planet-04-after-submit-20260310_111435.png",
+    "notes": "Job posting closed: Greenhouse returned \"The job you are looking for is no longer open.\" for job ID 5034494. Cover letter prepared and saved. Cannot apply as the listing is no longer accepting applications.",
     "response": null,
-    "screenshots": []
-  },
-  {
-    "id": "app-blueconic-java-001",
-    "company": "BlueConic",
-    "role": "Java Software Engineer",
-    "url": "https://boards.greenhouse.io/blueconic/jobs/7074209002",
-    "date_applied": "2026-03-10",
-    "score": 7.0,
-    "status": "skipped",
-    "resume_file": "",
-    "cover_letter_file": "output/cover-letters/blueconic-software-engineer.md",
-    "screenshot": "",
-    "notes": "Job listing no longer active. Greenhouse API returns 404 for job ID 7074209002. Cover letter generated and saved. Current BlueConic openings (11 total) are all in Sales/Marketing/Customer Support - no engineering roles available. Application cannot proceed.",
-    "response": "n/a"
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/planet-01-loaded-20260310_111433.png",
+      "/home/user/Agents/output/screenshots/planet-03-before-submit-20260310_111434.png",
+      "/home/user/Agents/output/screenshots/planet-04-after-submit-20260310_111435.png"
+    ]
   }
 ]
