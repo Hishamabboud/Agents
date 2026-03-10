@@ -3014,5 +3014,48 @@
     "notes": "Job posting no longer active. URL returns HTTP 301 redirect to https://recruitee.com/careers_not_hosted \u2014 Vision-Box has removed their Recruitee-hosted career page (Vision-Box is now part of Amadeus). Cover letter was generated and saved. Could not submit application. Recommend checking Amadeus careers portal or Vision-Box LinkedIn page for any re-posted version of this role.",
     "action_required": "Check https://amadeus.com/en/page/detail-careers-job-offers or Vision-Box LinkedIn for re-posted role",
     "response": "n/a"
+  },
+  {
+    "id": "cliniko-fullstack-developer-20260310",
+    "company": "Cliniko",
+    "role": "Full Stack Developer",
+    "url": "https://apply.workable.com/cliniko/j/B8F753BB53",
+    "date_applied": "2026-03-10",
+    "score": 8.5,
+    "status": "skipped",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/cliniko-fullstack-developer.md",
+    "screenshot": "output/screenshots/cliniko-01-job-page.png",
+    "notes": "Job listing no longer available. Workable redirected to ?not_found=true with message 'This job is no longer available.' Cover letter was prepared. Position was remote Full Stack Developer (server-side focus). Skills match was strong: Python/Flask, .NET/C#, JavaScript, SQL, REST APIs.",
+    "response": "n/a"
+  },
+  {
+    "id": "planet-software-engineer-integration-platform",
+    "company": "Planet",
+    "role": "Software Engineer, Integration Platform",
+    "url": "https://boards.greenhouse.io/planetlabs/jobs/5034494",
+    "date_applied": "2026-03-10T11:10:29.568260",
+    "score": 8,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/planet-software-engineer.md",
+    "screenshot": null,
+    "notes": "Error: Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://job-boards.greenhouse.io/planetlabs/jobs/5034494\", waiting until \"domcontentloaded\"\n",
+    "response": null,
+    "screenshots": []
+  },
+  {
+    "id": "app-blueconic-java-001",
+    "company": "BlueConic",
+    "role": "Java Software Engineer",
+    "url": "https://boards.greenhouse.io/blueconic/jobs/7074209002",
+    "date_applied": "2026-03-10",
+    "score": 7.0,
+    "status": "skipped",
+    "resume_file": "",
+    "cover_letter_file": "output/cover-letters/blueconic-software-engineer.md",
+    "screenshot": "",
+    "notes": "Job listing no longer active. Greenhouse API returns 404 for job ID 7074209002. Cover letter generated and saved. Current BlueConic openings (11 total) are all in Sales/Marketing/Customer Support - no engineering roles available. Application cannot proceed.",
+    "response": "n/a"
   }
 ]

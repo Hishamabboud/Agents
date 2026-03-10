@@ -1,0 +1,33 @@
+{
+  "id": 5582193,
+  "shortcode": "3654334706",
+  "title": "Game Developer (remote/hybrid, full-time)",
+  "remote": true,
+  "location": {
+    "country": "Netherlands",
+    "countryCode": "NL",
+    "city": "Amsterdam",
+    "region": "North Holland"
+  },
+  "locations": [
+    {
+      "country": "Netherlands",
+      "countryCode": "NL",
+      "city": "Amsterdam",
+      "region": "North Holland",
+      "hidden": false
+    }
+  ],
+  "state": "published",
+  "isInternal": false,
+  "code": "",
+  "published": "2026-02-24T00:00:00.000Z",
+  "language": "en",
+  "department": [],
+  "accountUid": "624a32f0-2805-4cdb-a32b-3852a0f866aa",
+  "approvalStatus": "approved",
+  "workplace": "remote",
+  "description": "<p>(32 - 40 hours, Hybrid in Amsterdam OR fully remote if located outside of the Netherlands)</p><p></p><p>We are looking for a Casual Game Developer who will contribute to the entire lifecycle of HTML5 casual game development, from inception to live-ops and maintenance. As part of one of our multidisciplinary agile game development teams, you'll facilitate the delivery of top-notch products and features.</p><h3>About CoolGames</h3><p>At CoolGames, we\u2019re proud to be a leading international HTML5 game studio, working with some of the world\u2019s biggest \u2018Big Tech\u2019 game platforms, such as Netflix, Discord, Facebook and Microsoft Play. We also work with famous games IP such as Battleship, Angry Birds and Monopoly.&nbsp;&nbsp;</p><p>CoolGames is part of Keesing, the world\u2019s largest Braintainment company. Keesing is a financially strong publisher of engaging sudokus, crosswords and many other puzzles &amp; games with a presence in over 20 countries headquartered in The Netherlands.&nbsp;</p><p>With the CoolGames HQ in Amsterdam, supported by our global remote teams, we offer market-competitive salaries, the chance to contribute to successful casual games that are played by millions and work directly with some of the biggest brands in the world. We believe in creativity, collaboration and delivering world-class gaming experiences, while giving you the choice to either join our Amsterdam studio or become part of our remote teams.</p><p>If you want to grow your career in a profitable, internationally recognized company, work closely with world-famous partners and be part of a highly professional international team - CoolGames is the right place for you.</p><h3>About the role&nbsp;&nbsp;</h3><p>As a Game Developer at CoolGames, you take responsibility for delivering high quality products. Your teamwork will be fundamental to the success of the products you work on. You don\u2019t just \u201cimplement tickets.\u201d You think along. You raise risks early. You help improve the codebase.</p><p>You will be part of a multidisciplinary development team collaborating with game designers, game artists, quality assurance engineers, and fellow game developers. You work on developing new titles, evolving existing games, as well as contributing to the maintenance and evolving our internal tooling.</p><p>You are adept at managing your time and productivity with the goal to deliver robust code while meeting established deadlines.</p><p>Next to working on features for our games your responsibilities include optimisation, debugging, fixing bugs, performing code reviews, reviewing requirements, working on platform compatibility and ensuring our games remain stable and performant.</p><p></p>",
+  "requirements": "<h3>About You</h3><p>You are proactive and thrive on taking ownership and responsibility. You write clean, readable and maintainable code. Sharing your skills and experience with the team is something you have consistently been praised for. You are open to feedback and eager to learn. You embrace collaboration and have a \u201dyou can count on me\u201d attitude. You flourish in an environment where teamwork and communication are important.</p><p>The right candidate meets most of the following requirements:</p><ul><li>At least 4 years of experience programming professionally;</li></ul><ul><li>Solid knowledge of development best practices;</li><li>Strong collaborative mindset;</li></ul><ul><li>Knows how to strike a balance between speed and quality;</li></ul><ul><li>Estimations are consistently on point</li></ul><ul><li>Proactively communicates and mitigates technical risk;</li></ul><ul><li>Understands the commercial reality of casual games;&nbsp;</li></ul><ul><li>Experience with Agile/Scrum development practices;</li></ul><ul><li>Experience with version control tools like git;</li></ul><ul><li>Experience with web game tech (e.g. PIXI/Phaser/Three.js);</li></ul><ul><li>Experience with HTML5 games, Typescript and JavaScript is a plus;</li></ul>",
+  "benefits": "<h3>What we can offer you</h3><ul><li>An international team of 50+ professionals from almost 20 different countries;</li><li>Work closely with some of the biggest (upcoming) game platforms in the world on high-quality casual games that are played by millions of gamers;&nbsp;&nbsp;</li><li>Competitive remuneration;</li><li>A flexible remote working environment;&nbsp;&nbsp;</li><li>A very open, informal and international company culture where everyone can make a difference;</li></ul><p></p><p></p>"
+}
