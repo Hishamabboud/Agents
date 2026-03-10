@@ -1,0 +1,4 @@
+Application submitted to: https://jobs.funda.nl/o/junior-backend-net-engineer
+Timestamp: 20260226_082444
+Status: Applied via Recruitee API (HTTP 201 OK)
+Company: Funda

@@ -1,0 +1,16 @@
+Dear Hiring Team,
+
+I am writing to express my strong interest in the .NET Developer Industrial Automation position at Hexapole Automatisering. Your focus on building software solutions for industrial automation and logistics resonates deeply with my current professional work, and I am excited about the opportunity to contribute to your team.
+
+In my current role as a Software Service Engineer at Actemium (VINCI Energies), I work daily at the intersection of industrial systems and software development. I design and maintain Manufacturing Execution Systems (MES) using .NET, C#, and ASP.NET, translating complex industrial requirements into reliable software solutions. This hands-on experience with industrial automation gives me a strong foundation that directly aligns with Hexapole's core business.
+
+My technical skill set is a close match for your requirements. I have solid experience with C# and .NET Core, complemented by proficiency in Python, JavaScript, and SQL. During my internship at ASML, I developed testing frameworks and worked within Azure and Kubernetes environments, which sharpened my ability to deliver robust, scalable solutions in high-tech industrial settings. My project work, including building the CogitatAI platform from the ground up, demonstrates my ability to architect and deliver complete software products independently.
+
+Beyond technical skills, I bring a multilingual perspective — I am fluent in English, Dutch, and Arabic — which supports effective communication in diverse teams and with international clients. My entrepreneurial drive, evident from founding CogitatAI, means I take ownership of challenges and consistently look for ways to improve processes and deliver value.
+
+I hold a BSc in Software Engineering from Fontys University of Applied Sciences in Eindhoven, and I am eager to bring my industrial automation experience and .NET expertise to Hexapole Automatisering. I would welcome the opportunity to discuss how my background can contribute to your projects in Alkmaar.
+
+I am available for an interview at your earliest convenience and look forward to hearing from you.
+
+Best regards,
+Hisham Abboud
