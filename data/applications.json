@@ -2668,14 +2668,14 @@
     "company": "Sioux Technologies",
     "role": ".NET Engineer / Tech Lead",
     "url": "https://vacancy.sioux.eu/",
-    "date_applied": "",
+    "date_applied": "2026-03-10",
     "score": 8.5,
-    "status": "new",
+    "status": "skipped",
     "resume_file": "output/tailored-resumes/sioux-technologies-net-engineer.md",
     "cover_letter_file": "output/cover-letters/sioux-technologies-net-engineer.md",
-    "screenshot": "",
-    "notes": "Eindhoven HQ. High-tech. C#/.NET, React, WPF. Strong match with MES/industrial background.",
-    "response": ""
+    "screenshot": "output/screenshots/sioux-final-03-form-full-20260310_095656.png",
+    "notes": "Application attempted via vacancy.sioux.eu (Software Engineer C#/C++/JAVA, Eindhoven). Form successfully navigated and all fields filled: first_name=Hisham, last_name=Abboud, email=hiaham123@hotmail.com, phone=+31648412838, citizenship=Dutch(NL), cover_letter in Remarks, GDPR consent checkbox checked, CV 'Hisham Abboud CV.pdf' uploaded. Blocked by Google reCAPTCHA v2 (invisible/inline) on submission - server resets form without valid token. CAPTCHA site key: 6LeTqqMZAAAAABTJXj079eI1AemKsu0NfJoWoXI1. Screenshots taken: sioux-final-01 to sioux-final-04. ALTERNATIVE: Apply directly by email to jobs@sioux.eu with subject 'Application - Software Engineer C#/C++/JAVA - Hisham Abboud' and attach /home/user/Agents/profile/Hisham Abboud CV.pdf and cover letter. Recruiter contact: Jettine van Dongen, +31 (0)40 - 2677100.",
+    "response": null
   },
   {
     "id": "hexapole-net-developer-20260306",
@@ -2918,7 +2918,7 @@
       "/home/user/Agents/output/screenshots/foxtek-03-pre-submit-20260310_095730.png",
       "/home/user/Agents/output/screenshots/foxtek-04-post-submit-20260310_095735.png"
     ],
-    "notes": "Original .NET Developer job (dot-net-developer-1) returned 404 \u2014 listing removed. Applying to nearest available match: Senior Full Stack Engineer (C#/Angular). Application form has: name, email, phone, CV file upload (no cover letter field).  Submission error detected. wpcf7 status: 'spam'",
+    "notes": "Original .NET Developer job (dot-net-developer-1) returned 404 \u2014 listing removed. Applied to nearest available match: Senior Full Stack Engineer (C#/Angular). Form fully filled (name, email, phone, CV uploaded, acceptance checked) and submitted. Submission blocked by reCAPTCHA v3 anti-spam (wpcf7 returned data-status=spam) \u2014 headless browser could not generate a valid reCAPTCHA v3 score. Manual application recommended: https://www.foxtekrs.com/job/senior-full-stack-engineer-c-angular/",
     "response": ""
   }
 ]

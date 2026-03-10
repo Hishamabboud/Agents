@@ -1,0 +1,6 @@
+{
+  "status": "failed",
+  "screenshots": [],
+  "notes": "Error: Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n  -   - waiting for fonts to load...\n",
+  "url_used": "https://www.werkenbijsnelstart.nl/vacatures/full-stack-developer-amersfoort-snelstart"
+}
