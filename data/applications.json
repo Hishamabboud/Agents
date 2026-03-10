@@ -2971,5 +2971,33 @@
     "screenshot": null,
     "notes": "Job listing returned HTTP 404 \u2014 posting no longer active on Lever. Lever API confirmed zero open postings for recast-software (empty array). Cover letter generated and saved. Application could not be submitted as the form is inaccessible.",
     "response": null
+  },
+  {
+    "id": 165,
+    "company": "Elements (via Makerstreet)",
+    "role": "Python/Django Developer",
+    "url": "https://makerstreet.recruitee.com/o/pythondjango-developer-almere",
+    "date_applied": "2026-03-10",
+    "score": 8,
+    "status": "skipped",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/elements-python-developer.md",
+    "screenshot": null,
+    "notes": "Job posting no longer active. URL redirects to recruitee.com/careers_not_hosted (301 Moved Permanently). The MakerStreet careers page does not list this role. Cover letter generated and saved for future reference. Application could not be submitted.",
+    "response": null
+  },
+  {
+    "id": "planet-software-engineer-20260310_110814",
+    "company": "Planet",
+    "role": "Software Engineer, Integration Platform",
+    "url": "https://boards.greenhouse.io/planetlabs/jobs/5034494",
+    "date_applied": "2026-03-10T11:08:14.809595",
+    "score": 8,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/planet-software-engineer.md",
+    "screenshot": null,
+    "notes": "Timeout: Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n  -   - waiting for fonts to load...\n",
+    "response": null
   }
 ]
