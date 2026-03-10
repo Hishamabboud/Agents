@@ -2957,5 +2957,19 @@
     "screenshot": "/home/user/Agents/output/screenshots/chipsoft-final-state-20260310_101247.png",
     "notes": "Viewed vacancy: https://www.chipsoft.com/nl-nl/werken-bij/vacatures/net-developer-zorg-ict-1/; Loaded application form: https://www.chipsoft.com/nl-nl/werken-bij/solliciteren/?vacancyId=25; Form fields filled: FirstName=Hisham, SurName=Abboud, Phone, Email, referral=LinkedIn, consent=checked; CV uploaded: Hisham Abboud CV.pdf; Application submitted successfully - confirmation detected",
     "response": null
+  },
+  {
+    "id": "app-recast-software-engineer-001",
+    "company": "Recast Software",
+    "role": "Software Engineer",
+    "url": "https://jobs.lever.co/recast-software/3916e189-c48e-447c-acc2-394537f690d2",
+    "date_applied": "2026-03-10",
+    "score": 9,
+    "status": "failed",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/recast-software-engineer.md",
+    "screenshot": null,
+    "notes": "Job listing returned HTTP 404 \u2014 posting no longer active on Lever. Lever API confirmed zero open postings for recast-software (empty array). Cover letter generated and saved. Application could not be submitted as the form is inaccessible.",
+    "response": null
   }
 ]
