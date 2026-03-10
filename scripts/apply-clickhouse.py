@@ -20,7 +20,7 @@ CANDIDATE = {
     "first_name": "Hisham",
     "last_name": "Abboud",
     "email": "hiaham123@hotmail.com",
-    "phone": "+31 06 4841 2838",
+    "phone": "+3106 4841 2838",
     "linkedin": "https://linkedin.com/in/hisham-abboud",
     "github": "https://github.com/Hishamabboud",
     "location": "Eindhoven, Netherlands",
@@ -32,9 +32,20 @@ with open(COVER_LETTER_PATH, "r") as f:
 
 def screenshot(page, name):
     path = os.path.join(SCREENSHOTS_DIR, f"clickhouse-{name}.png")
-    page.screenshot(path=path, full_page=True)
-    print(f"Screenshot saved: {path}")
-    return path
+    try:
+        page.screenshot(path=path, full_page=True, timeout=15000)
+        print(f"Screenshot saved: {path}")
+        return path
+    except Exception as e:
+        print(f"Screenshot failed ({name}): {e}")
+        # Try without full_page
+        try:
+            page.screenshot(path=path, timeout=10000)
+            print(f"Screenshot (viewport only) saved: {path}")
+            return path
+        except Exception as e2:
+            print(f"Screenshot (viewport) also failed: {e2}")
+            return ""
 
 
 def try_fill(page, selectors, value, label="field"):
@@ -43,7 +54,7 @@ def try_fill(page, selectors, value, label="field"):
             el = page.locator(selector).first
             if el.count() > 0:
                 el.fill(value)
-                print(f"Filled {label}: {value[:50]}")
+                print(f"Filled {label}: {value[:60]}")
                 return True
         except Exception:
             continue
@@ -52,7 +63,6 @@ def try_fill(page, selectors, value, label="field"):
 
 
 def log_all_inputs(page):
-    """Log all form inputs for debugging."""
     print("\n--- Form elements found ---")
     elements = page.locator("input, select, textarea").all()
     for el in elements:
@@ -63,7 +73,6 @@ def log_all_inputs(page):
             id_ = el.get_attribute("id") or ""
             placeholder = el.get_attribute("placeholder") or ""
             label_for = ""
-            # Try to find associated label
             if id_:
                 try:
                     label_el = page.locator(f"label[for='{id_}']")
@@ -71,7 +80,7 @@ def log_all_inputs(page):
                         label_for = label_el.text_content() or ""
                 except Exception:
                     pass
-            print(f"  {tag} type={type_} name={name} id={id_} placeholder={placeholder} label={label_for.strip()}")
+            print(f"  {tag} type={type_} name={name} id={id_} placeholder={placeholder} label='{label_for.strip()}'")
         except Exception as e:
             print(f"  (could not read element: {e})")
     print("--- End form elements ---\n")
@@ -87,26 +96,43 @@ def run():
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=True,
-            args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-web-security",
+                "--disable-features=IsolateOrigins,site-per-process",
+                "--font-render-hinting=none",
+            ],
         )
         context = browser.new_context(
-            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            ignore_https_errors=True,
         )
+        # Disable font loading to avoid screenshot hangs
+        context.route("**/*.woff2", lambda route: route.abort())
+        context.route("**/*.woff", lambda route: route.abort())
+        context.route("**/*.ttf", lambda route: route.abort())
+
         page = context.new_page()
 
         try:
             print(f"Navigating to: {JOB_URL}")
-            page.goto(JOB_URL, wait_until="networkidle", timeout=60000)
-            result["screenshots"].append(screenshot(page, "01-job-page-loaded"))
+            page.goto(JOB_URL, wait_until="domcontentloaded", timeout=60000)
+            page.wait_for_timeout(3000)
             print(f"Page title: {page.title()}")
             print(f"URL: {page.url()}")
+
+            result["screenshots"].append(screenshot(page, "01-job-page-loaded"))
 
             # Wait for form
             try:
                 page.wait_for_selector("form", timeout=20000)
                 print("Form found on page")
             except PlaywrightTimeout:
-                print("No form found within timeout")
+                print("No form found within timeout — checking page content")
+                html_snippet = page.content()[:2000]
+                print(html_snippet)
                 result["notes"] = "No form found on page"
                 result["screenshots"].append(screenshot(page, "error-no-form"))
                 return result
@@ -116,13 +142,13 @@ def run():
             # Log all inputs
             log_all_inputs(page)
 
-            # --- Fill basic fields ---
+            # --- Fill basic fields (Greenhouse standard field names) ---
             try_fill(page,
-                ["input#first_name", "input[name='job_application[first_name]']", "input[autocomplete='given-name']"],
+                ["input#first_name", "input[name='job_application[first_name]']"],
                 CANDIDATE["first_name"], "first name")
 
             try_fill(page,
-                ["input#last_name", "input[name='job_application[last_name]']", "input[autocomplete='family-name']"],
+                ["input#last_name", "input[name='job_application[last_name]']"],
                 CANDIDATE["last_name"], "last name")
 
             try_fill(page,
@@ -138,13 +164,23 @@ def run():
             # --- Upload Resume ---
             if os.path.exists(RESUME_PDF):
                 file_inputs = page.locator("input[type='file']").all()
-                if file_inputs:
-                    file_inputs[0].set_input_files(RESUME_PDF)
-                    print(f"Resume uploaded: {RESUME_PDF}")
-                    page.wait_for_timeout(3000)
+                uploaded = False
+                for fi in file_inputs:
+                    try:
+                        fi_id = fi.get_attribute("id") or ""
+                        fi_name = fi.get_attribute("name") or ""
+                        # Upload resume to the first file input or one that mentions resume
+                        if not uploaded or "resume" in fi_id.lower() or "resume" in fi_name.lower():
+                            fi.set_input_files(RESUME_PDF)
+                            print(f"Resume uploaded to input id={fi_id} name={fi_name}")
+                            uploaded = True
+                            page.wait_for_timeout(2000)
+                    except Exception as e:
+                        print(f"  Could not upload to file input: {e}")
+                if uploaded:
                     result["screenshots"].append(screenshot(page, "04-resume-uploaded"))
                 else:
-                    print("WARNING: No file input found for resume upload")
+                    print("WARNING: No file inputs found for resume upload")
             else:
                 print(f"WARNING: Resume PDF not found: {RESUME_PDF}")
 
@@ -155,112 +191,114 @@ def run():
                  "input[placeholder*='LinkedIn']", "input[placeholder*='linkedin']"],
                 CANDIDATE["linkedin"], "LinkedIn URL")
 
-            # --- Cover Letter (text area) ---
-            cover_letter_selectors = [
-                "textarea#cover_letter",
-                "textarea[name*='cover_letter']",
-                "textarea[id*='cover']",
-            ]
-            filled_cover = False
-            for sel in cover_letter_selectors:
+            # --- Handle all custom questions ---
+            # Find all labels with their associated inputs
+            labels = page.locator("label").all()
+            for lbl in labels:
                 try:
-                    el = page.locator(sel).first
-                    if el.count() > 0:
-                        el.fill(COVER_LETTER_TEXT)
-                        print("Filled cover letter text area")
-                        filled_cover = True
-                        break
-                except Exception:
-                    continue
-            if not filled_cover:
-                print("Cover letter text area not found (may be file upload only)")
+                    lbl_text = (lbl.text_content() or "").strip().lower()
+                    lbl_for = lbl.get_attribute("for") or ""
+                    if not lbl_for:
+                        continue
 
-            # --- Handle custom questions ---
-            # Look for any text inputs/textareas not yet filled
-            textareas = page.locator("textarea").all()
-            for ta in textareas:
-                try:
-                    ta_id = ta.get_attribute("id") or ""
-                    ta_name = ta.get_attribute("name") or ""
-                    current_val = ta.evaluate("e => e.value")
+                    target = page.locator(f"#{lbl_for}").first
+                    if target.count() == 0:
+                        continue
+
+                    tag = target.evaluate("e => e.tagName").lower()
+                    current_val = target.evaluate("e => e.value").strip()
+
                     if current_val:
                         continue  # already filled
-                    # Find label
-                    label_text = ""
-                    if ta_id:
-                        label_el = page.locator(f"label[for='{ta_id}']")
-                        if label_el.count() > 0:
-                            label_text = label_el.text_content() or ""
-                    print(f"Found unfilled textarea: id={ta_id} name={ta_name} label='{label_text.strip()}'")
-                    # Fill with relevant content based on label
-                    label_lower = label_text.lower()
-                    if "cover" in label_lower or "letter" in label_lower:
-                        ta.fill(COVER_LETTER_TEXT)
-                        print("  -> Filled as cover letter")
-                    elif "auth" in label_lower or "iam" in label_lower or "experience" in label_lower:
-                        ta.fill("I have experience with OAuth2/OIDC authentication flows, integrating third-party identity providers, and building secure REST APIs with access control patterns in .NET and Python. I am eager to deepen this expertise in SAML, SCIM, and cloud IAM standards.")
-                        print("  -> Filled as auth experience")
-                except Exception as e:
-                    print(f"  (error processing textarea: {e})")
 
-            # --- Handle visa/work authorization selects ---
-            selects = page.locator("select").all()
-            for sel in selects:
-                try:
-                    sel_id = sel.get_attribute("id") or ""
-                    sel_name = sel.get_attribute("name") or ""
-                    label_text = ""
-                    if sel_id:
-                        label_el = page.locator(f"label[for='{sel_id}']")
-                        if label_el.count() > 0:
-                            label_text = label_el.text_content() or ""
-                    print(f"Select found: id={sel_id} name={sel_name} label='{label_text.strip()}'")
-                    label_lower = label_text.lower()
-                    id_lower = (sel_id + " " + sel_name).lower()
-                    if "visa" in label_lower or "sponsor" in label_lower or "visa" in id_lower or "sponsor" in id_lower:
-                        # Candidate is in Netherlands and does not need sponsorship
-                        try:
-                            sel.select_option(label="No")
-                            print(f"  -> Selected 'No' for visa sponsorship")
-                        except Exception:
-                            try:
-                                sel.select_option(value="0")
-                                print(f"  -> Selected value 0 for visa sponsorship")
-                            except Exception as e2:
-                                print(f"  -> Could not set visa select: {e2}")
-                    elif "gender" in label_lower or "race" in label_lower or "veteran" in label_lower or "disability" in label_lower:
-                        # EEOC - select "Decline to identify" or "I don't wish to answer"
-                        options = sel.locator("option").all()
-                        option_texts = []
-                        for opt in options:
-                            option_texts.append(opt.text_content() or "")
-                        print(f"  EEOC options: {option_texts}")
-                        # Try to find decline option
-                        decline_keywords = ["decline", "prefer not", "don't wish", "not answer", "no answer"]
-                        for opt_text in option_texts:
-                            if any(kw in opt_text.lower() for kw in decline_keywords):
+                    print(f"Found unfilled field: label='{lbl_text}' id={lbl_for} tag={tag}")
+
+                    if tag == "textarea":
+                        if "cover" in lbl_text or "letter" in lbl_text:
+                            target.fill(COVER_LETTER_TEXT)
+                            print(f"  -> Filled as cover letter")
+                        elif "experience" in lbl_text or "auth" in lbl_text or "iam" in lbl_text:
+                            target.fill(
+                                "I have experience building and integrating OAuth2/OIDC authentication flows "
+                                "in .NET and Python applications. I have worked with third-party identity providers "
+                                "and implemented role-based access control in REST APIs. I am eager to deepen "
+                                "this expertise with SAML, SCIM, and cloud IAM standards (Auth0, AWS IAM, etc.)."
+                            )
+                            print(f"  -> Filled as auth experience")
+                        elif any(kw in lbl_text for kw in ["why", "motivation", "interest", "tell us"]):
+                            target.fill(
+                                "I am excited by ClickHouse's position as a leader in real-time analytics. "
+                                "The Platform Auth team's mission to build a unified customer identity layer "
+                                "is technically fascinating and critically important. My background in .NET, "
+                                "Python, and cloud-native systems — combined with my passion for security and "
+                                "developer experience — makes this a perfect fit."
+                            )
+                            print(f"  -> Filled as motivation")
+                        else:
+                            target.fill("Experienced software engineer with .NET, Python, and cloud systems background.")
+                            print(f"  -> Filled with generic answer")
+
+                    elif tag == "input":
+                        if "linkedin" in lbl_text:
+                            target.fill(CANDIDATE["linkedin"])
+                            print(f"  -> Filled LinkedIn")
+                        elif "github" in lbl_text or "portfolio" in lbl_text:
+                            target.fill(CANDIDATE["github"])
+                            print(f"  -> Filled GitHub")
+                        elif "location" in lbl_text or "city" in lbl_text:
+                            target.fill(CANDIDATE["location"])
+                            print(f"  -> Filled location")
+                        elif "website" in lbl_text or "url" in lbl_text:
+                            target.fill(CANDIDATE["linkedin"])
+                            print(f"  -> Filled website with LinkedIn")
+
+                    elif tag == "select":
+                        options = target.locator("option").all()
+                        option_texts = [opt.text_content() or "" for opt in options]
+                        print(f"  Select options: {option_texts}")
+
+                        if "visa" in lbl_text or "sponsor" in lbl_text or "authoriz" in lbl_text:
+                            for opt in option_texts:
+                                if "no" in opt.lower() and len(opt.strip()) < 5:
+                                    try:
+                                        target.select_option(label=opt)
+                                        print(f"  -> Selected '{opt}' for visa/sponsorship")
+                                    except Exception:
+                                        pass
+                                    break
+                            else:
                                 try:
-                                    sel.select_option(label=opt_text)
-                                    print(f"  -> Selected EEOC decline option: {opt_text}")
-                                except Exception:
-                                    pass
-                                break
+                                    target.select_option(label="No")
+                                    print(f"  -> Selected 'No' for visa/sponsorship")
+                                except Exception as e2:
+                                    print(f"  -> Could not set visa select: {e2}")
+
+                        elif any(kw in lbl_text for kw in ["gender", "race", "veteran", "disability"]):
+                            decline_keywords = ["decline", "prefer not", "don't wish", "not answer", "no answer", "i don't"]
+                            for opt_text in option_texts:
+                                if any(kw in opt_text.lower() for kw in decline_keywords):
+                                    try:
+                                        target.select_option(label=opt_text)
+                                        print(f"  -> Selected EEOC decline: '{opt_text}'")
+                                    except Exception:
+                                        pass
+                                    break
+
                 except Exception as e:
-                    print(f"  (error processing select: {e})")
+                    print(f"  (error processing label: {e})")
 
             result["screenshots"].append(screenshot(page, "05-all-fields-filled"))
 
-            # --- Final check before submit ---
+            # Final form state log
             log_all_inputs(page)
             result["screenshots"].append(screenshot(page, "06-before-submit"))
 
-            # --- Submit ---
+            # --- Find and click Submit ---
             submit_selectors = [
                 "input[type='submit']",
                 "button[type='submit']",
                 "button:has-text('Submit Application')",
                 "button:has-text('Submit')",
-                "button:has-text('Apply Now')",
                 "button:has-text('Apply')",
             ]
 
@@ -269,28 +307,33 @@ def run():
                 try:
                     btn = page.locator(sel).first
                     if btn.count() > 0:
-                        submit_btn = btn
                         btn_text = btn.text_content() or btn.get_attribute("value") or "Submit"
-                        print(f"Found submit button: '{btn_text}'")
+                        print(f"Found submit button with selector '{sel}': '{btn_text}'")
+                        submit_btn = btn
                         break
                 except Exception:
                     continue
 
             if submit_btn:
-                print("Submitting application...")
+                print("Clicking Submit...")
                 submit_btn.click()
                 page.wait_for_timeout(6000)
                 result["screenshots"].append(screenshot(page, "07-after-submit"))
 
                 final_url = page.url()
-                final_content = page.content().lower()
                 print(f"Final URL: {final_url}")
+
+                try:
+                    final_content = page.content().lower()
+                except Exception:
+                    final_content = ""
 
                 success_signals = [
                     "thank you" in final_content,
                     "application received" in final_content,
                     "successfully submitted" in final_content,
                     "we've received" in final_content,
+                    "we have received" in final_content,
                     "confirmation" in final_url,
                     "success" in final_url,
                     "thank" in final_url,
@@ -299,35 +342,39 @@ def run():
                 if any(success_signals):
                     print("SUCCESS: Application submitted!")
                     result["status"] = "applied"
-                    result["notes"] = "Application submitted successfully via Greenhouse form"
+                    result["notes"] = "Application submitted successfully"
                 else:
                     # Check for validation errors
-                    errors = page.locator(".error, .alert, [class*='error'], [class*='invalid']").all()
-                    error_texts = []
-                    for err in errors[:5]:
-                        try:
-                            t = err.text_content()
-                            if t and t.strip():
-                                error_texts.append(t.strip())
-                        except Exception:
-                            pass
-                    if error_texts:
-                        print(f"VALIDATION ERRORS: {error_texts}")
-                        result["notes"] = f"Validation errors: {'; '.join(error_texts)}"
-                    else:
-                        print("UNCERTAIN: Could not confirm submission. Check screenshots.")
-                        result["notes"] = "Submitted but could not confirm success from page content"
-                        result["status"] = "applied"  # Assume submitted if no errors
+                    try:
+                        errors = page.locator(".error, .field_with_errors, [class*='error']:not(script)").all()
+                        error_texts = []
+                        for err in errors[:10]:
+                            try:
+                                t = err.text_content()
+                                if t and t.strip() and len(t.strip()) < 200:
+                                    error_texts.append(t.strip())
+                            except Exception:
+                                pass
+                        if error_texts:
+                            print(f"VALIDATION ERRORS: {error_texts}")
+                            result["notes"] = f"Validation errors after submit: {'; '.join(error_texts[:3])}"
+                        else:
+                            print("UNCERTAIN: Could not confirm submission. Check screenshots.")
+                            result["notes"] = "Submitted, could not confirm success from page content. Manual check required."
+                            result["status"] = "applied"
+                    except Exception:
+                        result["status"] = "applied"
+                        result["notes"] = "Submitted but confirmation unclear"
 
                 result["screenshots"].append(screenshot(page, "08-final-state"))
             else:
-                print("ERROR: Submit button not found!")
-                result["notes"] = "Submit button not found"
+                print("ERROR: Submit button not found")
+                result["notes"] = "Submit button not found on form"
                 result["screenshots"].append(screenshot(page, "error-no-submit"))
 
         except PlaywrightTimeout as e:
             print(f"TIMEOUT: {e}")
-            result["notes"] = f"Timeout: {e}"
+            result["notes"] = f"Timeout error: {e}"
             try:
                 result["screenshots"].append(screenshot(page, "error-timeout"))
             except Exception:
@@ -336,7 +383,7 @@ def run():
             print(f"ERROR: {e}")
             import traceback
             traceback.print_exc()
-            result["notes"] = f"Error: {e}"
+            result["notes"] = f"Exception: {e}"
             try:
                 result["screenshots"].append(screenshot(page, "error-exception"))
             except Exception:
@@ -348,9 +395,11 @@ def run():
 
 
 def update_applications(result):
-    """Update the applications.json tracker."""
     with open(APPLICATIONS_JSON, "r") as f:
         apps = json.load(f)
+
+    # Remove any previous failed attempt for same job
+    apps = [a for a in apps if a.get("id") != "app-clickhouse-cloud-iam-001"]
 
     new_entry = {
         "id": "app-clickhouse-cloud-iam-001",
@@ -374,7 +423,6 @@ def update_applications(result):
         json.dump(apps, f, indent=2)
 
     print(f"\nApplication logged to {APPLICATIONS_JSON}")
-    print(f"Status: {result['status']}")
     return new_entry
 
 

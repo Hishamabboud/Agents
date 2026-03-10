@@ -1,0 +1,242 @@
+[
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "first_name",
+    "name": "",
+    "placeholder": "",
+    "label": "First Name*",
+    "parentText": "First Name*",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "last_name",
+    "name": "",
+    "placeholder": "",
+    "label": "Last Name*",
+    "parentText": "Last Name*",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "email",
+    "name": "",
+    "placeholder": "",
+    "label": "Email*",
+    "parentText": "Email*",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "country",
+    "name": "",
+    "placeholder": "",
+    "label": "Country",
+    "parentText": "",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "search",
+    "id": "iti-0__search-input",
+    "name": "",
+    "placeholder": "Search",
+    "label": "",
+    "parentText": "",
+    "visible": false
+  },
+  {
+    "tag": "INPUT",
+    "type": "tel",
+    "id": "phone",
+    "name": "",
+    "placeholder": "",
+    "label": "Phone",
+    "parentText": "244 results foundNo results foundAfghanistan+93Åland Islands+358Albania+355Algeria+213American Samoa",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "candidate-location",
+    "name": "",
+    "placeholder": "",
+    "label": "Location (City)*",
+    "parentText": "",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "",
+    "name": "",
+    "placeholder": "",
+    "label": "",
+    "parentText": "",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "file",
+    "id": "resume",
+    "name": "",
+    "placeholder": "",
+    "label": "Attach",
+    "parentText": "AttachAttach",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "file",
+    "id": "cover_letter",
+    "name": "",
+    "placeholder": "",
+    "label": "Attach",
+    "parentText": "AttachAttach",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554842003",
+    "name": "",
+    "placeholder": "",
+    "label": "LinkedIn Profile",
+    "parentText": "LinkedIn Profile",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554843003",
+    "name": "",
+    "placeholder": "",
+    "label": "Are you based in the UK, Ireland, Estonia, the Netherlands, Sweden, Israel (Full-time employee) or other Eastern European locations / Portugal (Contractor)?*",
+    "parentText": "",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "",
+    "name": "",
+    "placeholder": "",
+    "label": "",
+    "parentText": "Select...",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554844003",
+    "name": "",
+    "placeholder": "",
+    "label": "Will you now or in the future require visa sponsorship for the country you are applying?*",
+    "parentText": "",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "",
+    "name": "",
+    "placeholder": "",
+    "label": "",
+    "parentText": "Select...",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554845003",
+    "name": "",
+    "placeholder": "",
+    "label": "Have you implemented any cost optimization or performance improvements in cloud-based systems? If yes, please share an example and the outcome.*",
+    "parentText": "Have you implemented any cost optimization or performance improvements in cloud-based systems? If ye",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554846003",
+    "name": "",
+    "placeholder": "",
+    "label": "Describe your experience with Go, React, and Node.js or TypeScript. Which stack have you worked with most recently and in what context?*",
+    "parentText": "Describe your experience with Go, React, and Node.js or TypeScript. Which stack have you worked with",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554847003",
+    "name": "",
+    "placeholder": "",
+    "label": "Tell us about a project where you designed or worked on a microservices-based system in a cloud environment (AWS, GCP, or Azure). What was your contribution?*",
+    "parentText": "Tell us about a project where you designed or worked on a microservices-based system in a cloud envi",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554848003",
+    "name": "",
+    "placeholder": "",
+    "label": "What range does your salary expectation fall into? Please choose one:*",
+    "parentText": "",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "",
+    "name": "",
+    "placeholder": "",
+    "label": "",
+    "parentText": "Select...",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554849003",
+    "name": "",
+    "placeholder": "",
+    "label": "What are your salary expectations? *",
+    "parentText": "What are your salary expectations? *",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "question_28554850003",
+    "name": "",
+    "placeholder": "",
+    "label": "Voluntary Disclosure of Gender*",
+    "parentText": "",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "",
+    "name": "",
+    "placeholder": "",
+    "label": "",
+    "parentText": "Select...",
+    "visible": true
+  },
+  {
+    "tag": "TEXTAREA",
+    "type": "textarea",
+    "id": "g-recaptcha-response-100000",
+    "name": "g-recaptcha-response",
+    "placeholder": "",
+    "label": "",
+    "parentText": "",
+    "visible": false
+  }
+]

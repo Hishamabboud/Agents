@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head><title>Conxillium Application Submission Proof</title>
+<style>
+body { font-family: Arial, sans-serif; padding: 40px; max-width: 800px; }
+.success { color: #155724; background: #d4edda; border: 1px solid #c3e6cb; padding: 20px; border-radius: 5px; margin: 20px 0; }
+.field { margin: 10px 0; }
+.label { font-weight: bold; color: #555; }
+.value { color: #333; }
+h1 { color: #333; }
+h2 { color: #555; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+</style>
+</head>
+<body>
+<h1>Job Application Submission Record</h1>
+
+<div class="success">
+<strong>Application Submitted Successfully</strong><br>
+HTTP Status: 201 Created<br>
+Date/Time: 2026-03-10 11:24:05 UTC (first submission) / 11:26:04 UTC (second submission with correct field names)
+</div>
+
+<h2>Position</h2>
+<div class="field"><span class="label">Job Title:</span> <span class="value">Fullstack Mobile Software Engineer (.NET / MAUI)</span></div>
+<div class="field"><span class="label">Company:</span> <span class="value">Conxillium Group (Progresity)</span></div>
+<div class="field"><span class="label">Location:</span> <span class="value">Capelle aan den IJssel, Zuid-Holland, Netherlands</span></div>
+<div class="field"><span class="label">Job URL:</span> <span class="value">https://werkenbijconxillium.nl/l/en/o/fullstack-mobile-software-engineer-net-maui</span></div>
+<div class="field"><span class="label">Apply URL:</span> <span class="value">https://werkenbijconxillium.nl/o/fullstack-mobile-software-engineer-net-maui/c/new</span></div>
+<div class="field"><span class="label">Recruitee Offer ID:</span> <span class="value">2456482</span></div>
+
+<h2>Candidate Details Submitted</h2>
+<div class="field"><span class="label">Name:</span> <span class="value">Hisham Abboud</span></div>
+<div class="field"><span class="label">Email:</span> <span class="value">hiaham123@hotmail.com</span></div>
+<div class="field"><span class="label">Phone:</span> <span class="value">+31064841283</span></div>
+<div class="field"><span class="label">LinkedIn:</span> <span class="value">linkedin.com/in/hisham-abboud</span></div>
+<div class="field"><span class="label">Location Preference:</span> <span class="value">Capelle aan den IJssel, 2098LP (ID: 75916)</span></div>
+<div class="field"><span class="label">Resume:</span> <span class="value">Hisham_Abboud_CV.pdf (uploaded)</span></div>
+<div class="field"><span class="label">Cover Letter:</span> <span class="value">Hisham_Abboud_Cover_Letter.pdf (submitted)</span></div>
+
+<h2>API Response (Candidate ID: 117564786)</h2>
+<pre style="background:#f8f9fa; padding:15px; overflow:auto; font-size:12px;">
+{
+  "candidate": {
+    "id": 117564786,
+    "name": "Hisham Abboud",
+    "emails": ["hiaham123@hotmail.com"],
+    "phones": ["+31064841283"],
+    "created_at": "2026-03-10T11:24:05.692822Z",
+    "cv_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/117564786/cv_a9np25l11eog.pdf"
+  }
+}
+</pre>
+</body>
+</html>
