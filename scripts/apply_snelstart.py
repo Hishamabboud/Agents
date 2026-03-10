@@ -11,33 +11,33 @@ import urllib.parse
 from playwright.sync_api import sync_playwright
 
 SCREENSHOTS_DIR = "/home/user/Agents/output/screenshots"
-RESUME_PDF = "/home/user/Agents/profile/resume.pdf"
+RESUME_PDF = "/home/user/Agents/profile/Hisham Abboud CV.pdf"
+COVER_LETTER_FILE = "/home/user/Agents/output/cover-letters/snelstart-net-developer.md"
 VACANCY_URL = "https://www.werkenbijsnelstart.nl/vacatures/full-stack-developer-amersfoort-snelstart"
 APPLY_URL = "https://www.werkenbijsnelstart.nl/solliciteren-nu?vacature_id=376d6c64-66ae-f011-bbd3-7ced8d73068c&functie=Full-Stack%20Developer"
+SUCCESS_URL = "https://www.werkenbijsnelstart.nl/bedankt-pagina-sollicitatie"
 
 APPLICANT = {
     "first_name": "Hisham",
     "last_name": "Abboud",
     "email": "hiaham123@hotmail.com",
-    "phone": "0648412838",  # Dutch format without country code for tel input
+    "phone": "0648412838",  # Without country code
+    "phone_country": "NL",
 }
 
 COVER_LETTER = """Geachte SnelStart Recruitment Team,
 
-Ik schrijf u met enthousiasme voor de functie van Full-Stack Developer bij SnelStart Software B.V. SnelStart's reputatie als toonaangevend Nederlands boekhoud- en administratie-SaaS-platform, vertrouwd door duizenden ondernemers, maakt het een bedrijf waarbij ik graag een bijdrage zou leveren.
+Ik schrijf u met enthousiasme voor de functie van Full-Stack Developer bij SnelStart Software B.V. SnelStart's reputatie als toonaangevend Nederlands boekhoud- en administratie-SaaS-platform, vertrouwd door duizenden ondernemers, maakt het een bedrijf waarbij ik graag wil bijdragen.
 
 In mijn huidige functie als Software Service Engineer bij Actemium (VINCI Energies) ontwikkel ik full-stack applicaties met .NET, C#, ASP.NET en SQL Server, en lever ik REST API-integraties voor veeleisende industriele klanten in Agile-sprints. Eerder bij Delta Electronics heb ik een legacy Visual Basic-codebase gemigreerd naar C# en een HR-webapplicatie gebouwd voor budgetbeheer.
 
-Mijn stack sluit goed aan bij wat SnelStart gebruikt: C# en .NET backend, SQL Server, Azure DevOps en CI/CD-pipelines, en moderne JavaScript/TypeScript-frontends. Tijdens mijn stage bij ASML verdiepte ik mijn ervaring met Jira en Kubernetes in een agile omgeving.
+Mijn technische stack sluit goed aan bij SnelStart: C# en .NET backend, SQL Server, Azure DevOps en CI/CD-pipelines, en moderne JavaScript/TypeScript-frontends. Tijdens mijn stage bij ASML verdiepte ik mijn ervaring met Jira en Kubernetes in een agile omgeving.
 
-Ik ben meertalig (Nederlands, Engels, Arabisch) en heb ondernemersgeest getoond door het oprichten van CogitatAI, een AI-klantenserviceplatform.
-
-Ik sta open voor een gesprek en kijk uit naar de mogelijkheid om bij te dragen aan het engineeringteam van SnelStart.
+Ik ben meertalig (Nederlands, Engels, Arabisch) en heb ondernemersgeest getoond door het oprichten van CogitatAI, een AI-klantenserviceplatform. Ik kijk uit naar de mogelijkheid om bij te dragen aan het engineeringteam van SnelStart.
 
 Met vriendelijke groet,
 Hisham Abboud
-+31 06 4841 2838
-hiaham123@hotmail.com"""
++31 06 4841 2838 | hiaham123@hotmail.com"""
 
 
 def get_proxy_config():
@@ -63,35 +63,6 @@ def save_screenshot(page, name):
         return None
 
 
-def fill_input(frame, selector, value):
-    """Fill an input element using JS evaluation."""
-    try:
-        el = frame.query_selector(selector)
-        if el:
-            frame.evaluate(
-                """([el, val]) => {
-                    el.scrollIntoView();
-                    el.focus();
-                    // Clear and set value
-                    el.value = val;
-                    // Trigger all relevant events
-                    el.dispatchEvent(new Event('input', {bubbles: true}));
-                    el.dispatchEvent(new Event('change', {bubbles: true}));
-                    el.dispatchEvent(new KeyboardEvent('keydown', {bubbles: true}));
-                    el.dispatchEvent(new KeyboardEvent('keyup', {bubbles: true}));
-                    el.dispatchEvent(new Event('blur', {bubbles: true}));
-                }""",
-                [el, value]
-            )
-            # Verify the value was set
-            actual = frame.evaluate("(el) => el.value", el)
-            print(f"  Filled '{selector[:60]}' = '{value[:40]}' (actual: '{actual[:40]}')")
-            return True
-    except Exception as e:
-        print(f"  fill_input error for '{selector}': {e}")
-    return False
-
-
 def run():
     os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
     result = {
@@ -104,6 +75,7 @@ def run():
 
     proxy = get_proxy_config()
     print(f"Proxy: {proxy['server'] if proxy else 'None'}")
+    print(f"Resume PDF: {RESUME_PDF} (exists: {os.path.exists(RESUME_PDF)})")
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -112,14 +84,14 @@ def run():
             proxy=proxy,
         )
         ctx = browser.new_context(
-            viewport={"width": 1280, "height": 900},
+            viewport={"width": 1280, "height": 1000},
             user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             ignore_https_errors=True,
         )
         page = ctx.new_page()
 
         try:
-            # --- Step 1: Vacancy page ---
+            # Step 1: Vacancy page
             print("\n=== Step 1: Vacancy page ===")
             resp = page.goto(VACANCY_URL, wait_until="domcontentloaded", timeout=30000)
             print(f"Status: {resp.status if resp else 'N/A'}, Title: {page.title()}")
@@ -128,210 +100,218 @@ def run():
             if s:
                 result["screenshots"].append(s)
 
-            # --- Step 2: Application form ---
-            print("\n=== Step 2: Navigate to application form ===")
+            # Step 2: Application form
+            print("\n=== Step 2: Application form ===")
             resp = page.goto(APPLY_URL, wait_until="domcontentloaded", timeout=30000)
             print(f"Status: {resp.status if resp else 'N/A'}, Title: {page.title()}")
-            print("Waiting 8s for HubSpot form to initialize...")
+            print("Waiting 8s for HubSpot form to load...")
             time.sleep(8)
 
-            s = save_screenshot(page, "02-apply-page")
+            s = save_screenshot(page, "02-apply-page-loaded")
             if s:
                 result["screenshots"].append(s)
 
-            # --- Step 3: Find form frame ---
-            print("\n=== Step 3: Find form frame ===")
-            target_frame = None
-            for frame in [page] + page.frames:
-                try:
-                    n = frame.evaluate("() => document.querySelectorAll('input').length")
-                    print(f"  {frame.url[:80]} -> {n} inputs")
-                    if n > 0 and target_frame is None:
-                        target_frame = frame
-                except Exception as e:
-                    print(f"  frame error: {e}")
-
-            if not target_frame:
+            # Verify form is present
+            firstname_el = page.query_selector("input[name='firstname']")
+            if not firstname_el:
                 result["status"] = "skipped"
-                result["notes"] = "Form not found. Apply manually at: " + APPLY_URL
+                result["notes"] = "HubSpot form not found. Apply manually: " + APPLY_URL
                 return result
 
-            print(f"Using frame: {target_frame.url[:80]}")
-
-            # --- Step 4: Fill form ---
-            print("\n=== Step 4: Fill form fields ===")
-            filled = 0
-
-            # The form suffix from the enumerated inputs:
-            # id format: fieldname-{form_id}_{number}
-            form_id = "6d1a7f79-b15c-48ce-9d86-f6fc4894d8b4_2280"
-
-            # Fill firstname
-            if fill_input(target_frame, "input[name='firstname']", APPLICANT["first_name"]):
-                filled += 1
+            # Step 3: Fill firstname
+            print("\n=== Step 3: Fill form ===")
+            print("  Filling firstname...")
+            firstname_el.click()
+            firstname_el.fill(APPLICANT["first_name"])
+            time.sleep(0.3)
 
             # Fill lastname
-            if fill_input(target_frame, "input[name='lastname']", APPLICANT["last_name"]):
-                filled += 1
+            print("  Filling lastname...")
+            lastname_el = page.query_selector("input[name='lastname']")
+            lastname_el.click()
+            lastname_el.fill(APPLICANT["last_name"])
+            time.sleep(0.3)
 
             # Fill email
-            if fill_input(target_frame, "input[name='email']", APPLICANT["email"]):
-                filled += 1
+            print("  Filling email...")
+            email_el = page.query_selector("input[name='email']")
+            email_el.click()
+            email_el.fill(APPLICANT["email"])
+            time.sleep(0.3)
 
-            # Fill phone (tel input by id)
-            if fill_input(target_frame, f"input#phone-{form_id}", APPLICANT["phone"]):
-                filled += 1
-            elif fill_input(target_frame, "input[type='tel']", APPLICANT["phone"]):
-                filled += 1
-
-            # Select Netherlands (+31) in phone country dropdown
-            try:
-                select_el = target_frame.query_selector(f"select#phone_ext-{form_id}")
-                if not select_el:
-                    select_el = target_frame.query_selector("select[id*='phone_ext']")
-                if select_el:
-                    # Select Netherlands option
-                    target_frame.evaluate(
-                        """([el]) => {
-                            // Try to select Netherlands (+31)
-                            const options = Array.from(el.options);
-                            const nl = options.find(o => o.value === 'NL' || o.text.includes('Netherlands') || o.text.includes('+31'));
-                            if (nl) {
-                                el.value = nl.value;
-                                el.dispatchEvent(new Event('change', {bubbles: true}));
-                                console.log('Selected:', nl.text);
-                            }
-                        }""",
-                        [select_el]
-                    )
-                    print("  Set phone country to Netherlands (+31)")
-            except Exception as e:
-                print(f"  Phone country select error: {e}")
-
-            # Fill textarea (bericht = message/cover letter)
-            try:
-                ta = target_frame.query_selector("textarea[name='bericht']")
-                if not ta:
-                    ta = target_frame.query_selector("textarea")
-                if ta:
-                    target_frame.evaluate(
-                        """([el, val]) => {
-                            el.scrollIntoView();
-                            el.focus();
-                            el.value = val;
-                            el.dispatchEvent(new Event('input', {bubbles: true}));
+            # Set phone country to Netherlands first
+            print("  Setting phone country to Netherlands...")
+            phone_select = page.query_selector("select[id*='phone_ext']")
+            if phone_select:
+                # Select Netherlands by value
+                page.evaluate(
+                    """([el]) => {
+                        const options = Array.from(el.options);
+                        const nl = options.find(o => o.value === 'NL');
+                        if (nl) {
+                            el.value = 'NL';
                             el.dispatchEvent(new Event('change', {bubbles: true}));
-                            el.dispatchEvent(new Event('blur', {bubbles: true}));
-                        }""",
-                        [ta, COVER_LETTER]
-                    )
-                    actual_len = target_frame.evaluate("(el) => el.value.length", ta)
-                    print(f"  Filled textarea 'bericht' ({actual_len} chars)")
-                    filled += 1
-            except Exception as e:
-                print(f"  Textarea error: {e}")
+                        }
+                    }""",
+                    [phone_select]
+                )
+                time.sleep(0.5)
+                current_val = page.evaluate("(el) => el.value", phone_select)
+                print(f"    Phone country set to: {current_val}")
 
-            # Upload CV (PDF)
-            print(f"\n  File inputs: uploading CV and optional cover letter")
-            if os.path.exists(RESUME_PDF):
-                # Upload CV
-                cv_input = target_frame.query_selector("input[name='upload_je_cv_bij_voorkeur_pdf_']")
-                if not cv_input:
-                    cv_input = target_frame.query_selector("input[type='file']")
-                if cv_input:
-                    try:
-                        cv_input.set_input_files(RESUME_PDF)
-                        filled += 1
-                        print(f"  Uploaded CV: {RESUME_PDF}")
-                        time.sleep(2)
-                    except Exception as e:
-                        print(f"  CV upload error: {e}")
+            # Fill phone number (the visible tel input)
+            print("  Filling phone number...")
+            phone_tel = page.query_selector("input[type='tel']")
+            if phone_tel:
+                # Clear the field first and fill with just digits
+                phone_tel.click()
+                # Triple-click to select all, then type
+                phone_tel.triple_click()
+                time.sleep(0.2)
+                phone_tel.fill(APPLICANT["phone"])
+                time.sleep(0.3)
+                phone_val = page.evaluate("(el) => el.value", phone_tel)
+                print(f"    Phone value: {phone_val}")
+
+            # Upload CV
+            print("  Uploading CV...")
+            cv_input = page.query_selector("input[name='upload_je_cv_bij_voorkeur_pdf_']")
+            if cv_input and os.path.exists(RESUME_PDF):
+                cv_input.set_input_files(RESUME_PDF)
+                time.sleep(2)
+                print(f"    Uploaded: {RESUME_PDF}")
             else:
-                print(f"  Resume PDF not found: {RESUME_PDF}")
+                print(f"    CV input not found or file missing: {RESUME_PDF}")
 
-            # Check consent checkbox
-            try:
-                consent_cb = target_frame.query_selector("input[name*='LEGAL_CONSENT']")
-                if consent_cb:
-                    target_frame.evaluate(
-                        """([el]) => {
-                            if (!el.checked) {
-                                el.checked = true;
-                                el.dispatchEvent(new Event('change', {bubbles: true}));
-                                el.dispatchEvent(new Event('click', {bubbles: true}));
-                            }
-                        }""",
-                        [consent_cb]
-                    )
-                    print("  Checked consent checkbox")
-            except Exception as e:
-                print(f"  Consent checkbox error: {e}")
+            # "Hoe ben je bij ons terecht gekomen" - how did you find us
+            print("  Selecting 'hoe ben je bij ons terecht gekomen'...")
+            source_select = page.query_selector("select[name='hoe_ben_je_bij_ons_terecht_gekomen_']")
+            if source_select:
+                # Get available options
+                options = page.evaluate(
+                    "(el) => Array.from(el.options).map(o => ({value: o.value, text: o.text}))",
+                    source_select
+                )
+                print(f"    Options: {options}")
+                # Select "Internet" or first non-empty option
+                for opt in options:
+                    if opt["value"] and opt["value"] != "":
+                        page.evaluate(
+                            "([el, val]) => { el.value = val; el.dispatchEvent(new Event('change', {bubbles:true})); }",
+                            [source_select, opt["value"]]
+                        )
+                        print(f"    Selected: {opt['text']}")
+                        break
 
-            print(f"\nTotal fields filled: {filled}")
-            time.sleep(2)
+            # Fill cover letter textarea
+            print("  Filling motivation/cover letter...")
+            bericht = page.query_selector("textarea[name='bericht']")
+            if bericht:
+                bericht.click()
+                bericht.fill(COVER_LETTER)
+                time.sleep(0.3)
+                actual_len = page.evaluate("(el) => el.value.length", bericht)
+                print(f"    Textarea filled: {actual_len} chars")
 
-            s = save_screenshot(page, "04-form-filled")
+            # Scroll to consent checkbox and click it
+            print("  Checking consent checkbox...")
+            consent = page.query_selector("input[name*='LEGAL_CONSENT']")
+            if consent:
+                # Scroll to make it visible and click
+                consent.scroll_into_view_if_needed()
+                time.sleep(0.5)
+                consent.click()
+                time.sleep(0.3)
+                is_checked = page.evaluate("(el) => el.checked", consent)
+                print(f"    Consent checkbox checked: {is_checked}")
+
+            time.sleep(1)
+
+            # Take screenshot of filled form (scroll to top first)
+            page.evaluate("() => window.scrollTo(0, 0)")
+            time.sleep(0.5)
+            s = save_screenshot(page, "03-form-top-filled")
             if s:
                 result["screenshots"].append(s)
 
-            if filled == 0:
+            # Scroll to bottom to see full form
+            page.evaluate("() => window.scrollTo(0, document.body.scrollHeight)")
+            time.sleep(0.5)
+            s = save_screenshot(page, "04-form-bottom-filled")
+            if s:
+                result["screenshots"].append(s)
+
+            # Verify field values
+            verification = page.evaluate("""() => ({
+                firstname: document.querySelector("input[name='firstname']")?.value || '',
+                lastname: document.querySelector("input[name='lastname']")?.value || '',
+                email: document.querySelector("input[name='email']")?.value || '',
+                phone: document.querySelector("input[type='tel']")?.value || '',
+                bericht: document.querySelector("textarea[name='bericht']")?.value?.length || 0,
+                consent: document.querySelector("input[name*='LEGAL_CONSENT']")?.checked || false,
+            })""")
+            print(f"\n  Field verification: {verification}")
+
+            # Find and click submit
+            print("\n=== Step 4: Submit ===")
+            submit = page.query_selector("input[type='submit'][value='Verzenden']")
+            if not submit:
+                submit = page.query_selector("input[type='submit']")
+            if not submit:
+                submit = page.query_selector("button[type='submit']")
+
+            if not submit:
                 result["status"] = "skipped"
-                result["notes"] = "Form accessible but no fields could be filled. Apply manually at: " + APPLY_URL
+                result["notes"] = "Submit button not found. Apply manually: " + APPLY_URL
                 return result
 
-            # --- Step 5: Submit ---
-            print("\n=== Step 5: Submit form ===")
-            submit_btn = None
+            print(f"  Found submit: {page.evaluate('(el) => el.value || el.innerText', submit)}")
 
-            # We know it's input[type='submit'] from the form enumeration
-            submit_btn = target_frame.query_selector("input[type='submit']")
-            if submit_btn:
-                val = target_frame.evaluate("(el) => el.value || 'submit'", submit_btn)
-                print(f"Found submit button: value='{val}'")
+            # Scroll to submit and take pre-submit screenshot
+            submit.scroll_into_view_if_needed()
+            time.sleep(0.5)
+            s = save_screenshot(page, "05-pre-submit")
+            if s:
+                result["screenshots"].append(s)
 
-            if not submit_btn:
-                for sel in ["button[type='submit']", "button.hs-button", "button.hs-button.primary"]:
-                    el = target_frame.query_selector(sel)
-                    if el:
-                        submit_btn = el
-                        print(f"Found submit: {sel}")
-                        break
+            # Click submit
+            print("  Clicking Verzenden...")
+            submit.click()
+            time.sleep(6)
 
-            if submit_btn and filled > 0:
-                s = save_screenshot(page, "05-pre-submit")
-                if s:
-                    result["screenshots"].append(s)
+            # Check if redirected to success page
+            current_url = page.url
+            print(f"  Post-submit URL: {current_url}")
 
-                print("Clicking submit button...")
-                submit_btn.click()
-                time.sleep(6)
+            s = save_screenshot(page, "06-post-submit")
+            if s:
+                result["screenshots"].append(s)
 
-                s = save_screenshot(page, "06-post-submit")
-                if s:
-                    result["screenshots"].append(s)
+            if "bedankt" in current_url.lower() or "thank" in current_url.lower():
+                result["status"] = "applied"
+                result["notes"] = f"Application submitted successfully. Redirected to: {current_url}. Applied via: {APPLY_URL}"
+                print(f"  SUCCESS - Redirected to confirmation page!")
+            else:
+                # Check page content for success or errors
+                body_text = page.evaluate("() => document.body?.innerText?.substring(0, 1000) || ''")
+                print(f"  Page text: {body_text[:300]}")
 
-                final_text = page.evaluate(
-                    "() => document.body ? document.body.innerText.substring(0, 2000) : ''"
-                )
-                print(f"\nPost-submit page:\n{final_text[:800]}")
+                error_kws = ["vul", "verplicht", "required", "error", "fout"]
+                success_kws = ["bedankt", "dank", "thank", "ontvangen", "ingediend", "bevestig"]
 
-                success_kws = ["bedankt", "dank", "thank", "ontvangen", "received", "success",
-                               "verstuurd", "ingediend", "bevestig", "we contact"]
-                if any(kw in final_text.lower() for kw in success_kws):
+                if any(kw in body_text.lower() for kw in success_kws):
                     result["status"] = "applied"
-                    result["notes"] = f"Application submitted and confirmation received. Applied via: {APPLY_URL}"
+                    result["notes"] = f"Application submitted. Confirmation keywords found. Via: {APPLY_URL}"
+                elif any(kw in body_text.lower() for kw in error_kws):
+                    result["status"] = "failed"
+                    result["notes"] = (
+                        f"Form validation errors after submit. Page still shows form. "
+                        f"Verification: {verification}. "
+                        f"Apply manually: {APPLY_URL}"
+                    )
                 else:
                     result["status"] = "applied"
-                    result["notes"] = (
-                        f"Form submitted ({filled} fields filled) via {APPLY_URL}. "
-                        "Check screenshots for confirmation details."
-                    )
-            else:
-                result["status"] = "skipped"
-                result["notes"] = (
-                    f"Filled {filled} fields but submit button not found/clickable. "
-                    "Complete manually at: " + APPLY_URL
-                )
+                    result["notes"] = f"Form submitted via {APPLY_URL}. Check screenshot for details."
 
         except Exception as e:
             import traceback
