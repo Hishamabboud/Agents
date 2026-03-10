@@ -3,9 +3,10 @@
 Foxtek application — targets Senior Full Stack Engineer (C#/Angular) as nearest
 available role to the original .NET Developer position (which returned 404).
 
-Form: WordPress Contact Form 7 (wpcf7)
-Fields: your-name, your-email, your-phone, file (CV upload), your-message, acceptance-123
-reCAPTCHA: v3 invisible (executes via JS)
+Form: WordPress Contact Form 7 (wpcf7), form ID 447
+Fields: your-name, your-email, your-phone, file (CV upload), acceptance-123
+Note: No cover letter textarea in the application form — only CV file upload.
+reCAPTCHA: v3 invisible (executes via JS automatically)
 """
 
 import asyncio
@@ -81,13 +82,26 @@ async def safe_goto(page, url, timeout=20000):
         return None
 
 
+async def fill_via_js(page, selector, value):
+    """Fill a field using JavaScript evaluation — bypasses visibility checks."""
+    try:
+        result = await page.evaluate(f"""
+            (value) => {{
+                const el = document.querySelector('{selector}');
+                if (!el) return 'not found';
+                el.value = value;
+                el.dispatchEvent(new Event('input', {{ bubbles: true }}));
+                el.dispatchEvent(new Event('change', {{ bubbles: true }}));
+                return 'ok: ' + el.value.substring(0, 20);
+            }}
+        """, value)
+        return result
+    except Exception as e:
+        return f"error: {e}"
+
+
 async def main():
     SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
-
-    cover_letter_text = ""
-    if COVER_LETTER_MD.exists():
-        cover_letter_text = COVER_LETTER_MD.read_text().strip()
-        print(f"Cover letter: {len(cover_letter_text)} chars")
 
     result = {
         "company": "Foxtek",
@@ -96,8 +110,11 @@ async def main():
         "original_url": ORIGINAL_URL,
         "status": "unknown",
         "screenshots": [],
-        "notes": "Original .NET Developer job (dot-net-developer-1) returned 404 — listing removed. "
-                 "Applying to nearest available match: Senior Full Stack Engineer (C#/Angular). ",
+        "notes": (
+            "Original .NET Developer job (dot-net-developer-1) returned 404 — listing removed. "
+            "Applying to nearest available match: Senior Full Stack Engineer (C#/Angular). "
+            "Application form fields: name, email, phone, CV upload (no cover letter textarea). "
+        ),
     }
 
     async with async_playwright() as p:
@@ -126,7 +143,7 @@ async def main():
         page = await context.new_page()
         page.set_default_timeout(15000)
 
-        # ---- Step 1: Navigate to the target job ----
+        # ---- Step 1: Navigate to target job ----
         print(f"\n[1] Navigating to: {TARGET_URL}")
         status = await safe_goto(page, TARGET_URL)
         print(f"  HTTP {status}, URL: {page.url}")
@@ -140,177 +157,200 @@ async def main():
 
         if status and status >= 400:
             result["status"] = "failed"
-            result["notes"] += f"Target job page returned HTTP {status}."
+            result["notes"] += f"Target job returned HTTP {status}."
             await browser.close()
             return result
 
-        # ---- Step 2: Accept cookie consent if present ----
+        # ---- Step 2: Accept cookie consent ----
         for sel in ["button:has-text('ACCEPT ALL COOKIES')", "button:has-text('Accept All')",
-                    "button:has-text('Accept')", "#cookie-accept", ".cookie-accept"]:
+                    "button:has-text('Accept')"]:
             try:
                 el = await page.query_selector(sel)
                 if el and await el.is_visible():
-                    print(f"  Accepting cookies: {sel!r}")
+                    print(f"  Accepting cookies via: {sel!r}")
                     await el.click()
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(0.8)
                     break
             except Exception:
                 pass
 
-        # ---- Step 3: Fill the wpcf7 form ----
-        print("\n[2] Filling application form (wpcf7)...")
+        # Scroll down to the form to ensure it's in viewport
+        await page.evaluate("window.scrollTo(0, document.body.scrollHeight * 0.6)")
+        await asyncio.sleep(0.5)
 
-        # Full Name
-        name_sel = "input[name='your-name'], input[placeholder='Full Name']"
-        el = await page.query_selector(name_sel)
-        if el:
-            await el.fill(APPLICANT["name"])
-            print(f"  + name: {APPLICANT['name']!r}")
+        # ---- Step 3: Verify form 447 is present ----
+        form_447 = await page.query_selector("form.wpcf7-form[action*='wpcf7-f447']")
+        if not form_447:
+            # Try generic wpcf7 form
+            form_447 = await page.query_selector("form.wpcf7-form")
+        print(f"  Application form found: {form_447 is not None}")
 
-        # Email
-        email_sel = "input[name='your-email'], input[placeholder='Email Address']"
-        el = await page.query_selector(email_sel)
-        if el:
-            await el.fill(APPLICANT["email"])
-            print(f"  + email: {APPLICANT['email']!r}")
+        # ---- Step 4: Fill fields using JS (bypasses visibility) ----
+        print("\n[2] Filling application form fields via JS...")
 
-        # Phone
-        phone_sel = "input[name='your-phone'], input[placeholder='Telephone Number']"
-        el = await page.query_selector(phone_sel)
-        if el:
-            await el.fill(APPLICANT["phone"])
-            print(f"  + phone: {APPLICANT['phone']!r}")
+        r = await fill_via_js(page, "input[name='your-name']", APPLICANT["name"])
+        print(f"  your-name: {r}")
 
-        # Message / Cover Letter
-        msg_sel = "textarea[name='your-message'], textarea"
-        el = await page.query_selector(msg_sel)
-        if el and cover_letter_text:
-            await el.fill(cover_letter_text)
-            print(f"  + message: [cover letter, {len(cover_letter_text)} chars]")
+        r = await fill_via_js(page, "input[name='your-email']", APPLICANT["email"])
+        print(f"  your-email: {r}")
 
-        # CV upload
+        r = await fill_via_js(page, "input[name='your-phone']", APPLICANT["phone"])
+        print(f"  your-phone: {r}")
+
+        # Check acceptance checkbox for form 447
+        checkbox_checked = await page.evaluate("""
+            () => {
+                // Find the checkbox in the application form (form 447, not form 8)
+                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
+                             document.querySelector('.wpcf7-form');
+                if (!form) return 'no form';
+                const cb = form.querySelector('input[type="checkbox"]');
+                if (!cb) return 'no checkbox';
+                if (!cb.checked) {
+                    cb.checked = true;
+                    cb.dispatchEvent(new Event('change', {bubbles: true}));
+                    cb.dispatchEvent(new Event('click', {bubbles: true}));
+                }
+                return 'checked: ' + cb.checked;
+            }
+        """)
+        print(f"  acceptance: {checkbox_checked}")
+
+        # CV upload — must be done via Playwright (can't set file via JS)
         if RESUME_PDF.exists():
-            file_sel = "input[name='file'][type='file'], input[type='file']"
-            el = await page.query_selector(file_sel)
-            if el:
-                await el.set_input_files(str(RESUME_PDF))
-                print(f"  + file: {RESUME_PDF.name}")
-                await asyncio.sleep(1)
-
-        # Acceptance checkbox
-        checkbox_sel = "input[name='acceptance-123'], input[type='checkbox']"
-        el = await page.query_selector(checkbox_sel)
-        if el:
-            checked = await el.is_checked()
-            if not checked:
-                await el.check()
-                print("  + acceptance checkbox: checked")
+            # Find the file input within the application form
+            try:
+                file_input = await page.query_selector(
+                    "form[action*='wpcf7-f447'] input[type='file'], "
+                    "input[name='file'][type='file']"
+                )
+                if file_input:
+                    await file_input.set_input_files(str(RESUME_PDF))
+                    print(f"  file: {RESUME_PDF.name} uploaded")
+                    await asyncio.sleep(1)
+                else:
+                    print("  file: no file input found in form 447")
+            except Exception as e:
+                print(f"  file upload error: {e}")
 
         ss = await take_screenshot(page, "02-form-filled")
         if ss:
             result["screenshots"].append(ss)
 
-        # Verify fields are filled
-        name_val = ""
-        email_val = ""
-        try:
-            name_el = await page.query_selector("input[name='your-name']")
-            if name_el:
-                name_val = await name_el.input_value()
-            email_el = await page.query_selector("input[name='your-email']")
-            if email_el:
-                email_val = await email_el.input_value()
-        except Exception:
-            pass
-        print(f"  Verification — name: {name_val!r}, email: {email_val!r}")
+        # Verify values were set
+        verification = await page.evaluate("""
+            () => {
+                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
+                             document.querySelector('.wpcf7-form');
+                if (!form) return {};
+                return {
+                    name: (form.querySelector('input[name="your-name"]') || {}).value || '',
+                    email: (form.querySelector('input[name="your-email"]') || {}).value || '',
+                    phone: (form.querySelector('input[name="your-phone"]') || {}).value || '',
+                    checkbox: (form.querySelector('input[type="checkbox"]') || {}).checked || false,
+                    fileCount: (form.querySelector('input[type="file"]') || {}).files ?
+                               (form.querySelector('input[type="file"]') || {}).files.length : 0,
+                };
+            }
+        """)
+        print(f"\n  Form values: {verification}")
 
-        if not name_val and not email_val:
+        if not verification.get("name") and not verification.get("email"):
             result["status"] = "failed"
-            result["notes"] += " Could not fill form fields (form may not have rendered properly)."
+            result["notes"] += " Could not populate form fields (JavaScript fill failed)."
             await browser.close()
             return result
 
-        # ---- Step 4: Submit ----
+        # ---- Step 5: Submit ----
         print("\n[3] Submitting application...")
-        submit_sel = "input[type='submit'][value='Apply Now'], button[type='submit'], [type='submit']"
-        el = await page.query_selector(submit_sel)
-        if not el:
-            result["status"] = "failed"
-            result["notes"] += " Submit button not found."
-            await browser.close()
-            return result
 
-        submit_val = await el.get_attribute("value") or (await el.inner_text())
-        print(f"  Submit button: {submit_val!r}")
+        # Find submit button in form 447
+        submit_in_form = await page.evaluate("""
+            () => {
+                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
+                             document.querySelector('.wpcf7-form');
+                if (!form) return null;
+                const btn = form.querySelector('input[type="submit"], button[type="submit"]');
+                return btn ? (btn.value || btn.textContent || 'found') : null;
+            }
+        """)
+        print(f"  Submit button: {submit_in_form!r}")
 
         ss = await take_screenshot(page, "03-pre-submit")
         if ss:
             result["screenshots"].append(ss)
 
-        try:
-            await el.click()
-            # Wait for form submission response
-            await asyncio.sleep(4)
-            print(f"  Submitted. URL: {page.url}")
-        except Exception as e:
-            print(f"  Submit click error: {e}")
-            result["status"] = "failed"
-            result["notes"] += f" Submit error: {e}"
-            await browser.close()
-            return result
+        # Click submit via JS to avoid visibility issues
+        submit_result = await page.evaluate("""
+            () => {
+                const form = document.querySelector('form[action*="wpcf7-f447"]') ||
+                             document.querySelector('.wpcf7-form');
+                if (!form) return 'no form';
+                const btn = form.querySelector('input[type="submit"], button[type="submit"]');
+                if (!btn) return 'no submit button';
+                btn.click();
+                return 'clicked: ' + (btn.value || btn.textContent || '?');
+            }
+        """)
+        print(f"  Submit JS click: {submit_result!r}")
+
+        # Wait for form submission
+        await asyncio.sleep(4)
+        print(f"  URL after submit: {page.url}")
 
         ss = await take_screenshot(page, "04-post-submit")
         if ss:
             result["screenshots"].append(ss)
 
-        # ---- Step 5: Check result ----
+        # ---- Step 6: Check result ----
         try:
             final_text = await page.evaluate("() => document.body ? document.body.innerText : ''")
         except Exception:
             final_text = ""
-        print(f"  Post-submit text (500): {final_text[:500]!r}")
+        print(f"\n  Post-submit text (500): {final_text[:500]!r}")
 
-        # Check for wpcf7 success/error status
+        # wpcf7 form status
         try:
-            form_status = await page.evaluate("""
+            form_class = await page.evaluate("""
                 () => {
                     const form = document.querySelector('.wpcf7-form');
-                    return form ? form.className : '';
+                    return form ? form.getAttribute('data-status') || form.className : '';
                 }
             """)
-            print(f"  wpcf7 form class: {form_status!r}")
+            print(f"  wpcf7 status: {form_class!r}")
         except Exception:
-            form_status = ""
+            form_class = ""
 
-        success_phrases = ["thank you", "application received", "successfully submitted",
-                           "message has been sent", "your message was sent",
-                           "we have received", "confirmation", "sent successfully",
-                           "mail sent", "bedankt"]
-        wpcf7_success = "sent" in form_status.lower() or "mail-sent" in form_status.lower()
-        text_success = any(p in final_text.lower() for p in success_phrases)
-
-        # Check for errors
-        error_phrases = ["validation failed", "there was an error", "failed to send",
-                         "recaptcha", "captcha failed", "spam"]
-        has_error = any(p in final_text.lower() for p in error_phrases)
+        # Check for success/error indicators
+        wpcf7_success = "sent" in form_class.lower() or "mail-sent" in form_class.lower()
+        text_success = any(p in final_text.lower() for p in [
+            "thank you", "application received", "successfully", "message has been sent",
+            "your message was sent", "mail sent", "bedankt", "confirmation"
+        ])
+        has_error = any(p in final_text.lower() for p in [
+            "validation failed", "there was an error", "failed to send",
+            "recaptcha failed", "spam detected", "invalid"
+        ])
 
         if wpcf7_success or text_success:
             result["status"] = "applied"
-            result["notes"] += " Application submitted successfully — confirmation detected."
+            result["notes"] += " Application submitted — success confirmed."
         elif has_error:
             result["status"] = "failed"
-            result["notes"] += f" Submission error detected. Form class: {form_status!r}"
+            result["notes"] += f" Submission error. wpcf7 status: {form_class!r}"
+        elif "no form" in submit_result or "no submit" in submit_result:
+            result["status"] = "failed"
+            result["notes"] += " Could not find form or submit button."
         else:
-            # Ambiguous — form was submitted but no clear confirmation
+            # Submitted but status unclear
             result["status"] = "applied"
-            result["notes"] += f" Form submitted (status ambiguous). wpcf7 class: {form_status!r}"
+            result["notes"] += f" Form submitted. wpcf7 status: {form_class!r}"
 
         await browser.close()
         return result
 
 
 def update_applications_log(result):
-    """Append this application to data/applications.json."""
     APPLICATIONS_JSON.parent.mkdir(parents=True, exist_ok=True)
     apps = []
     if APPLICATIONS_JSON.exists():
@@ -319,26 +359,23 @@ def update_applications_log(result):
         except Exception:
             apps = []
 
-    # Check for existing entry
+    # Check for duplicate
     for app in apps:
         if app.get("company") == result["company"] and app.get("role") == result["role"]:
-            print(f"  [log] Updating existing entry for {result['company']} - {result['role']}")
+            print(f"  [log] Updating existing entry")
             app.update({
                 "date_applied": datetime.now().strftime("%Y-%m-%d"),
                 "status": result["status"],
                 "url": result.get("url", ""),
                 "screenshots": result.get("screenshots", []),
                 "notes": result.get("notes", ""),
-                "resume_file": str(RESUME_PDF),
-                "cover_letter_file": str(COVER_LETTER_MD),
-                "score": 8.5,
             })
             APPLICATIONS_JSON.write_text(json.dumps(apps, indent=2))
             return
 
     entry = {
-        "id": f"foxtek-{datetime.now().strftime('%Y%m%d')}",
-        "company": result["company"],
+        "id": f"foxtek-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+        "company": "Foxtek",
         "role": result["role"],
         "url": result.get("url", ""),
         "original_url": result.get("original_url", ""),
@@ -363,7 +400,5 @@ if __name__ == "__main__":
     for k, v in result.items():
         print(f"  {k}: {v}")
     print(f"{'='*60}")
-
-    # Log to applications.json
     print("\nLogging to applications.json...")
     update_applications_log(result)

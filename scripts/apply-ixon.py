@@ -28,15 +28,26 @@ def ts():
 def screenshot(page, label):
     filename = f'ixon-{label}-{ts()}.png'
     filepath = SCREENSHOT_DIR / filename
-    page.screenshot(path=str(filepath), full_page=True)
-    print(f'Screenshot saved: {filepath}')
-    return str(filepath)
+    try:
+        page.screenshot(path=str(filepath), full_page=True, timeout=15000)
+        print(f'Screenshot saved: {filepath}')
+        return str(filepath)
+    except Exception as e:
+        print(f'Screenshot failed for {label}: {e}')
+        # Try without full_page
+        try:
+            page.screenshot(path=str(filepath), timeout=10000)
+            print(f'Screenshot (viewport) saved: {filepath}')
+            return str(filepath)
+        except Exception as e2:
+            print(f'Screenshot also failed without full_page: {e2}')
+            return None
 
 def try_fill(page, selectors, value, field_name):
     for sel in selectors:
         try:
             el = page.locator(sel).first
-            el.wait_for(timeout=3000)
+            el.wait_for(timeout=3000, state='visible')
             el.fill(value)
             print(f'Filled {field_name} using selector: {sel}')
             return True
@@ -45,19 +56,24 @@ def try_fill(page, selectors, value, field_name):
     print(f'Could not fill {field_name}')
     return False
 
+def load_applications():
+    if APPLICATIONS_JSON.exists():
+        with open(APPLICATIONS_JSON) as f:
+            return json.load(f)
+    return []
+
 def log_application(status, notes, screenshots):
     try:
-        if APPLICATIONS_JSON.exists():
-            with open(APPLICATIONS_JSON) as f:
-                data = json.load(f)
-        else:
-            data = []
+        data = load_applications()
 
         # Check if already applied
         for app in data:
-            if app.get('url') == JOB_URL:
-                print('Already applied to this job, skipping log update')
+            if app.get('url') == JOB_URL and app.get('status') == 'applied':
+                print('Already applied to this job successfully, skipping')
                 return
+
+        # Remove any previous failed/skipped entries for this job
+        data = [a for a in data if a.get('url') != JOB_URL]
 
         app_entry = {
             'id': f'ixon-software-engineer-{ts()}',
@@ -69,7 +85,7 @@ def log_application(status, notes, screenshots):
             'status': status,
             'resume_file': str(RESUME_PATH),
             'cover_letter_file': None,
-            'screenshots': screenshots,
+            'screenshots': [s for s in screenshots if s],
             'notes': notes,
             'response': None,
         }
@@ -78,7 +94,7 @@ def log_application(status, notes, screenshots):
         APPLICATIONS_JSON.parent.mkdir(parents=True, exist_ok=True)
         with open(APPLICATIONS_JSON, 'w') as f:
             json.dump(data, f, indent=2)
-        print(f'Application logged: {status}')
+        print(f'Application logged with status: {status}')
     except Exception as e:
         print(f'Error logging application: {e}')
 
@@ -88,7 +104,15 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=True,
-            args=['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+            args=[
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu',
+                '--disable-web-security',
+                '--font-render-hinting=none',
+                '--disable-font-subpixel-positioning',
+            ],
         )
         context = browser.new_context(
             viewport={'width': 1280, 'height': 900},
@@ -96,10 +120,20 @@ def main():
         )
         page = context.new_page()
 
+        # Disable images and fonts to speed up loading
+        page.route('**/*.{png,jpg,jpeg,gif,webp,svg,woff,woff2,ttf,eot}', lambda route: route.abort())
+
         try:
             # Step 1: Navigate to job page
             print(f'Navigating to: {JOB_URL}')
-            page.goto(JOB_URL, wait_until='networkidle', timeout=30000)
+            try:
+                page.goto(JOB_URL, wait_until='domcontentloaded', timeout=20000)
+            except PlaywrightTimeoutError:
+                print('domcontentloaded timed out, continuing anyway...')
+
+            page.wait_for_timeout(3000)
+            print(f'Current URL: {page.url}')
+
             ss = screenshot(page, '01-job-page')
             screenshots.append(ss)
 
@@ -113,6 +147,19 @@ def main():
                 except Exception:
                     pass
 
+            # Check for CAPTCHA
+            try:
+                page_content = page.content()
+            except Exception:
+                page_content = ''
+
+            if 'captcha' in page_content.lower() or 'recaptcha' in page_content.lower():
+                print('CAPTCHA detected - marking as failed')
+                ss = screenshot(page, '99-captcha')
+                screenshots.append(ss)
+                log_application('failed', 'CAPTCHA detected during application', screenshots)
+                return
+
             # Step 2: Look for Apply button and click it
             print('\n--- Looking for Apply button ---')
             apply_clicked = False
@@ -124,14 +171,17 @@ def main():
                 '[data-qa="apply-button"]',
                 'text=Apply for this job',
                 'text=Apply now',
+                'a:has-text("Solliciteer")',
+                'button:has-text("Solliciteer")',
             ]
             for sel in apply_selectors:
                 try:
                     btn = page.locator(sel).first
-                    btn.wait_for(timeout=3000)
-                    print(f'Found apply button with: {sel}')
+                    btn.wait_for(timeout=2000, state='visible')
+                    btn_text = btn.text_content() or ''
+                    print(f'Found apply button "{btn_text.strip()}" with: {sel}')
                     btn.click()
-                    page.wait_for_timeout(2000)
+                    page.wait_for_timeout(3000)
                     apply_clicked = True
                     ss = screenshot(page, '02-after-apply-click')
                     screenshots.append(ss)
@@ -141,7 +191,6 @@ def main():
 
             if not apply_clicked:
                 print('No apply button found, form may be embedded on page')
-                # Scroll to bottom to see embedded form
                 page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
                 page.wait_for_timeout(1000)
                 ss = screenshot(page, '02-scrolled')
@@ -158,18 +207,14 @@ def main():
                 except Exception:
                     pass
 
-            # Check for CAPTCHA
-            page_content = page.content()
-            if 'captcha' in page_content.lower() or 'recaptcha' in page_content.lower():
-                print('CAPTCHA detected - marking as failed')
-                ss = screenshot(page, '99-captcha')
-                screenshots.append(ss)
-                log_application('failed', 'CAPTCHA detected during application', screenshots)
-                return
-
-            # Check if we need to create an account
-            if 'sign up' in page_content.lower() or 'create account' in page_content.lower() or 'register' in page_content.lower():
-                print('Account creation required - checking if it blocks application')
+            # List all buttons too
+            buttons = page.locator('button').all()
+            print(f'Found {len(buttons)} button(s)')
+            for btn in buttons[:10]:
+                try:
+                    print(f'  Button: text="{btn.text_content()}" type={btn.get_attribute("type")}')
+                except Exception:
+                    pass
 
             # Step 3: Fill the form
             print('\n--- Filling form fields ---')
@@ -180,6 +225,7 @@ def main():
                 'input[name="full_name"]',
                 'input[name="candidate[name]"]',
                 'input[placeholder*="name" i]',
+                'input[placeholder*="naam" i]',
                 'input[autocomplete="name"]',
                 'input[id="name"]',
                 'input[id*="name" i]',
@@ -201,6 +247,7 @@ def main():
                 'input[name="phone"]',
                 'input[name="candidate[phone]"]',
                 'input[placeholder*="phone" i]',
+                'input[placeholder*="telefoon" i]',
                 'input[id="phone"]',
                 'input[id*="phone" i]',
             ], APPLICANT['phone'], 'phone')
@@ -215,7 +262,7 @@ def main():
             for sel in country_selectors:
                 try:
                     el = page.locator(sel).first
-                    el.wait_for(timeout=2000)
+                    el.wait_for(timeout=2000, state='visible')
                     el.select_option(label='Netherlands')
                     print(f'Selected country using: {sel}')
                     break
@@ -245,7 +292,7 @@ def main():
             else:
                 print(f'Resume not found at: {RESUME_PATH}')
 
-            ss = screenshot(page, '03-form-filled-with-resume')
+            ss = screenshot(page, '03-form-filled')
             screenshots.append(ss)
 
             # Step 5: Screenshot before submit
@@ -261,6 +308,8 @@ def main():
                 'button:has-text("Submit")',
                 'button:has-text("Apply")',
                 'button:has-text("Send application")',
+                'button:has-text("Verstuur")',
+                'button:has-text("Solliciteer")',
                 '.submit-button',
                 '[data-qa="submit"]',
             ]
@@ -269,7 +318,7 @@ def main():
             for sel in submit_selectors:
                 try:
                     btn = page.locator(sel).first
-                    btn.wait_for(timeout=2000)
+                    btn.wait_for(timeout=2000, state='visible')
                     btn_text = btn.text_content() or 'unknown'
                     print(f'Found submit button: "{btn_text.strip()}" with selector: {sel}')
                     btn.click()
@@ -281,29 +330,45 @@ def main():
 
             if not submitted:
                 print('Could not find submit button')
+                # Print page source excerpt for debugging
+                try:
+                    content = page.content()
+                    # Find form-related HTML
+                    if '<form' in content:
+                        idx = content.find('<form')
+                        print('Form HTML excerpt:')
+                        print(content[idx:idx+2000])
+                except Exception:
+                    pass
                 ss = screenshot(page, '05-no-submit-button')
                 screenshots.append(ss)
 
             # Wait for response
-            page.wait_for_timeout(4000)
+            page.wait_for_timeout(5000)
             ss = screenshot(page, '06-post-submit')
             screenshots.append(ss)
 
             # Step 7: Check for confirmation
-            final_content = page.content()
+            try:
+                final_content = page.content()
+            except Exception:
+                final_content = ''
             final_url = page.url
 
             print(f'\nFinal URL: {final_url}')
 
-            if any(kw in final_content.lower() for kw in ['successfully submitted', 'thank you', 'application received', 'we\'ll be in touch', 'bedankt']):
+            if any(kw in final_content.lower() for kw in [
+                'successfully submitted', 'thank you', 'application received',
+                "we'll be in touch", 'bedankt', 'your application', 'success'
+            ]):
                 print('SUCCESS: Application confirmed submitted!')
                 log_application('applied', 'Application submitted successfully via Playwright automation', screenshots)
             elif not submitted:
                 print('SKIPPED: Could not find the submit button')
                 log_application('skipped', 'Could not find submit button on form', screenshots)
             else:
-                print('Status unclear - may have been submitted, check screenshots')
-                log_application('applied', 'Submit button clicked, confirmation unclear - check screenshots', screenshots)
+                print('Submit clicked - status unclear, check screenshots for confirmation')
+                log_application('applied', 'Submit button clicked - check screenshots for final confirmation', screenshots)
 
         except PlaywrightTimeoutError as e:
             print(f'Timeout error: {e}')
@@ -316,6 +381,8 @@ def main():
 
         except Exception as e:
             print(f'Unexpected error: {e}')
+            import traceback
+            traceback.print_exc()
             try:
                 ss = screenshot(page, '99-unexpected-error')
                 screenshots.append(ss)
@@ -326,8 +393,9 @@ def main():
         finally:
             browser.close()
             print('\nBrowser closed.')
-            print(f'\nScreenshots taken:')
-            for ss in screenshots:
+            valid_screenshots = [s for s in screenshots if s]
+            print(f'\nScreenshots taken ({len(valid_screenshots)}):')
+            for ss in valid_screenshots:
                 print(f'  {ss}')
 
 if __name__ == '__main__':
