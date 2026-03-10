@@ -1,0 +1,34 @@
+GRAFANA LABS - DEVELOPER PROGRAMS ASSOCIATE APPLICATION
+Job URL: https://job-boards.greenhouse.io/grafanalabs/jobs/5711588004
+Date/Time: 2026-03-10T11:23:11.910789
+
+APPLICATION STATUS: JOB NOT FOUND (HTTP 404)
+
+Evidence collected:
+1. Greenhouse Boards API: GET /v1/boards/grafanalabs/jobs/5711588004
+   Response: 404 - {"status":404,"error":"Job not found"}
+
+2. Greenhouse Application API: GET /v1/boards/grafanalabs/jobs/5711588004/applications  
+   Response: 404
+
+3. Greenhouse Embed URL: https://boards.greenhouse.io/apply/applications/new?for=grafanalabs&token=5711588004
+   Response: 404
+
+4. Job Board Page: https://job-boards.greenhouse.io/grafanalabs?gh_jid=5711588004
+   Canonical redirect: http://job-boards.greenhouse.io/grafanalabs?error=true
+
+5. Job Board listed 163 active jobs via API - job ID 5711588004 NOT present in the listing.
+
+CONCLUSION: The job "Developer Programs Associate | Netherlands | Remote" with ID 5711588004
+has been removed from Grafana Labs' Greenhouse job board. It is no longer accepting applications.
+
+This could mean:
+- The position has been filled
+- The posting was taken down/paused
+- The job ID has been changed
+
+APPLICATION OUTCOME: Cannot apply - job posting no longer active.
+Status: SKIPPED (job no longer available)
+
+Materials prepared:
+- Cover letter: /home/user/Agents/output/cover-letters/grafana-developer-programs.md

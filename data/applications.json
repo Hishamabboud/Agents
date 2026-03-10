@@ -3047,5 +3047,19 @@
       "/home/user/Agents/output/screenshots/planet-03-before-submit-20260310_111434.png",
       "/home/user/Agents/output/screenshots/planet-04-after-submit-20260310_111435.png"
     ]
+  },
+  {
+    "id": "app-grafana-dev-programs-001",
+    "company": "Grafana Labs",
+    "role": "Developer Programs Associate",
+    "url": "https://job-boards.greenhouse.io/grafanalabs/jobs/5711588004",
+    "date_applied": "2026-03-10",
+    "score": 7,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/grafana-developer-programs.md",
+    "screenshot": "/home/user/Agents/output/screenshots/grafana-developer-programs-evidence.txt",
+    "notes": "Job posting no longer active. Greenhouse API returned 404 'Job not found' for job ID 5711588004. The job-boards.greenhouse.io URL redirects to ?error=true. Job is not present in the 163-job active listing. Cover letter was prepared but no application could be submitted. Location: Netherlands (Remote). Salary: EUR 59,900-71,900.",
+    "response": null
   }
 ]
