@@ -2695,14 +2695,14 @@
     "id": "miniclip-senior-backend-net-20260306",
     "company": "Miniclip",
     "role": "Senior Backend .NET Developer",
-    "url": "https://www.miniclip.com/careers/vacancies",
-    "date_applied": "",
+    "url": "https://careers.miniclip.com/job/Zoetermeer-Senior-Backend-_Net-Developer/1326633955/",
+    "date_applied": "2026-03-10",
     "score": 8.2,
-    "status": "new",
+    "status": "skipped",
     "resume_file": "output/tailored-resumes/miniclip-senior-backend-net.md",
     "cover_letter_file": "output/cover-letters/miniclip-senior-backend-net.md",
-    "screenshot": "",
-    "notes": "Gaming company. C#/.NET backend. Zoetermeer, NL. Global scale, 450M+ monthly users.",
+    "screenshot": "output/screenshots/miniclip-03-apply-login-required-20260310_101423.png",
+    "notes": "Gaming company. C#/.NET backend. Zoetermeer, NL. Global scale, 450M+ monthly users. ATS: SAP SuccessFactors (career55.sapsf.eu). Application requires account creation on SAP SF portal. Successfully navigated to job listing and the apply flow (vacancies page -> job detail -> apply button -> SAP SF sign-in page). The SAP SF portal shows \"Career Opportunities: Sign In\" with email/password fields and a \"Create an account\" link. Account registration requires manual email verification which cannot be automated headlessly. Skipped: requires manual account creation on SAP SuccessFactors. Cover letter saved at: output/cover-letters/miniclip-senior-backend-net.md. Direct apply URL: https://career55.sapsf.eu/careers?company=miniclippo&career_ns=job_application&career_job_req_id=1574",
     "response": ""
   },
   {
@@ -2729,8 +2729,8 @@
     "status": "failed",
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "/home/user/Agents/output/cover-letters/fortanix-software-engineer.md",
-    "screenshot": "/home/user/Agents/output/screenshots/fortanix-error-20260310_101149.png",
-    "notes": "Error: ElementHandle.click: Timeout 10000ms exceeded.\nCall log:\n  - attempting click action\n  -     - waiting for element to be visible, enabled and stable\n  -     - element is visible, enabled and stable\n  -     - scrolling into view if needed\n  -     - done scrolling\n  -     - <div class=\"styles--Yt32G\" data-role=\"dialog-content\">\u2026</div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -   - retrying click action\n  -     - waiting for element to be visible, enabled and stable\n  -     - element is visible, enabled and stable\n  -     - scrolling into view if needed\n  -     - done scrolling\n  -     - <div open=\"\" tabindex=\"0\" data-role=\"backdrop\" class=\"styles--1SV3f\" data-transition-entered=\"true\" data-evergreen-dialog-backdrop=\"true\"></div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -   - retrying click action\n  -     - waiting 20ms\n  -     2 \u00d7 waiting for element to be visible, enabled and stable\n  -       - element is visible, enabled and stable\n  -       - scrolling into view if needed\n  -       - done scrolling\n  -       - <div class=\"styles--Yt32G\" data-role=\"dialog-content\">\u2026</div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -     - retrying click action\n  -       - waiting 100ms\n  -     4 \u00d7 waiting for element to be visible, enabled and stable\n  -       - element is visible, enabled and stable\n  -       - scrolling into view if needed\n  -       - done scrolling\n  -       - <div class=\"styles--Yt32G\" data-role=\"dialog-content\">\u2026</div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -     - retrying click action\n  -       - waiting 500ms\n  -       - waiting for element to be visible, enabled and stable\n  -       - element is visible, enabled and stable\n  -       - scrolling into view if needed\n  -       - done scrolling\n  -       - <div open=\"\" tabindex=\"0\" data-role=\"backdrop\" class=\"styles--1SV3f\" data-transition-entered=\"true\" data-evergreen-dialog-backdrop=\"true\"></div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -     - retrying click action\n  -       - waiting 500ms\n  -       - waiting for element to be visible, enabled and stable\n  -       - element is visible, enabled and stable\n  -       - scrolling into view if needed\n  -       - done scrolling\n  -       - <div class=\"styles--Yt32G\" data-role=\"dialog-content\">\u2026</div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -     - retrying click action\n  -       - waiting 500ms\n  -       - waiting for element to be visible, enabled and stable\n  -       - element is visible, enabled and stable\n  -       - scrolling into view if needed\n  -       - done scrolling\n  -       - <div class=\"styles--Yt32G\" data-role=\"dialog-content\">\u2026</div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -     - retrying click action\n  -       - waiting 500ms\n  -     - waiting for element to be visible, enabled and stable\n  -     - element is visible, enabled and stable\n  -     - scrolling into view if needed\n  -     - done scrolling\n  -     - <div class=\"styles--Yt32G\" data-role=\"dialog-content\">\u2026</div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -   - retrying click action\n  -     - waiting 500ms\n  -     - waiting for element to be visible, enabled and stable\n  -     - element is visible, enabled and stable\n  -     - scrolling into view if needed\n  -     - done scrolling\n  -     - <div open=\"\" tabindex=\"0\" data-role=\"backdrop\" class=\"styles--1SV3f\" data-transition-entered=\"true\" data-evergreen-dialog-backdrop=\"true\"></div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -   - retrying click action\n  -     - waiting 500ms\n  -     - waiting for element to be visible, enabled and stable\n  -     - element is visible, enabled and stable\n  -     - scrolling into view if needed\n  -     - done scrolling\n  -     - <div class=\"styles--Yt32G\" data-role=\"dialog-content\">\u2026</div> from <div class=\"styles--MS9An\" data-role=\"modal-wrapper\" data-transition-entered=\"true\">\u2026</div> subtree intercepts pointer events\n  -   - retrying click action\n  -     - waiting 500ms\n",
+    "screenshot": "/home/user/Agents/output/screenshots/fortanix-06-post-submit-20260310_101515.png",
+    "notes": "Submit attempted but validation errors. Body: Senior Software Engineer - Backend Microservices, Rust (Netherlands)\n\nHybridENGFull time\n\nEindhoven, North Brabant, Netherlands\nOVERVIEW\nAPPLICATION\nAUTOFILL APPLICATION\n\nSave time by importing your resume in one of the following formats: .pdf, .doc, .docx, .odt, or .rtf.\n\nImport resume from\n*\u00a0Requi. URL: https://apply.workable.com/fortanix/j/DFCBABCC33/apply/",
     "response": ""
   },
   {
@@ -2804,17 +2804,17 @@
     "response": ""
   },
   {
-    "id": "snelstart-net-developer-20260306",
+    "id": "snelstart-fullstack-developer-20260310",
     "company": "SnelStart Software B.V.",
-    "role": ".NET Developer",
-    "url": "https://www.glassdoor.com/Job/netherlands-net-developer-jobs-SRCH_IL.0,11_IN178_KO12,25.htm",
-    "date_applied": "",
+    "role": "Full-Stack Developer",
+    "url": "https://www.werkenbijsnelstart.nl/vacatures/full-stack-developer-amersfoort-snelstart",
+    "date_applied": "2026-03-10",
     "score": 8.0,
-    "status": "new",
-    "resume_file": "",
-    "cover_letter_file": "",
-    "screenshot": "",
-    "notes": "Accounting SaaS. C#, .NET Core, Azure, React, SQL Server. CI/CD via Azure DevOps. Agile sprints.",
+    "status": "applied",
+    "resume_file": "output/tailored-resumes/snelstart-net-developer.md",
+    "cover_letter_file": "output/cover-letters/snelstart-net-developer.md",
+    "screenshot": "output/screenshots/snelstart-post-submit-final.png",
+    "notes": "Applied to Full-Stack Developer role (no dedicated .NET Developer listing found). Role uses .NET, C#, Azure, SQL Server, TypeScript/Angular - strong match. Form filled and submitted via HubSpot form on werkenbijsnelstart.nl. CV uploaded (PDF). Cover letter in Dutch in textarea field. Confirmation received: \"Yes! Het is gelukt. Bedankt voor je sollicitatie\".",
     "response": ""
   },
   {

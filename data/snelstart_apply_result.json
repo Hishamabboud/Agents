@@ -1,13 +1,10 @@
 {
-  "status": "applied",
+  "status": "failed",
   "screenshots": [
     "/home/user/Agents/output/screenshots/snelstart-01-vacancy-page.png",
-    "/home/user/Agents/output/screenshots/snelstart-02-apply-page.png",
-    "/home/user/Agents/output/screenshots/snelstart-04-form-filled.png",
-    "/home/user/Agents/output/screenshots/snelstart-05-pre-submit.png",
-    "/home/user/Agents/output/screenshots/snelstart-06-post-submit.png"
+    "/home/user/Agents/output/screenshots/snelstart-02-apply-page-loaded.png"
   ],
-  "notes": "Form submitted (5 fields filled) via https://www.werkenbijsnelstart.nl/solliciteren-nu?vacature_id=376d6c64-66ae-f011-bbd3-7ced8d73068c&functie=Full-Stack%20Developer. Check screenshots for confirmation details.",
+  "notes": "Automation error: 'ElementHandle' object has no attribute 'triple_click'",
   "vacancy_url": "https://www.werkenbijsnelstart.nl/vacatures/full-stack-developer-amersfoort-snelstart",
   "apply_url": "https://www.werkenbijsnelstart.nl/solliciteren-nu?vacature_id=376d6c64-66ae-f011-bbd3-7ced8d73068c&functie=Full-Stack%20Developer"
 }
