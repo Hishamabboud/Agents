@@ -2712,11 +2712,11 @@
     "url": "https://www.tomtom.com/careers/jobdetails/de41ef5b-8e92-43ea-84ae-f1b7693ca071/software-engineer-ai/",
     "date_applied": "2026-03-10T09:54:06.257154",
     "score": 8.0,
-    "status": "failed",
+    "status": "pending-manual-captcha",
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": "/home/user/Agents/output/cover-letters/tomtom-software-engineer-ai.md",
+    "cover_letter_file": "output/cover-letters/tomtom-software-engineer-ai.md",
     "screenshot": "/home/user/Agents/output/screenshots/tomtom-11-after-submit.png",
-    "notes": "Applied to Software Engineer - AI role in Amsterdam via Lever ATS. Application form fully filled: name, email, phone, location (Eindhoven), resume uploaded, cover letter added, salary expectations (60-70k EUR), NL residency confirmed (Yes), demographics (Prefer not to say), data consent checked. Submission BLOCKED by hCaptcha (jobs.eu.lever.co). Error: \"There was an error verifying your application. Please try again.\" Cannot solve hCaptcha autonomously. Marked as failed. Applicant should complete application manually at: https://jobs.eu.lever.co/tomtom/de41ef5b-8e92-43ea-84ae-f1b7693ca071/apply",
+    "notes": "Form filled on Lever ATS but hCaptcha blocked submission. Apply manually at https://jobs.eu.lever.co/tomtom/de41ef5b-8e92-43ea-84ae-f1b7693ca071/apply",
     "response": ""
   },
   {
@@ -2773,20 +2773,6 @@
     "cover_letter_file": "",
     "screenshot": "output/screenshots/eagle-eye-01-careers-page-20260310_094917.png",
     "notes": "AI cloud security. Python, Django, PostgreSQL, Redis, Docker, K8s. Amsterdam. SKIPPED: Careers portal shows no open positions at this time (eagleeyenetworksinc.applytojob.com/apply returned no job listings). Job listing may have expired or been filled.",
-    "response": ""
-  },
-  {
-    "id": "ixon-software-engineer-20260306",
-    "company": "IXON Cloud",
-    "role": "Software Engineer",
-    "url": "https://ixonbv.recruitee.com/o/embedded-software-engineer",
-    "date_applied": "",
-    "score": 7.7,
-    "status": "new",
-    "resume_file": "",
-    "cover_letter_file": "",
-    "screenshot": "",
-    "notes": "IIoT platform. Industrial connectivity. Beugen, NL. 30+ developers.",
     "response": ""
   },
   {
@@ -2890,5 +2876,47 @@
     ],
     "notes": "Original .NET Developer job (dot-net-developer-1) returned 404 \u2014 listing removed. Applying to nearest available match: Senior Full Stack Engineer (C#/Angular). Application form fields: name, email, phone, CV upload (no cover letter textarea).  Could not populate form fields (JavaScript fill failed).",
     "response": ""
+  },
+  {
+    "id": "omnidots-fullstack-20260310",
+    "company": "Omnidots",
+    "role": "Full Stack Developer (Frontend Focused)",
+    "url": "https://www.omnidots.com/en/vacancies",
+    "date_applied": "2026-03-10",
+    "score": 7.5,
+    "status": "skipped",
+    "resume_file": "output/tailored-resumes/omnidots-full-stack-developer.md",
+    "cover_letter_file": "output/cover-letters/omnidots-full-stack-developer.md",
+    "screenshot": "output/screenshots/omnidots-01-vacancies-page.html",
+    "notes": "Role no longer listed on vacancies page as of 2026-03-10. URL /en/vacancies/full-stack-developer redirects to general careers page. Application method is email to dreamteam@omnidots.com (confirmed). HubSpot form on site blocked by reCAPTCHA. Tailored resume and cover letter prepared. ACTION REQUIRED: Send email manually to dreamteam@omnidots.com with subject 'Application - Full Stack Developer (Frontend Focused) - Hisham Abboud' and attach CV.",
+    "response": null
+  },
+  {
+    "id": "ixon-software-engineer-20260310_095701",
+    "company": "IXON Cloud",
+    "role": "Software Engineer",
+    "url": "https://ixonbv.recruitee.com/o/embedded-software-engineer",
+    "date_applied": "2026-03-10T09:57:01.847336",
+    "score": 7.7,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [],
+    "notes": "Unexpected error: Page.evaluate: TypeError: Cannot read properties of null (reading 'scrollHeight')\n    at eval (eval at evaluate (:234:30), <anonymous>:1:34)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<a",
+    "response": null
+  },
+  {
+    "id": "chipsoft-net-developer-20260310_095431",
+    "company": "ChipSoft",
+    "role": ".NET Developer Zorg-ICT",
+    "url": "https://www.chipsoft.nl/vacatures",
+    "date_applied": "2026-03-10T09:57:07.263104",
+    "score": 7.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshot": "/home/user/Agents/output/screenshots/chipsoft-07-post-submit-20260310_095431.png",
+    "notes": "Navigated to ChipSoft vacatures page. Title: ; Error analyzing page: Page.evaluate: TypeError: Cannot read properties of null (reading 'innerText')\n    at eval (eval at evaluate (:234:30), <anonymous>:1:15)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:234:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+    "response": null
   }
 ]
