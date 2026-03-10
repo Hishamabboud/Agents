@@ -2910,20 +2910,6 @@
     "response": null
   },
   {
-    "id": "ixon-software-engineer-20260310_101101",
-    "company": "IXON Cloud",
-    "role": "Software Engineer",
-    "url": "https://ixonbv.recruitee.com/o/embedded-software-engineer",
-    "date_applied": "2026-03-10T10:11:01.010220",
-    "score": 7.7,
-    "status": "skipped",
-    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
-    "cover_letter_file": null,
-    "screenshots": [],
-    "notes": "No application form could be rendered - hCaptcha (invisible) and SPA require browser JS",
-    "response": null
-  },
-  {
     "id": "chipsoft-net-developer-20260310_101132",
     "company": "ChipSoft",
     "role": ".NET Developer Zorg-ICT",
@@ -2936,6 +2922,40 @@
     "cover_letter_file": null,
     "screenshot": "/home/user/Agents/output/screenshots/chipsoft-final-state-20260310_101132.png",
     "notes": "Viewed vacancy: https://www.chipsoft.com/nl-nl/werken-bij/vacatures/net-developer-zorg-ict-1/; Loaded application form: https://www.chipsoft.com/nl-nl/werken-bij/solliciteren/?vacancyId=25; Form fields filled: FirstName=Hisham, SurName=Abboud, Phone, Email, referral=LinkedIn, consent=checked; CV uploaded: Hisham Abboud CV.pdf; Form submitted via JS click - outcome unclear",
+    "response": null
+  },
+  {
+    "id": "ixon-software-engineer-20260310_101240",
+    "company": "IXON Cloud",
+    "role": "Software Engineer",
+    "url": "https://ixonbv.recruitee.com/o/embedded-software-engineer",
+    "date_applied": "2026-03-10T10:12:40.636117",
+    "score": 7.7,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/ixon-01-application-form-20260310_101225.png",
+      "/home/user/Agents/output/screenshots/ixon-02-form-filled-20260310_101232.png",
+      "/home/user/Agents/output/screenshots/ixon-03-pre-submit-20260310_101232.png",
+      "/home/user/Agents/output/screenshots/ixon-04-post-submit-20260310_101240.png"
+    ],
+    "notes": "Form was fully filled (name, email, phone, CV uploaded) and Send was clicked. hCaptcha image puzzle challenge appeared after clicking Send. Cannot bypass visual CAPTCHA via automation. Screenshots saved showing the filled form and CAPTCHA block.",
+    "response": null
+  },
+  {
+    "id": "chipsoft-net-developer-20260310_101247",
+    "company": "ChipSoft",
+    "role": ".NET Developer Zorg-ICT",
+    "url": "https://www.chipsoft.com/nl-nl/werken-bij/vacatures/net-developer-zorg-ict-1/",
+    "apply_url": "https://www.chipsoft.com/nl-nl/werken-bij/solliciteren/?vacancyId=25",
+    "date_applied": "2026-03-10T10:13:12.232242",
+    "score": 7.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshot": "/home/user/Agents/output/screenshots/chipsoft-final-state-20260310_101247.png",
+    "notes": "Viewed vacancy: https://www.chipsoft.com/nl-nl/werken-bij/vacatures/net-developer-zorg-ict-1/; Loaded application form: https://www.chipsoft.com/nl-nl/werken-bij/solliciteren/?vacancyId=25; Form fields filled: FirstName=Hisham, SurName=Abboud, Phone, Email, referral=LinkedIn, consent=checked; CV uploaded: Hisham Abboud CV.pdf; Application submitted successfully - confirmation detected",
     "response": null
   }
 ]
