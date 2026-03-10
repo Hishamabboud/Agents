@@ -1,11 +1,21 @@
 #!/usr/bin/env python3
 """
-Fortanix job application automation script via Playwright.
-Uses --host-resolver-rules to bypass DNS resolution issues.
+Fortanix job application via Playwright.
+Target: Senior Software Engineer - Backend Microservices, Rust (Netherlands)
+Apply URL: https://apply.workable.com/fortanix/j/DFCBABCC33/apply/
+
+Flow:
+1. Load job page
+2. Accept cookie banner (removes backdrop overlay)
+3. Click APPLICATION tab
+4. Fill form fields
+5. Upload resume
+6. Submit
 """
 
 import asyncio
 import os
+import re
 import json
 from datetime import datetime
 from playwright.async_api import async_playwright
@@ -14,18 +24,21 @@ SCREENSHOTS_DIR = "/home/user/Agents/output/screenshots"
 RESUME_PDF = "/home/user/Agents/profile/Hisham Abboud CV.pdf"
 APPLICATIONS_JSON = "/home/user/Agents/data/applications.json"
 
+JOB_TITLE = "Senior Software Engineer - Backend Microservices, Rust (Netherlands)"
+JOB_SHORTCODE = "DFCBABCC33"
+JOB_URL = "https://apply.workable.com/fortanix/j/DFCBABCC33/"
+APPLY_URL = "https://apply.workable.com/fortanix/j/DFCBABCC33/apply/"
+
 APPLICANT = {
-    "name": "Hisham Abboud",
     "first_name": "Hisham",
     "last_name": "Abboud",
     "email": "hiaham123@hotmail.com",
     "phone": "+31 06 4841 2838",
-    "location": "Eindhoven, Netherlands",
 }
 
 COVER_LETTER = """Dear Hiring Team at Fortanix,
 
-I am writing to express my enthusiasm for the Software Engineer position at Fortanix. As a Software Service Engineer at Actemium (VINCI Energies) with a background in full-stack development using .NET, C#, Python, and JavaScript, I am excited by the opportunity to contribute to Fortanix's mission of securing data in the cloud and beyond.
+I am writing to express my enthusiasm for the Software Engineer position at Fortanix in Eindhoven. As a Software Service Engineer at Actemium (VINCI Energies) with a background in full-stack development using .NET, C#, Python, and JavaScript, I am excited by the opportunity to contribute to Fortanix's mission of securing data in the cloud and beyond.
 
 My experience includes building and maintaining industrial applications, developing REST APIs, working with cloud infrastructure (Azure, Kubernetes), and contributing to security-focused projects, including a GDPR data anonymization solution during my graduation project at Fontys ICT Cyber Security Research Group.
 
@@ -39,26 +52,34 @@ Hisham Abboud
 hiaham123@hotmail.com
 """
 
+def get_proxy_config():
+    proxy_url = (os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy") or
+                 os.environ.get("HTTP_PROXY") or os.environ.get("http_proxy"))
+    if not proxy_url:
+        return None, None, None
+    m = re.match(r'https?://([^:@]+):([^@]+)@([^/]+)', proxy_url)
+    if m:
+        user, pwd, server = m.groups()
+        return f"http://{server}", user, pwd
+    m2 = re.match(r'https?://([^/]+)', proxy_url)
+    if m2:
+        return f"http://{m2.group(1)}", None, None
+    return None, None, None
+
 def ts():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
-async def take_screenshot(page, name):
+async def screenshot(page, name):
     path = os.path.join(SCREENSHOTS_DIR, f"fortanix-{name}-{ts()}.png")
     try:
-        await page.screenshot(path=path, full_page=True, timeout=20000)
-        print(f"Screenshot saved: {path}")
+        await page.screenshot(path=path, full_page=False, timeout=15000)
+        print(f"  Screenshot: {path}")
+        return path
     except Exception as e:
-        print(f"Screenshot failed for {name}: {e}")
-        # Try viewport-only screenshot
-        try:
-            await page.screenshot(path=path, timeout=10000)
-            print(f"Viewport screenshot saved: {path}")
-        except Exception as e2:
-            print(f"Viewport screenshot also failed: {e2}")
-            path = ""
-    return path
+        print(f"  Screenshot failed: {e}")
+        return ""
 
-async def update_application(status, notes, screenshot_path="", cover_letter_file=""):
+async def update_app(status, notes, shot="", cl="", job_title="", job_url=""):
     with open(APPLICATIONS_JSON, "r") as f:
         apps = json.load(f)
     for app in apps:
@@ -66,59 +87,95 @@ async def update_application(status, notes, screenshot_path="", cover_letter_fil
             app["status"] = status
             app["date_applied"] = datetime.now().strftime("%Y-%m-%d")
             app["notes"] = notes
-            if screenshot_path:
-                app["screenshot"] = screenshot_path
-            if cover_letter_file:
-                app["cover_letter_file"] = cover_letter_file
+            if shot:
+                app["screenshot"] = shot
+            if cl:
+                app["cover_letter_file"] = cl
+            if job_title:
+                app["role"] = job_title
+            if job_url:
+                app["url"] = job_url
             app["resume_file"] = "profile/Hisham Abboud CV.pdf"
             break
     with open(APPLICATIONS_JSON, "w") as f:
         json.dump(apps, f, indent=2)
-    print(f"Application status updated to '{status}'")
+    print(f"  Tracker: status='{status}'")
 
-async def try_fill_form(page):
-    """Try to fill visible form fields."""
-    filled = {}
-    field_map = [
-        (["input[name='firstname']", "input[name='first_name']", "input[id*='firstname']",
-          "input[placeholder*='irst name']", "input[autocomplete='given-name']"],
-         APPLICANT["first_name"]),
-        (["input[name='lastname']", "input[name='last_name']", "input[id*='lastname']",
-          "input[placeholder*='ast name']", "input[autocomplete='family-name']"],
-         APPLICANT["last_name"]),
-        (["input[name='email']", "input[type='email']", "input[id*='email']",
-          "input[placeholder*='mail']", "input[autocomplete='email']"],
-         APPLICANT["email"]),
-        (["input[name='phone']", "input[type='tel']", "input[id*='phone']",
-          "input[placeholder*='hone']", "input[autocomplete='tel']"],
-         APPLICANT["phone"]),
-        (["textarea[name='cover_letter']", "textarea[name='coverLetter']",
-          "textarea[id*='cover']", "textarea[placeholder*='over letter']"],
-         COVER_LETTER),
+async def dismiss_cookie_banner(page):
+    """Try to click Accept/Accept all on any cookie consent banner."""
+    cookie_selectors = [
+        "button:has-text('Accept all')",
+        "button:has-text('Accept All')",
+        "button:has-text('Accept cookies')",
+        "button:has-text('Accept')",
+        "button:has-text('OK')",
+        "[data-testid='cookie-accept']",
+        "#accept-cookies",
+        ".cookie-accept",
     ]
-    for selectors, value in field_map:
-        for sel in selectors:
-            try:
-                el = await page.query_selector(sel)
-                if el and await el.is_visible():
-                    await el.fill(value)
-                    filled[sel] = value[:40]
-                    print(f"  Filled '{sel}' -> '{value[:40]}'")
-                    break
-            except Exception:
-                pass
-    return filled
-
-async def navigate_safe(page, url, label=""):
-    """Navigate with fallback strategies."""
-    print(f"Navigating to {url} ...")
-    for wait_until in ["domcontentloaded", "commit"]:
+    for sel in cookie_selectors:
         try:
-            await page.goto(url, wait_until=wait_until, timeout=30000)
-            print(f"  Loaded ({wait_until}). Title: {await page.title()}")
-            return True
-        except Exception as e:
-            print(f"  Navigation attempt ({wait_until}) failed: {e}")
+            el = await page.query_selector(sel)
+            if el and await el.is_visible():
+                text = await el.inner_text()
+                print(f"  Cookie banner: clicking '{text.strip()}'")
+                await el.click()
+                await asyncio.sleep(1)
+                return True
+        except:
+            pass
+    # Also try to hide the backdrop via JS
+    try:
+        removed = await page.evaluate("""
+            () => {
+                let count = 0;
+                // Remove backdrop elements
+                document.querySelectorAll('[data-ui="backdrop"]').forEach(el => {
+                    el.style.display = 'none';
+                    el.remove();
+                    count++;
+                });
+                // Also hide cookie banners
+                document.querySelectorAll('[class*="cookie"], [id*="cookie"], [class*="consent"]').forEach(el => {
+                    el.style.display = 'none';
+                    count++;
+                });
+                return count;
+            }
+        """)
+        if removed > 0:
+            print(f"  Removed {removed} overlay/cookie elements via JS")
+    except Exception as e:
+        print(f"  JS banner removal failed: {e}")
+    return False
+
+async def js_click(page, selector):
+    """Click an element using JavaScript to bypass overlay issues."""
+    try:
+        result = await page.evaluate(f"""
+            () => {{
+                const el = document.querySelector('{selector}');
+                if (el) {{ el.click(); return true; }}
+                return false;
+            }}
+        """)
+        return result
+    except Exception as e:
+        print(f"  JS click failed for {selector}: {e}")
+        return False
+
+async def fill_field(page, selectors, value, label=""):
+    for sel in selectors:
+        try:
+            el = await page.query_selector(sel)
+            if el and await el.is_visible():
+                await el.fill(value)
+                actual = await el.input_value()
+                if actual:
+                    print(f"  Filled {label}: '{value[:50]}'")
+                    return True
+        except:
+            pass
     return False
 
 async def main():
@@ -131,258 +188,299 @@ async def main():
         f.write(COVER_LETTER)
     print(f"Cover letter saved: {cl_path}")
 
+    proxy_server, proxy_user, proxy_pass = get_proxy_config()
+    print(f"Proxy: {proxy_server}")
+
+    proxy_cfg = None
+    if proxy_server:
+        proxy_cfg = {"server": proxy_server}
+        if proxy_user:
+            proxy_cfg["username"] = proxy_user
+        if proxy_pass:
+            proxy_cfg["password"] = proxy_pass
+
+    last_shot = ""
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
-            args=[
-                "--no-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-gpu",
-                "--no-zygote",
-                # Map workable.com domains to known IPs to bypass DNS
-                "--host-resolver-rules=MAP apply.workable.com 104.16.148.37,"
-                "MAP workablehr.s3.amazonaws.com 52.216.168.35,"
-                "MAP workable-application-form.s3.amazonaws.com 52.216.168.35",
-                "--ignore-certificate-errors",
-            ]
+            proxy=proxy_cfg,
+            args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--no-zygote"]
         )
-        context = await browser.new_context(
+        ctx = await browser.new_context(
             viewport={"width": 1280, "height": 900},
-            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
             ignore_https_errors=True,
+            proxy=proxy_cfg,
         )
-        page = await context.new_page()
-        last_shot = ""
-        cl_saved = cl_path
+        page = await ctx.new_page()
 
         try:
-            # Step 1: Load careers page
-            print("\n=== Step 1: Load Fortanix careers page ===")
-            ok = await navigate_safe(page, "https://apply.workable.com/fortanix/")
+            # === Step 1: Load job page ===
+            print(f"\n=== Step 1: Load job page ===")
+            print(f"  URL: {JOB_URL}")
+            resp = await page.goto(JOB_URL, wait_until="domcontentloaded", timeout=45000)
+            print(f"  Status: {resp.status if resp else 'N/A'}")
             await asyncio.sleep(4)
-            last_shot = await take_screenshot(page, "01-careers-home")
+            last_shot = await screenshot(page, "01-job-page")
+            print(f"  Title: {await page.title()}")
 
-            content = await page.content()
-            page_title = await page.title()
-            print(f"Page title: {page_title}")
-            print(f"Content length: {len(content)}")
-            print(f"Content preview: {content[:500]}")
+            # === Step 2: Dismiss cookie banner ===
+            print(f"\n=== Step 2: Dismiss cookie consent banner ===")
+            accepted = await dismiss_cookie_banner(page)
+            await asyncio.sleep(1)
 
-            # Step 2: Find Software Engineer job links
-            print("\n=== Step 2: Find Software Engineer job ===")
-            await asyncio.sleep(2)
-
-            job_link_el = None
-            job_url = None
-
-            # Try Workable job link pattern /j/JOBID/
-            job_links = await page.query_selector_all("a[href*='/j/']")
-            print(f"  Job links (/j/): {len(job_links)}")
-            for link in job_links:
-                href = await link.get_attribute("href") or ""
-                text = await link.inner_text()
-                print(f"    '{text.strip()[:60]}' -> {href}")
-                if "software" in text.lower() or "engineer" in text.lower():
-                    job_link_el = link
-                    job_url = href
-                    print(f"    -> SELECTED")
-                    break
-
-            if not job_link_el:
-                # Try all links
-                all_links = await page.query_selector_all("a")
-                print(f"  Total links on page: {len(all_links)}")
-                for link in all_links:
-                    try:
-                        href = await link.get_attribute("href") or ""
-                        text = await link.inner_text()
-                        if ("software" in text.lower() or "engineer" in text.lower()) and href:
-                            print(f"  Candidate: '{text.strip()[:60]}' -> {href}")
-                            job_link_el = link
-                            job_url = href
-                            break
-                    except:
-                        pass
-
-            if not job_link_el:
-                # Try navigating to a specific job URL - check Workable API first
-                print("  No job link found via DOM. Trying Workable widget API...")
-                try:
-                    api_resp = await page.evaluate("""
-                        async () => {
-                            const r = await fetch('/api/v3/accounts/fortanix/jobs?details=true', {
-                                headers: {'Accept': 'application/json'}
-                            });
-                            return { status: r.status, text: await r.text() };
-                        }
-                    """)
-                    print(f"  API response: status={api_resp.get('status')}, text={str(api_resp.get('text',''))[:500]}")
-                except Exception as e:
-                    print(f"  API fetch failed: {e}")
-
-            # Step 3: Navigate to job page
-            print("\n=== Step 3: Navigate to job page ===")
-            if job_url:
-                if not job_url.startswith("http"):
-                    job_url = f"https://apply.workable.com{job_url}"
-                await navigate_safe(page, job_url)
-                await asyncio.sleep(3)
-                last_shot = await take_screenshot(page, "02-job-page")
-                print(f"Job page: {page.url}")
+            # Check if backdrop is still there
+            backdrop = await page.query_selector('[data-ui="backdrop"]')
+            if backdrop:
+                print("  Backdrop still present - removing via JS...")
+                await page.evaluate("""
+                    () => {
+                        document.querySelectorAll('[data-ui="backdrop"]').forEach(el => el.remove());
+                        document.querySelectorAll('[class*="backdrop"]').forEach(el => el.remove());
+                    }
+                """)
+                await asyncio.sleep(0.5)
             else:
-                print("  No specific job URL found, continuing from current page.")
-                last_shot = await take_screenshot(page, "02-no-job-found")
+                print("  No backdrop found - cookie banner dismissed successfully")
 
-            # Step 4: Find and click Apply button
-            print("\n=== Step 4: Find Apply button ===")
-            apply_btn = None
-            apply_selectors = [
-                "a:has-text('Apply for this job')",
-                "a:has-text('Apply now')",
-                "button:has-text('Apply for this job')",
-                "button:has-text('Apply now')",
-                "button:has-text('Apply')",
-                "a:has-text('Apply')",
-                "[data-ui='apply-button']",
-                ".apply-button",
-                "a[href*='/apply']",
-            ]
-            for sel in apply_selectors:
+            last_shot = await screenshot(page, "02-cookie-dismissed")
+
+            # === Step 3: Click APPLICATION tab ===
+            print(f"\n=== Step 3: Click APPLICATION tab ===")
+            # Try normal click first
+            app_tab_clicked = False
+
+            # First try: direct click on APPLICATION tab
+            for sel in [
+                "a:has-text('APPLICATION')",
+                "a[href*='apply']",
+                f"a[href='/fortanix/j/{JOB_SHORTCODE}/apply/']",
+                "[data-ui='tab']:has-text('APPLICATION')",
+                "li:has-text('APPLICATION') a",
+            ]:
                 try:
                     el = await page.query_selector(sel)
-                    if el and await el.is_visible():
-                        text = await el.inner_text()
-                        print(f"  Found apply btn: '{text.strip()}' ({sel})")
-                        apply_btn = el
+                    if el:
+                        visible = await el.is_visible()
+                        print(f"  Found '{sel}': visible={visible}")
+                        if visible:
+                            await el.click(timeout=5000)
+                            app_tab_clicked = True
+                            print(f"  Clicked APPLICATION tab")
+                            break
+                except Exception as e:
+                    print(f"  Click {sel} failed: {e}")
+
+            if not app_tab_clicked:
+                # Try JS click
+                print("  Trying JS click on APPLICATION link...")
+                for js_sel in [
+                    f"a[href*='{JOB_SHORTCODE}/apply']",
+                    "a[href*='/apply/']",
+                    "a[href*='/apply']",
+                ]:
+                    result = await js_click(page, js_sel)
+                    if result:
+                        print(f"  JS clicked: {js_sel}")
+                        app_tab_clicked = True
                         break
-                except:
-                    pass
 
-            if apply_btn:
-                print("  Clicking Apply button...")
-                await apply_btn.click()
-                await asyncio.sleep(4)
+            if not app_tab_clicked:
+                # Navigate directly to apply URL
+                print("  Navigating directly to apply URL...")
+                resp = await page.goto(APPLY_URL, wait_until="domcontentloaded", timeout=30000)
+                print(f"  Apply URL status: {resp.status if resp else 'N/A'}")
+
+            await asyncio.sleep(4)
+            last_shot = await screenshot(page, "03-application-tab")
+            print(f"  Current URL: {page.url}")
+            print(f"  Title: {await page.title()}")
+
+            # === Step 4: Handle cookie banner again (if it reappeared) ===
+            await dismiss_cookie_banner(page)
+            # Always remove backdrop
+            await page.evaluate("""
+                () => {
+                    document.querySelectorAll('[data-ui="backdrop"]').forEach(el => el.remove());
+                }
+            """)
+            await asyncio.sleep(1)
+
+            # === Step 5: Inspect the form ===
+            print(f"\n=== Step 5: Inspect form ===")
+            inputs = await page.query_selector_all("input")
+            textareas = await page.query_selector_all("textarea")
+            print(f"  Inputs: {len(inputs)}, Textareas: {len(textareas)}")
+            for inp in inputs:
                 try:
-                    await page.wait_for_load_state("domcontentloaded", timeout=15000)
+                    t = await inp.get_attribute("type") or "text"
+                    n = await inp.get_attribute("name") or ""
+                    i = await inp.get_attribute("id") or ""
+                    ph = await inp.get_attribute("placeholder") or ""
+                    label_el = None
+                    try:
+                        label_el = await page.query_selector(f"label[for='{i}']")
+                        label_text = await label_el.inner_text() if label_el else ""
+                    except:
+                        label_text = ""
+                    print(f"    input[type={t}, name={n}, id={i}, ph='{ph[:25]}', label='{label_text[:25]}']")
                 except:
                     pass
-                last_shot = await take_screenshot(page, "03-apply-form")
-                print(f"  Apply form URL: {page.url}")
-            else:
-                print("  No Apply button found.")
-                last_shot = await take_screenshot(page, "03-no-apply-btn")
+            for ta in textareas:
+                try:
+                    n = await ta.get_attribute("name") or ""
+                    i = await ta.get_attribute("id") or ""
+                    ph = await ta.get_attribute("placeholder") or ""
+                    print(f"    textarea[name={n}, id={i}, ph='{ph[:30]}']")
+                except:
+                    pass
 
-            # Step 5: Fill form
-            print("\n=== Step 5: Fill application form ===")
-            await asyncio.sleep(2)
-            filled = await try_fill_form(page)
-            print(f"  Filled {len(filled)} fields.")
-            if filled:
-                last_shot = await take_screenshot(page, "04-form-filled")
+            # === Step 6: Fill form ===
+            print(f"\n=== Step 6: Fill form ===")
+            filled = 0
 
-            # Step 6: Upload resume
-            print("\n=== Step 6: Upload resume ===")
+            if await fill_field(page,
+                ["input[name='firstname']", "input[name='first_name']", "input[id*='firstname']",
+                 "input[placeholder*='irst']", "input[autocomplete='given-name']",
+                 "input[id*='first']"],
+                APPLICANT["first_name"], "first_name"):
+                filled += 1
+
+            if await fill_field(page,
+                ["input[name='lastname']", "input[name='last_name']", "input[id*='lastname']",
+                 "input[placeholder*='ast']", "input[autocomplete='family-name']",
+                 "input[id*='last']"],
+                APPLICANT["last_name"], "last_name"):
+                filled += 1
+
+            if await fill_field(page,
+                ["input[name='email']", "input[type='email']", "input[id*='email']",
+                 "input[placeholder*='mail']", "input[autocomplete='email']"],
+                APPLICANT["email"], "email"):
+                filled += 1
+
+            if await fill_field(page,
+                ["input[name='phone']", "input[type='tel']", "input[id*='phone']",
+                 "input[placeholder*='hone']", "input[autocomplete='tel']"],
+                APPLICANT["phone"], "phone"):
+                filled += 1
+
+            # Cover letter
+            if await fill_field(page,
+                ["textarea[name='cover_letter']", "textarea[name='coverLetter']",
+                 "textarea[id*='cover']", "textarea[placeholder*='over']", "textarea"],
+                COVER_LETTER, "cover_letter"):
+                filled += 1
+
+            print(f"  Total filled: {filled}")
+            if filled > 0:
+                last_shot = await screenshot(page, "04-form-filled")
+
+            # === Step 7: Upload resume ===
+            print(f"\n=== Step 7: Upload resume ===")
             file_inputs = await page.query_selector_all("input[type='file']")
-            print(f"  File inputs found: {len(file_inputs)}")
-            resume_uploaded = False
+            print(f"  File inputs: {len(file_inputs)}")
             for fi in file_inputs:
                 try:
                     if os.path.exists(RESUME_PDF):
                         await fi.set_input_files(RESUME_PDF)
-                        print(f"  Resume uploaded: {RESUME_PDF}")
-                        await asyncio.sleep(2)
-                        last_shot = await take_screenshot(page, "05-resume-uploaded")
-                        resume_uploaded = True
+                        print(f"  Resume uploaded")
+                        await asyncio.sleep(3)
+                        last_shot = await screenshot(page, "05-resume-uploaded")
                         break
                 except Exception as e:
                     print(f"  Upload error: {e}")
 
-            # Step 7: Take pre-submit screenshot
-            print("\n=== Step 7: Pre-submit state ===")
-            pre_submit_shot = await take_screenshot(page, "06-pre-submit")
-            if pre_submit_shot:
-                last_shot = pre_submit_shot
-            print(f"  Current URL: {page.url}")
-            print(f"  Page title: {await page.title()}")
+            # === Step 8: Pre-submit screenshot ===
+            print(f"\n=== Step 8: Pre-submit screenshot ===")
+            s = await screenshot(page, "06-pre-submit")
+            if s:
+                last_shot = s
+            print(f"  URL: {page.url}")
+            try:
+                body = await page.evaluate("document.body.innerText")
+                print(f"  Body text (500 chars): {body[:500]}")
+            except:
+                pass
 
-            # Step 8: Submit if form was filled
-            print("\n=== Step 8: Submit application ===")
+            # === Step 9: Find submit button and submit ===
+            print(f"\n=== Step 9: Submit ===")
             submit_btn = None
-            submit_selectors = [
+            for sel in [
                 "button[type='submit']",
                 "input[type='submit']",
                 "button:has-text('Submit application')",
                 "button:has-text('Submit')",
+                "button:has-text('Send application')",
                 "button:has-text('Send')",
-                "button:has-text('Apply')",
-            ]
-            for sel in submit_selectors:
+            ]:
                 try:
                     el = await page.query_selector(sel)
                     if el and await el.is_visible():
                         txt = await el.inner_text()
-                        print(f"  Submit button: '{txt.strip()}' ({sel})")
+                        print(f"  Found submit: '{txt.strip()}' [{sel}]")
                         submit_btn = el
                         break
                 except:
                     pass
 
-            if filled and submit_btn:
-                print("  Submitting application...")
-                await submit_btn.click()
-                await asyncio.sleep(5)
+            if filled > 0 and submit_btn:
+                # Remove any backdrop again before submitting
+                await page.evaluate("() => { document.querySelectorAll('[data-ui=\"backdrop\"]').forEach(e => e.remove()); }")
+                print("  Clicking Submit...")
+                await submit_btn.click(timeout=10000)
+                await asyncio.sleep(6)
+                s = await screenshot(page, "07-post-submit")
+                if s:
+                    last_shot = s
                 try:
-                    await page.wait_for_load_state("domcontentloaded", timeout=15000)
+                    body = await page.evaluate("document.body.innerText")
+                    final_url = page.url
+                    print(f"  Post-submit URL: {final_url}")
+                    print(f"  Body (300 chars): {body[:300]}")
+                    if any(w in body.lower() for w in ["thank", "success", "submitted", "received", "confirmation"]):
+                        await update_app("applied",
+                            f"Application submitted. Confirmation text detected. URL: {final_url}",
+                            last_shot, cl_path, JOB_TITLE, JOB_URL)
+                    else:
+                        await update_app("applied",
+                            f"Submit clicked. No explicit confirmation detected. URL: {final_url}",
+                            last_shot, cl_path, JOB_TITLE, JOB_URL)
+                except Exception as e:
+                    await update_app("applied",
+                        f"Submit clicked, could not verify result: {e}",
+                        last_shot, cl_path, JOB_TITLE, JOB_URL)
+
+            elif filled == 0 and submit_btn is None:
+                body = ""
+                try:
+                    body = await page.evaluate("document.body ? document.body.innerText : ''")
                 except:
                     pass
-                post_submit_shot = await take_screenshot(page, "07-post-submit")
-                if post_submit_shot:
-                    last_shot = post_submit_shot
-                final_content = await page.content()
-                final_url = page.url
-                print(f"  Post-submit URL: {final_url}")
+                notes = (f"Form rendered but no fillable fields or submit button found. "
+                         f"URL: {page.url}. Body sample: {body[:200]}")
+                await update_app("skipped", notes, last_shot, cl_path, JOB_TITLE, JOB_URL)
 
-                if any(w in final_content.lower() for w in ["thank", "success", "submitted", "received"]):
-                    await update_application("applied",
-                        f"Application submitted successfully. Final URL: {final_url}",
-                        last_shot, cl_saved)
-                else:
-                    await update_application("applied",
-                        f"Submit clicked. Outcome unclear (no confirmation text). URL: {final_url}",
-                        last_shot, cl_saved)
-
-            elif not filled and not submit_btn:
-                # Check what's on the page
-                body_text = await page.evaluate("document.body ? document.body.innerText : ''")
-                print(f"  Page text (first 500): {body_text[:500]}")
-                notes = (f"Could not fill form or find submit button. "
-                         f"The Workable careers page may require JS rendering beyond what loaded. "
-                         f"URL: {page.url}, Title: {await page.title()}")
-                await update_application("skipped", notes, last_shot, cl_saved)
-
-            elif submit_btn and not filled:
-                await update_application("skipped",
-                    f"Found submit button but no form fields to fill. URL: {page.url}",
-                    last_shot, cl_saved)
             else:
-                await update_application("partial",
-                    f"Filled {len(filled)} fields but no submit button found. URL: {page.url}",
-                    last_shot, cl_saved)
+                notes = (f"Partial: {filled} fields filled, "
+                         f"submit={'found' if submit_btn else 'not found'}. URL: {page.url}")
+                await update_app("partial", notes, last_shot, cl_path, JOB_TITLE, JOB_URL)
 
         except Exception as e:
-            print(f"\nUnhandled error: {e}")
             import traceback
+            print(f"\nError: {e}")
             traceback.print_exc()
             try:
-                err_shot = await take_screenshot(page, "error")
-                if err_shot:
-                    last_shot = err_shot
+                s = await screenshot(page, "error")
+                if s:
+                    last_shot = s
             except:
                 pass
-            await update_application("failed", f"Unhandled error: {str(e)}", last_shot, cl_saved)
+            await update_app("failed", f"Error: {str(e)}", last_shot, cl_path, JOB_TITLE, JOB_URL)
         finally:
             await browser.close()
-            print("\nBrowser closed.")
+            print(f"\nDone. Last screenshot: {last_shot}")
 
 if __name__ == "__main__":
     asyncio.run(main())

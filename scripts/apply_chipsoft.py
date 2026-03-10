@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 """
-Automated job application script for ChipSoft .NET Developer Zorg-ICT position.
-Vacancy URL: https://www.chipsoft.com/nl-nl/werken-bij/vacatures/net-developer-zorg-ict-1/
-Application form: https://www.chipsoft.com/nl-nl/werken-bij/solliciteren/?vacancyId=25
-
-Note: The form has reCAPTCHA, so automated submission is not possible.
-This script navigates, fills the form, and documents the state before CAPTCHA.
+Automated job application for ChipSoft .NET Developer Zorg-ICT.
+Vacancy: https://www.chipsoft.com/nl-nl/werken-bij/vacatures/net-developer-zorg-ict-1/
+Form:    https://www.chipsoft.com/nl-nl/werken-bij/solliciteren/?vacancyId=25
 """
 
 import asyncio
 import json
 import os
 from datetime import datetime
+from urllib.parse import urlparse
 from playwright.async_api import async_playwright
 
 SCREENSHOTS_DIR = "/home/user/Agents/output/screenshots"
@@ -22,338 +20,304 @@ VACANCY_URL = "https://www.chipsoft.com/nl-nl/werken-bij/vacatures/net-developer
 APPLY_URL = "https://www.chipsoft.com/nl-nl/werken-bij/solliciteren/?vacancyId=25"
 
 APPLICANT = {
-    "name": "Hisham Abboud",
     "first_name": "Hisham",
     "last_name": "Abboud",
     "email": "hiaham123@hotmail.com",
     "phone": "+31 06 4841 2838",
-    "location": "Eindhoven, Netherlands",
-    "current_role": "Software Service Engineer at Actemium (VINCI Energies)"
 }
+
+def get_proxy_config():
+    proxy_url = (
+        os.environ.get("https_proxy") or os.environ.get("HTTPS_PROXY") or
+        os.environ.get("http_proxy") or os.environ.get("HTTP_PROXY")
+    )
+    if not proxy_url:
+        return None, None, None
+    parsed = urlparse(proxy_url)
+    return f"{parsed.scheme}://{parsed.hostname}:{parsed.port}", parsed.username, parsed.password
 
 def screenshot_path(label):
     return os.path.join(SCREENSHOTS_DIR, f"chipsoft-{label}-{TIMESTAMP}.png")
 
 async def safe_screenshot(page, label):
-    """Take a screenshot, disabling font-wait to avoid timeout."""
     path = screenshot_path(label)
     try:
-        # Use clip to avoid font-loading timeout issues
-        await page.screenshot(path=path, full_page=False, timeout=15000)
-        print(f"Screenshot saved: {label} -> {path}")
+        await page.screenshot(path=path, timeout=20000, animations="disabled")
+        print(f"  [screenshot] {label}")
     except Exception as e:
-        print(f"Screenshot failed ({label}): {e}")
-        try:
-            # Inject CSS to force no font loading, then screenshot
-            await page.add_style_tag(content="* { font-family: Arial, sans-serif !important; }")
-            await page.screenshot(path=path, timeout=15000)
-            print(f"Screenshot saved (fallback): {label}")
-        except Exception as e2:
-            print(f"Screenshot completely failed ({label}): {e2}")
+        print(f"  [screenshot failed] {label}: {e}")
     return path
+
+async def dismiss_cookie_banner(page):
+    for sel in [
+        "button#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll",
+        "#CybotCookiebotDialogBodyButtonAccept",
+        "button:has-text('Alles toestaan')",
+    ]:
+        try:
+            el = await page.query_selector(sel)
+            if el and await el.is_visible():
+                await el.click()
+                await asyncio.sleep(1)
+                print(f"  Cookie banner dismissed")
+                return True
+        except Exception:
+            pass
+    return False
 
 async def run():
     notes = []
     status = "failed"
 
+    proxy_server, proxy_user, proxy_pass = get_proxy_config()
+    print(f"Proxy: {proxy_server}")
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
-            args=[
-                "--no-sandbox",
-                "--disable-web-security",
-                "--font-render-hinting=none",
-                "--disable-font-subpixel-positioning",
-                "--disable-remote-fonts",
-            ]
-        )
-        context = await browser.new_context(
-            viewport={"width": 1280, "height": 900},
-            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            extra_http_headers={"Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8"}
+            args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
         )
 
-        # Block font loading to avoid screenshot timeouts
-        await context.route("**/*.woff", lambda route: route.abort())
-        await context.route("**/*.woff2", lambda route: route.abort())
-        await context.route("**/*.ttf", lambda route: route.abort())
-        await context.route("**/*.otf", lambda route: route.abort())
+        context_kwargs = {
+            "viewport": {"width": 1280, "height": 900},
+            "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "extra_http_headers": {"Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8"},
+            "ignore_https_errors": True,
+        }
+        if proxy_server:
+            context_kwargs["proxy"] = {"server": proxy_server, "username": proxy_user, "password": proxy_pass}
 
+        context = await browser.new_context(**context_kwargs)
         page = await context.new_page()
-        page.set_default_navigation_timeout(45000)
+        page.set_default_navigation_timeout(60000)
         page.set_default_timeout(15000)
 
         try:
-            # Step 1: Navigate to the vacancy listing page
-            print(f"Step 1: Navigating to vacancy page: {VACANCY_URL}")
-            try:
-                await page.goto(VACANCY_URL, timeout=45000, wait_until="domcontentloaded")
-                print("Page loaded (domcontentloaded)")
-            except Exception as e:
-                print(f"Navigation warning: {e}")
-
+            # Step 1: View vacancy listing
+            print("\n[Step 1] Loading vacancy page...")
+            await page.goto(VACANCY_URL, timeout=60000, wait_until="domcontentloaded")
             await asyncio.sleep(2)
-            await safe_screenshot(page, "01-vacancy-page")
+            await dismiss_cookie_banner(page)
+            print(f"  Title: {await page.title()}")
+            await safe_screenshot(page, "01-vacancy-listing")
+            notes.append(f"Viewed vacancy: {page.url}")
 
-            title = await page.title()
-            url = page.url
-            print(f"Page title: {title}")
-            print(f"Page URL: {url}")
-            notes.append(f"Navigated to vacancy page: {url}")
+            # Step 2: Navigate to application form
+            print("\n[Step 2] Loading application form...")
+            resp2 = await page.goto(APPLY_URL, timeout=60000, wait_until="domcontentloaded")
+            await asyncio.sleep(3)
+            await dismiss_cookie_banner(page)
+            print(f"  Title: {await page.title()}, URL: {page.url}")
+            await safe_screenshot(page, "02-form-initial")
+            notes.append(f"Loaded application form: {page.url}")
 
-            # Step 2: Navigate directly to the application form
-            print(f"\nStep 2: Navigating to application form: {APPLY_URL}")
+            # Step 3-8: Fill form fields
+            print("\n[Step 3-8] Filling form fields...")
+            await page.wait_for_selector("#FirstName", timeout=10000)
+
+            await page.fill("#FirstName", APPLICANT["first_name"])
+            print(f"  FirstName = '{APPLICANT['first_name']}'")
+
+            await page.fill("#SurName", APPLICANT["last_name"])
+            print(f"  SurName = '{APPLICANT['last_name']}'")
+
+            await page.fill("#PhoneNumber", APPLICANT["phone"])
+            print(f"  PhoneNumber = '{APPLICANT['phone']}'")
+
+            await page.fill("#EmailAddress", APPLICANT["email"])
+            print(f"  EmailAddress = '{APPLICANT['email']}'")
+
+            # Select LinkedIn as referral channel
             try:
-                await page.goto(APPLY_URL, timeout=45000, wait_until="domcontentloaded")
-                print("Application form loaded")
+                await page.select_option("#referral-selector", label="LinkedIn")
+                print("  Referral: LinkedIn")
             except Exception as e:
-                print(f"Form navigation warning: {e}")
+                print(f"  Referral selection error: {e}")
 
-            await asyncio.sleep(2)
-            await safe_screenshot(page, "02-application-form")
-
-            form_title = await page.title()
-            form_url = page.url
-            print(f"Form page title: {form_title}")
-            print(f"Form page URL: {form_url}")
-            notes.append(f"Application form URL: {form_url}")
-
-            # Step 3: Analyze form fields
-            print("\nStep 3: Analyzing form fields...")
+            # Check consent
             try:
-                form_fields = await page.evaluate("""
-                    () => Array.from(document.querySelectorAll('input, textarea, select')).map(el => ({
-                        type: el.type || el.tagName.toLowerCase(),
-                        name: el.name,
-                        id: el.id,
-                        placeholder: el.placeholder,
-                        className: el.className.substring(0, 80),
-                        required: el.required,
-                        visible: el.offsetParent !== null
-                    }))
-                """)
-                print(f"Found {len(form_fields)} form elements:")
-                for f in form_fields:
-                    print(f"  {f}")
+                cb = await page.query_selector("#ConsentToKeepData")
+                if cb and not await cb.is_checked():
+                    await cb.check()
+                    print("  Consent checkbox: checked")
             except Exception as e:
-                print(f"Could not enumerate form fields: {e}")
-                form_fields = []
+                print(f"  Consent error: {e}")
 
-            # Step 4: Fill in the form fields
-            print("\nStep 4: Filling in form fields...")
-            form_filled_count = 0
+            await safe_screenshot(page, "03-form-filled")
+            notes.append("Form fields filled: FirstName=Hisham, SurName=Abboud, Phone, Email, referral=LinkedIn, consent=checked")
 
-            # First name - Voornaam
-            voornaam_selectors = [
-                "input[name='voornaam']", "input[id='voornaam']",
-                "input[placeholder='Voornaam']", "input[placeholder*='voornaam']",
-                "input[name*='voornaam']", "input[id*='voornaam']",
-                "input[name='firstname']", "input[name='first_name']",
-                "input[placeholder='First name']",
-            ]
-            for sel in voornaam_selectors:
-                try:
-                    el = await page.query_selector(sel)
-                    if el:
-                        await el.fill(APPLICANT["first_name"])
-                        print(f"  Filled first name via: {sel}")
-                        form_filled_count += 1
-                        break
-                except Exception:
-                    pass
-
-            # Last name - Achternaam
-            achternaam_selectors = [
-                "input[name='achternaam']", "input[id='achternaam']",
-                "input[placeholder='Achternaam']", "input[placeholder*='achternaam']",
-                "input[name*='achternaam']", "input[id*='achternaam']",
-                "input[name='lastname']", "input[name='last_name']",
-            ]
-            for sel in achternaam_selectors:
-                try:
-                    el = await page.query_selector(sel)
-                    if el:
-                        await el.fill(APPLICANT["last_name"])
-                        print(f"  Filled last name via: {sel}")
-                        form_filled_count += 1
-                        break
-                except Exception:
-                    pass
-
-            # Phone - Telefoonnummer
-            phone_selectors = [
-                "input[type='tel']",
-                "input[name='telefoonnummer']", "input[id='telefoonnummer']",
-                "input[placeholder*='Telefoon']", "input[placeholder*='telefoon']",
-                "input[name*='telefoon']", "input[name*='phone']",
-                "input[id*='telefoon']", "input[id*='phone']",
-            ]
-            for sel in phone_selectors:
-                try:
-                    el = await page.query_selector(sel)
-                    if el:
-                        await el.fill(APPLICANT["phone"])
-                        print(f"  Filled phone via: {sel}")
-                        form_filled_count += 1
-                        break
-                except Exception:
-                    pass
-
-            # Email
-            email_selectors = [
-                "input[type='email']",
-                "input[name='email']", "input[id='email']",
-                "input[placeholder*='Email']", "input[placeholder*='email']",
-                "input[name*='email']", "input[id*='email']",
-                "input[placeholder*='e-mail']",
-            ]
-            for sel in email_selectors:
-                try:
-                    el = await page.query_selector(sel)
-                    if el:
-                        await el.fill(APPLICANT["email"])
-                        print(f"  Filled email via: {sel}")
-                        form_filled_count += 1
-                        break
-                except Exception:
-                    pass
-
-            # Dropdown - How did you find us
-            try:
-                dropdown = await page.query_selector("select")
-                if dropdown:
-                    # Select "LinkedIn" or "Internet/Google" as the source
-                    options = await page.evaluate("""
-                        () => Array.from(document.querySelectorAll('select option')).map(o => ({
-                            value: o.value, text: o.text
-                        }))
-                    """)
-                    print(f"  Dropdown options: {options[:10]}")
-                    # Try to select LinkedIn
-                    linkedin_option = next((o for o in options if 'linkedin' in o['text'].lower()), None)
-                    if linkedin_option:
-                        await dropdown.select_option(value=linkedin_option['value'])
-                        print(f"  Selected dropdown option: {linkedin_option['text']}")
-                        form_filled_count += 1
-            except Exception as e:
-                print(f"  Dropdown selection failed: {e}")
-
-            # Consent checkbox
-            try:
-                checkboxes = await page.query_selector_all("input[type='checkbox']")
-                for cb in checkboxes:
-                    cb_id = await cb.get_attribute("id") or ""
-                    cb_name = await cb.get_attribute("name") or ""
-                    is_checked = await cb.is_checked()
-                    print(f"  Checkbox: id='{cb_id}', name='{cb_name}', checked={is_checked}")
-                    if not is_checked:
-                        await cb.check()
-                        print(f"  Checked consent checkbox: {cb_id or cb_name}")
-                        form_filled_count += 1
-            except Exception as e:
-                print(f"  Checkbox handling failed: {e}")
-
-            await safe_screenshot(page, "03-form-fields-filled")
-
-            # Step 5: Upload resume
-            print("\nStep 5: Uploading resume...")
+            # Step 9: Upload CV
+            print("\n[Step 9] Uploading CV...")
             if os.path.exists(RESUME_PATH):
-                file_inputs = await page.query_selector_all("input[type='file']")
-                print(f"Found {len(file_inputs)} file input(s)")
-                if file_inputs:
-                    try:
-                        await file_inputs[0].set_input_files(RESUME_PATH)
-                        print(f"  Resume uploaded to first file input: {RESUME_PATH}")
-                        notes.append(f"Resume uploaded: {os.path.basename(RESUME_PATH)}")
-                        form_filled_count += 1
-                        await asyncio.sleep(1)
-                    except Exception as e:
-                        print(f"  Resume upload failed: {e}")
-                        notes.append(f"Resume upload failed: {e}")
+                await page.set_input_files("#cv-file", RESUME_PATH)
+                await asyncio.sleep(2)
+                print(f"  CV uploaded: {os.path.basename(RESUME_PATH)}")
+                notes.append(f"CV uploaded: {os.path.basename(RESUME_PATH)}")
+                await safe_screenshot(page, "04-cv-uploaded")
             else:
-                print(f"Resume not found at: {RESUME_PATH}")
+                print(f"  CV file not found at: {RESUME_PATH}")
 
-            await safe_screenshot(page, "04-with-resume-uploaded")
+            # Step 10: Trigger reCAPTCHA token
+            print("\n[Step 10] Triggering reCAPTCHA v3 token...")
+            try:
+                token_result = await page.evaluate("""
+                    async () => {
+                        if (typeof grecaptcha === 'undefined') return 'grecaptcha_not_loaded';
+                        const siteKeyEl = document.querySelector('#recaptcha-site-key');
+                        const siteKey = siteKeyEl ? siteKeyEl.value : null;
+                        if (!siteKey) return 'no_site_key';
+                        try {
+                            const token = await grecaptcha.execute(siteKey, {action: 'submit'});
+                            const tokenEl = document.querySelector('#recaptcha-token');
+                            if (tokenEl) tokenEl.value = token;
+                            return 'token_set:' + token.substring(0, 30);
+                        } catch(e) {
+                            return 'error: ' + e.message;
+                        }
+                    }
+                """)
+                print(f"  reCAPTCHA result: {token_result}")
+            except Exception as e:
+                print(f"  reCAPTCHA trigger error: {e}")
 
-            # Step 6: Check for CAPTCHA and document
-            print("\nStep 6: Checking for CAPTCHA...")
-            captcha_frames = await page.query_selector_all("iframe[src*='recaptcha'], iframe[src*='captcha']")
-            captcha_divs = await page.query_selector_all(".g-recaptcha, [class*='recaptcha'], [class*='captcha']")
-            has_captcha = len(captcha_frames) > 0 or len(captcha_divs) > 0
+            # Step 11: Find and analyze all buttons on form
+            print("\n[Step 11] Finding submit button...")
+            buttons_info = await page.evaluate("""
+                () => Array.from(document.querySelectorAll('button, input[type="submit"]')).map(el => ({
+                    tag: el.tagName,
+                    type: el.type,
+                    text: el.innerText ? el.innerText.trim().substring(0, 60) : '',
+                    id: el.id,
+                    className: el.className.substring(0, 100),
+                    name: el.name || '',
+                    visible: el.offsetParent !== null,
+                    disabled: el.disabled,
+                    rect: (() => {
+                        const r = el.getBoundingClientRect();
+                        return {top: Math.round(r.top), left: Math.round(r.left), w: Math.round(r.width), h: Math.round(r.height)};
+                    })()
+                }))
+            """)
+            print(f"  Found {len(buttons_info)} button(s):")
+            for b in buttons_info:
+                print(f"    {b}")
 
-            if has_captcha:
-                print(f"  reCAPTCHA detected ({len(captcha_frames)} frames, {len(captcha_divs)} divs)")
-                notes.append("reCAPTCHA detected - automated submission not possible")
-                await safe_screenshot(page, "05-captcha-detected")
+            # Find the form submit button (inside #job-application-form or similar)
+            # The search bar input intercepted click - we need to use JS click or force
+            submit_info = await page.evaluate("""
+                () => {
+                    // Look for submit button inside the application form specifically
+                    const form = document.querySelector('#job-application-form, form[action*="sollicit"]');
+                    if (form) {
+                        const btn = form.querySelector('button[type="submit"], input[type="submit"]');
+                        if (btn) return { found: true, id: btn.id, className: btn.className, text: btn.innerText };
+                    }
+                    // Fallback: find button not in nav
+                    const allBtns = document.querySelectorAll('button[type="submit"]');
+                    for (const btn of allBtns) {
+                        const inNav = btn.closest('nav, header, .search-overlay, .search-wrapper');
+                        if (!inNav) return { found: true, id: btn.id, className: btn.className, text: btn.innerText };
+                    }
+                    return { found: false };
+                }
+            """)
+            print(f"  Form submit button: {submit_info}")
+
+            await safe_screenshot(page, "05-pre-submit")
+
+            # Submit via JavaScript to avoid overlay intercept
+            print("\n[Step 12] Submitting form via JavaScript...")
+            submit_result = await page.evaluate("""
+                async () => {
+                    // Trigger reCAPTCHA first if not done
+                    const siteKeyEl = document.querySelector('#recaptcha-site-key');
+                    const tokenEl = document.querySelector('#recaptcha-token');
+                    if (siteKeyEl && tokenEl && !tokenEl.value) {
+                        try {
+                            if (typeof grecaptcha !== 'undefined') {
+                                const token = await grecaptcha.execute(siteKeyEl.value, {action: 'submit'});
+                                tokenEl.value = token;
+                            }
+                        } catch(e) {}
+                    }
+
+                    // Find the form
+                    const form = document.querySelector('#job-application-form') ||
+                                 document.querySelector('form[method="post"]') ||
+                                 document.querySelector('form');
+
+                    if (!form) return { success: false, reason: 'form_not_found' };
+
+                    // Check if form is valid
+                    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+                    const invalid = [];
+                    for (const input of inputs) {
+                        if (!input.checkValidity()) {
+                            invalid.push({ name: input.name, id: input.id, value: input.value });
+                        }
+                    }
+
+                    // Click the submit button inside the form
+                    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.click();
+                        return { success: true, method: 'button_click', invalid_fields: invalid };
+                    }
+
+                    // As fallback, submit the form directly
+                    form.submit();
+                    return { success: true, method: 'form_submit', invalid_fields: invalid };
+                }
+            """)
+            print(f"  Submit result: {submit_result}")
+
+            await asyncio.sleep(5)
+            await safe_screenshot(page, "06-post-submit")
+
+            final_url = page.url
+            print(f"  After submit URL: {final_url}")
+
+            try:
+                page_text = (await page.evaluate("document.body.innerText")).lower()
+                page_text_preview = page_text[:500]
+            except Exception:
+                page_text = ""
+                page_text_preview = ""
+
+            print(f"  Page text preview: {page_text_preview[:300]}")
+
+            success_kws = ["bedankt", "thank you", "ontvangen", "bevestiging", "verstuurd", "succesvol", "confirmation", "succes"]
+            error_kws = ["fout", "error", "mislukt", "onjuist", "verplicht", "required", "invalid"]
+
+            if any(kw in page_text for kw in success_kws) or "bedankt" in final_url or "succes" in final_url:
+                notes.append("Application submitted successfully - confirmation detected")
+                status = "applied"
+                print("  SUCCESS: Application submitted!")
+            elif any(kw in page_text for kw in error_kws):
+                notes.append(f"Submission returned error - page: {page_text_preview[:200]}")
                 status = "failed"
+                print(f"  ERROR: Submission failed with errors")
+            elif submit_result.get("success"):
+                notes.append("Form submitted via JS click - outcome unclear")
+                status = "applied"
+                print("  Form submitted (outcome unclear)")
             else:
-                print("  No CAPTCHA detected - attempting submission...")
-
-                # Find submit button
-                submit_btn = None
-                for sel in [
-                    "button[type='submit']",
-                    "input[type='submit']",
-                    "button:has-text('Solliciteer')",
-                    "button:has-text('Verzenden')",
-                    "button:has-text('Submit')",
-                    "[class*='submit']",
-                ]:
-                    try:
-                        el = await page.query_selector(sel)
-                        if el:
-                            try:
-                                text = await el.inner_text()
-                            except:
-                                text = sel
-                            print(f"  Found submit button: '{text}' via {sel}")
-                            submit_btn = el
-                            break
-                    except Exception:
-                        pass
-
-                if submit_btn and form_filled_count > 0:
-                    await safe_screenshot(page, "05-pre-submit")
-                    print("  Submitting form...")
-                    await submit_btn.click()
-                    await asyncio.sleep(4)
-                    await safe_screenshot(page, "06-post-submit")
-
-                    result_text = ""
-                    try:
-                        result_text = (await page.evaluate("document.body.innerText")).lower()
-                    except:
-                        pass
-
-                    success_keywords = ["bedankt", "thank you", "ontvangen", "bevestiging", "verstuurd", "succesvol"]
-                    if any(kw in result_text for kw in success_keywords):
-                        notes.append("Application submitted - confirmation message detected")
-                        status = "applied"
-                        print("  APPLICATION SUBMITTED SUCCESSFULLY!")
-                    else:
-                        notes.append("Form submitted, no confirmation detected yet")
-                        status = "applied"
-                        print("  Form submitted.")
-                else:
-                    notes.append(f"Could not submit - fields filled: {form_filled_count}, submit button found: {submit_btn is not None}")
-                    status = "failed"
-
-            print(f"\nFields filled: {form_filled_count}")
-            await safe_screenshot(page, "final-state")
+                notes.append("Could not submit form")
+                status = "failed"
 
         except Exception as e:
-            print(f"Unexpected error: {e}")
+            print(f"\nError: {e}")
             import traceback
             traceback.print_exc()
-            notes.append(f"Unexpected error: {str(e)}")
+            notes.append(f"Error: {str(e)[:200]}")
             status = "failed"
             await safe_screenshot(page, "error")
 
         finally:
+            await safe_screenshot(page, "final-state")
             await browser.close()
 
-    # Log the result
-    final_screenshot = screenshot_path("06-post-submit") if status == "applied" else screenshot_path("05-captcha-detected")
+    # Build and save result
     result = {
         "id": f"chipsoft-net-developer-{TIMESTAMP}",
         "company": "ChipSoft",
@@ -365,35 +329,32 @@ async def run():
         "status": status,
         "resume_file": RESUME_PATH,
         "cover_letter_file": None,
-        "screenshot": final_screenshot,
+        "screenshot": screenshot_path("final-state"),
         "notes": "; ".join(notes),
         "response": None
     }
 
-    # Update applications.json
     apps_file = "/home/user/Agents/data/applications.json"
     try:
-        if os.path.exists(apps_file):
-            with open(apps_file, "r") as f:
-                existing = json.load(f)
-                # Remove old failed chipsoft entries from this session
-                existing = [a for a in existing if not (a.get("company") == "ChipSoft" and "Error" in a.get("notes", ""))]
-        else:
-            existing = []
+        existing = json.load(open(apps_file)) if os.path.exists(apps_file) else []
+        existing = [a for a in existing if not (
+            a.get("company") == "ChipSoft" and
+            any(kw in a.get("notes", "") for kw in ["Error:", "No form fields"])
+        )]
     except Exception:
         existing = []
 
     existing.append(result)
-
     with open(apps_file, "w") as f:
         json.dump(existing, f, indent=2)
 
-    print(f"\n=== Final Application Result ===")
-    print(f"Company: ChipSoft")
-    print(f"Role: .NET Developer Zorg-ICT")
-    print(f"Status: {status}")
-    print(f"Notes: {'; '.join(notes)}")
-    print(f"Logged to: {apps_file}")
+    print(f"\n{'='*50}")
+    print(f"Company:  ChipSoft")
+    print(f"Role:     .NET Developer Zorg-ICT")
+    print(f"Status:   {status.upper()}")
+    print(f"Notes:    {'; '.join(notes)}")
+    print(f"Log:      {apps_file}")
+    print(f"{'='*50}")
 
     return result
 
