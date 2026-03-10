@@ -2872,5 +2872,23 @@
     "screenshot": "/home/user/Agents/output/screenshots/chipsoft-07-post-submit-20260310_095214.png",
     "notes": "Error: Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n  -   - waiting for fonts to load...\n",
     "response": null
+  },
+  {
+    "id": "foxtek-20260310095540",
+    "company": "Foxtek",
+    "role": "Senior Full Stack Engineer (C#/Angular)",
+    "url": "https://www.foxtekrs.com/job/senior-full-stack-engineer-c-angular/",
+    "original_url": "https://www.foxtekrs.com/job/dot-net-developer-1",
+    "date_applied": "2026-03-10",
+    "score": 8.5,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/foxtek-net-developer.md",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/foxtek-01-job-page-20260310_095533.png",
+      "/home/user/Agents/output/screenshots/foxtek-02-form-filled-20260310_095538.png"
+    ],
+    "notes": "Original .NET Developer job (dot-net-developer-1) returned 404 \u2014 listing removed. Applying to nearest available match: Senior Full Stack Engineer (C#/Angular). Application form fields: name, email, phone, CV upload (no cover letter textarea).  Could not populate form fields (JavaScript fill failed).",
+    "response": ""
   }
 ]
