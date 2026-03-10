@@ -2688,7 +2688,7 @@
     "resume_file": "output/tailored-resumes/hexapole-automatisering-net-developer.md",
     "cover_letter_file": "output/cover-letters/hexapole-automatisering-net-developer.md",
     "screenshot": "output/screenshots/hexapole-01-job-page.png",
-    "notes": "Application is email-only. Recipient: w.rebel@hexapole.com. Email drafted and saved to output/cover-letters/hexapole-automatisering-net-developer.md. Outlook login blocked by Microsoft 2FA verification step (no stored password). Ready-to-send email saved to output/emails/hexapole-application.eml. ACTION REQUIRED: send email manually to w.rebel@hexapole.com.",
+    "notes": "No online form. Email w.rebel@hexapole.com. EML file ready at output/emails/hexapole-application.eml. Microsoft 2FA blocked auto-send.",
     "response": "awaiting"
   },
   {
@@ -2708,15 +2708,15 @@
   {
     "id": "tomtom-software-engineer-20260306",
     "company": "TomTom",
-    "role": "Software Engineer",
-    "url": "https://www.tomtom.com/careers/joboverview/",
-    "date_applied": "",
+    "role": "Software Engineer - AI",
+    "url": "https://www.tomtom.com/careers/jobdetails/de41ef5b-8e92-43ea-84ae-f1b7693ca071/software-engineer-ai/",
+    "date_applied": "2026-03-10T09:54:06.257154",
     "score": 8.0,
-    "status": "new",
-    "resume_file": "",
-    "cover_letter_file": "",
-    "screenshot": "",
-    "notes": "Eindhoven High Tech Campus. Maps/navigation. Multiple SE roles. Relocation support.",
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/tomtom-software-engineer-ai.md",
+    "screenshot": "/home/user/Agents/output/screenshots/tomtom-11-after-submit.png",
+    "notes": "Applied to Software Engineer - AI role in Amsterdam via Lever ATS. Application form fully filled: name, email, phone, location (Eindhoven), resume uploaded, cover letter added, salary expectations (60-70k EUR), NL residency confirmed (Yes), demographics (Prefer not to say), data consent checked. Submission BLOCKED by hCaptcha (jobs.eu.lever.co). Error: \"There was an error verifying your application. Please try again.\" Cannot solve hCaptcha autonomously. Marked as failed. Applicant should complete application manually at: https://jobs.eu.lever.co/tomtom/de41ef5b-8e92-43ea-84ae-f1b7693ca071/apply",
     "response": ""
   },
   {
