@@ -3090,5 +3090,25 @@
     "all_screenshots": [],
     "notes": "reCAPTCHA Enterprise blocks automated browser submission. Form data confirmed by Greenhouse (response included candidate email), but captcha token required. Candidate must manually complete application at: https://job-boards.greenhouse.io/clickhouse/jobs/5803692004 \u2014 all materials prepared: tailored cover letter saved, resume PDF ready.",
     "response": ""
+  },
+  {
+    "id": "sendent-16136012-20260604_074601",
+    "company": "Sendent B.V.",
+    "role": "Medior Software Engineer (Backend/Integrations/.NET)",
+    "url": "https://join.com/companies/sendentcom/16136012-medior-software-engineer-backend-integrations-net",
+    "date_applied": "2026-06-04",
+    "score": 9.2,
+    "status": "pending_magic_link",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/sendent-medior-dotnet.md",
+    "screenshots": [
+      "/home/user/Agents/output/screenshots/sendent-16136012-01-job-listing-20260604_074601.png",
+      "/home/user/Agents/output/screenshots/sendent-16136012-02-after-apply-click-20260604_074601.png",
+      "/home/user/Agents/output/screenshots/sendent-16136012-03-email-entered-20260604_074601.png",
+      "/home/user/Agents/output/screenshots/sendent-16136012-04-after-email-submit-20260604_074601.png"
+    ],
+    "notes": "APPLICATION INITIATED - AWAITING EMAIL CONFIRMATION. Job URL 16136012 redirects to 16212500 (same role, refreshed listing). Apply button clicked, reached join.com auth page for job 15650046. Email hiaham123@hotmail.com entered and submitted. Join.com confirmed: sent magic link/secure login link to hiaham123@hotmail.com. Page shows: \"We\u2019ve sent you a secure login link - Check your email\". ACTION REQUIRED: Check hiaham123@hotmail.com for join.com email with subject \"Your secure login link\" or similar. Click the link and complete the form: (1) Upload CV: /home/user/Agents/profile/Hisham Abboud CV.pdf (2) Personal info: Hisham Abboud, Netherlands, +31648412838 (3) LinkedIn: linkedin.com/in/hisham-abboud (4) GitHub: github.com/Hishamabboud (5) Cover letter: already saved at /home/user/Agents/output/cover-letters/sendent-medior-dotnet.md (6) Screening questions: Start date=ASAP, Work permit=Yes, Visa needed=No (7) Click \"Confirm & apply\". Alternatively run: python3 /home/user/Agents/scripts/apply_sendent_after_magic_link.py \"<MAGIC_LINK_URL>\"",
+    "final_url": "https://join.com/companies/sendentcom/15650046/apply/authentication",
+    "response": "awaiting"
   }
 ]
