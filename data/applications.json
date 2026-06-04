@@ -3324,5 +3324,27 @@
     "location": "Alkmaar, Netherlands",
     "requisition_id": "10457",
     "greenhouse_job_id": "4826064101"
+  },
+  {
+    "id": "yellowtail-ai-engineer-20260604",
+    "company": "Yellowtail Conclusion",
+    "role": "Junior/Medior AI Engineer",
+    "url": "https://yellowtail.recruitee.com/o/juniormedior-ai-engineer",
+    "application_url": "https://yellowtail.recruitee.com/api/offers/juniormedior-ai-engineer/candidates",
+    "job_listing_url": "https://www.consultancy.nl/vacatures/257137/yellowtail/juniormedior-ai-engineer",
+    "date_applied": "2026-06-04T09:09:35Z",
+    "score": 8.5,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/yellowtail-ai-engineer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/yellowtail-ai-engineer-confirmation-20260604.txt",
+    "notes": "Applied via Recruitee API (HTTP 201 Created). Candidate ID: 123584750. CV uploaded (Hisham Abboud CV.pdf, confirmed S3 URL). Cover letter included as text field (CogitatAI LLM platform highlighted as centerpiece, Python/Flask/Azure/LLM experience, bilingual EN/NL). No screening questions on this offer. Note: candidate may have previously applied to a different Yellowtail role; this is a distinct AI Engineer position.",
+    "response": null,
+    "candidate_id": 123584750,
+    "offer_id": 2487570,
+    "offer_slug": "juniormedior-ai-engineer",
+    "http_status": 201,
+    "email_used": "hiaham123@hotmail.com",
+    "cv_s3_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/123584750/pdf_cv_87p73vl3m4kh.pdf"
   }
 ]
