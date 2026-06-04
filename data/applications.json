@@ -3306,5 +3306,23 @@
     "company_contact_email": "iwanttojoin@monumental.co",
     "location": "Amsterdam, Netherlands",
     "salary": "up to ~134K EUR"
+  },
+  {
+    "id": "app-nice-csharp-001",
+    "company": "NICE Ltd.",
+    "role": "C# Software Engineer",
+    "url": "https://job-boards.eu.greenhouse.io/nice/jobs/4826064101",
+    "builtin_url": "https://builtin.com/job/c-software-engineer/8902661",
+    "date_applied": "2026-06-04",
+    "score": 8.5,
+    "status": "requires_manual_step",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/nice-csharp-engineer.md",
+    "screenshot": "output/screenshots/nice-csharp-final-form-full.png",
+    "notes": "Form fully filled via automation (Playwright): first name, last name, email, phone (+31 648412838), Netherlands country, resume PDF uploaded, LinkedIn, all 3 Yes/No dropdowns = No, AI experience textarea filled. Blocked at submission by Google reCAPTCHA Enterprise (invisible, site key 6LfmcbcpAAAAAChNTbhUShzUOAMj_wY9LQIvLFX0). Greenhouse also sends email verification (security_code_recipient: hiaham123@hotmail.com). Cannot bypass CAPTCHA programmatically. Manual step required: go to https://job-boards.eu.greenhouse.io/nice/jobs/4826064101, re-fill form (or check if email verification link was sent), and submit manually. Cover letter saved at output/cover-letters/nice-csharp-engineer.md.",
+    "response": "awaiting",
+    "location": "Alkmaar, Netherlands",
+    "requisition_id": "10457",
+    "greenhouse_job_id": "4826064101"
   }
 ]
