@@ -94,7 +94,7 @@ async function run() {
     await page.keyboard.type('Neth');
     await page.waitForTimeout(400);
     // Click the Netherlands option
-    await page.locator('.select__option').filter({ hasText: 'Netherlands' }).first().click();
+    await page.locator('.select__option').filter({ hasText: 'Netherlands +31' }).click();
     await page.waitForTimeout(300);
     console.log('Selected phone country: Netherlands');
 
