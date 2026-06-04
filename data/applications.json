@@ -3346,5 +3346,34 @@
     "http_status": 201,
     "email_used": "hiaham123@hotmail.com",
     "cv_s3_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/123584750/pdf_cv_87p73vl3m4kh.pdf"
+  },
+  {
+    "id": "athora-llm-mlops-engineer-20260604",
+    "company": "Athora Netherlands",
+    "role": "LLM / MLOps Engineer",
+    "url": "https://athora.recruitee.com/o/llm-mlops-engineer",
+    "date_applied": "2026-06-04",
+    "score": 8,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/athora-llm-mlops-engineer.md",
+    "screenshot": "/home/user/Agents/output/screenshots/athora-llm-mlops-01-job-url-2026-06-04_09-14-32.png",
+    "notes": "Job listing no longer active. Recruitee page returns HTTP 404 with message \"Deze vacature bestaat niet of is verwijderd\" (This vacancy does not exist or has been removed). Cross-checked via curl, Playwright browser, and the live Athora careers listings page - slug llm-mlops-engineer is absent from all 14 current active listings. Cover letter was generated and saved. Could not submit application. Recommendation: contact Athora directly via LinkedIn or check if role reappears.",
+    "response": null
+  },
+  {
+    "id": 166,
+    "company": "Athora Netherlands",
+    "role": "LLM / ML Engineer",
+    "url": "https://athora.recruitee.com/o/ml-engineer",
+    "date_applied": "2026-06-04",
+    "score": 7,
+    "status": "failed",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/athora-llm-ml-engineer.md",
+    "screenshot": null,
+    "notes": "Job posting returns 404 / 'vacancy not found' on Recruitee. The offer is no longer published on athora.recruitee.com - confirmed via Recruitee API (company ID 10142) which lists 20 published offers, none of which is the ML Engineer role. The slug 'ml-engineer' returns HTTP 404 and 'We konden deze vacature niet vinden' error page. Tailored cover letter generated and saved. Direct application via recruitment@athora.nl is recommended as a manual step.",
+    "response": null,
+    "manual_action_required": "Send application email manually to recruitment@athora.nl with subject 'Application: LLM / ML Engineer' attaching /home/user/Agents/profile/Hisham Abboud CV.pdf and the cover letter at /home/user/Agents/output/cover-letters/athora-llm-ml-engineer.md"
   }
 ]
