@@ -3110,5 +3110,19 @@
     "notes": "APPLICATION INITIATED - AWAITING EMAIL CONFIRMATION. Job URL 16136012 redirects to 16212500 (same role, refreshed listing). Apply button clicked, reached join.com auth page for job 15650046. Email hiaham123@hotmail.com entered and submitted. Join.com confirmed: sent magic link/secure login link to hiaham123@hotmail.com. Page shows: \"We\u2019ve sent you a secure login link - Check your email\". ACTION REQUIRED: Check hiaham123@hotmail.com for join.com email with subject \"Your secure login link\" or similar. Click the link and complete the form: (1) Upload CV: /home/user/Agents/profile/Hisham Abboud CV.pdf (2) Personal info: Hisham Abboud, Netherlands, +31648412838 (3) LinkedIn: linkedin.com/in/hisham-abboud (4) GitHub: github.com/Hishamabboud (5) Cover letter: already saved at /home/user/Agents/output/cover-letters/sendent-medior-dotnet.md (6) Screening questions: Start date=ASAP, Work permit=Yes, Visa needed=No (7) Click \"Confirm & apply\". Alternatively run: python3 /home/user/Agents/scripts/apply_sendent_after_magic_link.py \"<MAGIC_LINK_URL>\"",
     "final_url": "https://join.com/companies/sendentcom/15650046/apply/authentication",
     "response": "awaiting"
+  },
+  {
+    "id": "maqqie-medior-backend-20260604",
+    "company": "Maqqie",
+    "role": "Medior Software Engineer (Backend)",
+    "url": "https://maqqie.recruitee.com/o/medior-software-engineer?lang=en",
+    "date_applied": "2026-06-04",
+    "score": 8.5,
+    "status": "skipped",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/maqqie-medior-engineer.md",
+    "screenshots": [],
+    "notes": "Job no longer available. The URL https://maqqie.recruitee.com/o/medior-software-engineer returns HTTP 404. Verified via Maqqie Recruitee API (/api/offers/): only 7 non-technical roles are currently published (Office Manager, Accountmanager, Support Medewerker, Manager Finance & Control, Stage Marketing, Business Development Manager). No software engineering role is listed. The Medior Software Engineer position has been filled or removed. Cover letter was pre-generated and saved. No application submitted because the listing is closed.",
+    "response": null
   }
 ]
