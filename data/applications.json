@@ -3453,11 +3453,12 @@
     "url": "https://careers.chdr.nl/vacaturebeschrijving/medior-software-engineer",
     "date_applied": "2026-06-04",
     "score": 7,
-    "status": "action_required",
+    "status": "skipped",
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/chdr-medior-se.md",
-    "screenshot": "output/screenshots/chdr-03-application-form-20260604_100324.png",
-    "notes": "Clinical research org in Leiden. Form accessed but submission status uncertain. Check https://careers.chdr.nl and apply manually. .NET + databases + cloud. Salary \u20ac3,500-\u20ac4,700/month.",
-    "response": ""
+    "screenshot": "output/screenshots/chdr-08-vacancy-closed-confirmation-20260604_100545.png",
+    "notes": "Clinical research org in Leiden. .NET + databases + cloud architecture. 3-5 years required, have ~2.5 (slight stretch). Salary \u20ac3,500-\u20ac4,700/month. Application portal BLOCKED: AFAS backend returns 'Solliciteren op deze vacature is niet mogelijk. Deze vacature staat niet open.' (Applying not possible - vacancy not open). The job is publicly visible on careers.chdr.nl but the application intake is closed in the AFAS system. Cover letter written and saved. MANUAL ACTION REQUIRED: Email vexadaktylos@chdr.nl (Vasileios Exadaktylos, +31715246485) directly with CV and cover letter. Address: Zernikedreef 8, 2333 CL Leiden.",
+    "response": "",
+    "manual_action_required": "Email CV + cover letter directly to vexadaktylos@chdr.nl (Vasileios Exadaktylos). Subject: 'Application: Medior Software Engineer'. Attach /home/user/Agents/profile/Hisham Abboud CV.pdf and cover letter at /home/user/Agents/output/cover-letters/chdr-medior-se.md"
   }
 ]
