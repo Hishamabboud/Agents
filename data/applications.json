@@ -3676,5 +3676,47 @@
     "screenshot": "output/screenshots/opennl-fullstack-api-response-20260611.json",
     "notes": "Submitted via Recruitee API (POST /api/offers/653992/candidates). Candidate ID: 124213417. GovTech company, Amersfoort. Java + Angular/ExtJS stack (C# similar to Java). Dutch cover letter submitted. Kubernetes, APIs, SQL/NoSQL.",
     "response": ""
+  },
+  {
+    "id": 206,
+    "company": "Nederlands Forensisch Instituut (NFI)",
+    "role": "Full-Stack Software Developer",
+    "url": "https://www.werkenvoornederland.nl/vacatures/full-stack-software-developer-NFI-2026-5703",
+    "date_applied": "2026-06-11",
+    "score": 8.0,
+    "status": "pending_submission",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "",
+    "screenshot": "",
+    "notes": "Dutch government (Ministry of Justice). DevOps teams, forensic IT landscape. The Hague. Apply via email to vacatures@nfi.nl. HBO level accepted for some roles. MANUAL: Send CV + motivatiebrief to vacatures@nfi.nl with reference NFI-2026-5703.",
+    "response": ""
+  },
+  {
+    "id": 207,
+    "company": "Nederlands Forensisch Instituut (NFI)",
+    "role": "Medior Python Developer",
+    "url": "https://www.werkenvoornederland.nl/vacatures/medior-python-developer-NFI-2026-2450",
+    "date_applied": "2026-06-11",
+    "score": 8.5,
+    "status": "pending_submission",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "",
+    "screenshot": "",
+    "notes": "Dutch government (Ministry of Justice). Python, Linux/Docker/Kubernetes, data science teams. The Hague. Apply via email to vacatures@nfi.nl. MANUAL: Send CV + motivatiebrief to vacatures@nfi.nl with reference NFI-2026-2450.",
+    "response": ""
+  },
+  {
+    "id": 208,
+    "company": "Picnic",
+    "role": "Junior Java Developer",
+    "url": "https://jobs.picnic.app/en/vacancies/JD54OQW3/engineering/junior-java-developer/amsterdam/north-holland/netherlands",
+    "date_applied": "2026-06-11",
+    "score": 7.5,
+    "status": "pending",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "",
+    "screenshot": "",
+    "notes": "Picnic grocery delivery, Amsterdam. Java stack (similar to C#). Agent attempting browser submission via custom careers portal (jobs.picnic.app). Picnic Tech Academy, agile teams.",
+    "response": ""
   }
 ]
