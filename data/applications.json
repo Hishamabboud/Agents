@@ -3628,11 +3628,11 @@
     "url": "https://www.das.nl/over-ons/werken-bij-das/vacature/2526485",
     "date_applied": "2026-06-11",
     "score": 8.0,
-    "status": "pending_submission",
+    "status": "vacancy_closed",
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/das-ai-engineer.md",
     "screenshot": "",
-    "notes": "AI Engineer role in Centre of Excellence AI. Focus on GenAI, LLMs, Agentic AI. 0-2 years experience range (perfect fit). CogitatAI directly relevant. Needs manual application - career page returned 500/empty.",
+    "notes": "AI Engineer role in Centre of Excellence AI. Focus on GenAI, LLMs, Agentic AI. 0-2 years experience range (perfect fit). CogitatAI directly relevant. Needs manual application - career page returned 500/empty. | Vacancy closed as of 2026-06-11.",
     "response": ""
   },
   {
@@ -3862,6 +3862,20 @@
     "cover_letter_file": "",
     "screenshot": "",
     "notes": "Workable ATS, no public API. Utrecht location. AI-powered heart disease detection platform. Needs cover letter and browser automation.",
+    "response": ""
+  },
+  {
+    "id": 219,
+    "company": "DAS",
+    "role": "Junior Data Engineer",
+    "url": "https://vacatures.das.nl/o/junior-data-engineer",
+    "date_applied": "2026-06-11",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/das-junior-data-engineer.md",
+    "screenshot": "output/screenshots/das-junior-data-engineer-api-response-20260611.json",
+    "notes": "Submitted via Recruitee API at vacatures.das.nl (candidate 124219427). Amsterdam. Requires Python, SQL, Azure, 1+ yr experience. Dutch cover letter. DAS = juridische hulp organisatie.",
     "response": ""
   }
 ]
