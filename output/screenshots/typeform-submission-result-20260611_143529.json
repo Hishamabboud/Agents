@@ -1,0 +1,21 @@
+{
+  "status": 400,
+  "url": "https://boards.greenhouse.io/typeform/jobs/7942504",
+  "headers": {
+    "content-length": "11",
+    "date": "Thu, 11 Jun 2026 14:35:36 GMT",
+    "x-download-options": "noopen",
+    "cache-control": "no-cache",
+    "x-request-id": "0136a198-e949-430c-9947-c30fb0ff0937df4457f7fc71f45240c12efebffe53be",
+    "x-runtime": "0.020396",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "x-xss-protection": "1; mode=block",
+    "x-cache": "Error from cloudfront",
+    "via": "1.1 e9b2affad5fcea678c9381d59c2d8e5c.cloudfront.net (CloudFront)",
+    "x-amz-cf-pop": "DEN53-P3",
+    "x-amz-cf-id": "H4F_oX2KihZwNR3XfRnsL6daxdiDiRupRtN2zRX8kGALhyteAzt-Vg=="
+  },
+  "body": "Bad Request",
+  "resume_url": "https://grnhse-prod-jben-us-west-2.s3.us-west-2.amazonaws.com/stash/applications/resumes/1781188535114-tf367xj75hpjre-2e176e1c9662d8a204395c50a2bb1197",
+  "cover_letter_url": "https://grnhse-prod-jben-us-west-2.s3.us-west-2.amazonaws.com/stash/applications/resumes/1781188536019-2xg67vylg3a4g6-0188178debdda85338f4868d1fecb1be"
+}

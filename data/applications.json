@@ -3526,5 +3526,43 @@
     "candidate_id": 124199903,
     "api_endpoint": "https://floryn.recruitee.com/api/offers/1248634/candidates",
     "http_status": 201
+  },
+  {
+    "id": 102,
+    "company": "Databricks",
+    "role": "Software Engineer - Fullstack",
+    "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8029677002",
+    "date_applied": "2026-06-11",
+    "score": 7,
+    "status": "requires_manual_step",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/databricks-fullstack-se.md",
+    "screenshots": [
+      "output/screenshots/databricks-v6-01-form-loaded-20260611_143628.png",
+      "output/screenshots/databricks-v6-02-top-fields-20260611_143628.png",
+      "output/screenshots/databricks-v6-03-social-links-20260611_143628.png",
+      "output/screenshots/databricks-v6-04-dropdowns-20260611_143628.png",
+      "output/screenshots/databricks-v6-05-checkboxes-20260611_143628.png",
+      "output/screenshots/databricks-v6-06-full-form-20260611_143628.png",
+      "output/screenshots/databricks-v6-07-pre-submit-20260611_143628.png",
+      "output/screenshots/databricks-v6-08-post-submit-20260611_143628.png"
+    ],
+    "notes": "Amsterdam. Data+AI platform. Fullstack SE, 2+ years HTML/CSS/JS. Greenhouse ATS. Form FULLY filled (work auth=Yes, visa=No, sanctions Qs done, CV uploaded). Blocked by Greenhouse 8-char email verification code sent to hiaham123@hotmail.com. MANUAL: get code from email, enter in Security code field, Submit. Re-run scripts/apply_databricks_v6.py if form reset.",
+    "response": "",
+    "manual_action_required": "Check hiaham123@hotmail.com for Greenhouse 8-character verification code. Visit https://databricks.com/company/careers/open-positions/job?gh_jid=8029677002, fill form (all data above is correct), enter code in Security code field, click Submit application."
+  },
+  {
+    "id": 101,
+    "company": "Typeform",
+    "role": "Full Stack Developer",
+    "url": "https://job-boards.greenhouse.io/typeform/jobs/7942504",
+    "date_applied": "2026-06-04",
+    "score": 8,
+    "status": "requires_manual_step",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/typeform-fullstack-developer.md",
+    "screenshot": "output/screenshots/typeform-ready-submit-20260611_145256.png",
+    "notes": "Remote NL. SaaS forms platform. Stack: React/Node/TypeScript/Go. Greenhouse ATS. Form FULLY filled with CORRECT data (work auth=Yes, visa sponsorship=No, GDPR acknowledged, CV uploaded, cover letter). reCAPTCHA failed for automation (HTTP 428 captcha-failed) so Greenhouse sent an 8-char security code to hiaham123@hotmail.com. MANUAL: open the form, get the code from email, enter it, click Submit.",
+    "response": ""
   }
 ]
