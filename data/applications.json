@@ -3509,5 +3509,22 @@
     "notes": "Fintech/POS startup by Adyen co-founder Arnout Schuijff. Backend (Python/Kotlin/Go/Java). Early talent, 7-month contract. Ashby ATS (job UUID: d1c9cbc7-a47f-4863-83d2-bc7f0639226a). Automated form fill complete via Playwright. Confirmed fields filled: Name=Hisham Abboud, Email=hiaham123@hotmail.com, Resume=Hisham Abboud CV.pdf (uploaded). Legal right to work NL=Yes (radio selected). GitHub=https://github.com/Hishamabboud (filled). Location dropdown ('Where are you based?') requires manual selection (combobox, typed text not accepted). Google reCAPTCHA v3 (id=g-recaptcha-response-100000) confirmed present \u2014 blocks automated submission. MANUAL ACTION REQUIRED: Visit https://jobs.ashbyhq.com/tebi/d1c9cbc7-a47f-4863-83d2-bc7f0639226a/application, select location from dropdown (type 'Eindhoven' and pick from results), verify all other fields, solve reCAPTCHA, and click Submit Application.",
     "response": "",
     "manual_action_required": "Visit https://jobs.ashbyhq.com/tebi/d1c9cbc7-a47f-4863-83d2-bc7f0639226a/application. Fill: Name=Hisham Abboud, Email=hiaham123@hotmail.com, upload /home/user/Agents/profile/Hisham Abboud CV.pdf, select location Eindhoven from dropdown, select Yes for legal right to work NL, GitHub=https://github.com/Hishamabboud. Solve reCAPTCHA and click Submit Application."
+  },
+  {
+    "id": 100,
+    "company": "Floryn",
+    "role": "Full-stack Software Engineer",
+    "url": "https://floryn.recruitee.com/o/fullstack-software-engineer-shertogenbosch",
+    "date_applied": "2026-06-11",
+    "score": 9,
+    "status": "applied",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/floryn-fullstack-se.md",
+    "screenshot": "output/screenshots/floryn-fullstack-se-api-response-20260611.json",
+    "notes": "Fintech (business lending) Den Bosch. Stack: Ruby on Rails/PostgreSQL/Docker/AWS. Welcomes all experience levels, teaches Ruby on the job. Salary EUR 3500-7000. Submitted via Recruitee API.",
+    "response": "HTTP 201 Created. Candidate ID: 124199903. CV uploaded to S3. Application confirmed by Recruitee API at 2026-06-11T14:20:52Z.",
+    "candidate_id": 124199903,
+    "api_endpoint": "https://floryn.recruitee.com/api/offers/1248634/candidates",
+    "http_status": 201
   }
 ]

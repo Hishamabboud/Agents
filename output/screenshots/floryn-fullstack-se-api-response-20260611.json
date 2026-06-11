@@ -1,0 +1,19 @@
+{
+  "http_status": 201,
+  "submitted_at": "2026-06-11T14:20:52.195856Z",
+  "candidate_id": 124199903,
+  "candidate": {
+    "id": 124199903,
+    "name": "Hisham Abboud",
+    "emails": ["hiaham123@hotmail.com"],
+    "phones": ["+31648412838"],
+    "created_at": "2026-06-11T14:20:52.195856Z",
+    "updated_at": "2026-06-11T14:20:53.045917Z",
+    "cv_pdf_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124199903/pdf_cv_8fc8k75erclw.pdf",
+    "cv_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124199903/cv_8fc8k75erclw.pdf",
+    "open_question_answers": []
+  },
+  "offer_id": 1248634,
+  "offer_slug": "fullstack-software-engineer-shertogenbosch",
+  "company": "Floryn B.V."
+}
