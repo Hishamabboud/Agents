@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "url": "https://www.werkenbijafas.nl/aanmaken-sollicitatie-incl-autorisatie-prs/sollicitatie-development-nl?VcSn=296",
+  "screenshots": [
+    "/home/user/Agents/output/screenshots/afas-01-job-page-2026-06-11T17-48-30.png",
+    "/home/user/Agents/output/screenshots/afas-02-form-loaded-2026-06-11T17-48-41.png",
+    "/home/user/Agents/output/screenshots/afas-03-personal-details-2026-06-11T17-48-49.png",
+    "/home/user/Agents/output/screenshots/afas-04-motivation-filled-2026-06-11T17-48-51.png",
+    "/home/user/Agents/output/screenshots/afas-05-file-upload-2026-06-11T17-48-53.png",
+    "/home/user/Agents/output/screenshots/afas-06-pre-submit-top-2026-06-11T17-48-56.png",
+    "/home/user/Agents/output/screenshots/afas-07-pre-submit-bottom-2026-06-11T17-48-58.png",
+    "/home/user/Agents/output/screenshots/afas-08-after-submit-2026-06-11T17-49-04.png"
+  ],
+  "notes": [
+    "Application submitted successfully"
+  ]
+}
