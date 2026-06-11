@@ -3842,12 +3842,12 @@
     "role": "Software Developer",
     "url": "https://apply.workable.com/deployteq/j/5246F389F7/",
     "date_applied": "2026-06-11",
-    "score": 7,
+    "score": 5,
     "status": "pending_submission",
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/deployteq-software-developer.md",
     "screenshot": "",
-    "notes": "Workable ATS, no public API for submission. Zeist location. Marketing technology company. Cover letter ready. Needs browser automation.",
+    "notes": "Workable ATS. Zeist location. NOTE: Core tech is PHP 7.x, MySQL, Apache - not .NET/Python. Lower match score. Cover letter still references general software dev skills.",
     "response": ""
   },
   {
