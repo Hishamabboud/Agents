@@ -35,6 +35,42 @@ Hisham Abboud
 hiaham123@hotmail.com
 Eindhoven, Netherlands`;
 
+  // Helper: set React-controlled input value
+  const jsSetInput = async (selector, value) => {
+    return await page.evaluate(({ sel, val }) => {
+      const el = document.querySelector(sel);
+      if (!el) return `Not found: ${sel}`;
+      const proto = el.tagName === 'TEXTAREA'
+        ? window.HTMLTextAreaElement.prototype
+        : window.HTMLInputElement.prototype;
+      const setter = Object.getOwnPropertyDescriptor(proto, 'value');
+      if (setter && setter.set) setter.set.call(el, val);
+      else el.value = val;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+      return `Set: ${el.name || el.id || sel} = ${val.substring(0, 30)}`;
+    }, { sel: selector, val: value });
+  };
+
+  // Helper: dismiss any open modal
+  const dismissModal = async () => {
+    const hasModal = await page.evaluate(() => {
+      const modal = document.querySelector('[data-role="modal-wrapper"]');
+      return modal !== null;
+    });
+    if (hasModal) {
+      console.log('Modal detected, dismissing...');
+      await page.keyboard.press('Escape');
+      await page.waitForTimeout(800);
+      // Also try clicking the backdrop
+      await page.evaluate(() => {
+        const backdrop = document.querySelector('[data-role="backdrop"]');
+        if (backdrop) backdrop.click();
+      });
+      await page.waitForTimeout(500);
+    }
+  };
+
   try {
     console.log('Navigating directly to application form...');
     await page.goto('https://apply.workable.com/deployteq/j/5246F389F7/apply/', {
@@ -46,155 +82,167 @@ Eindhoven, Netherlands`;
     console.log('Page loaded. URL:', page.url());
 
     // Dismiss cookie consent
-    const cookieDialog = page.locator('[data-ui="cookie-consent"], [aria-label="Cookie Consent"]');
-    const cookieVisible = await cookieDialog.isVisible({ timeout: 3000 }).catch(() => false);
-    if (cookieVisible) {
-      console.log('Cookie consent dialog found, dismissing...');
-      for (const btnText of ['Accept all', 'Accept', 'OK', 'Got it', 'Agree', 'Decline']) {
-        const btn = page.locator(`[data-ui="cookie-consent"] button:has-text("${btnText}")`).first();
-        if (await btn.isVisible({ timeout: 500 }).catch(() => false)) {
-          await btn.click({ force: true });
-          console.log(`Clicked cookie button: ${btnText}`);
-          await page.waitForTimeout(1500);
-          break;
-        }
-      }
+    const cookieDialog = page.locator('[data-ui="cookie-consent"]');
+    if (await cookieDialog.isVisible({ timeout: 3000 }).catch(() => false)) {
+      console.log('Dismissing cookie consent...');
+      await page.locator('[data-ui="cookie-consent"] button').first().click({ force: true });
+      await page.waitForTimeout(1500);
     }
 
-    // Wait for form fields to appear
+    // Wait for form
     await page.waitForSelector('input[name="firstname"]', { timeout: 15000 });
     await page.waitForTimeout(1000);
     console.log('Form loaded');
 
-    // --- PERSONAL INFORMATION ---
-    // First name
+    // --- PERSONAL INFORMATION via page.fill (safe - doesn't trigger modals) ---
     await page.fill('input[name="firstname"]', 'Hisham');
     console.log('First name filled');
 
-    // Last name
     await page.fill('input[name="lastname"]', 'Abboud');
     console.log('Last name filled');
 
-    // Email
     await page.fill('input[type="email"]', 'hiaham123@hotmail.com');
     console.log('Email filled');
 
-    // Phone - Workable has a phone flag selector + input
-    const phoneInput = page.locator('input[type="tel"]').first();
-    await phoneInput.fill('+31064841 2838');
-    console.log('Phone filled');
+    // Phone - use JS to avoid triggering country code modal
+    let result = await jsSetInput('input[type="tel"]', '+31064841 2838');
+    console.log('Phone:', result);
 
-    // Address - clear incorrect auto-fill and set properly
-    const addressInput = page.locator('input[name="address"]').first();
-    await addressInput.triple_click_and_fill_workaround: ;
-    // Use triple click to select all then type
-    await addressInput.click({ clickCount: 3 });
-    await addressInput.fill('Eindhoven, Netherlands');
-    console.log('Address filled');
+    // Dismiss any modal that may have opened
+    await dismissModal();
+
+    // Address - use JS to avoid autocomplete modal
+    result = await jsSetInput('input[name="address"]', 'Eindhoven, Netherlands');
+    console.log('Address:', result);
+
+    await dismissModal();
 
     await page.screenshot({ path: path.join(screenshotDir, 'deployteq-02-personal-info.png'), fullPage: true });
 
     // --- RESUME UPLOAD ---
-    // The resume input has data-ui="resume"
-    console.log('Uploading resume to resume field...');
-    const resumeInput = page.locator('input[data-ui="resume"], input[id*="resume" i]').first();
-    const resumeInputById = page.locator('#input_files_input_kKnbNRvUbXbFNnqJ');
-    // Use the correct resume file input (not the avatar one)
+    console.log('Uploading resume...');
     const fileInputs = await page.locator('input[type="file"]').all();
     console.log(`Total file inputs: ${fileInputs.length}`);
-    // Second file input is the resume (first is photo/avatar)
     if (fileInputs.length >= 2) {
       await fileInputs[1].setInputFiles(resumePath);
       console.log('Resume uploaded to second file input (resume field)');
-    } else if (fileInputs.length === 1) {
+    } else if (fileInputs.length >= 1) {
       await fileInputs[0].setInputFiles(resumePath);
-      console.log('Resume uploaded to only file input');
+      console.log('Resume uploaded to first file input');
     }
     await page.waitForTimeout(3000);
+    await dismissModal();
     await page.screenshot({ path: path.join(screenshotDir, 'deployteq-03-after-upload.png'), fullPage: true });
 
     // --- COVER LETTER ---
-    await page.fill('textarea[name="cover_letter"]', coverLetterText);
-    console.log('Cover letter filled');
+    result = await jsSetInput('textarea[name="cover_letter"]', coverLetterText);
+    console.log('Cover letter:', result);
+    await dismissModal();
 
     // --- REQUIRED CUSTOM FIELDS ---
-    // Notice period (CA_21813) - text field
-    await page.fill('input[name="CA_21813"]', '1 month');
-    console.log('Notice period filled');
 
-    // Expected Salary (CA_21815) - text field
-    await page.fill('input[name="CA_21815"]', '65000');
-    console.log('Expected salary filled');
+    // Notice period (CA_21813)
+    result = await jsSetInput('input[name="CA_21813"]', '1 month');
+    console.log('Notice period:', result);
 
-    // Right to work (CA_21816) - radio, select YES (true)
-    const rightToWorkYes = page.locator('input[name="CA_21816"][value="true"]').first();
-    if (await rightToWorkYes.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await rightToWorkYes.check();
-      console.log('Right to work: YES selected');
-    } else {
-      // Try first radio button (YES)
-      await page.locator('input[name="CA_21816"]').first().check();
-      console.log('Right to work: first radio selected');
-    }
+    // Expected Salary (CA_21815)
+    result = await jsSetInput('input[name="CA_21815"]', '65000');
+    console.log('Expected salary:', result);
+
+    // Right to work (CA_21816) - click the YES label using JavaScript
+    const radioResult = await page.evaluate(() => {
+      // Find the label that contains the YES radio (value="true")
+      const yesRadio = document.querySelector('input[name="CA_21816"][value="true"]');
+      if (!yesRadio) return 'YES radio not found';
+      const label = yesRadio.closest('label');
+      if (!label) return 'Label not found';
+      label.click();
+      // Also directly set the radio as checked
+      yesRadio.checked = true;
+      yesRadio.dispatchEvent(new Event('change', { bubbles: true }));
+      yesRadio.dispatchEvent(new Event('click', { bubbles: true }));
+      return `Clicked label, radio checked: ${yesRadio.checked}, label text: ${label.innerText.trim()}`;
+    });
+    console.log('Right to work:', radioResult);
+    await page.waitForTimeout(500);
+    await dismissModal();
 
     // QA_11807072 - "Are you live and reside in the Netherlands?"
-    const qa1 = page.locator('textarea[name="QA_11807072"]');
-    if (await qa1.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await qa1.fill('Yes, I currently reside in Eindhoven, Netherlands.');
-      console.log('QA_11807072 filled');
-    }
+    result = await jsSetInput('textarea[name="QA_11807072"]', 'Yes, I currently reside in Eindhoven, Netherlands.');
+    console.log('QA_11807072:', result);
 
     // QA_11807073 - "Can you commute to our Office in Huis ter Heide, Utrecht?"
-    const qa2 = page.locator('textarea[name="QA_11807073"]');
-    if (await qa2.isVisible({ timeout: 2000 }).catch(() => false)) {
-      await qa2.fill('Yes, I can commute to your office in Huis ter Heide, Utrecht. Eindhoven to Huis ter Heide is approximately 60 minutes by public transport.');
-      console.log('QA_11807073 filled');
-    }
+    result = await jsSetInput('textarea[name="QA_11807073"]', 'Yes, I can commute to the office in Huis ter Heide, Utrecht. The journey from Eindhoven is approximately 60 minutes by public transport, which I am comfortable doing.');
+    console.log('QA_11807073:', result);
 
-    // GDPR checkbox
-    const gdprCheckbox = page.locator('input[name="gdpr"]').first();
-    if (await gdprCheckbox.isVisible({ timeout: 2000 }).catch(() => false)) {
-      if (!await gdprCheckbox.isChecked()) {
-        await gdprCheckbox.check({ force: true });
-        console.log('GDPR checkbox checked');
-      } else {
-        console.log('GDPR already checked');
+    // GDPR - click via JavaScript
+    const gdprResult = await page.evaluate(() => {
+      // Try clicking the custom checkbox
+      const gdprLabel = document.querySelector('[data-ui="gdpr"]');
+      const roleCheckbox = document.querySelector('[data-ui="gdpr"] [role="checkbox"]');
+      const nativeCheckbox = document.querySelector('input[name="gdpr"]');
+
+      let results = [];
+      if (roleCheckbox) {
+        roleCheckbox.click();
+        results.push(`role=checkbox clicked, aria-checked: ${roleCheckbox.getAttribute('aria-checked')}`);
       }
-    }
+      if (gdprLabel) {
+        results.push(`gdpr data-checked: ${gdprLabel.getAttribute('data-checked')}`);
+      }
+      if (nativeCheckbox) {
+        nativeCheckbox.checked = true;
+        nativeCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+        results.push(`native checkbox checked: ${nativeCheckbox.checked}`);
+      }
+      return results.join(' | ');
+    });
+    console.log('GDPR:', gdprResult);
+    await page.waitForTimeout(500);
+    await dismissModal();
 
     await page.screenshot({ path: path.join(screenshotDir, 'deployteq-04-all-fields.png'), fullPage: true });
 
-    // Scroll to bottom for final check
+    // Scroll to bottom
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await page.waitForTimeout(1000);
     await page.screenshot({ path: path.join(screenshotDir, 'deployteq-05-form-bottom.png'), fullPage: false });
 
-    // Log form state
+    // Final form state check
     const formState = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('input, textarea, select')).map(el => ({
-        tag: el.tagName,
-        type: el.type || '',
+      const fields = Array.from(document.querySelectorAll('input, textarea')).map(el => ({
         name: el.name || '',
-        id: el.id || '',
+        type: el.type || '',
         value: el.value ? (el.value.length > 80 ? el.value.substring(0, 80) + '...' : el.value) : '',
-        checked: el.type === 'checkbox' || el.type === 'radio' ? el.checked : undefined
-      }));
+        checked: (el.type === 'checkbox' || el.type === 'radio') ? el.checked : undefined
+      })).filter(f => f.name); // only named fields
+      const gdpr = document.querySelector('[data-ui="gdpr"]');
+      const gdprRoleChk = document.querySelector('[data-ui="gdpr"] [role="checkbox"]');
+      return {
+        fields,
+        gdprDataChecked: gdpr ? gdpr.getAttribute('data-checked') : null,
+        gdprAriaChecked: gdprRoleChk ? gdprRoleChk.getAttribute('aria-checked') : null,
+        hasModal: !!document.querySelector('[data-role="modal-wrapper"]')
+      };
     });
-    console.log('Form state before submit:', JSON.stringify(formState, null, 2));
+    console.log('Form state:', JSON.stringify(formState, null, 2));
 
-    // Full page pre-submit screenshot
+    // Pre-submit screenshot
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: path.join(screenshotDir, 'deployteq-06-pre-submit.png'), fullPage: true });
 
-    // Submit
-    console.log('Clicking submit button...');
-    const submitBtn = page.locator('button[type="submit"]').first();
-    await submitBtn.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500);
-    await submitBtn.click();
-    console.log('Submit clicked');
+    // Submit using JavaScript to bypass modal if still present
+    console.log('Submitting form...');
+    const submitResult = await page.evaluate(() => {
+      const btn = document.querySelector('button[type="submit"]');
+      if (!btn) return 'Submit button not found';
+      btn.click();
+      return `Submit button clicked: "${btn.innerText.trim()}"`;
+    });
+    console.log('Submit result:', submitResult);
 
-    await page.waitForTimeout(6000);
+    // Wait for response
+    await page.waitForTimeout(8000);
 
     // Final screenshot
     await page.screenshot({ path: path.join(screenshotDir, 'deployteq-software-developer-after-submit.png'), fullPage: true });

@@ -3642,11 +3642,11 @@
     "url": "https://www.bosch.nl/carriere/vacatures/",
     "date_applied": "2026-06-11",
     "score": 7.5,
-    "status": "pending_submission",
+    "status": "skipped",
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/bosch-medior-se.md",
-    "screenshot": "",
-    "notes": "Breda area. Java and/or .NET development for automotive (ActiveSchematics). Medior level. Cover letter ready. Needs manual application via Bosch career portal.",
+    "screenshot": "output/screenshots/bosch-medior-se-after-submit.png",
+    "notes": "Breda area. Java and/or .NET development for automotive (ActiveSchematics). Medior level. Cover letter ready. Position NOT FOUND on jobs.bosch.com, SmartRecruiters BoschGroup NL listings, Indeed NL, or any other job board. All 33 current Bosch NL jobs are in Security/Safety/Engineering/Logistics sectors - no software developer positions. Search for \"software engineer\" on portal returns 0 results. Vacancy appears to have been removed or filled.",
     "response": ""
   },
   {
