@@ -3600,12 +3600,12 @@
     "url": "https://job-boards.greenhouse.io/catawiki/jobs/7960442",
     "date_applied": "2026-06-11",
     "score": 8.5,
-    "status": "pending",
+    "status": "pending_verification",
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/catawiki-junior-se.md",
-    "screenshot": "",
-    "notes": "Greenhouse-based application. Agent attempting browser submission. Ruby/TypeScript/React stack, Amsterdam hybrid. Requires Master's degree preferred (Hisham has BSc) but encourages applying anyway. Junior level, 1yr experience required.",
-    "response": ""
+    "screenshot": "output/screenshots/catawiki-v5-after-submit.png",
+    "notes": "Form fully filled and submitted via Playwright browser automation. Greenhouse returned HTTP 428 captcha-failed with email verification fallback. 8-character security code sent to hiaham123@hotmail.com. Must enter security code to finalize submission. All fields submitted: First=Hisham, Last=Abboud, Email=hiaham123@hotmail.com, Phone=Netherlands +31 0648412838, Location=Eindhoven NL, Resume PDF uploaded to S3, Cover letter entered as text. Screening Q1 (work authorization)=Yes, Q2 (within 1hr Amsterdam)=Yes, LinkedIn=https://linkedin.com/in/hisham-abboud, Source=Job board/Online search.",
+    "response": "email_verification_sent_to_hiaham123@hotmail.com"
   },
   {
     "id": 201,
