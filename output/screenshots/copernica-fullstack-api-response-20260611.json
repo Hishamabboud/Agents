@@ -1,0 +1,14 @@
+{
+  "candidate": {
+    "created_at": "2026-06-11T17:23:39.013177Z",
+    "id": 124213012,
+    "name": "Hisham Abboud",
+    "emails": ["hiaham123@hotmail.com"],
+    "phones": ["+31 06 4841 2838"],
+    "cv_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124213012/cv_32nbc3s2ylsm.pdf"
+  },
+  "status": "submitted_successfully",
+  "offer_id": 2420499,
+  "company": "Copernica",
+  "role": "Fullstack Developer"
+}

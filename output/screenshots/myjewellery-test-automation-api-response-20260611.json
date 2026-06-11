@@ -1,0 +1,14 @@
+{
+  "candidate": {
+    "created_at": "2026-06-11T17:24:02.507427Z",
+    "id": 124213043,
+    "name": "Hisham Abboud",
+    "emails": ["hiaham123@hotmail.com"],
+    "phones": ["+31 06 4841 2838"],
+    "cv_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124213043/cv_6cns1fgme95d.pdf"
+  },
+  "status": "submitted_successfully",
+  "offer_id": 2412988,
+  "company": "My Jewellery",
+  "role": "Test Automation Engineer"
+}
