@@ -3835,5 +3835,33 @@
     "screenshot": "",
     "notes": "Email application to merijn.pen@denssolutions.com. C# .NET WPF for electron microscopy software platform. Delft location. Cover letter ready.",
     "response": ""
+  },
+  {
+    "id": 217,
+    "company": "DeployTeq",
+    "role": "Software Developer",
+    "url": "https://apply.workable.com/deployteq/j/5246F389F7/",
+    "date_applied": "2026-06-11",
+    "score": 7,
+    "status": "pending_submission",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/deployteq-software-developer.md",
+    "screenshot": "",
+    "notes": "Workable ATS, no public API for submission. Zeist location. Marketing technology company. Cover letter ready. Needs browser automation.",
+    "response": ""
+  },
+  {
+    "id": 218,
+    "company": "Cordys Analytics",
+    "role": "Full-Stack Software Engineer",
+    "url": "https://apply.workable.com/cordys-analytics/j/BA514476BE/",
+    "date_applied": "2026-06-11",
+    "score": 8,
+    "status": "pending_submission",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "",
+    "screenshot": "",
+    "notes": "Workable ATS, no public API. Utrecht location. AI-powered heart disease detection platform. Needs cover letter and browser automation.",
+    "response": ""
   }
 ]
