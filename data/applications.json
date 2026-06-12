@@ -4143,5 +4143,33 @@
     "screenshot": "",
     "notes": "Recruitee API submission. Candidate ID 124230518. AI platform, TypeScript/React. Tilburg.",
     "response": ""
+  },
+  {
+    "id": 239,
+    "company": "Axendo",
+    "role": "Medior Backend Developer (.NET)",
+    "url": "https://axendo.nl/vacatures/medior-backend-developer-net",
+    "date_applied": "2026-06-12",
+    "score": 8,
+    "status": "pending_email",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "",
+    "screenshot": "",
+    "notes": "Apply via email to info@axendo.nl with CV + motivation. C#/.NET Core, Azure, Leusden. 2-4 years exp required. Mentions Claude Code familiarity as nice-to-have!",
+    "response": ""
+  },
+  {
+    "id": 240,
+    "company": "Studyportals",
+    "role": "Senior Front-end Developer",
+    "url": "https://apply.workable.com/studyportals/j/ECA966B7A2/",
+    "date_applied": "2026-06-12",
+    "score": 5,
+    "status": "skipped",
+    "resume_file": "",
+    "cover_letter_file": "",
+    "screenshot": "",
+    "notes": "Workable ATS. Senior level, VueJS/Node.js/TypeScript. Eindhoven. Too senior for profile.",
+    "response": ""
   }
 ]
