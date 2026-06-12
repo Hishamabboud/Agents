@@ -4115,5 +4115,33 @@
     "screenshot": "",
     "notes": "Recruitee API submission. Candidate ID 124230379. Custom software, team-based. Amsterdam.",
     "response": ""
+  },
+  {
+    "id": 237,
+    "company": "HeadFirst Group",
+    "role": "Fullstack Engineer",
+    "url": "https://headfirst.recruitee.com/o/fullstack-engineer",
+    "date_applied": "2026-06-12",
+    "score": 7,
+    "status": "applied",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/headfirst-fullstack-engineer.md",
+    "screenshot": "",
+    "notes": "Recruitee API submission. Candidate ID 124230466. HR tech, Striive platform, international expansion. Hoofddorp.",
+    "response": ""
+  },
+  {
+    "id": 238,
+    "company": "CM.com",
+    "role": "Frontend Developer HALO",
+    "url": "https://cmcom.recruitee.com/o/frontend-developer-halo",
+    "date_applied": "2026-06-12",
+    "score": 7,
+    "status": "applied",
+    "resume_file": "profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "output/cover-letters/cmcom-frontend-developer-halo.md",
+    "screenshot": "",
+    "notes": "Recruitee API submission. Candidate ID 124230518. AI platform, TypeScript/React. Tilburg.",
+    "response": ""
   }
 ]
