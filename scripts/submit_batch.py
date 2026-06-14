@@ -35,7 +35,6 @@ def main():
         company = c['company']
         role = c['role']
         location = c['location']
-        # No ?async=true - use the standard candidates endpoint
         api_url = f"https://{slug}.recruitee.com/api/offers/{offer_id}/candidates"
 
         cover_letter = (
@@ -58,8 +57,13 @@ def main():
 
         # Use literal bracket notation candidate[name] - NOT URL-encoded %5B%5D
         # The Recruitee Rails backend expects standard nested params: candidate[field]
+        # Capture HTTP status code via -w flag; body goes to a temp file
+        tmp_file = Path("/tmp/recruitee_resp.txt")
         result = subprocess.run(
-            ["curl", "-s", "-X", "POST", api_url,
+            ["curl", "-s",
+             "-o", str(tmp_file),
+             "-w", "%{http_code}",
+             "-X", "POST", api_url,
              "-F", "candidate[name]=Hisham Abboud",
              "-F", "candidate[email]=hiaham123@hotmail.com",
              "-F", "candidate[phone]=+31 06 4841 2838",
@@ -69,14 +73,18 @@ def main():
             capture_output=True, text=True
         )
 
-        response_text = result.stdout.strip()
+        http_status = result.stdout.strip()
+        response_text = tmp_file.read_text() if tmp_file.exists() else ""
+
+        candidate_id = ""
         try:
             resp = json.loads(response_text)
-            ok = resp.get("ok", False)
-            candidate_id = resp.get("candidate", {}).get("id", "")
+            candidate_id = str(resp.get("candidate", {}).get("id", "") or resp.get("id", ""))
         except Exception:
-            ok = False
-            candidate_id = ""
+            pass
+
+        # Success = HTTP 201 Created, or a candidate id was returned
+        ok = http_status == "201" or bool(candidate_id)
 
         status = "applied" if ok else "failed"
         symbol = "+" if ok else "x"
@@ -92,7 +100,7 @@ def main():
             "resume_file": str(RESUME_PATH.resolve()),
             "cover_letter_file": None,
             "screenshot": None,
-            "notes": f"Applied via Recruitee API (multipart). Response: {response_text[:200]}",
+            "notes": f"Applied via Recruitee API (multipart). HTTP {http_status}. Response: {response_text[:200]}",
             "email_used": "hiaham123@hotmail.com",
             "offer_id": offer_id,
             "recruitee_api_url": api_url,
@@ -110,7 +118,7 @@ def main():
         else:
             failed += 1
 
-        print(f"  [{symbol}] {next_id-1:3d} {company} - {role} | {status} | {response_text[:80]}")
+        print(f"  [{symbol}] {next_id-1:3d} {company} - {role} | {status} | HTTP {http_status} | candidate_id={candidate_id}")
 
         if i < len(candidates) - 1:
             time.sleep(2)
