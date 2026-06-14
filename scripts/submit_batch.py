@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Batch submit job applications via Recruitee API."""
+"""Batch submit job applications via Recruitee API using multipart form-data."""
 
 import json
 import time
 import subprocess
-import base64
 from datetime import datetime
 from pathlib import Path
 
@@ -13,6 +12,7 @@ RESUME_PATH = BASE_DIR / "profile" / "Hisham Abboud CV.pdf"
 APPS_PATH = BASE_DIR / "data" / "applications.json"
 CANDIDATES_PATH = Path("/tmp/new_candidates.json")
 
+
 def main():
     with open(APPS_PATH) as f:
         apps = json.load(f)
@@ -20,7 +20,10 @@ def main():
     with open(CANDIDATES_PATH) as f:
         candidates = json.load(f)
 
-    resume_b64 = base64.b64encode(RESUME_PATH.read_bytes()).decode()
+    # Remove previous failed attempts for these offer_ids so we don't duplicate
+    existing_offer_ids = {c['offer_id'] for c in candidates}
+    apps = [a for a in apps if a.get('offer_id') not in existing_offer_ids or a.get('status') != 'failed']
+
     next_id = max((a.get('id', 0) for a in apps if isinstance(a.get('id'), int)), default=240) + 1
 
     applied = 0
@@ -32,42 +35,36 @@ def main():
         company = c['company']
         role = c['role']
         location = c['location']
+        # No ?async=true - use the standard candidates endpoint
         api_url = f"https://{slug}.recruitee.com/api/offers/{offer_id}/candidates"
 
-        payload = {
-            "candidate": {
-                "name": "Hisham Abboud",
-                "email": "hiaham123@hotmail.com",
-                "phone": "+31 06 4841 2838",
-                "cv": {
-                    "content": resume_b64,
-                    "name": "Hisham_Abboud_CV.pdf",
-                    "content_type": "application/pdf"
-                },
-                "cover_letter": (
-                    f"Dear Hiring Team at {company},\n\n"
-                    f"I am writing to express my interest in the {role} position in {location}. "
-                    f"As a Software Service Engineer at Actemium (VINCI Energies) with experience in "
-                    f".NET, C#, Python, and full-stack development, I am excited about the opportunity "
-                    f"to contribute to your team.\n\n"
-                    f"My background includes:\n"
-                    f"- Full-stack development using .NET/C#, Python/Flask, JavaScript/React\n"
-                    f"- Experience at ASML developing Python test suites with Locust and Pytest\n"
-                    f"- Building and maintaining Manufacturing Execution Systems (MES)\n"
-                    f"- Azure, Docker, Kubernetes, and CI/CD pipeline experience\n"
-                    f"- BSc in Software Engineering from Fontys University\n\n"
-                    f"I am based in Eindhoven and open to working anywhere in the Netherlands. "
-                    f"I would welcome the opportunity to discuss how my skills and experience can "
-                    f"benefit {company}.\n\n"
-                    f"Best regards,\nHisham Abboud\n+31 06 4841 2838\nhiaham123@hotmail.com"
-                )
-            }
-        }
+        cover_letter = (
+            f"Dear Hiring Team at {company},\n\n"
+            f"I am writing to express my interest in the {role} position in {location}. "
+            f"As a Software Service Engineer at Actemium (VINCI Energies) with experience in "
+            f".NET, C#, Python, and full-stack development, I am excited about the opportunity "
+            f"to contribute to your team.\n\n"
+            f"My background includes:\n"
+            f"- Full-stack development using .NET/C#, Python/Flask, JavaScript/React\n"
+            f"- Experience at ASML developing Python test suites with Locust and Pytest\n"
+            f"- Building and maintaining Manufacturing Execution Systems (MES)\n"
+            f"- Azure, Docker, Kubernetes, and CI/CD pipeline experience\n"
+            f"- BSc in Software Engineering from Fontys University\n\n"
+            f"I am based in Eindhoven and open to working anywhere in the Netherlands. "
+            f"I would welcome the opportunity to discuss how my skills and experience can "
+            f"benefit {company}.\n\n"
+            f"Best regards,\nHisham Abboud\n+31 06 4841 2838\nhiaham123@hotmail.com"
+        )
 
+        # Use literal bracket notation candidate[name] - NOT URL-encoded %5B%5D
+        # The Recruitee Rails backend expects standard nested params: candidate[field]
         result = subprocess.run(
             ["curl", "-s", "-X", "POST", api_url,
-             "-H", "Content-Type: application/json",
-             "-d", json.dumps(payload),
+             "-F", "candidate[name]=Hisham Abboud",
+             "-F", "candidate[email]=hiaham123@hotmail.com",
+             "-F", "candidate[phone]=+31 06 4841 2838",
+             "-F", f"candidate[cover_letter]={cover_letter}",
+             "-F", f"candidate[cv]=@{RESUME_PATH};type=application/pdf",
              "--max-time", "30"],
             capture_output=True, text=True
         )
@@ -95,7 +92,7 @@ def main():
             "resume_file": str(RESUME_PATH.resolve()),
             "cover_letter_file": None,
             "screenshot": None,
-            "notes": f"Applied via Recruitee API. Response: {response_text[:200]}",
+            "notes": f"Applied via Recruitee API (multipart). Response: {response_text[:200]}",
             "email_used": "hiaham123@hotmail.com",
             "offer_id": offer_id,
             "recruitee_api_url": api_url,
@@ -113,7 +110,7 @@ def main():
         else:
             failed += 1
 
-        print(f"  [{symbol}] {next_id-1:3d} {company} - {role} | {status}")
+        print(f"  [{symbol}] {next_id-1:3d} {company} - {role} | {status} | {response_text[:80]}")
 
         if i < len(candidates) - 1:
             time.sleep(2)
@@ -122,6 +119,7 @@ def main():
         json.dump(apps, f, indent=2, ensure_ascii=False)
 
     print(f"\nDone: {applied} applied, {failed} failed, total tracker: {len(apps)}")
+
 
 if __name__ == "__main__":
     main()
