@@ -28,7 +28,16 @@
 - Commission-only sales roles
 
 ## Blocked Companies (do NOT apply again)
-- Friday Recruitment (fridayrecruitment) — Recruiter requested we stop. 15 applications sent, too many. Do not submit any more.
+- Friday Recruitment (fridayrecruitment) — Recruiter requested we stop. 15 applications sent, too many.
+- KUBUS / BIMcollab — 29 duplicate submissions to the same role. Do not reapply.
+- Sendent B.V. — 9 duplicate submissions to the same role. Do not reapply.
+- Funda Real Estate B.V. — 7 duplicate submissions to the same role. Do not reapply.
+- Sendcloud — 5 duplicate submissions to the same role. Do not reapply.
+- ChipSoft — 5 duplicate submissions to the same role. Do not reapply.
+- UbiOps — 4 duplicate submissions to the same role. Do not reapply.
+- Prodrive Technologies — 2 duplicate submissions. Do not reapply.
+- Futures.Works — 2 duplicate submissions. Do not reapply.
+- Yellowtail Conclusion — 2 duplicate submissions. Do not reapply.
 
 ## Application Limits
 - Max 2 applications per company/recruitment agency
