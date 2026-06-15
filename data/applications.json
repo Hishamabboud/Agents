@@ -3917,7 +3917,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-dotnet-developer-arnhem.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124224290. .NET, Azure Cloud, Azure Functions. Arnhem.",
+    "notes": "Recruitee API submission. Candidate ID 124224290. .NET, Azure Cloud, Azure Functions. Arnhem. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -3931,7 +3931,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-se-dotnet-veenendaal.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124225761. C#, ASP.NET Core, React, Azure. Veenendaal.",
+    "notes": "Recruitee API submission. Candidate ID 124225761. C#, ASP.NET Core, React, Azure. Veenendaal. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -3945,7 +3945,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-azure-cloud-developer-arnhem.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124229345. Azure, .NET, cloud. Arnhem.",
+    "notes": "Recruitee API submission. Candidate ID 124229345. Azure, .NET, cloud. Arnhem. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -3959,7 +3959,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-fullstack-developer-harderwijk.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124230246. Full stack, digital agency. Harderwijk.",
+    "notes": "Recruitee API submission. Candidate ID 124230246. Full stack, digital agency. Harderwijk. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -3973,7 +3973,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-fullstack-developer-zwolle.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124230241. Full stack, Agile teams. Zwolle.",
+    "notes": "Recruitee API submission. Candidate ID 124230241. Full stack, Agile teams. Zwolle. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -3987,7 +3987,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-dotnet-developer-apeldoorn.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124230253. .NET framework. Apeldoorn. General vacancy.",
+    "notes": "Recruitee API submission. Candidate ID 124230253. .NET framework. Apeldoorn. General vacancy. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -4001,7 +4001,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-csharp-developer-apeldoorn.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124230271. C#, .NET. Apeldoorn. General vacancy.",
+    "notes": "Recruitee API submission. Candidate ID 124230271. C#, .NET. Apeldoorn. General vacancy. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -4015,7 +4015,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-data-engineer-python-amersfoort.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124230261. Python, DevOps, Azure. Amersfoort.",
+    "notes": "Recruitee API submission. Candidate ID 124230261. Python, DevOps, Azure. Amersfoort. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -4029,7 +4029,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-dotnet-medior-zwolle.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124230279. .NET platform. Zwolle.",
+    "notes": "Recruitee API submission. Candidate ID 124230279. .NET platform. Zwolle. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -4043,7 +4043,7 @@
     "resume_file": "profile/Hisham Abboud CV.pdf",
     "cover_letter_file": "output/cover-letters/friday-softwareontwikkelaar-zwolle.md",
     "screenshot": "",
-    "notes": "Recruitee API submission. Candidate ID 124230275. SaaS application. Zwolle.",
+    "notes": "Recruitee API submission. Candidate ID 124230275. SaaS application. Zwolle. [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "response": ""
   },
   {
@@ -4221,7 +4221,7 @@
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": null,
     "screenshot": null,
-    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:35.692438Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333472/pdf_cv_avn3gk1b3t8n.pdf\",\"cv_url\":\"https://recruitee-ma",
+    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:35.692438Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333472/pdf_cv_avn3gk1b3t8n.pdf\",\"cv_url\":\"https://recruitee-ma [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "email_used": "hiaham123@hotmail.com",
     "offer_id": 2243194,
     "recruitee_api_url": "https://fridayrecruitment.recruitee.com/api/offers/2243194/candidates",
@@ -4240,7 +4240,7 @@
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": null,
     "screenshot": null,
-    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:39.241613Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333478/pdf_cv_8153yket7gln.pdf\",\"cv_url\":\"https://recruitee-ma",
+    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:39.241613Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333478/pdf_cv_8153yket7gln.pdf\",\"cv_url\":\"https://recruitee-ma [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "email_used": "hiaham123@hotmail.com",
     "offer_id": 2171436,
     "recruitee_api_url": "https://fridayrecruitment.recruitee.com/api/offers/2171436/candidates",
@@ -4259,7 +4259,7 @@
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": null,
     "screenshot": null,
-    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:42.694936Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333481/pdf_cv_y38lmku4ogg1.pdf\",\"cv_url\":\"https://recruitee-ma",
+    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:42.694936Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333481/pdf_cv_y38lmku4ogg1.pdf\",\"cv_url\":\"https://recruitee-ma [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "email_used": "hiaham123@hotmail.com",
     "offer_id": 2102977,
     "recruitee_api_url": "https://fridayrecruitment.recruitee.com/api/offers/2102977/candidates",
@@ -4278,7 +4278,7 @@
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": null,
     "screenshot": null,
-    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:46.248425Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333486/pdf_cv_9o7m7m8svhlh.pdf\",\"cv_url\":\"https://recruitee-ma",
+    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:46.248425Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333486/pdf_cv_9o7m7m8svhlh.pdf\",\"cv_url\":\"https://recruitee-ma [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "email_used": "hiaham123@hotmail.com",
     "offer_id": 1980026,
     "recruitee_api_url": "https://fridayrecruitment.recruitee.com/api/offers/1980026/candidates",
@@ -4297,7 +4297,7 @@
     "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
     "cover_letter_file": null,
     "screenshot": null,
-    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:49.759577Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333490/pdf_cv_3ksmvg1423e1.pdf\",\"cv_url\":\"https://recruitee-ma",
+    "notes": "Applied via Recruitee API (multipart). HTTP 201. Response: {\"candidate\":{\"created_at\":\"2026-06-14T06:47:49.759577Z\",\"cv_pdf_url\":\"https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/124333490/pdf_cv_3ksmvg1423e1.pdf\",\"cv_url\":\"https://recruitee-ma [WARNING: Recruiter Dominick Daalhuizen requested we stop applying. Do not reapply.]",
     "email_used": "hiaham123@hotmail.com",
     "offer_id": 1905686,
     "recruitee_api_url": "https://fridayrecruitment.recruitee.com/api/offers/1905686/candidates",
