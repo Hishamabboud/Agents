@@ -1,0 +1,27 @@
+# Cover Letter — Junior/Medior Python Software Engineer at UbiOps
+
+**Hisham Abboud**
+Eindhoven, Netherlands
+hiaham123@hotmail.com | +31 06 4841 2838
+linkedin.com/in/hisham-abboud | github.com/Hishamabboud
+
+---
+
+Dear UbiOps Hiring Team,
+
+I am writing to apply for the Junior/Medior Python Software Engineer position at UbiOps. Your platform's mission — making it easy to deploy and run AI/ML workloads on any infrastructure — resonates strongly with the work I have been doing independently through CogitatAI, and aligns precisely with the technologies I used during my internship at ASML.
+
+During my six-month Python Developer internship at ASML (Veldhoven), I built a performance and regression test suite using Locust and Pytest that ran inside a Kubernetes-orchestrated pipeline on Azure. I worked daily with Docker containers, wrote clean and tested Python code, and collaborated with an international agile team using Jira. That experience gave me a practical understanding of cloud-native infrastructure, CI/CD, and the challenge of making distributed systems reliable under load — challenges I recognize immediately in UbiOps's core product.
+
+Alongside my internship, I have been founding and developing CogitatAI: an AI-powered customer support platform built with a Python/Flask backend, deployed on cloud infrastructure. Building this from scratch — designing RESTful APIs, managing deployment pipelines, and iterating on AI-driven features — has deepened my appreciation for exactly the kind of tooling UbiOps provides. When I discovered UbiOps while researching ML deployment platforms, I immediately understood the pain points you are solving.
+
+In my current role at Actemium (VINCI Energies), I continue writing Python and building integrations for industrial clients, which has sharpened my ability to deliver production-grade, well-documented code under real-world constraints.
+
+What draws me most to UbiOps specifically is the technical depth of the stack: Python and Django for the core platform, Go for performance-critical components, Kubernetes and Docker for orchestration, PostgreSQL and Redis for data, and Google Cloud as the primary cloud provider. This is a stack I am eager to grow into fully. I am familiar with most of these technologies from my academic and professional background, and I am genuinely motivated to become proficient with Go and GCP as part of this role.
+
+I am based in Eindhoven, hold valid work authorization in the Netherlands, and am available for a conversation at your convenience. I would be excited to contribute to UbiOps's growth and to help make AI infrastructure accessible to every team that needs it.
+
+Thank you for your consideration.
+
+Kind regards,
+Hisham Abboud

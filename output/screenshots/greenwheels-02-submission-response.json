@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "response": {
+    "error": false,
+    "data": null,
+    "code": 200
+  },
+  "timestamp": "2026-03-10T09:52:21.101956",
+  "applicant": "Hisham Abboud",
+  "position": ".NET Developer (Open Application)",
+  "company": "Greenwheels",
+  "url": "https://jobs.greenwheels.com/open-sollicitatie/en/apply"
+}

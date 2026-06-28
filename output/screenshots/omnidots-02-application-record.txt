@@ -1,0 +1,47 @@
+OMNIDOTS - FULL STACK DEVELOPER (FRONTEND FOCUSED) - APPLICATION RECORD
+=======================================================================
+Captured: 2026-03-10 09:56:20
+
+VACANCY STATUS: The specific Full Stack Developer role is no longer listed on the
+vacancies page (https://www.omnidots.com/en/vacancies). The URL
+/en/vacancies/full-stack-developer redirects to the careers page.
+
+APPLICATION METHOD CONFIRMED: Email to dreamteam@omnidots.com
+(confirmed from all active vacancy pages on site)
+
+APPLICATION EMAIL CONTENT:
+--------------------------
+To: dreamteam@omnidots.com
+Subject: Application – Full Stack Developer (Frontend Focused) – Hisham Abboud
+
+Dear Omnidots Recruitment Team,
+
+I am excited to apply for the Full Stack Developer (Frontend Focused) position at Omnidots.
+Your Honeycomb web platform — enabling real-time environmental monitoring across 42 countries
+— is exactly the kind of impactful, data-driven product I want to contribute to.
+
+In my current role as Software Service Engineer at Actemium (VINCI Energies), I build and
+maintain full-stack applications using .NET, C#, ASP.NET, Python/Flask, and JavaScript for
+industrial clients. I develop custom REST API integrations and database optimizations enabling
+real-time data access — directly transferable to the Honeycomb platform.
+
+On the frontend side, I work with JavaScript and React, with CI/CD pipelines via Azure,
+Kubernetes, and Docker. I am also founder of CogitatAI, an AI chatbot platform I architect
+as a full-stack solution with a React-based frontend.
+
+I bring fluency in English, Dutch, and Arabic, and I am based in Eindhoven.
+
+Please find my CV attached.
+
+Best regards,
+Hisham Abboud
++31 06 4841 2838
+hiaham123@hotmail.com
+
+ATTACHMENTS: Hisham Abboud CV.pdf
+
+AUTOMATED FORM ATTEMPTS:
+- HubSpot API form (portal: 25283487, form: 4efaf4ac-3b8f-4c26-a0db-ab2feb74dfb8): 
+  BLOCKED — reCAPTCHA enabled on form
+
+NEXT STEP: Send email manually to dreamteam@omnidots.com with CV attachment.

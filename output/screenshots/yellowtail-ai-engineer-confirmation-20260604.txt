@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-06-04T09:09:35Z",
+  "action": "Application submitted to Yellowtail Conclusion - Junior/Medior AI Engineer",
+  "method": "Recruitee API POST",
+  "url": "https://yellowtail.recruitee.com/api/offers/juniormedior-ai-engineer/candidates",
+  "http_status": 201,
+  "candidate_id": 123584750,
+  "candidate_name": "Hisham Abboud",
+  "email": "hiaham123@hotmail.com",
+  "phone": "+31648412838",
+  "cv_uploaded": "Hisham Abboud CV.pdf",
+  "cv_s3_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/123584750/pdf_cv_87p73vl3m4kh.pdf",
+  "cover_letter": "Included as text (yellowtail-ai-engineer.md)",
+  "confirmation": "HTTP 201 Created - candidate record created in Recruitee system",
+  "offer_slug": "juniormedior-ai-engineer",
+  "offer_id": 2487570
+}
