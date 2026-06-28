@@ -1,77 +1,92 @@
 [
   {
     "board": "LinkedIn",
-    "search_url": "https://www.linkedin.com/jobs/search/?keywords=.NET+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Full+Stack+Developer&location=Anywhere+in+the+Netherlands&geoId=102890719&f_TPR=r604800",
     "note": "Requires login. Use Playwright MCP to navigate and scrape."
   },
   {
     "board": "Glassdoor NL",
-    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-.NET+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,24.htm",
+    "search_url": "https://www.glassdoor.nl/Vacature/Anywhere+in+the+Netherlands-Full+Stack+Developer-vacatures-SRCH_IL.0,27_ICAnywhere+in+the+Netherlands_KO28,48.htm",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "StepStone NL",
-    "search_url": "https://www.stepstone.nl/vacatures/.NET+Developer/in-Eindhoven",
+    "search_url": "https://www.stepstone.nl/vacatures/Full+Stack+Developer/in-Anywhere+in+the+Netherlands",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "LinkedIn",
-    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Python+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=.NET+%2F+C%23+Developer&location=Anywhere+in+the+Netherlands&geoId=102890719&f_TPR=r604800",
     "note": "Requires login. Use Playwright MCP to navigate and scrape."
   },
   {
     "board": "Glassdoor NL",
-    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Python+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,26.htm",
+    "search_url": "https://www.glassdoor.nl/Vacature/Anywhere+in+the+Netherlands-.NET+%2F+C%23+Developer-vacatures-SRCH_IL.0,27_ICAnywhere+in+the+Netherlands_KO28,47.htm",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "StepStone NL",
-    "search_url": "https://www.stepstone.nl/vacatures/Python+Developer/in-Eindhoven",
+    "search_url": "https://www.stepstone.nl/vacatures/.NET+%2F+C%23+Developer/in-Anywhere+in+the+Netherlands",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "LinkedIn",
-    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Swift+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Software+Engineer&location=Anywhere+in+the+Netherlands&geoId=102890719&f_TPR=r604800",
     "note": "Requires login. Use Playwright MCP to navigate and scrape."
   },
   {
     "board": "Glassdoor NL",
-    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Swift+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,25.htm",
+    "search_url": "https://www.glassdoor.nl/Vacature/Anywhere+in+the+Netherlands-Software+Engineer-vacatures-SRCH_IL.0,27_ICAnywhere+in+the+Netherlands_KO28,45.htm",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "StepStone NL",
-    "search_url": "https://www.stepstone.nl/vacatures/Swift+Developer/in-Eindhoven",
+    "search_url": "https://www.stepstone.nl/vacatures/Software+Engineer/in-Anywhere+in+the+Netherlands",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "LinkedIn",
-    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Web+Developer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Service+Engineer+%28IT%2FOT%29&location=Anywhere+in+the+Netherlands&geoId=102890719&f_TPR=r604800",
     "note": "Requires login. Use Playwright MCP to navigate and scrape."
   },
   {
     "board": "Glassdoor NL",
-    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Web+Developer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,23.htm",
+    "search_url": "https://www.glassdoor.nl/Vacature/Anywhere+in+the+Netherlands-Service+Engineer+%28IT%2FOT%29-vacatures-SRCH_IL.0,27_ICAnywhere+in+the+Netherlands_KO28,52.htm",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "StepStone NL",
-    "search_url": "https://www.stepstone.nl/vacatures/Web+Developer/in-Eindhoven",
+    "search_url": "https://www.stepstone.nl/vacatures/Service+Engineer+%28IT%2FOT%29/in-Anywhere+in+the+Netherlands",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "LinkedIn",
-    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Software+Engineer&location=Eindhoven&geoId=102890719&f_TPR=r604800",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=Python+Developer&location=Anywhere+in+the+Netherlands&geoId=102890719&f_TPR=r604800",
     "note": "Requires login. Use Playwright MCP to navigate and scrape."
   },
   {
     "board": "Glassdoor NL",
-    "search_url": "https://www.glassdoor.nl/Vacature/Eindhoven-Software+Engineer-vacatures-SRCH_IL.0,9_ICEindhoven_KO10,27.htm",
+    "search_url": "https://www.glassdoor.nl/Vacature/Anywhere+in+the+Netherlands-Python+Developer-vacatures-SRCH_IL.0,27_ICAnywhere+in+the+Netherlands_KO28,44.htm",
     "note": "May require Playwright MCP for full rendering."
   },
   {
     "board": "StepStone NL",
-    "search_url": "https://www.stepstone.nl/vacatures/Software+Engineer/in-Eindhoven",
+    "search_url": "https://www.stepstone.nl/vacatures/Python+Developer/in-Anywhere+in+the+Netherlands",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "LinkedIn",
+    "search_url": "https://www.linkedin.com/jobs/search/?keywords=AI%2FML+Engineer&location=Anywhere+in+the+Netherlands&geoId=102890719&f_TPR=r604800",
+    "note": "Requires login. Use Playwright MCP to navigate and scrape."
+  },
+  {
+    "board": "Glassdoor NL",
+    "search_url": "https://www.glassdoor.nl/Vacature/Anywhere+in+the+Netherlands-AI%2FML+Engineer-vacatures-SRCH_IL.0,27_ICAnywhere+in+the+Netherlands_KO28,42.htm",
+    "note": "May require Playwright MCP for full rendering."
+  },
+  {
+    "board": "StepStone NL",
+    "search_url": "https://www.stepstone.nl/vacatures/AI%2FML+Engineer/in-Anywhere+in+the+Netherlands",
     "note": "May require Playwright MCP for full rendering."
   }
 ]

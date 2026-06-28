@@ -1,0 +1,66 @@
+{
+  "firstname": "Hisham",
+  "lastname": "Abboud",
+  "email": "hiaham123@hotmail.com",
+  "phone": "+31064841283",
+  "headline": "Software Engineer | .NET, C#, JavaScript, Python",
+  "address": "Eindhoven, North Brabant, Netherlands",
+  "summary": "Software Engineer with 3+ years of experience in full-stack development using .NET, C#, JavaScript, and Python. Passionate about building high-quality, performant applications. Looking to bring my development skills to the gaming industry.",
+  "resume": {
+    "name": "Hisham Abboud CV.pdf",
+    "path": "tmp/ttl-1d/production/8a09c568-fba9-960a-8e46-b55acd1efff5"
+  },
+  "cover_letter": "Dear CoolGames Hiring Team,\n\nI am writing to express my strong interest in the Game Developer position at CoolGames. As a software engineer with hands-on experience in JavaScript, full-stack web development, and agile product delivery, I am excited by the opportunity to contribute to HTML5 casual game development at a studio whose titles are enjoyed by millions of players on platforms like Netflix, Discord, and Facebook.\n\nIn my current role as a Software Service Engineer at Actemium (VINCI Energies), I build and maintain production-grade applications using .NET, C#, ASP.NET, Python/Flask, and JavaScript \u2014 working under real-time production constraints where code quality, performance, and reliability are non-negotiable. This has sharpened my ability to write clean, readable, and maintainable code, and to balance speed with quality in a way that directly maps to the cadence of game development.\n\nMy JavaScript experience extends to building modern frontend interfaces. I independently developed CogitatAI, a full-stack AI platform with a JavaScript-based frontend and a Python/Flask backend deployed on cloud infrastructure. This project gave me practical experience in managing the full development lifecycle \u2014 from inception through deployment and iteration \u2014 which aligns well with CoolGames' expectation that developers contribute across the full game lifecycle, from new title development to live-ops and maintenance.\n\nDuring my internship at ASML, I worked in an agile team using Azure, Jira, and Kubernetes for CI/CD \u2014 so I am comfortable in structured, professional engineering environments. I take ownership of my work, communicate risks early, and actively help improve the codebase rather than just implementing tickets.\n\nCoolGames' international team, the quality of games you ship, and your partnerships with major global platforms make this a role I am genuinely excited about. I am available for CET hours (I am based in Eindhoven, Netherlands), and I would be glad to work hybrid in Amsterdam as needed.\n\nThank you for considering my application. I look forward to the opportunity to contribute to your team.\n\nKind regards,\n\nHisham Abboud",
+  "experience": [
+    {
+      "title": "Software Service Engineer",
+      "company": "Actemium (VINCI Energies)",
+      "industry": "Industrial Technology",
+      "summary": "Full-stack development and technical support for Manufacturing Execution Systems. Build and maintain applications using .NET, C#, ASP.NET, Python/Flask, and JavaScript.",
+      "start_date": "2025-07-01",
+      "current": true
+    },
+    {
+      "title": "Python Developer Intern",
+      "company": "ASML",
+      "industry": "Semiconductor",
+      "summary": "Developed Python test suite using Locust and Pytest. Collaborated in an agile environment using Azure, Jira, and Kubernetes.",
+      "start_date": "2023-08-01",
+      "end_date": "2024-02-01",
+      "current": false
+    },
+    {
+      "title": "Software Developer & IT Admin Intern",
+      "company": "Delta Electronics",
+      "industry": "Electronics",
+      "summary": "Developed web application for HR management. Migrated legacy codebase from Visual Basic to C#.",
+      "start_date": "2022-02-01",
+      "end_date": "2023-02-01",
+      "current": false
+    }
+  ],
+  "answers": [
+    {
+      "id": "QA_11295526",
+      "value": "1 month"
+    },
+    {
+      "id": "QA_11295527",
+      "value": "45-55"
+    },
+    {
+      "id": "QA_11309707",
+      "value": true
+    }
+  ],
+  "social_profiles": [
+    {
+      "type": "linkedin",
+      "url": "https://linkedin.com/in/hisham-abboud"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/Hishamabboud"
+    }
+  ]
+}

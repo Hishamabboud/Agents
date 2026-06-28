@@ -1,0 +1,29 @@
+[
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "keyword-filter",
+    "name": "",
+    "placeholder": "Search",
+    "label": "Search",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "department-filter",
+    "name": "",
+    "placeholder": "",
+    "label": "Department",
+    "visible": true
+  },
+  {
+    "tag": "INPUT",
+    "type": "text",
+    "id": "office-filter",
+    "name": "",
+    "placeholder": "",
+    "label": "Office",
+    "visible": true
+  }
+]

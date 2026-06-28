@@ -1,0 +1,57 @@
+Back to jobsFull Stack Engineer - House KubernetesRemote Netherlands Become a Do'er!Location
+Our Full Stack Engineer will be an integral part of our Engineering teams in EMEA. This role is based remotely as a full-time employee in the UK, Ireland, Estonia, Israel, the Netherlands, and Sweden. We are also open to contractors in Eastern Europe and Portugal.
+Who We AreDoiT is a global technology company that works with cloud-driven organizations to leverage the cloud to drive business growth and innovation. We combine data, technology, and human expertise to ensure our customers operate in a well-architected and scalable state - from planning to production. 
+Delivering DoiT Cloud Intelligence, the only solution that integrates advanced technology with human intelligence, we help our customers solve complex multicloud problems and drive efficiency.
+With decades of multicloud experience, we have specializations in Kubernetes, GenAI, CloudOps, and more. An award-winning strategic partner of AWS, Google Cloud, and Microsoft Azure, we work alongside more than 4,000 customers worldwide. 
+The OpportunityAs a Full Stack Software Engineer in the Kubernetes House, you will play a key role in building and evolving the foundational infrastructure and services that power PerfectScale for Compute. You’ll work on scalable, multi-cloud systems that enhance performance, cost efficiency, and automation across Kubernetes environments.
+You’ll design, develop, and maintain critical platform components, including cloud integrations and intelligent cost optimization workflows. This role offers a unique opportunity to shape the infrastructure that underpins the DoiT and PerfectScale partnership and directly influences how customers optimize and scale their compute workloads.
+Responsibilities
+
+Collaborate with product, backend, and frontend engineers to deliver elegant, well-thought-out solutions for complex problems.
+Implement features end-to-end - from proposal and design through implementation, testing, and maintenance.Write clean, maintainable, and testable code following engineering best practices, and contribute to code reviews that raise overall quality.
+Improve the health and maintainability of the codebase, proactively identifying and addressing technical debt.
+Participate in team planning and provide thoughtful feedback during design discussions to identify challenges and opportunities early.
+
+Qualifications
+
+5+ years of software development experience, ideally full stack (Go lang, React + Node.js/TypeScript) or strong backend/frontend, willing to expand skills.
+Strong understanding of microservices architecture, API design, and cloud-native environments (AWS, GCP, and/or Azure).
+Familiarity with cloud billing models, cost optimization, and cloud commitment management (e.g., Savings Plans, CUDs, SPs, RIs).Excellent communication and collaboration skills in English, both written and verbal.
+
+Bonus Points
+
+Experience working with Kubernetes and containerized applications in production environments.
+Knowledge of DevOps practices and tooling (CI/CD, GitOps, Docker, Kubernetes).
+Solid understanding of databases (relational and non-relational) like BigQuery, ClickHouse, Firestore 
+
+Are you a Do’er?
+Be your truest self. Work on your terms. Make a difference. 
+We are home to a global team of incredible talent who work remotely and have the flexibility to have a schedule that balances your work and home life. We embrace and support leveling up your skills professionally and personally.  
+What does being a Do’er mean? We’re all about being entrepreneurial, pursuing knowledge, and having fun! Click here to learn more about our core values. 
+Sounds too good to be true? Check out our Glassdoor Page.
+We thought so too, but we’re here and happy we hit that ‘apply’ button. 
+Full-time employee benefits include:
+
+Unlimited Vacation
+Flexible Working Options
+Health Insurance
+Parental Leave
+Employee Stock Option Plan
+Home Office Allowance
+Professional Development Stipend 
+Peer Recognition Program
+
+Many Do’ers, One Team
+DoiT unites as Many Do’ers, One Team, where diversity is more than a goal—it's our strength. We actively cultivate an inclusive, equitable workplace, recognizing that each unique perspective enhances our innovation. By celebrating differences, we create an environment where every individual feels valued, contributing to our collective success.
+#LI-RemoteCreate a Job AlertInterested in building your career at DoiT? Get future opportunities sent straight to your email.Create alertApply for this job*indicates a required fieldAutofill with MyGreenhouseFirst Name*Last Name*Email*PhoneCountryPhone
+            
+              
+              
+            
+            
+              
+                
+                
+              
+              
+            244 results foundNo results foundAfghanistan+93Åland Islands+358Albania+355Algeria+213American Samoa+1Andorra+376Angola+244Anguilla+1Antigua & Barbuda+1Argentina+54Armenia+374Aruba+297Ascension Island+247Australia+61Austria+43Azerbaijan+994Bahamas+1Bahrain+973Bangladesh+880Barbados+1Belarus+375Belgium+32Belize+501Benin+229Bermuda+1Bhutan+975Bolivia+591Bosnia & Herzegovina+387Botswana+267Brazil+55British Indian Ocean Territory+246British Virgin Islands+1Brunei+673Bulgaria+359Burkina Faso+226Burundi+257Cambodia+855Cameroon+237Canada+1Cape Verde+238Caribbean Netherlands+599Cayman Islands+1Central African Republic+236Chad+235Chile+56China+86Christmas Island+61Cocos (Keeling) Islands+61Colombia+57Comoros+269Congo - Brazzaville+242Congo - Kinshasa+243Cook Islands+682Costa Rica+506Côte d’Ivoire+225Croatia+385Cuba+53Curaçao+599Cyprus+357Czechia+420Denmark+45Djibouti+253Dominica+1Dominican Republic+1Ecuador+593Egypt+20El Salvador+503Equatorial Guinea+240Eritrea+291Estonia+372Eswatini+268Ethiopia+251Falkland Islands+500Faroe Islands+298Fiji+679Finland+358France+33French Guiana+594French Polynesia+689Gabon+241Gambia+220Georgia+995Germany+49Ghana+233Gibraltar+350Greece+30Greenla
