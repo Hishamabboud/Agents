@@ -70,6 +70,14 @@ CANDIDATES = [
     {"company": "Proforto", "slug_company": "proforto",
      "offer_slug": "senior-software-developer-bij-proforto", "offer_id": 2183081,
      "role": "Senior Software Developer", "location": "Nijmegen"},
+
+    {"company": "Picqer", "slug_company": "picqer",
+     "offer_slug": "product-engineer", "offer_id": 2397388,
+     "role": "Product Engineer", "location": "Arnhem"},
+
+    {"company": "Youwe", "slug_company": "youwe",
+     "offer_slug": "senior-full-stack-headless-developer", "offer_id": 2617620,
+     "role": "Senior Full-Stack Headless Developer", "location": "Groningen"},
 ]
 
 
