@@ -39,3 +39,40 @@ These positions were not successfully submitted. They may be worth retrying manu
 | Visionplanner (Visma) | Software Engineer (.NET) | peter.westmeijer@visma.com | https://www.visionplanner.com/werken-bij/software-engineer-net |
 | New Orange | Backend Developer (.NET) | solliciteer@neworange.agency | https://neworange.agency/en/careers/backend-developer-net |
 | Sendent B.V. | Medior Software Engineer (.NET) | (via join.com) | https://join.com/companies/sendentcom/15650046-medior-software-engineer-backend-integrations-net |
+
+## Greenhouse — requires a real browser (no public submission API)
+
+Found 2026-07-06 via the master LinkedIn discovery pool, cross-referenced against
+Greenhouse's public read-only jobs API (`boards-api.greenhouse.io`), filtered to
+NL/remote-EU roles matching target keywords, and screened so every required custom
+question is truthfully answerable (skipped anything needing fabricated years-of-experience,
+undocumented nationality, or security clearance — see profile/preferences.md rules).
+
+Unlike Recruitee, Greenhouse's current job-boards.greenhouse.io frontend submits via a
+JSON POST protected by a CSRF token, a device fingerprint, and reCAPTCHA Enterprise —
+there is no public submission endpoint, and reproducing that flow without an actual
+browser would mean specifically defeating that bot-detection layer, which this pipeline
+will not do. These need Playwright/browser-based submission (not available in this
+session) or manual application.
+
+| Company | Role | URL |
+|---|---|---|
+| Sytac | AI Software Engineer (Agentic Workflows) | https://job-boards.greenhouse.io/sytac/jobs/4845397101 |
+| Sytac | Data & AI Engineer | https://job-boards.greenhouse.io/sytac/jobs/4768832101 |
+| Gradyent | Senior Python Engineer | https://job-boards.greenhouse.io/gradyent/jobs/4777807101 |
+| Schuberg Philis | AWS Platform Engineer | https://job-boards.greenhouse.io/schubergphilis/jobs/5738317003 |
+| Schuberg Philis | Azure Data Engineer | https://job-boards.greenhouse.io/schubergphilis/jobs/7798644003 |
+| FUGA | Full Stack Engineer | https://job-boards.greenhouse.io/fuga/jobs/8220589002 |
+| FUGA | Senior Data Engineer | https://job-boards.greenhouse.io/fuga/jobs/8489510002 |
+| Together AI | AI infrastructure Engineer (SRE) Amsterdam | https://job-boards.greenhouse.io/togetherai/jobs/4555544007 |
+| Together AI | Lead/Manager Site Reliability Engineering Team (Amsterdam) | https://job-boards.greenhouse.io/togetherai/jobs/5090473007 |
+| Super | AI Platform Engineer | https://job-boards.greenhouse.io/super/jobs/4914669101 |
+| Super | Senior Machine Learning Engineer - Applied ML & Research | https://job-boards.greenhouse.io/super/jobs/4786079101 |
+| Adyen | Senior AI Engineer - AML | https://job-boards.greenhouse.io/adyen/jobs/7807118 |
+| Adyen | Senior AI Engineer - Payments | https://job-boards.greenhouse.io/adyen/jobs/7711481 |
+| Nebius | Senior Applied AI Solutions Engineer | https://job-boards.greenhouse.io/nebius/jobs/4809236101 |
+| Nebius | Senior Backend Developer (Token Factory) | https://job-boards.greenhouse.io/nebius/jobs/4842104101 |
+| CLEVR | AI Solutions Engineer | https://job-boards.greenhouse.io/clevr/jobs/4876192101 |
+| Creative Fabrica | Senior Backend Engineer (Go) \| Studio AI | https://job-boards.greenhouse.io/creativefabrica/jobs/4846650101 |
+| Anduril Industries (defense/military tech — flagging explicitly, not a typical target industry) | Lead Software Engineer | https://job-boards.greenhouse.io/andurilindustries/jobs/5102993007 |
+| Anduril Industries (defense/military tech — flagging explicitly, not a typical target industry) | Mission Software Engineer | https://job-boards.greenhouse.io/andurilindustries/jobs/5100655007 |
