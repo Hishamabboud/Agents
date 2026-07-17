@@ -76,3 +76,29 @@ session) or manual application.
 | Creative Fabrica | Senior Backend Engineer (Go) \| Studio AI | https://job-boards.greenhouse.io/creativefabrica/jobs/4846650101 |
 | Anduril Industries (defense/military tech — flagging explicitly, not a typical target industry) | Lead Software Engineer | https://job-boards.greenhouse.io/andurilindustries/jobs/5102993007 |
 | Anduril Industries (defense/military tech — flagging explicitly, not a typical target industry) | Mission Software Engineer | https://job-boards.greenhouse.io/andurilindustries/jobs/5100655007 |
+
+## Large international companies — enterprise ATS, WAF-blocked or Workday/SuccessFactors
+
+Found 2026-07-06 via LinkedIn search (real, currently-open NL roles). These use
+proprietary career sites (Tesla, Booking.com, Google, eBay, Cisco all return HTTP 403
+to direct requests — active bot protection) or enterprise ATS platforms (Philips uses
+Workday at careers.philips.com, Siemens uses SuccessFactors at jobs.siemens.com) that
+require multi-step, JS-heavy, often account-gated application flows. No public
+submission API exists for any of these, unlike Recruitee. Manual application only.
+
+| Company | Role | URL |
+|---|---|---|
+| Tesla | Software Development Engineer, Digital Experience (Amsterdam) | https://nl.linkedin.com/jobs/view/software-development-engineer-digital-experience-at-tesla-4434079259 |
+| Tesla | Software Developer, IT Application (Amsterdam) | https://nl.linkedin.com/jobs/view/software-developer-it-application-amsterdam-at-tesla-4419110603 |
+| Tesla | Senior Software Engineer, Full Stack React & PHP (Amsterdam) | https://nl.linkedin.com/jobs/view/senior-software-engineer-full-stack-react-php-at-tesla-4421201122 |
+| Booking.com | Machine Learning Engineer I (Amsterdam) | https://nl.linkedin.com/jobs/view/machine-learning-engineer-i-at-booking-com-4434700419 |
+| Booking.com | Site Reliability Engineer II (Amsterdam) | https://nl.linkedin.com/jobs/view/site-reliability-engineer-ii-at-booking-com-4416256560 |
+| Booking.com | Backend Software Engineer (Amsterdam) | https://nl.linkedin.com/jobs/view/backend-software-engineer-at-booking-com-4439304178 |
+| Google | IT Infrastructure Engineer, Global Server Operations (Eemshaven) | https://nl.linkedin.com/jobs/view/it-infrastructure-engineer-ict-infrastructuur-specialist-global-server-operations-at-google-4424546255 |
+| Cisco | Senior Software Engineer - Tetragon (Amsterdam) | https://nl.linkedin.com/jobs/view/senior-software-engineer-tetragon-at-cisco-4432876518 |
+| eBay | Sr. Frontend/Fullstack Software Engineer (Amsterdam) | https://nl.linkedin.com/jobs/view/sr-frontend-fullstack-software-engineer-at-ebay-4429880274 |
+| eBay | Principal Software Engineer (Amsterdam) | https://nl.linkedin.com/jobs/view/principal-software-engineer-at-ebay-4414041623 |
+| Philips (Workday) | Software Developer Azurion Eye (Best) | https://nl.linkedin.com/jobs/view/software-developer-azurion-eye-at-philips-4428738406 |
+| Philips (Workday) | Senior Web Back End Developer Azurion Eye (Best) | https://nl.linkedin.com/jobs/view/senior-web-back-end-developer-azurion-eye-at-philips-4428739332 |
+| Siemens (SuccessFactors) | Java UI Developer (Den Haag) | https://nl.linkedin.com/jobs/view/java-ui-developer-at-siemens-digital-industries-software-4439809544 |
+| Rheinmetall (defense/military tech — flagging explicitly) | System Engineer | (found via LinkedIn search, URL not captured — search "System Engineer Rheinmetall Netherlands") |
