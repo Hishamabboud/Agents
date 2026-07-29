@@ -108,6 +108,47 @@ So freelance is inherently discover-and-shortlist, not auto-apply.
 3. **Poll de Publieke Partner's daily digest** — predictable URL, publicly readable, automatable.
 4. **Revisit in 2–4 years** once the experience floor is cleared.
 
+## SECOND CORRECTION — Wet DBA does NOT block private-sector ZZP
+
+Verified against authoritative sources, this overturns the DBA finding above for the
+commercial market:
+
+- **PIANOo** (the Dutch government's own procurement expertise centre) states verbatim:
+  *"Let op dat het categorisch uitsluiten van de ZZP-ers voor inhuuropdrachten, waarbij geen
+  sprake is van een (verkapte) arbeidsrelatie, op grond van het gelijkheidsbeginsel niet is
+  toegestaan."* — blanket ZZP exclusion is **not permitted**. Public bodies do it anyway as
+  risk-avoidance, but it is policy, not law.
+- **KVK**: hiring ZZP'ers remains fully permitted; what matters is practice (own tools/location,
+  multiple clients, result-based, bears own risk), not paperwork.
+- **ZiPconomy Jan 2026**: enforcement is uniform across sectors, but *"de intermediairsector
+  krijgt extra aandacht"* — the **broker/intermediary** channel gets extra scrutiny. That is
+  exactly why brokered 36h/wk on-site placements say "kan niet als ZZP'er worden uitgevoerd",
+  while a short defined project for a private SME is the *safest* DBA shape.
+
+### Third blocker the government sample missed
+The Dutch **broker channel barely has hands-on dev work at all** — ZZPdock aggregates 40 brokers /
+988 opdrachten and a "developer" search returns essentially one hands-on dev role. The ICT
+category skews adviseur/architect/beheerder and is ~7/8 government.
+
+### Corrected experience floors
+| Channel | Real floor |
+|---|---|
+| Government / broker inhuurdesk | Senior, 5–10 yrs |
+| Dutch commercial ZZP | **2–3 yrs** |
+| Toptal | **2–3 yrs** (lowest of any vetted network) |
+| Lemon.io | **2 yrs**; explicitly allows working through your own registered entity |
+| Hoofdkraan SME gigs | none, but €50–2,000 scale |
+
+### Better-matched targets than the broker shortlist
+- **Etinars — ".NET/Python Software Developer, Energy Sector"**, Breda + Den Haag,
+  **€475–500/day**, contract type **Freelance/ZZP**, **3+ years**. Exact stack match,
+  commutable from Eindhoven. Found via Indeed, not a broker. Single best-fit lead.
+- **Piet Hoevenaars Sign Industries** — Veldhoven (next to Eindhoven), Freelance/ZZP,
+  **no stated experience floor**. Wrong stack (PHP/Magento) but proves local SMEs contract ZZP.
+- **Malt.nl and Jellow.nl are INBOUND** — clients search freelancer profiles; there is nothing
+  to apply to and no experience floor to fail. Jellow markets itself "100% DBA proof".
+  Building a good profile on both is low-effort, non-blocking, and uncapped.
+
 ## Shortlist — currently open, ZZP-permitted, from zzpdock.nl (as of 2026-07-29)
 
 Scanned 16 public ZZPdock category slices → 215 unique assignments → 42 software-relevant →
@@ -155,3 +196,26 @@ manual, deadline-driven process, not an auto-apply pipeline. Deadlines cluster 2
    all detail hidden publicly).
 4. The permanent-role pipeline (332 applications, 276 companies) still runs in parallel — these
    are not mutually exclusive.
+
+## Why "apply to all" cannot be automated (verified 2026-07-29)
+
+The 18 shortlisted assignments route to **~15 different brokers**, each with its own form or
+account: ubuntujobs.nl, spilberg.com, bijoranje.nl, werkenbijns.nl, bluetrail.nl,
+detransparantebroker.nl, zzp-opdrachten.nl, jobs.ncim.nl, pro-act.nl, madisonblack.com,
+hinttech.com, mipublic.nl, onefellow.nl, discoverit.nl, striive.com. ZZPdock is only an
+aggregator — it has no apply function of its own.
+
+Inspected the Pro-Act application form (Gravity Forms `gform_1`) for the HAN .NET assignment.
+Required fields:
+
+    Voornaam (req) · Achternaam (req) · E-mailadres (req) · Telefoonnummer (req)
+    Woonplaats (req) · **Tarief (req)** · CV (req) · consent (req)
+    Tussenvoegsel, Additionele informatie, Motivatiebrief — optional
+
+**`Tarief` is a required field.** Every broker form has an equivalent. An hourly rate is a
+binding commercial offer that determines both win probability (rate is scored in selection) and
+actual pay — so it must come from the user and cannot be auto-generated. This is the hard blocker,
+independent of login walls.
+
+Benchmark for setting it: Freelance.nl 2024 NL ICT rates — junior €65–78, medior €82–92,
+senior €95–110/uur. Shortlisted assignments show max rates €92–108/uur.
