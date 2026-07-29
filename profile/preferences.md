@@ -10,6 +10,18 @@
 
 ## Required
 - Location: Anywhere in the Netherlands, or Remote
+  - **Freelance/ZZP only (decided 2026-07-29): also Belgium (Antwerp/Brussels/Leuven/Gent) and
+    EU-wide remote contract work.** Permanent roles remain NL + remote only.
+  - Note: Dutch fluency is an advantage in the Flemish market.
+
+## Freelance / ZZP (added 2026-07-29)
+- Registered ZZP'er with KVK/BTW — can invoice directly
+- **Rate: €75/uur** (benchmark: NL ICT junior €65–78, medior €82–92, senior €95–110)
+- Do NOT auto-submit freelance applications: every broker form requires a `Tarief` field, which
+  is a binding commercial offer. Rate must be confirmed by Hisham per assignment.
+- Target assignments with a **2–3 year** experience bar, not 5+ (see data/freelance-research.md)
+- Declined: Etinars .NET/Python energy role — Brussels onsite 2 days/wk, ~€59–63/hr (below floor),
+  posted 5½ months prior
 - Language: English or Dutch
 - Minimum salary: €50,000/year (or skip if not listed)
 - Visa: Not needed (I have work authorization in NL)
