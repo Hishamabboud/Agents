@@ -102,3 +102,13 @@ submission API exists for any of these, unlike Recruitee. Manual application onl
 | Philips (Workday) | Senior Web Back End Developer Azurion Eye (Best) | https://nl.linkedin.com/jobs/view/senior-web-back-end-developer-azurion-eye-at-philips-4428739332 |
 | Siemens (SuccessFactors) | Java UI Developer (Den Haag) | https://nl.linkedin.com/jobs/view/java-ui-developer-at-siemens-digital-industries-software-4439809544 |
 | Rheinmetall (defense/military tech — flagging explicitly) | System Engineer | (found via LinkedIn search, URL not captured — search "System Engineer Rheinmetall Netherlands") |
+
+## Requires a photograph (cannot be auto-submitted)
+
+Some Recruitee offers make `photo` a required field. There is no photograph of the candidate in
+`profile/`, and one must never be fabricated or AI-generated for a job application. These need
+manual submission.
+
+| Company | Role | URL |
+|---|---|---|
+| Phished | Experienced Laravel Backend Engineer (Leuven, BE) | https://phished.recruitee.com/o/experienced-laravel-backend-engineer |
