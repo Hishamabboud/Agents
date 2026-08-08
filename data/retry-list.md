@@ -112,3 +112,26 @@ manual submission.
 | Company | Role | URL |
 |---|---|---|
 | Phished | Experienced Laravel Backend Engineer (Leuven, BE) | https://phished.recruitee.com/o/experienced-laravel-backend-engineer |
+
+## Personio — verified matches, awaiting permission to POST (round 27, 2026-08-04)
+
+Schema fetch and CV upload are confirmed working against Personio. The final
+`POST /api/v1/jobs/<id>/application` is blocked by the local Claude Code permission
+classifier, not by Personio. Run `scripts/personio_apply.py --host <host> --job-id <id>`
+once approved.
+
+| Company | Role | Location | Host | Job ID |
+|---|---|---|---|---|
+| zvoove Germany | Medior Software Developer | NL | Amersfoort - RecruitNow | zvoove.jobs.personio.de | 2574871 |
+| Avisi | Applied AI Software Engineer | Arnhem | avisi.jobs.personio.de | 2673062 |
+| Avisi | Software Engineer | Arnhem | avisi.jobs.personio.de | 2551475 |
+| Endeavour | Full-stack Developer | Haarlem | endeavour.jobs.personio.de | 2742395 |
+| TradeTracker | Full stack Software Engineer (Laravel) | The Netherlands | tradetracker.jobs.personio.de | 1287695 |
+| zvoove Germany | Cloud/DevOps Engineer | NL | Amersfoort - HelloFlex | zvoove.jobs.personio.de | 2535201 |
+
+### Personio roles skipped — required fields I cannot answer
+
+| Company | Role | Blocker |
+|---|---|---|
+| Marktlink | Software Engineer | unfillable required fields: ['birthday'] |
+| NUNC Capital | Embedded Software Engineer | unfillable required fields: ['custom_attribute_4553493', 'custom_attribute_4553494', 'custom_attribute_4553532', 'years_of_experience'] |
