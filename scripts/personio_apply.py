@@ -13,15 +13,21 @@ API surface (all on the tenant host, e.g. https://<slug>.jobs.personio.de):
 Note: the same paths on career-pages-api.personio.de return 401. Use the TENANT host,
 which proxies them unauthenticated.
 
-Submit payload shape (reverse-engineered from the career-page JS bundle):
+Submit payload shape (VERIFIED WORKING 2026-08-04, HTTP 200 x6):
   {
     subcompanyId, channelId, postingId, autoPostingChannelId,   # usually null
     sender: {id: "sender<rand>", value: ""},
     attributes: [{id: <field_name>, value: <str>}, ...],        # all fields EXCEPT email/documents
-    files: [{...uploadedDoc, category: "cv"}],
+    files: [{uuid, original_filename, category: "cv"}],         # ONLY these three keys
     email: "...",
     idempotencyToken: <uuid4>
   }
+
+GOTCHA that costs an hour if you miss it: the JS bundle spreads the whole upload response
+into files[], but the API rejects unknown keys with HTTP 400 and a kotlinx.serialization
+error naming the offending key. POST /api/v1/documents returns
+{uuid, size, mimetype, original_filename, extension} -- you must send ONLY uuid and
+original_filename. Success is HTTP 200 with an EMPTY body (not 201, no id returned).
 Headers: Content-Type: application/json, Idempotency-Key: <same token>,
          x-company-id: <company_id scraped from the apply page>
 
@@ -115,7 +121,12 @@ def submit(host, job_id, company_id, doc, salary, available, first, last, email,
         "autoPostingChannelId": None,
         "sender": {"id": f"sender{random.randint(100000, 999999)}", "value": ""},
         "attributes": attributes,
-        "files": [{**doc, "category": "cv"}],
+        # Personio rejects unknown keys with HTTP 400. The upload returns
+        # uuid/size/mimetype/original_filename/extension but the application
+        # endpoint accepts ONLY uuid + original_filename (+ category).
+        "files": [{"uuid": doc["uuid"],
+                   "original_filename": doc.get("original_filename", "cv.pdf"),
+                   "category": "cv"}],
         "email": email,
         "idempotencyToken": token,
     }
