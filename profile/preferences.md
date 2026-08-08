@@ -72,3 +72,9 @@
 - GitHub: github.com/Hishamabboud
 - City: Eindhoven
 - Country: Netherlands
+
+## Application form answers (set by Hisham — never infer these)
+- Salary expectation (Personio `salary_expectations` field): EUR 4800 per month (~EUR 58k/yr)
+- Availability / notice period: 1 month notice period
+  (Both confirmed 2026-08-04. These are commercial commitments — scripts must read them from
+  here and abort if absent, never guess. Same rule as the freelance Tarief field.)
