@@ -103,3 +103,25 @@ def hard_blockers(title, body):
     if is_fr:
         flags.append(f"French posting (fr={fr:.3f})")
     return flags
+
+
+# --- Personio-specific location check -----------------------------------------------
+# Personio's XML `office` field is often blank or a free-text string, and unlike Recruitee
+# there is no country_code. A TradeTracker role slipped through the recovery pass this way:
+# office was unhelpful but the body read "TradeTracker International India Development Team
+# ... Salary: INR 80,000-100,000/month ... Location: India remote". Check the body too.
+_NON_EU_SIGNALS = re.compile(
+    r"\b(INR|USD|CAD|AUD|SGD|MYR|PHP\s*[0-9])\b|"
+    r"\b(india|bangalore|bengaluru|mumbai|delhi|pune|hyderabad|chennai|"
+    r"kuala lumpur|singapore|manila|austin|duluth|new york|san francisco|toronto|"
+    r"dubai|bratislava|warsaw|warszawa|belgrade|yerevan)\b", re.I)
+
+
+def personio_location_ok(office, body, allowed_hint=r"netherlands|nederland|belgi|\bNL\b|\bBE\b"):
+    """Return (ok, reason). Rejects postings that name a non-EU location or quote a
+    non-EU currency, even when the structured office field looks empty or ambiguous."""
+    blob = f"{office or ''} {body or ''}"
+    m = _NON_EU_SIGNALS.search(blob)
+    if m and not re.search(allowed_hint, str(office or ""), re.I):
+        return False, f"non-NL/BE signal in posting: {m.group(0)!r}"
+    return True, None
