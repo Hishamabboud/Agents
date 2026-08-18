@@ -59,12 +59,31 @@ def blocked_reason(company, slug, blocked_companies):
     return None
 
 
-def in_scope_country(country_code, remote=False, allowed=("NL", "BE")):
+# EU/EEA set used to bound "remote". A remote flag alone is NOT enough: a Ukraine-anchored
+# remote posting (Clario, Kyiv, country_code=UA, remote=True) passed the old check, which
+# treated any remote job as in-scope regardless of where the role is actually based.
+_EU_EEA = {"NL", "BE", "DE", "FR", "LU", "IE", "AT", "DK", "SE", "FI", "ES", "PT", "IT",
+           "PL", "CZ", "SK", "HU", "SI", "HR", "RO", "BG", "EE", "LV", "LT", "GR", "CY",
+           "MT", "NO", "IS", "LI"}
+
+
+def in_scope_country(country_code, remote=False, allowed=("NL", "BE"), body=""):
     """Authoritative location check. Use this, NOT a city-name regex.
 
     country_code comes from the ATS API and is reliable; city names are not enumerable.
+
+    `remote` only widens scope within the EU/EEA, or when the posting explicitly offers
+    Europe-wide / NL / BE remote work. A remote role anchored outside the EEA is out of
+    scope — the contract, pay band and time zone follow the anchor country.
     """
-    return bool(remote) or (country_code in allowed)
+    if country_code in allowed:
+        return True
+    if not remote:
+        return False
+    if country_code in _EU_EEA:
+        return True
+    return bool(re.search(r"remote.{0,30}(europe|eu\b|emea|netherlands|belgium)|"
+                          r"(europe|eu|emea|netherlands|belgium).{0,30}remote", body or "", re.I))
 
 
 # --- language detection -------------------------------------------------------------
@@ -125,3 +144,65 @@ def personio_location_ok(office, body, allowed_hint=r"netherlands|nederland|belg
     if m and not re.search(allowed_hint, str(office or ""), re.I):
         return False, f"non-NL/BE signal in posting: {m.group(0)!r}"
     return True, None
+
+
+# --- Personio XML parsing ------------------------------------------------------------
+# BUG 3 (found round 29): a naive `<name>` regex over the Personio feed also matches the
+# <name> inside <jobDescriptions><jobDescription>, so section headings ("Your mission",
+# "Dein Profil") were counted as job titles. That both inflated position counts and
+# corrupted real titles — Salto CloudWorks' "Back-End Engineer" was missed this way.
+# Strip <jobDescriptions> before reading the position name.
+#
+# BUG 4 (found round 29): many Personio tenants are set up but never populated, and serve
+# Personio's sample content. 8 of 10 "hits" in one round were these. They are not real
+# openings and must not be counted as reach.
+_PERSONIO_DEMO = re.compile(
+    r"^(general application|your mission|your profile|deine aufgaben|dein profil|"
+    r"seo marketing manager|social media \(working student\)|social media \(werkstudent\)|"
+    r"initiativbewerbung.*|open application|spontane sollicitatie)$", re.I)
+
+
+def parse_personio_positions(xml):
+    """Return [{id, title, office}] for REAL positions only. Skips demo/template boards."""
+    out = []
+    for m in re.finditer(r"<position>(.*?)</position>", xml, re.S):
+        block = m.group(1)
+        stripped = re.sub(r"<jobDescriptions>.*?</jobDescriptions>", "", block, flags=re.S)
+
+        def field(tag, src=stripped):
+            mm = re.search(rf"<{tag}>(.*?)</{tag}>", src, re.S)
+            return re.sub(r"<!\[CDATA\[|\]\]>", "", mm.group(1)).strip() if mm else None
+
+        title = field("name")
+        if not title or _PERSONIO_DEMO.match(title):
+            continue
+        out.append({"id": field("id"), "title": title, "office": field("office"),
+                    "seniority": field("seniority"), "employment": field("employmentType")})
+    return out
+
+
+def is_demo_board(xml):
+    """True if a Personio tenant exists but carries only sample content."""
+    return len(parse_personio_positions(xml)) == 0
+
+
+# --- role matching ------------------------------------------------------------------
+# Widened after a round-29 audit found real roles the old pattern silently skipped:
+#   "Junior/medior product engineer" (Azumuta)  -> "product engineer" was absent
+#   "QA Engineer" (Twelve)                      -> only "test engineer" was covered
+#   "ICT System Engineer" (ZORGI)               -> only plural "systems engineer" matched
+ROLE_INCLUDE = re.compile(
+    r"\.net\b|c#|\bpython\b|full.?stack|software engineer|software developer|backend|back-end|"
+    r"devops|platform engineer|cloud engineer|data engineer|\bai engineer\b|machine learning|"
+    r"application (developer|engineer)|embedded software|integration engineer|\bphp\b|golang|"
+    r"mendix|node\.?js|systems? engineer|infrastructure engineer|kubernetes|automation engineer|"
+    r"\bmes\b|scada|\bplc\b|software architect|microservice|typescript|test engineer|"
+    r"test automation|\bqa\b|azure|\bjava\b(?!script)|\bc\+\+|ontwikkelaar|developer|"
+    r"product engineer|principal engineer|\bsre\b|site reliability", re.I)
+
+ROLE_EXCLUDE = re.compile(
+    r"sales|account manager|account executive|marketing|marketeer|recruit|\bhr\b|finance|legal|"
+    r"receptionist|warehouse|internship|\bstage\b|\bintern\b|frontend|front-end|front end|"
+    r"trader|business consultant|business develop|customer success|servicedesk|director|\bvp\b|"
+    r"head of|chief|commercial|werkstudent|praktik|initiativ|open application|wordpress|"
+    r"product manager|manager\b(?!.*(engineer|software|technical))", re.I)
