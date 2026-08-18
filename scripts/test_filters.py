@@ -84,6 +84,50 @@ check("adesso -> werkenbijadesso reachable", "werkenbijadesso" in slug_variants(
 check("IXON Cloud -> ixon reachable", "ixon" in slug_variants("IXON Cloud"))
 check("two-letter slug kept for EY", "ey" in slug_variants("EY (Ernst & Young)"))
 
+print("\nPersonio tenant collision guard (round 30)")
+from discovery import _personio_tenant_matches as _ptm
+# Real tenant titles captured 2026-08-18. Probing by company name alone reached all of
+# these; four belong to companies that were never searched for.
+_TENANT = {
+    "atlas":           "<title>Jobs bei Atlas-Bildungs-Center e.V.",
+    "code":            "<title>Jobs at CODE Education GmbH",
+    "kbc":             "<title>Jobs bei Kem\u00e9ny Boehme Consultants SE",
+    "gambit":          "<title>Jobs bei Gambit Consulting GmbH",
+    "vivid":           "<title>Jobs at Vivid",
+    "royal":           "<title>Trabajos en Demo Datos",
+    "everience":       "<title>Jobs bei everience Germany GmbH",
+    "hms-networks":    "<title>Trabajos en HMS INDUSTRIAL NETWORKS, SLU",
+    "ireckonu":        "<title>Jobs at IRECKONU",
+    "saltocloudworks": "<title>Jobs at Salto CloudWorks",
+    "scalian-germany": "<title>Jobs bei Scalian Germany AG",
+    "twelve":          "<title>Banen bij Twelve",
+    "ubiops":          "<title>Jobs at UbiOps",
+    "open":            "<title>Jobs at ",
+    "avisi":           "<title>Banen bij ",
+}
+for company, slug, want in [
+        ("Royal Kaak", "royal", False),           # Personio's own "Demo Datos" sample tenant
+        ("Royal Houdijk", "royal", False),
+        ("Atlas Copco", "atlas", False),          # Atlas-Bildungs-Center e.V.
+        ("Code for Good", "code", False),         # CODE Education GmbH — shares only a lead word
+        ("KBC Bank & Verzekering", "kbc", False), # Kemeny Boehme Consultants SE
+        ("GAMBIT Financial Solutions", "gambit", False),
+        ("Vivid Resourcing", "vivid", False),     # tenant is Vivid Money, a Berlin fintech
+        ("Open Home Foundation", "open", False),  # no name in title, and `open` is a fragment
+        ("HMS Networks", "hms-networks", True),   # vs "HMS INDUSTRIAL NETWORKS, SLU"
+        ("Everience Benelux", "everience", True), # vs "everience Germany GmbH"
+        ("Ireckonu - Hotel Middleware & CDP+", "ireckonu", True),   # LinkedIn tagline stripped
+        ("UbiOps - Private AI on any infra", "ubiops", True),
+        ("Salto CloudWorks", "saltocloudworks", True),
+        ("Scalian Germany AG", "scalian-germany", True),
+        ("Twelve", "twelve", True),
+        # Regression: the slug being the WHOLE company name is evidence, not the absence of
+        # it. An earlier guard discounted the slug word, found no words left, and rejected
+        # every single-word company — a false negative on Avisi, a tenant already applied to.
+        ("Avisi", "avisi", True)]:
+    got = _ptm(company, f"{slug}.jobs.personio.de", "", page=_TENANT[slug])
+    check(f"{company[:30]:32s} vs {slug:16s} -> {want}", got == want, f"got {got}")
+
 print("\nCover letter — must never claim a skill absent from the CV")
 letter, keys = cover_letter.build("X", "Rust Engineer", "Gent", "BE",
                                   "Deep Rust and Erlang expertise required for our ledger.")

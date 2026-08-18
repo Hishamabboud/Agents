@@ -34,7 +34,12 @@ _STOP = (r"\b(b\.?v\.?|n\.?v\.?|gmbh|ag|se|kg|mbh|co|deutschland|germany|nederla
 
 def slug_variants(name):
     """Candidate slugs for a company display name, most-likely first."""
-    base = name.lower().split("|")[0].split("/")[0].split("(")[0].strip()
+    # LinkedIn reports display names, not legal names, and they often carry a tagline:
+    # "Ireckonu - Hotel Middleware & CDP+", "UbiOps - Private AI on any infra". The tagline
+    # is never part of the slug, and leaving it in produced junk variants that then made the
+    # collision guard reject the company's own real tenant.
+    base = re.split(r"\s[-\u2013\u2014]\s", name.lower().split("|")[0])[0]
+    base = base.split("/")[0].split("(")[0].strip()
     words = re.findall(r"[a-z0-9]+", base)
     out = []
 
@@ -91,6 +96,100 @@ def probe_recruitee(company, variants=None):
     return None, None
 
 
+def _strong_variants(name):
+    """Variants derived from the COMPLETE company name, not a fragment of it.
+
+    Used as evidence that a tenant slug really belongs to this company. A first-word-only
+    slug is excluded unless that word is the entire name.
+    """
+    base = re.split(r"\s[-\u2013\u2014]\s", name.lower().split("|")[0])[0]
+    words = re.findall(r"[a-z0-9]+", base)
+    stripped = re.sub(r"[^a-z0-9]", "", re.sub(_STOP, "", base))
+    strong = set(slug_variants(name)[:2])    # suffix-stripped full, and full unstripped
+    # A bare first word is weak evidence ("royal" -> Royal Kaak?), UNLESS stripping the
+    # legal/geographic suffixes leaves exactly that word — "Everience Benelux" reduces to
+    # "everience", which is the company's whole meaningful name, not a fragment of it.
+    if len(words) > 1 and words[0] != stripped:
+        strong.discard(words[0])
+    return strong
+
+
+_TITLE_PREFIX = re.compile(
+    r"^\s*(?:jobs|banen|vacatures|trabajos|empleos|emplois|karriere|karriär|lavori|praca|"
+    r"stillinger|careers?|werken)\b[^a-z0-9]*\b(?:at|bei|bij|en|chez|hos|w|przy|presso)?\b\s*",
+    re.I)
+_LEGAL = re.compile(r"\b(gmbh|mbh|ag|se|kg|ug|bv|nv|slu|sl|srl|sarl|sa|spa|oy|ab|as|aps|plc|"
+                    r"inc|ltd|llc|e\.?v|co|kgaa|holding|group|germany|deutschland|nederland|"
+                    r"netherlands|belgium|belgie|benelux|international|the)\b", re.I)
+
+
+def _tenant_name_from_page(page):
+    """Personio renders the tenant's real name in the page title, in the tenant's own
+    language: 'Jobs at IRECKONU', 'Jobs bei Scalian Germany AG', 'Banen bij Twelve',
+    'Trabajos en HMS INDUSTRIAL NETWORKS, SLU'. This is the closest thing Personio has to
+    Recruitee's company_name field, and it is far more reliable than looking for the
+    company's words somewhere in the page body."""
+    m = re.search(r"<title>([^<]*)", page, re.I)
+    if not m:
+        return ""
+    return _TITLE_PREFIX.sub("", m.group(1)).strip()
+
+
+def _display_base(name):
+    """Strip the tagline LinkedIn appends to display names before comparing."""
+    base = re.split(r"\s[-\u2013\u2014]\s", (name or "").lower().split("|")[0])[0]
+    return base.split("/")[0].split("(")[0].strip()
+
+
+def _tokens(name):
+    return {w for w in re.findall(r"[a-z0-9]{2,}", _LEGAL.sub(" ", _display_base(name)))
+            if w not in ("for", "and", "van", "der", "den", "und", "met", "on", "any")}
+
+
+def _personio_tenant_matches(company, host, xml, page=None):
+    """Collision guard for Personio. Pass `page` to test without network access.
+
+    Personio's XML feed carries no company-name field, so a generic slug resolves happily
+    to an unrelated tenant. Measured on round 30, probing by name alone claimed:
+        Royal Kaak / Royal Houdijk -> `royal`   = Personio's "Demo Datos" sample tenant
+        Atlas Copco                -> `atlas`   = Atlas-Bildungs-Center e.V.
+        Code for Good              -> `code`    = CODE Education GmbH
+        KBC Bank & Verzekering     -> `kbc`     = Kemeny Boehme Consultants SE
+    All four would have sent an application to a company that was never searched for.
+    """
+    if page is None:
+        try:
+            page = requests.get(f"https://{host}/", headers=H, timeout=10).text
+        except Exception:
+            return False
+    low = page.lower()
+
+    # Personio sample tenants are set up but never populated and answer to short slugs.
+    if re.search(r"<title>[^<]*\bdemo\b", low) or "demo datos" in low or "demo data" in low:
+        return False
+
+    tenant = _tenant_name_from_page(page)
+    if tenant:
+        a, b = _tokens(company), _tokens(tenant)
+        if not a or not b:
+            return False
+        # Every meaningful word of the shorter name must appear in the longer one.
+        # "HMS Networks" vs "HMS INDUSTRIAL NETWORKS, SLU" passes; "Code for Good" vs
+        # "CODE Education GmbH" does not, despite sharing a lead word.
+        short, long_ = (a, b) if len(a) <= len(b) else (b, a)
+        if not short <= long_:
+            return False
+        # A single shared word is only enough when it is the WHOLE of both names. The
+        # `vivid` tenant is titled just "Vivid" — Vivid Money, a Berlin fintech — and a
+        # subset test alone accepted it as "Vivid Resourcing".
+        return len(short) >= 2 or len(long_) == 1
+
+    # No name in the title (some tenants render it client-side). Fall back to requiring the
+    # slug to be derived from the COMPLETE company name — Avisi -> avisi is acceptable,
+    # Open Home Foundation -> `open` is not.
+    return host.split(".")[0] in _strong_variants(company)
+
+
 def probe_personio(company, variants=None):
     """Return (host, raw_xml) for the first variant with a real (non-demo) board."""
     from filters import parse_personio_positions
@@ -99,8 +198,11 @@ def probe_personio(company, variants=None):
             try:
                 r = requests.get(f"https://{host}/xml", headers=H, timeout=8)
                 if r.status_code == 200 and "<position>" in r.text:
-                    if parse_personio_positions(r.text):   # skips demo/empty boards
-                        return host, r.text
+                    if not parse_personio_positions(r.text):   # demo/empty board
+                        continue
+                    if not _personio_tenant_matches(company, host, r.text):
+                        continue
+                    return host, r.text
             except Exception:
                 continue
     return None, None

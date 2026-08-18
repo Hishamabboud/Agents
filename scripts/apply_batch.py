@@ -28,7 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tracker_guard import assert_tracker_fresh
-from filters import load_blocked_companies, blocked_reason
+from filters import load_blocked_companies, blocked_reason, hard_blockers
 import cover_letter
 import personio_apply
 
@@ -58,21 +58,29 @@ def resolve_redirect(slug, offer_slug):
 
 
 def fetch_job_text(c):
-    """Pull the live posting text so the cover letter can be tailored to it."""
+    """Pull the live posting text (for tailoring AND for the hard-blocker re-check).
+
+    Returns (text, still_open). Listings close between discovery and submission, and a
+    title alone never reveals a 10-year requirement, a clearance, a defence programme, or
+    a French-language description — those live in the body and must be checked here, on
+    the live text, not on the cached search result.
+    """
     try:
         if c["ats"] == "recruitee":
             url = f"https://{c['slug']}.recruitee.com/api/offers/{c['offer_slug']}"
             o = json.loads(subprocess.run(["curl", "-sL", "--max-time", "18", url],
                                           capture_output=True, text=True).stdout)
             o = o.get("offer", o)
-            return (o.get("description") or "") + " " + (o.get("requirements") or "")
+            text = (o.get("description") or "") + " " + (o.get("requirements") or "")
+            return text, (o.get("status") == "published")
         xml = subprocess.run(["curl", "-s", "--max-time", "20", f"https://{c['host']}/xml"],
                              capture_output=True, text=True).stdout
         m = re.search(rf"<position>(?:(?!</position>).)*?<id>{c['job_id']}</id>.*?</position>",
                       xml, re.S)
-        return m.group(0) if m else ""
+        # a position missing from the live feed has been taken down
+        return (m.group(0), True) if m else ("", False)
     except Exception:
-        return ""
+        return "", False
 
 
 def submit_recruitee(c, letter):
@@ -142,7 +150,13 @@ def main(path, dry_run=False):
         if c["ats"] == "personio" and (c.get("host"), str(c.get("job_id"))) in seen_per:
             print(f"  [~] {co} - {role[:32]} | duplicate personio job"); skipped += 1; continue
 
-        job_text = fetch_job_text(c)
+        job_text, still_open = fetch_job_text(c)
+        if not still_open:
+            print(f"  [~] {co} - {role[:32]} | no longer open"); skipped += 1; continue
+        flags = hard_blockers(role, job_text)
+        if flags:
+            print(f"  [~] {co} - {role[:32]} | live check: {', '.join(flags)}")
+            skipped += 1; continue
         letter, matched = cover_letter.build(co, role, c.get("city") or "",
                                              c.get("country", "NL"), job_text)
         if dry_run:
@@ -177,6 +191,12 @@ def main(path, dry_run=False):
         ccount[cl] = ccount.get(cl, 0) + 1
         if c["ats"] == "recruitee": seen_offer.add(str(c.get("offer_id")))
         else: seen_per.add((c.get("host"), str(c.get("job_id"))))
+
+        # Persist after EVERY submission. A round-30 run was killed by a 2-minute command
+        # timeout after ~24 real submissions and, because the tracker was only written at
+        # the end, none of them were recorded — exactly the blind-dedup state that caused
+        # the round-23 duplicate spam. An unrecorded application is worse than a slow loop.
+        json.dump(apps, open(APPS, "w"), indent=2, ensure_ascii=False)
 
         applied += ok; failed += (not ok)
         print(f"  [{'+' if ok else 'x'}] {nid} {co[:20]:20s} | {role[:34]:34s} | "
