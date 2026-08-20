@@ -31,6 +31,7 @@ from tracker_guard import assert_tracker_fresh
 from filters import load_blocked_companies, blocked_reason, hard_blockers
 import cover_letter
 import personio_apply
+import questions
 
 BASE = Path(__file__).resolve().parent.parent
 RESUME = BASE / "profile" / "Hisham Abboud CV.pdf"
@@ -55,6 +56,17 @@ def resolve_redirect(slug, offer_slug):
     except Exception:
         pass
     return slug
+
+
+def offer_questions(c):
+    """Live screening questions for a Recruitee offer."""
+    try:
+        url = f"https://{c['slug']}.recruitee.com/api/offers/{c['offer_slug']}"
+        o = json.loads(subprocess.run(["curl", "-sL", "--max-time", "18", url],
+                                      capture_output=True, text=True).stdout)
+        return (o.get("offer", o) or {}).get("open_questions") or []
+    except Exception:
+        return []
 
 
 def fetch_job_text(c):
@@ -83,22 +95,39 @@ def fetch_job_text(c):
         return "", False
 
 
-def submit_recruitee(c, letter):
+def submit_recruitee(c, letter, answers=()):
     slug = resolve_redirect(c["slug"], c["offer_slug"])
     api = f"https://{slug}.recruitee.com/api/offers/{c['offer_slug']}/candidates"
-    r = subprocess.run(
-        ["curl", "-s", "-o", "/tmp/rr.txt", "-w", "%{http_code}", "-X", "POST", api,
-         "-F", "candidate[name]=Hisham Abboud",
-         "-F", "candidate[email]=hiaham123@hotmail.com",
-         "-F", "candidate[phone]=+31648412838",
-         "-F", f"candidate[cover_letter]={letter}",
-         "-F", f"candidate[cv]=@{RESUME};type=application/pdf", "--max-time", "30"],
-        capture_output=True, text=True)
+    cmd = ["curl", "-s", "-o", "/tmp/rr.txt", "-w", "%{http_code}", "-X", "POST", api,
+           "-F", "candidate[name]=Hisham Abboud",
+           "-F", "candidate[email]=hiaham123@hotmail.com",
+           "-F", "candidate[phone]=+31648412838",
+           "-F", f"candidate[cover_letter]={letter}",
+           "-F", f"candidate[cv]=@{RESUME};type=application/pdf", "--max-time", "30"]
+    # Screening answers. Rails nested attributes: indexed keys, boolean/legal questions
+    # answered with `flag`, everything else with `content`.
+    for i, a in enumerate(answers):
+        base = f"candidate[open_question_answers][{i}]"
+        cmd += ["-F", f"{base}[open_question_id]={a['id']}"]
+        if "flag" in a:
+            cmd += ["-F", f"{base}[flag]={'true' if a['flag'] else 'false'}"]
+        else:
+            cmd += ["-F", f"{base}[content]={a['content']}"]
+    r = subprocess.run(cmd, capture_output=True, text=True)
     st = r.stdout.strip()
     body = Path("/tmp/rr.txt").read_text() if Path("/tmp/rr.txt").exists() else ""
     cid = ""
     try:
-        cid = str(json.loads(body).get("candidate", {}).get("id", ""))
+        cand = json.loads(body).get("candidate", {})
+        cid = str(cand.get("id", ""))
+        # Verify rather than assume: the response echoes open_question_answers back. If we
+        # sent answers and every one comes back null, the multipart field names are wrong
+        # and the application landed blank -- which is the exact defect this code fixes.
+        if answers:
+            echoed = [a for a in (cand.get("open_question_answers") or [])
+                      if a.get("content") is not None or a.get("flag") is not None]
+            print(f"       answers: sent {len(answers)}, recorded {len(echoed)}"
+                  + ("  <-- FORMAT REJECTED" if not echoed else ""))
     except Exception:
         pass
     return (st == "201" or bool(cid)), st, cid, api, slug
@@ -113,6 +142,21 @@ def submit_personio(c, letter):
         first="Hisham", last="Abboud", email="hiaham123@hotmail.com",
         phone="+31648412838", location="Eindhoven, Netherlands")
     return st.startswith("2"), st, "", f"https://{c['host']}/job/{c['job_id']}", c["host"]
+
+
+def write_pending(held):
+    """Collect held applications so Hisham can answer their questions in one sitting."""
+    out = ["# Applications held — these need your own answers",
+           "",
+           "Each role below has a REQUIRED screening question the profile cannot honestly",
+           "answer. Write your answer under the question, then re-run the round; recurring",
+           "questions can be moved into profile/answers.md so they never come back.",
+           ""]
+    for h in held:
+        out += [f"## {h['company']} — {h['role']}", f"{h['url']}", ""]
+        for q in h["questions"]:
+            out += [f"- **{q['question']}**", f"  (held because: {q['reason']})", "  answer: ", ""]
+    (BASE / "data" / "pending-questions.md").write_text("\n".join(out))
 
 
 def main(path, dry_run=False):
@@ -134,6 +178,7 @@ def main(path, dry_run=False):
 
     nid = max((a.get("id", 0) for a in apps if isinstance(a.get("id"), int)), default=0) + 1
     applied = failed = skipped = 0
+    held = []
 
     for c in cands:
         co = c["company"]; cl = co.lower().strip()
@@ -157,14 +202,32 @@ def main(path, dry_run=False):
         if flags:
             print(f"  [~] {co} - {role[:32]} | live check: {', '.join(flags)}")
             skipped += 1; continue
+
+        # Screening questions. Answer only what the profile supports; HOLD the application
+        # if a REQUIRED question needs an answer that would have to be invented. Round 30
+        # sent 13 applications with required questions blank because nothing checked this.
+        answers, blockers = [], []
+        if c["ats"] == "recruitee":
+            answers, blockers = questions.build_answers(
+                offer_questions(c), *personio_apply.read_commitments())
+            req = [b for b in blockers if b["required"]]
+            if req:
+                held.append({"company": co, "role": role,
+                             "url": f"https://{c['slug']}.recruitee.com/o/{c['offer_slug']}",
+                             "questions": req})
+                print(f"  [H] {co[:22]:22s} | {role[:30]:32s} | held: "
+                      f"{len(req)} required question(s) need your own answer")
+                skipped += 1; continue
         letter, matched = cover_letter.build(co, role, c.get("city") or "",
                                              c.get("country", "NL"), job_text)
         if dry_run:
-            print(f"  [dry] {co[:22]:22s} | {role[:34]:34s} | tailored_on={matched}")
+            print(f"  [dry] {co[:22]:22s} | {role[:34]:34s} | tailored_on={matched} | "
+                  f"answers={len(answers)}")
             continue
 
         try:
-            ok, st, cid, api, tenant = (submit_recruitee(c, letter) if c["ats"] == "recruitee"
+            ok, st, cid, api, tenant = (submit_recruitee(c, letter, answers)
+                                        if c["ats"] == "recruitee"
                                         else submit_personio(c, letter))
         except Exception as e:
             print(f"  [x] {co} - {role[:30]} | ERROR {e}"); failed += 1; continue
@@ -179,6 +242,8 @@ def main(path, dry_run=False):
                "email_used": "hiaham123@hotmail.com",
                "location": c.get("city"), "country": c.get("country"),
                "letter_tailored": bool(matched), "letter_matched_on": matched,
+               "questions_answered": len(answers),
+               "questions_skipped_optional": [b["question"] for b in blockers],
                "outcome": None, "response": None}
         if c["ats"] == "recruitee":
             rec.update({"offer_id": c.get("offer_id"), "offer_slug": c["offer_slug"],
@@ -204,6 +269,10 @@ def main(path, dry_run=False):
         nid += 1
         time.sleep(2)
 
+    if held:
+        write_pending(held)
+        print(f"\n{len(held)} application(s) held for unanswerable required questions "
+              f"-> data/pending-questions.md")
     if not dry_run:
         json.dump(apps, open(APPS, "w"), indent=2, ensure_ascii=False)
         print(f"\n{applied} applied, {failed} failed, {skipped} skipped | tracker: {len(apps)}")
