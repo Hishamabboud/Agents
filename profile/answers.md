@@ -98,3 +98,36 @@ These are never guessed. The application is held and the question is written to
 - **Any free-text motivational question** — "why this company", "what appeals to you about
   this role", "what gets you out of bed", "describe a project you are proud of". These need
   Hisham's own words. A generic answer here reads worse than no answer at all.
+
+---
+
+## Added round 31 — phrasings the first pass missed
+
+**Are you based in the Netherlands? / Where are you currently located? / From what location are you looking to work?**
+answer: Eindhoven, Netherlands
+source: preferences.md — based in Eindhoven
+
+**Do you have an EU passport or a valid permit/visa to work in the Netherlands?**
+answer: yes
+source: preferences.md line 27 — "Visa: Not needed (I have work authorization in NL)"
+
+**When are you able to start? / Start date**
+answer: 1 month notice period
+source: preferences.md — "Application form answers (set by Hisham)"
+
+**Are you looking for a fulltime position?**
+answer: yes
+source: preferences.md line 33 — "Contract type: Full-time preferred"
+
+**The role is hybrid / on-site at a client / N days in the office — are you okay with this?**
+answer: yes
+source: applying to a role already accepts the working arrangement the posting states.
+Distinct from "do you LIVE within X km of <town>", which stays held.
+
+### Still held, deliberately
+- **"Please share your GitHub"** — no GitHub URL in the profile. Add one to preferences.md
+  and it will be answered automatically.
+- **"Hoeveel jaar ervaring heb je in een vergelijkbare functie?"** — what counts as a
+  comparable role is Hisham's judgement, not a lookup.
+- **"Explain briefly your .NET experience" / "Describe the most complex solution you built"**
+  — screening essays. The CV backs the facts, but the words should be his.

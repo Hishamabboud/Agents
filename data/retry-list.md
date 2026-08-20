@@ -135,3 +135,20 @@ once approved.
 |---|---|---|
 | Marktlink | Software Engineer | unfillable required fields: ['birthday'] |
 | NUNC Capital | Embedded Software Engineer | unfillable required fields: ['custom_attribute_4553493', 'custom_attribute_4553494', 'custom_attribute_4553532', 'years_of_experience'] |
+
+## Round 31 — needs a manual application (2026-08-20)
+
+Automated submission refused rather than guessed. All four are live and worth applying to by hand.
+
+- **Ore Energy — Software Engineer, Edge Systems & Embedded** (Amsterdam)
+  https://ore-energy.jobs.personio.de — Personio form has 1 required custom question
+  (`custom_attribute_4443451`) the profile cannot answer.
+- **Fairphone — Junior QA Tester** (Amsterdam) — https://fairphone.jobs.personio.de
+  6 required custom questions.
+- **Fairphone — Senior Android Systems Engineer, Partner Integration** (Amsterdam)
+  9 required custom questions.
+- **Q-Fin Quality Finishing Solutions — Automation Engineer | PLC & Motion** (Bergeijk)
+  https://qfin.recruitee.com/o/automation-engineer-plc-motion — HTTP 422. Cause:
+  `locations_question_required: true`, the offer's preferred-work-location field. Worth
+  noting: this field has no documented name in Recruitee's public API, and it IS enforced
+  here — a submission omitting it is rejected, not silently accepted.

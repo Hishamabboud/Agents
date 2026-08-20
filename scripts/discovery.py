@@ -197,6 +197,10 @@ def probe_personio(company, variants=None):
         for host in (f"{s}.jobs.personio.de", f"{s}.jobs.personio.com"):
             try:
                 r = requests.get(f"https://{host}/xml", headers=H, timeout=8)
+                # Personio serves UTF-8 but often omits the charset, and requests then
+                # falls back to latin-1 - which renders an em-dash as "a" + junk in the
+                # job title that goes on to the tracker and the cover letter.
+                r.encoding = "utf-8"
                 if r.status_code == 200 and "<position>" in r.text:
                     if not parse_personio_positions(r.text):   # demo/empty board
                         continue

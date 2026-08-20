@@ -28,7 +28,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tracker_guard import assert_tracker_fresh
-from filters import load_blocked_companies, blocked_reason, hard_blockers
+from filters import (load_blocked_companies, blocked_reason, hard_blockers,
+                     tenant_counts, tenant_of)
 import cover_letter
 import personio_apply
 import questions
@@ -104,11 +105,17 @@ def submit_recruitee(c, letter, answers=()):
            "-F", "candidate[phone]=+31648412838",
            "-F", f"candidate[cover_letter]={letter}",
            "-F", f"candidate[cv]=@{RESUME};type=application/pdf", "--max-time", "30"]
-    # Screening answers. Rails nested attributes: indexed keys, boolean/legal questions
-    # answered with `flag`, everything else with `content`.
+    # Screening answers, sent two ways because the open API may not accept them.
+    #
+    # The careers page serialises them as camelCase indexed FormData keys, but it posts to
+    # a DIFFERENT endpoint (`/candidates` on the careers host) that requires a captchaToken.
+    # Defeating that captcha is off-limits, so we stay on the open /api/offers/<slug>/
+    # candidates path. That path accepted the snake_case form without error but recorded
+    # nothing, and it does not validate open questions at all -- a submission missing every
+    # required answer still returns 201. So the structured attempt below is best-effort.
     for i, a in enumerate(answers):
-        base = f"candidate[open_question_answers][{i}]"
-        cmd += ["-F", f"{base}[open_question_id]={a['id']}"]
+        base = f"candidate[openQuestionAnswers][{i}]"
+        cmd += ["-F", f"{base}[openQuestionId]={a['id']}"]
         if "flag" in a:
             cmd += ["-F", f"{base}[flag]={'true' if a['flag'] else 'false'}"]
         else:
@@ -175,6 +182,11 @@ def main(path, dry_run=False):
         if a.get("status") in COUNTED:
             k = (a.get("company") or "").lower().strip()
             ccount[k] = ccount.get(k, 0) + 1
+    # Cap on the ATS TENANT as well as the display name. One board is one recruiting inbox,
+    # and a single employer reaches us under several names: "DPG Media" / "DPG Media Belgie"
+    # / "DPG Media Nederland" / "DPG Media / Independer" are all the `dpgmedia` tenant, which
+    # had received 9 applications against a cap of 2 before this check existed.
+    tcount = tenant_counts(apps, COUNTED)
 
     nid = max((a.get("id", 0) for a in apps if isinstance(a.get("id"), int)), default=0) + 1
     applied = failed = skipped = 0
@@ -194,6 +206,18 @@ def main(path, dry_run=False):
             print(f"  [~] {co} - {role[:32]} | duplicate offer id"); skipped += 1; continue
         if c["ats"] == "personio" and (c.get("host"), str(c.get("job_id"))) in seen_per:
             print(f"  [~] {co} - {role[:32]} | duplicate personio job"); skipped += 1; continue
+
+        # Resolve the real tenant BEFORE the cap check: `adesso` 302-redirects to
+        # `werkenbijadesso`, where six applications had already gone.
+        if c["ats"] == "recruitee":
+            c["slug"] = resolve_redirect(c["slug"], c["offer_slug"])
+            tkey = f"recruitee:{c['slug'].lower()}"
+        else:
+            tkey = f"personio:{c['host'].split('.')[0].lower()}"
+        if tcount.get(tkey, 0) >= MAX_PER_COMPANY:
+            print(f"  [~] {co} - {role[:30]} | tenant {tkey} already has "
+                  f"{tcount[tkey]} applications")
+            skipped += 1; continue
 
         job_text, still_open = fetch_job_text(c)
         if not still_open:
@@ -220,6 +244,17 @@ def main(path, dry_run=False):
                 skipped += 1; continue
         letter, matched = cover_letter.build(co, role, c.get("city") or "",
                                              c.get("country", "NL"), job_text)
+        # The recruiter reads the cover letter. If the structured answers do not survive the
+        # open API, appending them here is the only way the answers actually reach a human -
+        # and it is the difference between a complete application and a blank screening form.
+        if answers:
+            lines = ["", "", "Answers to your screening questions:"]
+            for a in answers:
+                q = re.sub(r"<[^>]+>", " ", str(a.get("question") or "")).strip()
+                q = re.sub(r"\s+", " ", q)
+                v = ("Yes" if a["flag"] else "No") if "flag" in a else a["content"]
+                lines.append(f"- {q} {v}")
+            letter = letter + "\n".join(lines)
         if dry_run:
             print(f"  [dry] {co[:22]:22s} | {role[:34]:34s} | tailored_on={matched} | "
                   f"answers={len(answers)}")
@@ -254,6 +289,7 @@ def main(path, dry_run=False):
 
         seen_cr.add(f"{cl}|{role.lower().strip()}")
         ccount[cl] = ccount.get(cl, 0) + 1
+        tcount[tkey] = tcount.get(tkey, 0) + 1
         if c["ats"] == "recruitee": seen_offer.add(str(c.get("offer_id")))
         else: seen_per.add((c.get("host"), str(c.get("job_id"))))
 

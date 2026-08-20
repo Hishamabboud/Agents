@@ -28,8 +28,16 @@ import re
 _RULES = [
     # --- residence / work authorisation
     (r"(require|need).{0,25}(visa|work permit|sponsor)|visa sponsorship|werkvergunning", "no", "bool"),
-    (r"(do you (currently )?live|woon je|woonachtig).{0,30}(netherlands|nederland)(?!.{0,20}\bkm\b)", "yes", "bool"),
-    (r"valid permit to work", "yes", "bool"),
+    (r"(do you (currently )?live|are you based|woon je|woonachtig|gevestigd)"
+     r".{0,30}(netherlands|nederland)(?!.{0,20}\bkm\b)", "yes", "bool"),
+    (r"valid permit.{0,10}(to work|/visa)|eu passport|werkvergunning", "yes", "bool"),
+    (r"(where are you|from what location|waar (woon|ben) je|current location|"
+     r"currently located|looking to work)", "Eindhoven, Netherlands", "text"),
+    # Willingness to the working arrangement the posting itself states (hybrid, on-site at a
+    # client, N days in the office). Applying to a role already accepts its stated setup.
+    (r"(okay with this|akkoord|comfortable with).{0,40}$|"
+     r"(remote and in person|hybrid|on.?site|client site).{0,80}(okay|comfortable|akkoord)",
+     "yes", "bool"),
 
     # --- previous employment with this employer. MUST come before the language rules:
     # "Heb je eerder in loondienst gewerkt voor RTL Nederland of DPG Media?" contains the
@@ -60,8 +68,10 @@ _RULES = [
     (r"salar|bruto per maand|gross monthly|loonverwachting", None, "salary"),
     (r"(hoeveel uur|hours per week|uur per week|beschikbaar.{0,20}uur)",
      "40 hours per week (full-time)", "text"),
-    (r"(vast dienstverband|loondienst|permanent employment|contract of employment)", "yes", "bool"),
-    (r"(when can you start|beschikbaar per|availability|notice period|opzegtermijn)", None, "notice"),
+    (r"(vast dienstverband|loondienst|permanent employment|contract of employment|"
+     r"fulltime|full.time) (position|functie|role)?", "yes", "bool"),
+    (r"(when (can|are) you (able to )?start|beschikbaar per|wanneer.{0,15}beginnen|"
+     r"availability|notice period|opzegtermijn|start date)", None, "notice"),
 
     # Willingness to be onsite where the role is. Applying to a role in that city already
     # asserts this; it is not a new claim. Distinct from "do you LIVE within X km of <town>",

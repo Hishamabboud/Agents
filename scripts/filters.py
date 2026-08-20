@@ -15,6 +15,7 @@ received seven duplicates. Match BOTH directions on normalised strings, and alwa
 the tenant slug too.
 """
 
+import html
 import re
 
 BLOCKED_SLUGS = {
@@ -171,7 +172,9 @@ def parse_personio_positions(xml):
 
         def field(tag, src=stripped):
             mm = re.search(rf"<{tag}>(.*?)</{tag}>", src, re.S)
-            return re.sub(r"<!\[CDATA\[|\]\]>", "", mm.group(1)).strip() if mm else None
+            if not mm:
+                return None
+            return html.unescape(re.sub(r"<!\[CDATA\[|\]\]>", "", mm.group(1))).strip()
 
         title = field("name")
         if not title or _PERSONIO_DEMO.match(title):
@@ -206,3 +209,37 @@ ROLE_EXCLUDE = re.compile(
     r"trader|business consultant|business develop|customer success|servicedesk|director|\bvp\b|"
     r"head of|chief|commercial|werkstudent|praktik|initiativ|open application|wordpress|"
     r"product manager|manager\b(?!.*(engineer|software|technical))", re.I)
+
+
+# --- employer identity ---------------------------------------------------------------
+# BUG 6 (found round 31): the 2-applications-per-company cap keyed on the DISPLAY NAME the
+# job board reported, so one employer under several names slipped past it repeatedly:
+#     "DPG Media", "DPG Media Belgie", "DPG Media Nederland", "DPG Media / Independer"
+#         -> all one tenant, `dpgmedia`, whose 77 offers all report company_name "DPG Media".
+#            8 applications had gone out against a cap of 2.
+#     "adesso Netherlands", "adesso Belgium", "adesso SE"
+#         -> `adesso` 302-redirects to `werkenbijadesso`; 6 applications already sent.
+# The ATS tenant is the employer: one board is one recruiting inbox. Cap on that.
+
+def tenant_of(entry):
+    """Canonical employer key for a tracker entry, or None if it cannot be determined."""
+    host = entry.get("personio_host")
+    if host:
+        return f"personio:{host.split('.')[0].lower()}"
+    for field in ("recruitee_api_url", "url"):
+        m = re.search(r"https?://([^.]+)\.recruitee\.com", str(entry.get(field) or ""))
+        if m:
+            return f"recruitee:{m.group(1).lower()}"
+    return None
+
+
+def tenant_counts(apps, counted_statuses):
+    """How many applications each tenant has already received."""
+    out = {}
+    for a in apps:
+        if a.get("status") not in counted_statuses:
+            continue
+        k = tenant_of(a)
+        if k:
+            out[k] = out.get(k, 0) + 1
+    return out
