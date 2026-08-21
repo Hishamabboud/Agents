@@ -243,3 +243,25 @@ def tenant_counts(apps, counted_statuses):
         if k:
             out[k] = out.get(k, 0) + 1
     return out
+
+
+# --- seniority ----------------------------------------------------------------------
+# Found while debugging why six months of applications produced no visible result: 92 of
+# 448 (21%) went to Senior/Lead/Principal/Architect roles, against the stated 2-3 year
+# experience bar in preferences.md. Those are near-certain rejections that ALSO burn the
+# 2-per-tenant cap, locking out the medior application that could have been sent instead.
+_SENIOR = re.compile(r"\bsenior\b|\bsr\.?\b|\bprincipal\b|\bstaff engineer\b|"
+                     r"\barchitect\b|\b(tech|team)\s?lead\b|"
+                     r"\blead\b(?!\s*generation)", re.I)
+_JUNIOR_OK = re.compile(r"\bjunior\b|\bmedior\b|\bgraduate\b|\bstarter\b|"
+                        r"\(\s*senior\s*\)", re.I)   # "(Senior)" = seniority optional
+
+
+def seniority_mismatch(title):
+    """True if the title demands seniority beyond the profile's 2-3 year bar.
+
+    A range like "Junior/Medior/Senior" or a parenthesised "(Senior)" marker means the
+    employer will consider a medior candidate, so those stay eligible.
+    """
+    t = title or ""
+    return bool(_SENIOR.search(t)) and not _JUNIOR_OK.search(t)

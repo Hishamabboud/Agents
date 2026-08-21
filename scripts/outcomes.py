@@ -108,16 +108,42 @@ def bulk_import(path):
     print(f"\nimported {n} outcome(s)")
 
 
+def _effective_outcome(a, now=None):
+    """Recorded outcome, or an implied one for the silence nobody logs.
+
+    An application with no reply after 30 days is treated as ghosted IN THE REPORT ONLY --
+    the tracker is never mutated, so a late reply can still overwrite the implication.
+    Without this the denominator flatters the pipeline: silence, the most common outcome
+    in this market, would simply not exist in the numbers.
+    """
+    if a.get("outcome"):
+        return a["outcome"], False
+    try:
+        sent = datetime.fromisoformat(str(a.get("date_applied"))[:19])
+    except ValueError:
+        return None, False
+    age = ((now or datetime.now()) - sent).days
+    return ("ghosted", True) if age > 30 else (None, False)
+
+
 def report():
     apps = load()
     applied = [a for a in apps if a.get("status") == "applied"]
-    with_out = [a for a in applied if a.get("outcome")]
-    print(f"{len(applied)} applications sent, {len(with_out)} with a recorded outcome "
-          f"({100*len(with_out)/max(len(applied),1):.1f}% measured)\n")
-    if not with_out:
-        print("No outcomes recorded yet — nothing can be concluded about what converts.")
-        print("Log replies as they arrive:  python3 scripts/outcomes.py log \"Company\" --outcome interview")
-        return
+    for a in applied:
+        a["_eff"], a["_implied"] = _effective_outcome(a)
+    with_out = [a for a in applied if a.get("_eff")]
+    recorded = [a for a in with_out if not a["_implied"]]
+    implied = len(with_out) - len(recorded)
+    print(f"{len(applied)} applications sent | {len(recorded)} outcomes recorded, "
+          f"{implied} implied ghosted (>30 days, no reply logged)")
+    print(f"=> {100*len(with_out)/max(len(applied),1):.0f}% of applications have a known or "
+          f"implied outcome\n")
+    if not recorded:
+        print("NOTE: every non-null outcome below is IMPLIED silence. Until real replies are")
+        print("logged, this report can only show where the silence is, not what converts.")
+        print("Log replies:  python3 scripts/outcomes.py log \"Company\" --outcome interview\n")
+    for a in with_out:
+        a["outcome"] = a["_eff"]
 
     print("outcomes:", dict(Counter(a["outcome"] for a in with_out)), "\n")
 

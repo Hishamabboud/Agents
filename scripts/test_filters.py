@@ -128,6 +128,17 @@ for company, slug, want in [
     got = _ptm(company, f"{slug}.jobs.personio.de", "", page=_TENANT[slug])
     check(f"{company[:30]:32s} vs {slug:16s} -> {want}", got == want, f"got {got}")
 
+print("\nSeniority bar — 21% of historical volume went to senior-only roles")
+from filters import seniority_mismatch
+check("Senior .NET Engineer excluded", seniority_mismatch("Senior .NET Engineer"))
+check("Principal excluded", seniority_mismatch("Principal Engineer - Discovery"))
+check("Tech Lead excluded", seniority_mismatch("Tech Lead / Solution Architect (.NET)"))
+check("range Junior/Medior/Senior stays eligible",
+      not seniority_mismatch("PLC Software Engineer (Junior/Medior/Senior)"))
+check("(Senior) marker stays eligible", not seniority_mismatch("(Senior) Data Engineer"))
+check("Lead Generation not a seniority word", not seniority_mismatch("Lead Generation Specialist"))
+check("plain title stays eligible", not seniority_mismatch("Software Engineer"))
+
 print("\nCover letter — must never claim a skill absent from the CV")
 letter, keys = cover_letter.build("X", "Rust Engineer", "Gent", "BE",
                                   "Deep Rust and Erlang expertise required for our ledger.")

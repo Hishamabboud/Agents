@@ -29,7 +29,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tracker_guard import assert_tracker_fresh
 from filters import (load_blocked_companies, blocked_reason, hard_blockers,
-                     tenant_counts, tenant_of)
+                     seniority_mismatch, tenant_counts, tenant_of)
 import cover_letter
 import personio_apply
 import questions
@@ -195,6 +195,10 @@ def main(path, dry_run=False):
     for c in cands:
         co = c["company"]; cl = co.lower().strip()
         role = c.get("role", "")
+
+        if seniority_mismatch(role):
+            print(f"  [~] {co} - {role[:34]} | senior-only title, past the 2-3yr bar")
+            skipped += 1; continue
 
         why = blocked_reason(co, c.get("slug"), blocked)
         if why: print(f"  [~] {co} | {why}"); skipped += 1; continue
