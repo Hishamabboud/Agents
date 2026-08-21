@@ -128,6 +128,14 @@ for company, slug, want in [
     got = _ptm(company, f"{slug}.jobs.personio.de", "", page=_TENANT[slug])
     check(f"{company[:30]:32s} vs {slug:16s} -> {want}", got == want, f"got {got}")
 
+print("\nUnpaid-role blocker vs unpaid-leave benefit")
+from filters import hard_blockers
+check("unpaid internship still blocked", "unpaid" in hard_blockers("x", "This is an unpaid internship position"))
+check("onbetaald verlof (sabbatical perk) not blocked",
+      "unpaid" not in hard_blockers("x", "Elke 4 jaar kun je 4 maanden onbetaald verlof nemen"))
+check("unpaid leave benefit not blocked",
+      "unpaid" not in hard_blockers("x", "option of unpaid leave after each project"))
+
 print("\nSeniority bar — 21% of historical volume went to senior-only roles")
 from filters import seniority_mismatch
 check("Senior .NET Engineer excluded", seniority_mismatch("Senior .NET Engineer"))

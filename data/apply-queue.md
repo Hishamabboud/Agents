@@ -6,6 +6,72 @@ Work top to bottom; after submitting one, log it:
 
     python3 scripts/outcomes.py log "<Company>" --outcome acknowledged  # or record in tracker
 
+## Coinmerce — DevOps Engineer
+- URL: https://coinmerce.jobs.personio.de/job/2531536
+- Location: Schiphol-Rijk | ATS: personio
+- Cover letter (tailored on testing, data, azure, api):
+
+```
+Dear Hiring Team at Coinmerce,
+
+I would like to apply for the DevOps Engineer position in Schiphol-Rijk.
+
+What drew me to this role is the overlap with my current work: building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Coinmerce.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
+## Silverflow — Junior Data Engineer
+- URL: https://silverflow.jobs.personio.de/job/2742497
+- Location: NL | ATS: personio
+- Cover letter (tailored on python, testing, ai, data):
+
+```
+Dear Hiring Team at Silverflow,
+
+I would like to apply for the Junior Data Engineer position in NL.
+
+What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Silverflow.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
+## Blue Green Solutions — Medior Mendix Developer
+- URL: https://bluegreen.recruitee.com/o/mendix-medior-developer
+- Location: Amsterdam | ATS: recruitee
+- Pre-computed answers (profile-backed):
+    - Ben je vloeiend en professioneel in de Nederlandse taal, zowel schriftelijk als mondeling? -> **Yes**
+- NEEDS YOUR OWN ANSWER:
+    - [required] Hoeveel jaar ervaring met Mendix heb je?
+    - [required] Hoeveel platform punten heb je?
+    - [optional] Kun je eens in de 2 weken bij ons op kantoor werken?
+- Cover letter (tailored on mes):
+
+```
+Dear Hiring Team at Blue Green Solutions,
+
+I would like to apply for the Medior Mendix Developer position in Amsterdam.
+
+What drew me to this role is the overlap with my current work: supporting Manufacturing Execution Systems for industrial clients, which means working on software that runs live production environments. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Blue Green Solutions.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
 ## Ore Energy — Software Engineer – Edge Systems & Embedded Security
 - URL: https://ore-energy.jobs.personio.de/job/2738995
 - Location: Amsterdam | ATS: personio

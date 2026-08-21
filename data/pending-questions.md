@@ -1,6 +1,16 @@
-# Applications held — superseded by data/apply-queue.md
+# Applications held — these need your own answers
 
-The round-31 hold list had 9 roles. The seniority bar added on 2026-08-21 removed 6 of
-them (Senior/Lead/Principal titles past the 2-3 year bar in preferences.md), and one more
-closed. Everything still actionable — with pre-computed answers, tailored letters, and
-exactly which questions need your own words — is now in `data/apply-queue.md`.
+Each role below has a REQUIRED screening question the profile cannot honestly
+answer. Write your answer under the question, then re-run the round; recurring
+questions can be moved into profile/answers.md so they never come back.
+
+## Blue Green Solutions — Medior Mendix Developer
+https://bluegreen.recruitee.com/o/mendix-medior-developer
+
+- **Hoeveel jaar ervaring met Mendix heb je?**
+  (held because: no profile-backed answer)
+  answer: 
+
+- **Hoeveel platform punten heb je?**
+  (held because: no profile-backed answer)
+  answer: 

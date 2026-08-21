@@ -112,8 +112,11 @@ def hard_blockers(title, body):
         flags.append("10+yrs")
     if re.search(r"security clearance|veiligheidsmachtiging|nato secret", body, re.I):
         flags.append("clearance")
-    if re.search(r"\bunpaid\b|\bonbetaald\b", body, re.I) and not re.search(
-            r"we do not|geen onbetaald", body, re.I):
+    # "onbetaald verlof" / "unpaid leave" is a sabbatical BENEFIT, not an unpaid role --
+    # it cost Blue Green Solutions' Mendix vacancy a round-32 application before this
+    # exclusion existed.
+    if re.search(r"\b(unpaid|onbetaald)\b(?!\s*(verlof|leave|sabbatical))", body, re.I) \
+            and not re.search(r"we do not|geen onbetaald", body, re.I):
         flags.append("unpaid")
     if re.search(r"\bdefen[cs]e\b|defensie|militair|military|avionics|weapons", title, re.I):
         flags.append("DEFENCE")
