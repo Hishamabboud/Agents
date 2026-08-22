@@ -29,7 +29,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tracker_guard import assert_tracker_fresh
 from filters import (load_blocked_companies, blocked_reason, hard_blockers,
-                     seniority_mismatch, tenant_counts, tenant_of)
+                     seniority_mismatch, tenant_counts, tenant_of,
+                     wrong_discipline)
 import cover_letter
 import personio_apply
 import questions
@@ -57,6 +58,19 @@ def resolve_redirect(slug, offer_slug):
     except Exception:
         pass
     return slug
+
+
+def offer_department(c):
+    """Recruitee reports the hiring department -- the clearest signal of discipline."""
+    if c.get("ats") != "recruitee":
+        return ""
+    try:
+        url = f"https://{c['slug']}.recruitee.com/api/offers/{c['offer_slug']}"
+        o = json.loads(subprocess.run(["curl", "-sL", "--max-time", "18", url],
+                                      capture_output=True, text=True).stdout)
+        return (o.get("offer", o) or {}).get("department") or ""
+    except Exception:
+        return ""
 
 
 def offer_questions(c):
@@ -226,6 +240,11 @@ def main(path, dry_run=False):
         job_text, still_open = fetch_job_text(c)
         if not still_open:
             print(f"  [~] {co} - {role[:32]} | no longer open"); skipped += 1; continue
+        wd = wrong_discipline(role, job_text, offer_department(c))
+        if wd:
+            print(f"  [~] {co} - {role[:32]} | {wd}")
+            skipped += 1; continue
+
         flags = hard_blockers(role, job_text)
         if flags:
             print(f"  [~] {co} - {role[:32]} | live check: {', '.join(flags)}")

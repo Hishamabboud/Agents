@@ -128,6 +128,35 @@ for company, slug, want in [
     got = _ptm(company, f"{slug}.jobs.personio.de", "", page=_TENANT[slug])
     check(f"{company[:30]:32s} vs {slug:16s} -> {want}", got == want, f"got {got}")
 
+print("\nRound-33 gaps: seniority grades, Personio geography, Dutch homonym")
+from filters import personio_location_ok as _pl, seniority_mismatch, ROLE_EXCLUDE
+check("Staff <role> is a seniority grade", seniority_mismatch("Staff Software Engineer, Data Platform"))
+check("accented Senior caught", seniority_mismatch("Ing\u00e9nieur S\u00e9nior en MES F/H"))
+check("Staffing Coordinator is not seniority", not seniority_mismatch("Staffing Coordinator"))
+# Personio carries no country_code, so the office field is the only geography signal.
+check("Personio Taipei office rejected", not _pl("Taiwan", "")[0])
+check("Personio Munich office rejected", not _pl("Munich", "")[0])
+check("Personio Amsterdam office kept", _pl("Amsterdam", "")[0])
+check("body name-dropping Berlin does not reject a Dutch role",
+      _pl("Hybrid", "our teams in Berlin and Amsterdam collaborate")[0])
+# "ontwikkelaar" is developer AND property developer
+check("Gebiedsontwikkelaar excluded", bool(ROLE_EXCLUDE.search("Gebiedsontwikkelaar")))
+check("Software Ontwikkelaar kept", not ROLE_EXCLUDE.search("Software Ontwikkelaar"))
+
+print("\nDiscipline check — a title-only filter cannot tell developer from property developer")
+from filters import wrong_discipline
+check("property development rejected",
+      wrong_discipline("Ontwikkelaar", "ontwikkelen van nieuwe woningbouwprojecten en het "
+                       "opbouwen van een relatienetwerk", "Bouw en Vastgoed Amsterdam"))
+check("electrical panel design rejected (CAD-software is a tool, not the job)",
+      wrong_discipline("Product Engineer Paneelbouw", "technisch ontwerp van elektrotechnische "
+                       "installaties. Kun je goed overweg met CAD-software, MS Office",
+                       "Stolze Installatietechniek"))
+check("real software role kept",
+      not wrong_discipline("Software Engineer (SQL)", "je bouwt met C# en SQL aan ons platform", "Development"))
+check("SCADA/PLC engineering kept",
+      not wrong_discipline("Scada Engineer", "PLC en SCADA programmeren voor onze machines", "Engineering"))
+
 print("\nUnpaid-role blocker vs unpaid-leave benefit")
 from filters import hard_blockers
 check("unpaid internship still blocked", "unpaid" in hard_blockers("x", "This is an unpaid internship position"))

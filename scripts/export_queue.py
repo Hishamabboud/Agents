@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from filters import (load_blocked_companies, blocked_reason, hard_blockers,
-                     seniority_mismatch, tenant_counts)
+                     seniority_mismatch, tenant_counts, wrong_discipline)
 import cover_letter
 import questions
 import personio_apply
@@ -84,6 +84,8 @@ def main(paths):
                           " " + (offer.get("requirements") or ""))
             if hard_blockers(role, body):
                 drop("hard blocker in live text"); continue
+            if wrong_discipline(role, body, offer.get("department") or ""):
+                drop("not a software role"); continue
             oq = offer.get("open_questions") or []
             url = f"https://{c['slug']}.recruitee.com/o/{c['offer_slug']}"
         else:

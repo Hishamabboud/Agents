@@ -137,16 +137,38 @@ _NON_EU_SIGNALS = re.compile(
     r"\b(INR|USD|CAD|AUD|SGD|MYR|PHP\s*[0-9])\b|"
     r"\b(india|bangalore|bengaluru|mumbai|delhi|pune|hyderabad|chennai|"
     r"kuala lumpur|singapore|manila|austin|duluth|new york|san francisco|toronto|"
-    r"dubai|bratislava|warsaw|warszawa|belgrade|yerevan)\b", re.I)
+    r"dubai|bratislava|warsaw|warszawa|belgrade|yerevan|"
+    # round 33: a Fairphone Taipei role read as in-scope because Asia beyond India was
+    # simply absent from this list.
+    r"taiwan|taipei|shenzhen|shanghai|beijing|hong kong|tokyo|seoul|bangkok|jakarta)\b",
+    re.I)
+
+# Places that ARE in the EU but outside the NL/BE scope. Personio carries no country_code,
+# so without this a Munich or Stuttgart office passes as readily as an Amsterdam one --
+# round 33 surfaced Personio's own Munich board and two Scalian Stuttgart roles.
+_OUT_OF_SCOPE_EU = re.compile(
+    r"\b(munich|m[uü]nchen|stuttgart|berlin|hamburg|frankfurt|cologne|k[oö]ln|d[uü]sseldorf|"
+    r"leipzig|dresden|hannover|nuremberg|n[uü]rnberg|vienna|wien|zurich|z[uü]rich|geneva|"
+    r"paris|lyon|marseille|toulouse|london|manchester|dublin|madrid|barcelona|valencia|"
+    r"lisbon|lisboa|porto|milan|milano|rome|roma|turin|prague|praha|budapest|bucharest|"
+    r"sofia|athens|helsinki|stockholm|oslo|copenhagen|k[oø]benhavn|tallinn|riga|vilnius|"
+    r"deutschland|germany|france|espa[nñ]a|italia|polska)\b", re.I)
 
 
 def personio_location_ok(office, body, allowed_hint=r"netherlands|nederland|belgi|\bNL\b|\bBE\b"):
     """Return (ok, reason). Rejects postings that name a non-EU location or quote a
     non-EU currency, even when the structured office field looks empty or ambiguous."""
     blob = f"{office or ''} {body or ''}"
+    office_says_nl_be = bool(re.search(allowed_hint, str(office or ""), re.I))
     m = _NON_EU_SIGNALS.search(blob)
-    if m and not re.search(allowed_hint, str(office or ""), re.I):
+    if m and not office_says_nl_be:
         return False, f"non-NL/BE signal in posting: {m.group(0)!r}"
+    # The office field is the strongest signal Personio gives. Only the office is checked
+    # for EU-but-out-of-scope places -- the BODY routinely name-drops other offices
+    # ("our teams in Berlin and Amsterdam") and would reject valid Dutch roles.
+    m2 = _OUT_OF_SCOPE_EU.search(str(office or ""))
+    if m2 and not office_says_nl_be:
+        return False, f"office is outside NL/BE: {m2.group(0)!r}"
     return True, None
 
 
@@ -211,7 +233,12 @@ ROLE_EXCLUDE = re.compile(
     r"receptionist|warehouse|internship|\bstage\b|\bintern\b|frontend|front-end|front end|"
     r"trader|business consultant|business develop|customer success|servicedesk|director|\bvp\b|"
     r"head of|chief|commercial|werkstudent|praktik|initiativ|open application|wordpress|"
-    r"product manager|manager\b(?!.*(engineer|software|technical))", re.I)
+    r"product manager|manager\b(?!.*(engineer|software|technical))|"
+    # Dutch "ontwikkelaar" means developer, but ALSO property/area developer. Dura Vermeer's
+    # "Gebiedsontwikkelaar" (urban area development, a construction role) matched the
+    # software pattern in round 33.
+    r"gebiedsontwikkelaar|projectontwikkelaar|vastgoedontwikkelaar|"
+    r"(gebied|vastgoed|project)s?ontwikkeling", re.I)
 
 
 # --- employer identity ---------------------------------------------------------------
@@ -253,9 +280,12 @@ def tenant_counts(apps, counted_statuses):
 # 448 (21%) went to Senior/Lead/Principal/Architect roles, against the stated 2-3 year
 # experience bar in preferences.md. Those are near-certain rejections that ALSO burn the
 # 2-per-tenant cap, locking out the medior application that could have been sent instead.
-_SENIOR = re.compile(r"\bsenior\b|\bsr\.?\b|\bprincipal\b|\bstaff engineer\b|"
-                     r"\barchitect\b|\b(tech|team)\s?lead\b|"
-                     r"\blead\b(?!\s*generation)", re.I)
+_SENIOR = re.compile(r"\bs[eé]nior\b|\bsr\.?\b|\bprincipal\b|\barchitect\b|"
+                     # "Staff <anything>" is a seniority grade above senior; matching only
+                     # "staff engineer" missed "Staff Software Engineer, Data Platform".
+                     r"\bstaff\s+(engineer|software|developer|data|backend|frontend|"
+                     r"platform|scientist)|"
+                     r"\b(tech|team)\s?lead\b|\blead\b(?!\s*generation)", re.I)
 _JUNIOR_OK = re.compile(r"\bjunior\b|\bmedior\b|\bgraduate\b|\bstarter\b|"
                         r"\(\s*senior\s*\)", re.I)   # "(Senior)" = seniority optional
 
@@ -268,3 +298,57 @@ def seniority_mismatch(title):
     """
     t = title or ""
     return bool(_SENIOR.search(t)) and not _JUNIOR_OK.search(t)
+
+
+# --- discipline ---------------------------------------------------------------------
+# BUG 7 (found round 33, after two applications had already gone out): a title-only role
+# filter cannot tell a software developer from a property developer.
+#     Dura Vermeer, "Ontwikkelaar"            -> dept "Bouw en Vastgoed", residential
+#                                                property development
+#     GreenV, "Product Engineer Paneelbouw"   -> dept "Stolze Installatietechniek",
+#                                                electrical panel design
+# Both matched ROLE_INCLUDE on an ambiguous word and neither is a software role. Excluding
+# the specific titles is whack-a-mole; a real software posting always describes software.
+# Require positive evidence in the live body text instead.
+_SOFTWARE_EVIDENCE = re.compile(
+    r"\bsoftware|\bcode\b|coding|programmeer|programmer|\bdeveloper\b|\bapi\b|"
+    r"\bdatabase|\bsql\b|\bpython\b|\bjava\b|c#|\.net\b|javascript|typescript|"
+    r"\bcloud\b|azure|\baws\b|kubernetes|docker|devops|\bgit\b|linux|embedded|"
+    r"front.?end|back.?end|full.?stack|micro.?service|\bscrum\b|\bagile\b|\bci/cd\b|"
+    r"\bplc\b|scada|\bmes\b|firmware|applicatie|\bit\b\s|informatica", re.I)
+
+_NON_SOFTWARE_DEPT = re.compile(
+    r"bouw en vastgoed|vastgoed|installatietechniek|werktuigbouw|civiel|gebiedsontwikkeling|"
+    r"logistiek|warehouse|productie|facilit|hrm?\b|finance|marketing|sales", re.I)
+
+
+# Merely containing the word "software" is not evidence -- GreenV's electrical-panel role
+# says "Kun je goed overweg met CAD-software, MS Office". Naming a language, platform or
+# engineering practice is.
+_STRONG_SOFTWARE = re.compile(
+    r"\bpython\b|\bjava\b|c#|c\+\+|\.net\b|javascript|typescript|\bgolang\b|\bphp\b|"
+    r"\bsql\b|\bapi\b|azure|\baws\b|kubernetes|docker|devops|\bgit\b|linux|"
+    r"micro.?service|front.?end|back.?end|full.?stack|\bci/cd\b|firmware|embedded|"
+    r"\bplc\b|scada|\bmes\b|programmeer|programming|\bcoding\b|\bcode\b|"
+    r"software (engineer|develop|architect|ontwikkel)", re.I)
+
+
+def wrong_discipline(title, body, department=""):
+    """Return a reason if this is not a software role, else None.
+
+    Checked against the LIVE posting, because the discipline lives in the description --
+    "woningbouwprojecten" and "elektrotechnische installaties" are unmistakable, while the
+    titles ("Ontwikkelaar", "Product Engineer") are not.
+    """
+    blob = f"{title or ''} {body or ''}"
+    dept_is_off = bool(_NON_SOFTWARE_DEPT.search(f"{department or ''} {title or ''}"))
+    if dept_is_off:
+        # A construction/installation/real-estate posting has to name real software work,
+        # not just mention a tool it happens to use.
+        if _STRONG_SOFTWARE.search(blob):
+            return None
+        return (f"non-software context ({department or title!r}) with no real software work "
+                f"described")
+    if _SOFTWARE_EVIDENCE.search(blob):
+        return None
+    return "no software terms anywhere in the posting"
