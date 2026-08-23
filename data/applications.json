@@ -7811,7 +7811,10 @@
     "recruitee_api_url": "https://joanknecht.recruitee.com/api/offers/sql-specialist-data-engineer/candidates",
     "location": "Eindhoven",
     "response": null,
-    "candidate_id": "127134676"
+    "candidate_id": "127134676",
+    "outcome": "interview",
+    "outcome_date": "2026-08-23",
+    "outcome_note": "Interview scheduled. Applied 2026-07-24 via Recruitee. Note: this employer also received an unintended duplicate on 2026-07-29 (stale-tracker incident) — they responded positively regardless."
   },
   {
     "id": 424,
