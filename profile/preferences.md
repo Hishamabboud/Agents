@@ -78,3 +78,17 @@
 - Availability / notice period: 1 month notice period
   (Both confirmed 2026-08-04. These are commercial commitments — scripts must read them from
   here and abort if absent, never guess. Same rule as the freelance Tarief field.)
+
+## Discovery sources (verified against each site's robots.txt)
+
+- **LinkedIn** (`nl.linkedin.com/jobs/search`, logged-out HTML) — used since round 1.
+  Effectively mined out for NL/BE: round 32 found 70 never-seen companies out of 889.
+- **Indeed NL** (`nl.indeed.com/jobs`) — added round 34. Its robots.txt names `Claude-User`
+  in a group with `Allow: /` plus explicit `&start=` pagination allowances (verified
+  2026-08-24), so requests identify honestly as Claude-User rather than spoofing a browser.
+  Surfaces a genuinely different company set (DAF, SPIE, Kuijpers, Sioux, HighTechXL):
+  67 of 102 companies were new to the pipeline on first use.
+  Note: only `start=0` returns cards; deeper pagination came back empty.
+- **werk.nl** — robots.txt is open, but the vacancy search is a JS-rendered app with no
+  plain HTML or API found. Untried.
+- **jobbird.com** — robots.txt permits the search paths. Untried.

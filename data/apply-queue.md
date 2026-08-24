@@ -6,6 +6,55 @@ Work top to bottom; after submitting one, log it:
 
     python3 scripts/outcomes.py log "<Company>" --outcome acknowledged  # or record in tracker
 
+## Modderkolk — Software Engineer
+- URL: https://modderkolk.recruitee.com/o/software-engineer-3
+- Location: Wijchen | ATS: recruitee
+- NEEDS YOUR OWN ANSWER:
+    - [required] Hoe ben je op de 'werkenbij' website van Modderkolk terecht gekomen?
+    - [optional] Indien anders, licht hieronder toe.
+    - [optional] Indien je bent aangedragen door een medewerker van Modderkolk; noteer hieronder zijn/haar naam.
+    - [required] Hoe wil je dat we contact met je opnemen?
+- Cover letter (tailored on mes, testing):
+
+```
+Dear Hiring Team at Modderkolk,
+
+I would like to apply for the Software Engineer position in Wijchen.
+
+What drew me to this role is the overlap with my current work: supporting Manufacturing Execution Systems for industrial clients, which means working on software that runs live production environments. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Modderkolk.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
+## Itility B.V. — DevOps Engineer / Site Reliability Engineer (SRE)
+- URL: https://itilitybv.recruitee.com/o/devops-engineer-site-reliability-engineer-sre
+- Location: Eindhoven | ATS: recruitee
+- Pre-computed answers (profile-backed):
+    - Ben je momenteel woonachtig in Nederland en heb je een geldige werkvergunning voor Nederla -> **No**
+- NEEDS YOUR OWN ANSWER:
+    - [required] Hoe vaardig ben je in het Nederlands?
+- Cover letter (tailored on python, data, azure, api):
+
+```
+Dear Hiring Team at Itility B.V.,
+
+I would like to apply for the DevOps Engineer / Site Reliability Engineer (SRE) position in Eindhoven.
+
+What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Itility B.V..
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
 ## ABF — Software Developer
 - URL: https://abfgroup.recruitee.com/o/software-developer
 - Location: Roosendaal | ATS: recruitee
@@ -238,33 +287,6 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## Helloprint — QA Engineer
-- URL: https://helloprint.recruitee.com/o/qa-engineer-1
-- Location: Rotterdam | ATS: recruitee
-- Pre-computed answers (profile-backed):
-    - Do you require sponsorship to work in The Netherlands? -> **No, I am a EU citizen**
-- NEEDS YOUR OWN ANSWER:
-    - [required] Why do you want to work at HelloPrint and in this role?
-    - [required] This is a full-time (40 hours per week) on-site role at our office in Rotterdam. Are you ready for this?
-    - [required] Have you built or maintained automated tests using Playwright, Cypress, Selenium or similar tools in a product
-    - [required] Tell us about a bug you found that would have cost real money if it had made it into production
-- Cover letter (tailored on testing, ai, azure, api):
-
-```
-Dear Hiring Team at Helloprint,
-
-I would like to apply for the QA Engineer position in Rotterdam.
-
-What drew me to this role is the overlap with my current work: building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I also bring building CogitatAI, an AI support platform with sentiment analysis, as my own project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Helloprint.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
 ## itsme® — Data Engineer
 - URL: https://itsme.recruitee.com/o/data-engineer
 - Location: Brussels | ATS: recruitee
@@ -458,30 +480,6 @@ I would like to apply for the DevOps Engineer IAM (Ping IDM) position in Rotterd
 What drew me to this role is the overlap with my current work: building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
 I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Swisscom.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
-## KEYES — Azure DevOps Deployment Engineer - EU Institution (95% Remote) (Poland)
-- URL: https://nrb.recruitee.com/o/azure-devops-deployment-engineer-eu-institution-95-remote-poland
-- Location: Warsaw | ATS: recruitee
-- NEEDS YOUR OWN ANSWER:
-    - [required] Are you able to commit to working as a freelancer for this position on a fully remote basis?
-    - [required] A security clearance is needed for this role which means a work permit is not enough. Do you have EU nationali
-    - [optional] What are your expectations for a daily rate? (Specify)
-- Cover letter (tailored on dotnet, testing, data, azure):
-
-```
-Dear Hiring Team at KEYES,
-
-I would like to apply for the Azure DevOps Deployment Engineer - EU Institution (95% Remote) (Poland) position in Warsaw.
-
-What drew me to this role is the overlap with my current work: building and maintaining applications in .NET, C# and ASP.NET at Actemium. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to KEYES.
 
 Best regards,
 Hisham Abboud
