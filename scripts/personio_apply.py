@@ -99,6 +99,54 @@ def upload_cv(host, job_id):
     return doc
 
 
+STANDARD = ("first_name", "last_name", "email", "phone",
+            "available_from", "salary_expectations", "location")
+
+
+def answer_custom_fields(schema, salary, notice):
+    """Answer Personio's per-job custom fields from the profile answer bank.
+
+    Personio names these `custom_attribute_<id>`, which is why they long read as
+    unanswerable -- but the schema carries a human-readable `label`, and option fields
+    carry an {option_key: "Label"} dict. So the same questions.py rules that answer
+    Recruitee screening questions apply here; only the plumbing differed. Round 35 failed
+    seven Personio submissions on fields that were really "LinkedIn", "How did you hear
+    from us?" and "Do you currently have the legal authorization to work in the
+    Netherlands?".
+
+    Returns (answers, blockers) — blockers are the fields the profile cannot honestly
+    answer, and the caller must hold rather than guess.
+    """
+    import questions
+    answers, blockers = [], []
+    for f in schema.get("fields", []):
+        name, label = f.get("name"), f.get("label") or ""
+        if name in STANDARD or not name or str(name).startswith("document"):
+            continue
+        opts = f.get("options") or {}
+        if f.get("type") == "option" and isinstance(opts, dict):
+            choices = [{"body": v} for v in opts.values()]
+            content, flag, why = questions.answer_for(label, "single_choice", choices,
+                                                      salary, notice)
+            if content is not None:
+                key = next((k for k, v in opts.items() if v == content), None)
+                if key:
+                    answers.append({"id": name, "value": key, "label": label,
+                                    "shown": content})
+                    continue
+                why = f"option {content!r} has no key in the schema"
+        else:
+            content, flag, why = questions.answer_for(label, "string", None, salary, notice)
+            if content is not None:
+                answers.append({"id": name, "value": str(content), "label": label,
+                                "shown": content})
+                continue
+        if f.get("required"):
+            blockers.append({"name": name, "label": label,
+                             "reason": why or "no profile-backed answer"})
+    return answers, blockers
+
+
 def submit(host, job_id, company_id, doc, salary, available, first, last, email, phone, location):
     schema = get_form_schema(host, job_id)
     names = {f["name"] for f in schema.get("fields", [])}
@@ -108,6 +156,16 @@ def submit(host, job_id, company_id, doc, salary, available, first, last, email,
         "available_from": available, "salary_expectations": salary, "location": location,
     }
     attributes = [{"id": k, "value": v} for k, v in values.items() if k in names and v]
+
+    custom, blockers = answer_custom_fields(schema, salary, available)
+    attributes += [{"id": a["id"], "value": a["value"]} for a in custom]
+    if custom:
+        print("       custom fields answered: "
+              + "; ".join(f"{a['label'][:40]} -> {a['shown']}" for a in custom))
+    if blockers:
+        detail = "; ".join(f"{b['label'][:60]!r} ({b['reason']})" for b in blockers)
+        raise RuntimeError(f"Cannot fill required field(s): {detail} "
+                           f"-- log for manual apply, do not guess")
 
     missing = [f["name"] for f in schema.get("fields", [])
                if f.get("required") and f["name"] not in ("email",)

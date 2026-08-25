@@ -143,6 +143,31 @@ check("body name-dropping Berlin does not reject a Dutch role",
 check("Gebiedsontwikkelaar excluded", bool(ROLE_EXCLUDE.search("Gebiedsontwikkelaar")))
 check("Software Ontwikkelaar kept", not ROLE_EXCLUDE.search("Software Ontwikkelaar"))
 
+print("\nPersonio custom fields + answer-safety (round 35)")
+import questions as _q
+_O = [{"body": "Yes"}, {"body": "No"}, {"body": "LinkedIn"}]
+def _ans(q, kind="string"):
+    c, f, why = _q.answer_for(q, kind, _O, "EUR 4800", "1 month")
+    return "HOLD" if why else (c if c is not None else f"flag={f}")
+# A background/VOG screening is a personal consent, not the processing consent that is
+# inherent in applying. Auto-answering it Yes is a commitment only Hisham can make.
+check("VOG screening consent held", _ans("I agree to participate in a screening, incl. VOG", "single_choice") == "HOLD")
+check("background check consent held", _ans("Are you willing to undergo a background check?", "single_choice") == "HOLD")
+# A yes/no is a category error on a free-text field, but valid on an option field.
+check("yes/no not written into a free-text field",
+      _ans("We need someone who communicates in English and understands what it takes") == "HOLD")
+check("Yes still valid on an option field",
+      _ans("Do you currently have the legal authorization to work in the Netherlands?", "single_choice") == "Yes")
+check("visa sponsor option answered No",
+      _ans("Would you require a Visa Sponsor to work in The Netherlands", "single_choice") == "No")
+# specific free-text rules must precede the broad language yes/no rule
+check("languages listed, not answered yes",
+      _ans("Languages you speak").startswith("English (fluent)"))
+check("Dutch boolean still yes", _ans("Beheers je de Nederlandse taal?", "boolean") == "flag=True")
+check("Nationality held (not in profile)", _ans("Nationality") == "HOLD")
+check("University answered from CV", "Fontys" in _ans("University"))
+check("bare 'How did you hear from us?' answered", _ans("How did you hear from us?") == "LinkedIn")
+
 print("\nDiscipline check — a title-only filter cannot tell developer from property developer")
 from filters import wrong_discipline
 check("property development rejected",

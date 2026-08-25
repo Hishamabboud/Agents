@@ -30,7 +30,10 @@ _RULES = [
     (r"(require|need).{0,25}(visa|work permit|sponsor)|visa sponsorship|werkvergunning", "no", "bool"),
     (r"(do you (currently )?live|are you based|woon je|woonachtig|gevestigd)"
      r".{0,30}(netherlands|nederland)(?!.{0,20}\bkm\b)", "yes", "bool"),
-    (r"valid permit.{0,10}(to work|/visa)|eu passport|werkvergunning", "yes", "bool"),
+    (r"valid permit.{0,10}(to work|/visa)|eu passport|werkvergunning|"
+     # Personio phrasings found round 35 that the Recruitee-derived rules missed
+     r"legal authorization to work|authoriz(ed|ation) to work|right to work|"
+     r"gerechtigd om te werken", "yes", "bool"),
     (r"(where are you|from what location|waar (woon|ben) je|current location|"
      r"currently located|looking to work)", "Eindhoven, Netherlands", "text"),
     # Willingness to the working arrangement the posting itself states (hybrid, on-site at a
@@ -45,7 +48,10 @@ _RULES = [
     # answered it "yes" - a false statement about employment history.
     (r"(previously worked|eerder.{0,25}gewerkt|ooit gewerkt|worked for)", "no", "bool"),
 
-    # --- language
+    (r"languages you speak|which languages|welke talen|talenkennis",
+     "English (fluent), Dutch (fluent), Arabic (fluent)", "text"),
+    # --- language. The specific free-text phrasings must come BEFORE the broad yes/no
+    # rule below, which otherwise answers "Languages you speak" with "yes".
     (r"(which|what|welk).{0,25}(level|niveau).{0,25}(dutch|nederlands)",
      "Fluent - professional working proficiency in both speech and writing.", "text"),
     # Require language CONTEXT, never the bare country/language word: the word "Nederland"
@@ -64,6 +70,10 @@ _RULES = [
     # --- contact
     (r"linkedin", "https://linkedin.com/in/hisham-abboud", "text"),
 
+    # --- education / languages, asked as bare labels on Personio custom fields
+    (r"^\s*(university|universiteit|hogeschool|school)\s*$|which (university|school)",
+     "Fontys University of Applied Sciences, Eindhoven", "text"),
+
     # --- commercial commitments (set by Hisham in preferences.md, never inferred)
     (r"salar|bruto per maand|gross monthly|loonverwachting", None, "salary"),
     (r"(hoeveel uur|hours per week|uur per week|beschikbaar.{0,20}uur)",
@@ -81,7 +91,10 @@ _RULES = [
 
     # --- source of the vacancy
     (r"(how did you|hoe (ben je|heb je)|via welk kanaal|waar heb je).{0,40}"
-     r"(vacature|vacancy|job|find|found|terechtgekomen|gevonden)", "LinkedIn", "choice"),
+     r"(vacature|vacancy|job|find|found|terechtgekomen|gevonden)|"
+     # bare Personio labels: "How did you hear from us?", "Through which channel..."
+     r"how did you hear|through which channel|hoe heb je ons|van wie heb je",
+     "LinkedIn", "choice"),
 
     # --- marketing vs. legal consent
     (r"newsletter|nieuwsbrief", "no", "bool"),
@@ -96,6 +109,12 @@ _NEVER = [
     (r"\bwithin\b.{0,20}\bkm\b|straal van|radius of|\bkm\b.{0,25}(van|from)",
      "a distance fact, not a willingness statement - needs confirming"),
     (r"referent|\breference[sn]?\b", "requires real people who have agreed to be named"),
+    # A background/VOG screening is a personal consent, NOT the processing consent that is
+    # inherent in applying. Round 35 auto-answered "I agree to participate in a screening,
+    # incl. VOG" with Yes because the privacy-consent rule matched "I agree".
+    (r"background check|screening|\bvog\b|antecedenten|verklaring omtrent gedrag|"
+     r"criminal record|strafblad|security screening",
+     "a personal consent to be screened - only Hisham can give it"),
     # free-text motivational questions
     (r"why (do|would) you|waarom (wil|zou)|wat spreekt je aan|welke aspecten|"
      r"motivat|kom jij je bed|trots op|proud of|kernwaarde|tell us about|vertel",
@@ -138,6 +157,13 @@ def answer_for(question, kind, options=None, salary=None, notice=None):
             if not pick:
                 return None, None, f"no option matches {ans!r} (options: {opts})"
             return pick, None, None
+        # Free-text field: a boolean-shaped answer is a category error. Round 35 put "yes"
+        # into Personio TEXT fields ("Languages you speak", "We need someone who knows how
+        # to communicate in English...") because a yes/no rule matched a keyword. Yes/No is
+        # still valid for boolean and single_choice, handled above.
+        if str(ans).strip().lower() in ("yes", "no", "true", "false"):
+            return None, None, (f"rule produced a yes/no for a free-text field - "
+                                f"needs a real answer")
         return str(ans), None, None
 
     return None, None, "no profile-backed answer"

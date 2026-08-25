@@ -92,3 +92,17 @@
 - **werk.nl** — robots.txt is open, but the vacancy search is a JS-rendered app with no
   plain HTML or API found. Untried.
 - **jobbird.com** — robots.txt permits the search paths. Untried.
+
+### Discovery source limits (measured round 35, 2026-08-24)
+
+- **Indeed NL is PAGE-1 ONLY.** `&start=0` returns a full ~1MB results page; `&start=10`
+  and beyond redirect to an Indeed **login page** ("Inloggen | Indeed-accounts") carrying
+  reCAPTCHA and a Cloudflare challenge script. robots.txt permits the paths, but the site
+  serves a login wall in practice — and defeating login walls / CAPTCHAs is off-limits
+  under this project's rules. Do not attempt to page deeper. ~20 companies per query is
+  the ceiling; get breadth from more QUERIES, not more pages.
+- **jobbird.com is unusable.** Its real search endpoint is `/nl/vacature?s=...`, which its
+  own robots.txt disallows (`Disallow: /nl/vacature?*`), and `/*/api` is disallowed too.
+  The one allowed page is a JS-rendered Nuxt shell with no server-side results. Reaching
+  results would mean violating robots.txt or executing JS against an internal API. Dropped.
+- **werk.nl** remains untried (open robots.txt, JS-rendered search).
