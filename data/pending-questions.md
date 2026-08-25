@@ -32,10 +32,6 @@ https://bluecrux.recruitee.com/o/ai-engineer
 ## DeepHealth — Junior Software Engineer, Clinical AI
 https://deephealth.recruitee.com/o/junior-software-engineer-clinical-ai
 
-- **Are you able to work onsite at our Netherlands office at least two days per week?**
-  (held because: no profile-backed answer)
-  answer: 
-
 - **This is a junior-level Software Engineer position intended for an early-career candidate. Are you specifically interested in a junior-level opportunity where you will be learning and developing your s**
   (held because: no profile-backed answer)
   answer: 
@@ -55,12 +51,12 @@ https://enersee.recruitee.com/o/backend-software-developer-energy-time-series-da
   (held because: no profile-backed answer)
   answer: 
 
+- **Do you speak fluent English and at least one of these other languages: German, French or Dutch?**
+  (held because: rule produced a yes/no for a free-text field - needs a real answer)
+  answer: 
+
 ## Customs Support Group — Customs AI Integration & Automation Engineer (Spain)
 https://customssupport.recruitee.com/o/customs-ai-integration-automation-engineer-spain-3
-
-- **Are you eligible to work in the country the position is located? Do you have a valid work permit?**
-  (held because: no profile-backed answer)
-  answer: 
 
 - **What's Your period of notice?**
   (held because: no profile-backed answer)
@@ -68,10 +64,6 @@ https://customssupport.recruitee.com/o/customs-ai-integration-automation-enginee
 
 ## EVENTIM Benelux — Site Reliability Engineer
 https://eventim.recruitee.com/o/site-reliability-engineer
-
-- **Are you eligible to work in the Netherlands?**
-  (held because: no profile-backed answer)
-  answer: 
 
 - **Are you currently based in (or near) Groningen, or open for relocation?**
   (held because: no profile-backed answer)
@@ -108,13 +100,6 @@ https://greenchoice.recruitee.com/o/energie-data-developer-consument
   (held because: no profile-backed answer)
   answer: 
 
-## FutureWhiz — Medior AI Product Engineer (Full-Stack)
-https://futurewhiz.recruitee.com/o/medior-ai-product-engineer-full-stack
-
-- **Are you currently based in the Netherlands?**
-  (held because: no profile-backed answer)
-  answer: 
-
 ## Itility B.V. — DevOps Engineer / Site Reliability Engineer (SRE)
 https://itilitybv.recruitee.com/o/devops-engineer-site-reliability-engineer-sre
 
@@ -133,17 +118,6 @@ https://itsme.recruitee.com/o/data-engineer
 https://legalfly.recruitee.com/o/junior-product-engineer
 
 - **What is your relevant experience regarding this position?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## NVM — Software Engineer - brainbay
-https://nvm.recruitee.com/o/software-engineer-brainbay
-
-- **Are you currently residing in the Netherlands?**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **Do you have a valid work permit?**
   (held because: no profile-backed answer)
   answer: 
 
@@ -169,24 +143,10 @@ https://profitap.recruitee.com/o/qa-engineer-3
   (held because: no profile-backed answer)
   answer: 
 
-## Realworks — Android Developer
-https://realworks.recruitee.com/o/android-developer-3
-
-- **Are you currently residing in the Netherlands?**
-  (held because: no profile-backed answer)
-  answer: 
-
 ## RTL — Data Platform Engineer
 https://rtl.recruitee.com/o/data-platform-engineer
 
 - **Heb je in het verleden al voor RTL of DPG Media gewerkt?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## Ploonk (Smartphonehoesjes.nl) — QA Engineer
-https://smartphonehoesjesnl.recruitee.com/o/qa-engineer-1
-
-- **Do you have a permission to work in the Netherlands?**
   (held because: no profile-backed answer)
   answer: 
 
@@ -203,10 +163,6 @@ https://swisscom.recruitee.com/o/devops-engineer-iam-ping-idm
 
 - **Gender**
   (held because: not in the profile)
-  answer: 
-
-- **How did you hear about the Swisscom DevOps Center?**
-  (held because: no profile-backed answer)
   answer: 
 
 ## Twipe — Freelance Backend Engineer
@@ -246,10 +202,6 @@ https://vwml.recruitee.com/o/data-engineer-1
   (held because: no profile-backed answer)
   answer: 
 
-- **Ben je in staat om op professioneel niveau Nederlands te spreken?**
-  (held because: no profile-backed answer)
-  answer: 
-
 ## Xomnia — Medior Data Engineer
 https://xomnia.recruitee.com/o/medior-data-engineer
 
@@ -266,12 +218,5 @@ https://xomnia.recruitee.com/o/medior-data-engineer
   answer: 
 
 - **How did you learn about Xomnia?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## Yuma — AI Engineer
-https://yuma.recruitee.com/o/ai-engineer-3
-
-- **Are you eligible to work in the EU**
   (held because: no profile-backed answer)
   answer: 

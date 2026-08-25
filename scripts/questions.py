@@ -28,9 +28,17 @@ import re
 _RULES = [
     # --- residence / work authorisation
     (r"(require|need).{0,25}(visa|work permit|sponsor)|visa sponsorship|werkvergunning", "no", "bool"),
-    (r"(do you (currently )?live|are you based|woon je|woonachtig|gevestigd)"
-     r".{0,30}(netherlands|nederland)(?!.{0,20}\bkm\b)", "yes", "bool"),
-    (r"valid permit.{0,10}(to work|/visa)|eu passport|werkvergunning|"
+    # Residence. Round 35 audit: a dozen queued applications were held on phrasings this
+    # rule nearly matched -- "Are you CURRENTLY BASED in...", "residing", "located",
+    # "reside within the EU". The adverb between "are you" and "based" was enough to miss.
+    (r"(do you (currently )?live|are you (currently )?(based|residing|resident|located)|"
+     r"do you (currently )?reside|woon je|woonachtig|gevestigd)"
+     r".{0,40}(netherlands|nederland|\beu\b|europe)(?!.{0,20}\bkm\b)", "yes", "bool"),
+    # Work authorisation, all sourced from preferences.md "Visa: Not needed (I have work
+    # authorization in NL)". These phrasings were each blocking real applications.
+    (r"eligible to work|permission to work|valid work permit|work permit for|"
+     r"eu citizenship|arbeidsvergunning|"
+     r"valid permit.{0,10}(to work|/visa)|eu passport|werkvergunning|"
      # Personio phrasings found round 35 that the Recruitee-derived rules missed
      r"legal authorization to work|authoriz(ed|ation) to work|right to work|"
      r"gerechtigd om te werken", "yes", "bool"),
@@ -57,7 +65,7 @@ _RULES = [
     # Require language CONTEXT, never the bare country/language word: the word "Nederland"
     # also appears inside company names ("RTL Nederland"), where "yes" would be a false
     # answer to a question about something else entirely.
-    (r"(taal|talen|language|spreek|speak|beheers|schriftelijk|mondeling|werkoverleg|"
+    (r"(taal|talen|language|sprek|spreek|speak|beheers|schriftelijk|mondeling|werkoverleg|"
      r"verbal|written|fluen|proficien|\bb1\b|\bb2\b|\bc1\b)", "yes", "bool"),
     (r"\benglish\b|engels", "yes", "bool"),
 
@@ -86,7 +94,7 @@ _RULES = [
     # Willingness to be onsite where the role is. Applying to a role in that city already
     # asserts this; it is not a new claim. Distinct from "do you LIVE within X km of <town>",
     # which is a fact about distance and stays in _NEVER.
-    (r"(comfortable|bereid|willing|akkoord).{0,40}(commut|working|work|reizen|days|dagen)|"
+    (r"(comfortable|bereid|willing|akkoord|able to).{0,40}(commut|working|work|reizen|days|dagen)|"
      r"(days|dagen).{0,25}(per week|/week).{0,25}(in|te|naar)", "yes", "bool"),
 
     # --- source of the vacancy

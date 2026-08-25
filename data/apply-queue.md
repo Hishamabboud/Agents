@@ -113,8 +113,8 @@ hiaham123@hotmail.com
 - Location: Rotterdam | ATS: recruitee
 - Pre-computed answers (profile-backed):
     - Will you now or in the future require sponsorship to legally work in the country in which  -> **No**
+    - Are you able to work onsite at our Netherlands office at least two days per week? -> **Yes**
 - NEEDS YOUR OWN ANSWER:
-    - [required] Are you able to work onsite at our Netherlands office at least two days per week?
     - [required] This is a junior-level Software Engineer position intended for an early-career candidate. Are you specifically
     - [required] When would you be available to start a new position?
     - [required] Do you have hands-on programming experience through professional work, university coursework/projects, interns
@@ -165,9 +165,9 @@ hiaham123@hotmail.com
 - URL: https://customssupport.recruitee.com/o/customs-ai-integration-automation-engineer-spain-3
 - Location: Puerto de Algeciras (Cádiz) | ATS: recruitee
 - Pre-computed answers (profile-backed):
+    - Are you eligible to work in the country the position is located? Do you have a valid work  -> **Yes**
     - What is your salary expectation (gross per month)? -> **EUR 4800 per month (~EUR 58k/yr)**
 - NEEDS YOUR OWN ANSWER:
-    - [required] Are you eligible to work in the country the position is located? Do you have a valid work permit?
     - [required] What's Your period of notice?
 - Cover letter (tailored on python, testing, ai, data):
 
@@ -190,9 +190,9 @@ hiaham123@hotmail.com
 - URL: https://eventim.recruitee.com/o/site-reliability-engineer
 - Location: Groningen | ATS: recruitee
 - Pre-computed answers (profile-backed):
+    - Are you eligible to work in the Netherlands? -> **Yes, I am**
     - What are your salary expectations for this role (Please provide a gross monthly salary exc -> **EUR 4800 per month (~EUR 58k/yr)**
 - NEEDS YOUR OWN ANSWER:
-    - [required] Are you eligible to work in the Netherlands?
     - [required] Are you currently based in (or near) Groningen, or open for relocation?
     - [required] Do you have at least 2 years of experience in a Site Reliability Engineer, DevOps, or Systems Engineering role
     - [required] Tell us about a production infrastructure issue you solved. How did you investigate it, fix it and prevent it 
@@ -232,30 +232,6 @@ I would like to apply for the Energie Data Developer Consument position in Rotte
 What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; designing REST API connections and integrations between systems; full-stack work with JavaScript and React alongside the backend. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
 I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Greenchoice.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
-## FutureWhiz — Medior AI Product Engineer (Full-Stack)
-- URL: https://futurewhiz.recruitee.com/o/medior-ai-product-engineer-full-stack
-- Location: Amsterdam | ATS: recruitee
-- Pre-computed answers (profile-backed):
-    - Do you require Visa sponsorship? -> **No**
-- NEEDS YOUR OWN ANSWER:
-    - [required] Are you currently based in the Netherlands?
-- Cover letter (tailored on python, testing, ai, azure):
-
-```
-Dear Hiring Team at FutureWhiz,
-
-I would like to apply for the Medior AI Product Engineer (Full-Stack) position in Amsterdam.
-
-What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to FutureWhiz.
 
 Best regards,
 Hisham Abboud
@@ -339,29 +315,6 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## NVM — Software Engineer - brainbay
-- URL: https://nvm.recruitee.com/o/software-engineer-brainbay
-- Location: Utrecht | ATS: recruitee
-- NEEDS YOUR OWN ANSWER:
-    - [required] Are you currently residing in the Netherlands?
-    - [required] Do you have a valid work permit?
-- Cover letter (tailored on dotnet, testing, ai, azure):
-
-```
-Dear Hiring Team at NVM,
-
-I would like to apply for the Software Engineer - brainbay position in Utrecht.
-
-What drew me to this role is the overlap with my current work: building and maintaining applications in .NET, C# and ASP.NET at Actemium. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to NVM.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
 ## Modderkolk — Software Engineer
 - URL: https://modderkolk.recruitee.com/o/software-engineer-3
 - Location: Wijchen | ATS: recruitee
@@ -413,28 +366,6 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## Realworks — Android Developer
-- URL: https://realworks.recruitee.com/o/android-developer-3
-- Location: Amsterdam | ATS: recruitee
-- NEEDS YOUR OWN ANSWER:
-    - [required] Are you currently residing in the Netherlands?
-- Cover letter (tailored on api):
-
-```
-Dear Hiring Team at Realworks,
-
-I would like to apply for the Android Developer position in Amsterdam.
-
-What drew me to this role is the overlap with my current work: designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Realworks.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
 ## RTL — Data Platform Engineer
 - URL: https://rtl.recruitee.com/o/data-platform-engineer
 - Location: Hilversum | ATS: recruitee
@@ -454,28 +385,6 @@ I would like to apply for the Data Platform Engineer position in Hilversum.
 What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
 I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to RTL.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
-## Ploonk (Smartphonehoesjes.nl) — QA Engineer
-- URL: https://smartphonehoesjesnl.recruitee.com/o/qa-engineer-1
-- Location: Leusden | ATS: recruitee
-- NEEDS YOUR OWN ANSWER:
-    - [required] Do you have a permission to work in the Netherlands?
-- Cover letter (tailored on testing, ai, data, azure):
-
-```
-Dear Hiring Team at Ploonk (Smartphonehoesjes.nl),
-
-I would like to apply for the QA Engineer position in Leusden.
-
-What drew me to this role is the overlap with my current work: building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I also bring building CogitatAI, an AI support platform with sentiment analysis, as my own project; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Ploonk (Smartphonehoesjes.nl).
 
 Best regards,
 Hisham Abboud
@@ -564,12 +473,12 @@ hiaham123@hotmail.com
 - URL: https://vwml.recruitee.com/o/data-engineer-1
 - Location: Vianen | ATS: recruitee
 - Pre-computed answers (profile-backed):
+    - Ben je in staat om op professioneel niveau Nederlands te spreken? -> **Yes**
     - Ik heb de  privacyverklaring  van VolkerWessels gelezen en begrijp hoe mijn persoonsgegeve -> **Yes**
     - Ben je woonachtig in Nederland? -> **Yes**
 - NEEDS YOUR OWN ANSWER:
     - [required] Hoe ben je op deze website terecht gekomen?
     - [optional] Indien je bent aangedragen door iemand die hier werkt, noteer hieronder zijn/haar naam.
-    - [required] Ben je in staat om op professioneel niveau Nederlands te spreken?
 - Cover letter (tailored on mes, python, data, azure):
 
 ```
@@ -661,33 +570,11 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## Yuma — AI Engineer
-- URL: https://yuma.recruitee.com/o/ai-engineer-3
-- Location: Amsterdam | ATS: recruitee
-- NEEDS YOUR OWN ANSWER:
-    - [required] Are you eligible to work in the EU
-- Cover letter (tailored on python, ai, azure, js):
-
-```
-Dear Hiring Team at Yuma,
-
-I would like to apply for the AI Engineer position in Amsterdam.
-
-What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building CogitatAI, an AI support platform with sentiment analysis, as my own project; working with Azure and CI/CD pipelines in an agile setting; full-stack work with JavaScript and React alongside the backend. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Yuma.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
 ## Xebia — Data Engineer - Databricks
 - URL: https://xccelerated.recruitee.com/o/data-engineer-databricks
 - Location: Amsterdam | ATS: recruitee
-- NEEDS YOUR OWN ANSWER:
-    - [required] Do you currently reside within the EU?
+- Pre-computed answers (profile-backed):
+    - Do you currently reside within the EU? -> **Yes**
 - Cover letter (tailored on testing, ai, data, azure):
 
 ```
