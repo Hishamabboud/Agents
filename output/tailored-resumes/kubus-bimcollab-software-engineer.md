@@ -50,4 +50,4 @@ Software Engineer with backend development experience in .NET, C#, and cloud tec
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

@@ -52,4 +52,4 @@ Software Engineer with strong Python development experience and industrial autom
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

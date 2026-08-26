@@ -110,7 +110,7 @@ def main():
     # Spoken Languages
     story.append(Paragraph("SPOKEN LANGUAGES", section_style))
     story.append(HRFlowable(width="100%", thickness=0.5, color=blue, spaceAfter=6))
-    story.append(Paragraph("English (fluent)  |  Dutch (fluent)  |  Arabic (fluent)  |  Persian (fluent)", skill_style))
+    story.append(Paragraph("English (fluent)  |  Dutch (fluent)  |  Arabic (fluent)", skill_style))
 
     doc.build(story)
     print(f"CV PDF generated successfully: {output_path}")

@@ -49,4 +49,4 @@ Software Service Engineer with professional experience in .NET, C#, ASP.NET, Azu
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

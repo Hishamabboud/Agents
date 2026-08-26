@@ -35,4 +35,4 @@ Python Developer with professional experience in software development, data proc
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

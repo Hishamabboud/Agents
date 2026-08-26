@@ -48,4 +48,4 @@ Python Developer with professional experience architecting and implementing soft
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

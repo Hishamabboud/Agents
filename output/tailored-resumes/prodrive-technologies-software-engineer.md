@@ -51,4 +51,4 @@ Software Engineer with experience across the full stack, from Python and C# to c
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

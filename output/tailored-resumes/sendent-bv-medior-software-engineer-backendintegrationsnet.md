@@ -52,4 +52,4 @@ Backend-focused Software Engineer with professional C#/.NET experience, strong i
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

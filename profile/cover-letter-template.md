@@ -10,7 +10,7 @@ Dear [Hiring Manager / Recruitment Team],
 
 [Body 2: Technical skills match. Mention specific technologies from the job description that I have experience with.]
 
-[Body 3: What I bring beyond technical skills — multilingual abilities (Arabic, Persian, Dutch, English), experience in manufacturing/MES environments, entrepreneurial background with CogitatAI.]
+[Body 3: What I bring beyond technical skills — multilingual abilities (Arabic, Dutch, English), experience in manufacturing/MES environments, entrepreneurial background with CogitatAI.]
 
 [Closing: Express enthusiasm, mention availability, call to action.]
 

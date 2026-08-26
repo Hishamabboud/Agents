@@ -51,4 +51,4 @@ Software Service Engineer with hands-on experience in .NET, C#, ASP.NET, Python,
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |

@@ -4,7 +4,7 @@ I am applying for the (Senior) Software Engineer .NET/C# position at the High Te
 
 At Actemium (VINCI Energies), I develop .NET/C# applications and integrations for industrial clients, including system monitoring, root cause analysis, and performance optimization in production environments. This hands-on experience with integration development and system reliability directly aligns with the responsibilities of this role.
 
-I work with Azure, SQL, JavaScript, and CI/CD tools daily, and my background at ASML and Delta Electronics has given me experience across the full software lifecycle. I am fluent in English, Dutch, Arabic, and Persian — an asset for your international team.
+I work with Azure, SQL, JavaScript, and CI/CD tools daily, and my background at ASML and Delta Electronics has given me experience across the full software lifecycle. I am fluent in English, Dutch, and Arabic — an asset for your international team.
 
 I am based in Eindhoven with a valid Dutch work permit and am enthusiastic about contributing to Scholt Energy's mission. I look forward to discussing this opportunity.
 

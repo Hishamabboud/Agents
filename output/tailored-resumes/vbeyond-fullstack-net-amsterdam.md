@@ -30,4 +30,4 @@ Full Stack .NET Developer with hands-on experience in .NET, C#, ASP.NET, JavaScr
 
 ## Languages
 
-English (fluent) | Dutch (fluent) | Arabic (fluent) | Persian (fluent)
+English (fluent) | Dutch (fluent) | Arabic (fluent) |
