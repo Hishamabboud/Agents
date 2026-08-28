@@ -6,6 +6,56 @@ Work top to bottom; after submitting one, log it:
 
     python3 scripts/outcomes.py log "<Company>" --outcome acknowledged  # or record in tracker
 
+## Caesar Groep — DevOps Engineer bij Garansys
+- URL: https://caesar.recruitee.com/o/devops-engineer-bij-garansys
+- Location: Utrecht | ATS: recruitee
+- Pre-computed answers (profile-backed):
+    - Hoe heb je ons gevonden (bijvoorbeeld via Google/social media kanaal/via via)? -> **LinkedIn**
+- NEEDS YOUR OWN ANSWER:
+    - [required] To work at our company, you have to be able to communicate in Dutch on a business level. Next to that, you als
+    - [optional] Heb je ons op social media voorbij zien komen? Zo ja, waar?
+- Cover letter (tailored on dotnet, testing, data, azure):
+
+```
+Dear Hiring Team at Caesar Groep,
+
+I would like to apply for the DevOps Engineer bij Garansys position in Utrecht.
+
+What drew me to this role is the overlap with my current work: building and maintaining applications in .NET, C# and ASP.NET at Actemium. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Caesar Groep.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
+## Caesar Groep — Junior Data Engineer bij Creates
+- URL: https://caesar.recruitee.com/o/junior-data-engineer-creates
+- Location: Utrecht | ATS: recruitee
+- Pre-computed answers (profile-backed):
+    - Hoe heb je ons gevonden (bijvoorbeeld via Google/social media kanaal/via via)? -> **LinkedIn**
+- NEEDS YOUR OWN ANSWER:
+    - [required] To work at our company, you have to be able to communicate in Dutch on a business level. Next to that, you als
+    - [optional] Heb je ons op social media voorbij zien komen? Zo ja, waar?
+- Cover letter (tailored on python, data, azure, sql):
+
+```
+Dear Hiring Team at Caesar Groep,
+
+I would like to apply for the Junior Data Engineer bij Creates position in Utrecht.
+
+What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting; database work and query/schema optimisation as part of MES integrations. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Caesar Groep.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
 ## ABF — Software Developer
 - URL: https://abfgroup.recruitee.com/o/software-developer
 - Location: Roosendaal | ATS: recruitee
@@ -47,31 +97,6 @@ I would like to apply for the Medior Mendix Developer position in Amsterdam.
 What drew me to this role is the overlap with my current work: supporting Manufacturing Execution Systems for industrial clients, which means working on software that runs live production environments. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
 I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Blue Green.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
-## Bluecrux — AI Engineer
-- URL: https://bluecrux.recruitee.com/o/ai-engineer
-- Location: Aalst | ATS: recruitee
-- Pre-computed answers (profile-backed):
-    - I agree that my data are collected and used for recruitment purposes for a period of 3 yea -> **Yes**
-    - Applicants for employment in Belgium must have work authorization that does not now or in  -> **No**
-- NEEDS YOUR OWN ANSWER:
-    - [required] As this role requires flexibility between our two offices and some external locations, a valid driver's licens
-- Cover letter (tailored on python, testing, ai, azure):
-
-```
-Dear Hiring Team at Bluecrux,
-
-I would like to apply for the AI Engineer position in Aalst.
-
-What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven, close to the Belgian border, and am happy to work in Belgium. I am fluent in Dutch and English. I would be glad to discuss how I can contribute to Bluecrux.
 
 Best regards,
 Hisham Abboud
@@ -135,32 +160,6 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## BV Enersee — Backend Software Developer (Energy, Time Series & Data Flows)
-- URL: https://enersee.recruitee.com/o/backend-software-developer-energy-time-series-data-flows
-- Location: Antwerp | ATS: recruitee
-- Pre-computed answers (profile-backed):
-    - If you like, you can also share your Linkedin profile, instead of a resume here. -> **https://linkedin.com/in/hisham-abboud**
-    - Where are you located? -> **Eindhoven, Netherlands**
-- NEEDS YOUR OWN ANSWER:
-    - [required] Please share a github link or something comparable - we are looking forward to seeing your work!
-    - [required] Do you speak fluent English and at least one of these other languages: German, French or Dutch?
-- Cover letter (tailored on python, testing, ai, data):
-
-```
-Dear Hiring Team at BV Enersee,
-
-I would like to apply for the Backend Software Developer (Energy, Time Series & Data Flows) position in Antwerp.
-
-What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven, close to the Belgian border, and am happy to work in Belgium. I am fluent in Dutch and English. I would be glad to discuss how I can contribute to BV Enersee.
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
 ## Customs Support Group — Customs AI Integration & Automation Engineer (Spain)
 - URL: https://customssupport.recruitee.com/o/customs-ai-integration-automation-engineer-spain-3
 - Location: Puerto de Algeciras (Cádiz) | ATS: recruitee
@@ -214,6 +213,32 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
+## BV Enersee — Backend Software Developer (Energy, Time Series & Data Flows)
+- URL: https://enersee.recruitee.com/o/backend-software-developer-energy-time-series-data-flows
+- Location: Antwerp | ATS: recruitee
+- Pre-computed answers (profile-backed):
+    - If you like, you can also share your Linkedin profile, instead of a resume here. -> **https://linkedin.com/in/hisham-abboud**
+    - Where are you located? -> **Eindhoven, Netherlands**
+- NEEDS YOUR OWN ANSWER:
+    - [required] Please share a github link or something comparable - we are looking forward to seeing your work!
+    - [required] Do you speak fluent English and at least one of these other languages: German, French or Dutch?
+- Cover letter (tailored on python, testing, ai, data):
+
+```
+Dear Hiring Team at BV Enersee,
+
+I would like to apply for the Backend Software Developer (Energy, Time Series & Data Flows) position in Antwerp.
+
+What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven, close to the Belgian border, and am happy to work in Belgium. I am fluent in Dutch and English. I would be glad to discuss how I can contribute to BV Enersee.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
 ## Greenchoice — Energie Data Developer Consument
 - URL: https://greenchoice.recruitee.com/o/energie-data-developer-consument
 - Location: Rotterdam | ATS: recruitee
@@ -239,30 +264,6 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## Itility B.V. — DevOps Engineer / Site Reliability Engineer (SRE)
-- URL: https://itilitybv.recruitee.com/o/devops-engineer-site-reliability-engineer-sre
-- Location: Eindhoven | ATS: recruitee
-- Pre-computed answers (profile-backed):
-    - Ben je momenteel woonachtig in Nederland en heb je een geldige werkvergunning voor Nederla -> **No**
-- NEEDS YOUR OWN ANSWER:
-    - [required] Hoe vaardig ben je in het Nederlands?
-- Cover letter (tailored on python, data, azure, api):
-
-```
-Dear Hiring Team at Itility B.V.,
-
-I would like to apply for the DevOps Engineer / Site Reliability Engineer (SRE) position in Eindhoven.
-
-What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
-
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Itility B.V..
-
-Best regards,
-Hisham Abboud
-+31 6 4841 2838
-hiaham123@hotmail.com
-```
-
 ## itsme® — Data Engineer
 - URL: https://itsme.recruitee.com/o/data-engineer
 - Location: Brussels | ATS: recruitee
@@ -280,6 +281,30 @@ I would like to apply for the Data Engineer position in Brussels.
 What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
 I am based in Eindhoven, close to the Belgian border, and am happy to work in Belgium. I am fluent in Dutch and English. I would be glad to discuss how I can contribute to itsme®.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
+## Itility B.V. — DevOps Engineer / Site Reliability Engineer (SRE)
+- URL: https://itilitybv.recruitee.com/o/devops-engineer-site-reliability-engineer-sre
+- Location: Eindhoven | ATS: recruitee
+- Pre-computed answers (profile-backed):
+    - Ben je momenteel woonachtig in Nederland en heb je een geldige werkvergunning voor Nederla -> **No**
+- NEEDS YOUR OWN ANSWER:
+    - [required] Hoe vaardig ben je in het Nederlands?
+- Cover letter (tailored on python, data, azure, api):
+
+```
+Dear Hiring Team at Itility B.V.,
+
+I would like to apply for the DevOps Engineer / Site Reliability Engineer (SRE) position in Eindhoven.
+
+What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Itility B.V..
 
 Best regards,
 Hisham Abboud
@@ -392,8 +417,8 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## Swisscom — DevOps Engineer IAM (Ping IDM)
-- URL: https://swisscom.recruitee.com/o/devops-engineer-iam-ping-idm
+## Swisscom — DevOps Engineer IAM (Ping DS/IDM)
+- URL: https://swisscom.recruitee.com/o/devops-engineer-iam-ping-dsidm
 - Location: Rotterdam | ATS: recruitee
 - Pre-computed answers (profile-backed):
     - Current Location -> **Eindhoven, Netherlands**
@@ -404,14 +429,14 @@ hiaham123@hotmail.com
     - [required] Nationality
     - [required] Date of birth
     - [required] Gender
-- Cover letter (tailored on testing, data, azure, api):
+- Cover letter (tailored on testing, azure, k8s, security):
 
 ```
 Dear Hiring Team at Swisscom,
 
-I would like to apply for the DevOps Engineer IAM (Ping IDM) position in Rotterdam.
+I would like to apply for the DevOps Engineer IAM (Ping DS/IDM) position in Rotterdam.
 
-What drew me to this role is the overlap with my current work: building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I also bring building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+What drew me to this role is the overlap with my current work: building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I also bring working with Azure and CI/CD pipelines in an agile setting; hands-on experience with Docker and Kubernetes; a GDPR-compliant data anonymisation pipeline built with the Fontys Cyber Security Research Group. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
 I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Swisscom.
 
@@ -496,29 +521,27 @@ Hisham Abboud
 hiaham123@hotmail.com
 ```
 
-## Xomnia — Medior Data Engineer
-- URL: https://xomnia.recruitee.com/o/medior-data-engineer
-- Location: Amsterdam | ATS: recruitee
+## Vitestro — Freelance Integration Developer | Apache Camel + Quarkus LIS Integration Gateway
+- URL: https://vitestro.recruitee.com/o/freelance-integration-developer-apache-camel-quarkus-lis-integration-gateway
+- Location: Utrecht | ATS: recruitee
 - Pre-computed answers (profile-backed):
-    - What is your salary expectation? -> **EUR 4800 per month (~EUR 58k/yr)**
-    - What is your current notice period? -> **Other**
-    - What would your preferred start date be? -> **1 month notice period**
+    - Please note that applicants must already be authorized to work in the Netherlands. Are you -> **Yes**
+    - What is your earliest possible start date? (Project is targeted for mid-September 2026.) -> **1 month notice period**
+    - Are you available full-time (32-40h) for the duration of the engagement (approx. 6 months, -> **Yes**
 - NEEDS YOUR OWN ANSWER:
-    - [required] How would you describe your current living/working situation?
-    - [required] What is your proficiency in Dutch?
-    - [required] How many hours would you want to work?
-    - [required] How did you learn about Xomnia?
-    - [optional] What are your preferred pronouns?
-- Cover letter (tailored on python, testing, ai, data):
+    - [required] Do you have a valid KVK registration and VAT (BTW) number?
+    - [required] Do you have production experience with Apache Camel, or demonstrable depth with a comparable enterprise integr
+    - [required] Do you have experience with Quarkus, or comparable experience with another JVM native-image/cloud-native frame
+- Cover letter (tailored on testing, ai, azure, api):
 
 ```
-Dear Hiring Team at Xomnia,
+Dear Hiring Team at Vitestro,
 
-I would like to apply for the Medior Data Engineer position in Amsterdam.
+I would like to apply for the Freelance Integration Developer | Apache Camel + Quarkus LIS Integration Gateway position in Utrecht.
 
-What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+What drew me to this role is the overlap with my current work: building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML. I also bring building CogitatAI, an AI support platform with sentiment analysis, as my own project; working with Azure and CI/CD pipelines in an agile setting; designing REST API connections and integrations between systems. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
-I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Xomnia.
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Vitestro.
 
 Best regards,
 Hisham Abboud
@@ -563,6 +586,36 @@ I would like to apply for the LINUX | C++ | QT Developer position in Eindhoven.
 What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; working with Azure and CI/CD pipelines in an agile setting. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
 
 I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to GradeMatch.
+
+Best regards,
+Hisham Abboud
++31 6 4841 2838
+hiaham123@hotmail.com
+```
+
+## Xomnia — Medior Data Engineer
+- URL: https://xomnia.recruitee.com/o/medior-data-engineer
+- Location: Amsterdam | ATS: recruitee
+- Pre-computed answers (profile-backed):
+    - What is your salary expectation? -> **EUR 4800 per month (~EUR 58k/yr)**
+    - What is your current notice period? -> **Other**
+    - What would your preferred start date be? -> **1 month notice period**
+- NEEDS YOUR OWN ANSWER:
+    - [required] How would you describe your current living/working situation?
+    - [required] What is your proficiency in Dutch?
+    - [required] How many hours would you want to work?
+    - [required] How did you learn about Xomnia?
+    - [optional] What are your preferred pronouns?
+- Cover letter (tailored on python, testing, ai, data):
+
+```
+Dear Hiring Team at Xomnia,
+
+I would like to apply for the Medior Data Engineer position in Amsterdam.
+
+What drew me to this role is the overlap with my current work: day-to-day Python development, including a Flask backend for my own AI platform. I also bring building a Python test suite with Pytest and Locust for performance and regression testing during my internship at ASML; building CogitatAI, an AI support platform with sentiment analysis, as my own project; building data pipelines, including a GDPR-compliant anonymisation pipeline for my graduation project. I hold a BSc in Software Engineering from Fontys and currently work as a Software Service Engineer at Actemium (VINCI Energies).
+
+I am based in Eindhoven and open to working anywhere in the Netherlands. I would be glad to discuss how I can contribute to Xomnia.
 
 Best regards,
 Hisham Abboud

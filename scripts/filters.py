@@ -230,7 +230,8 @@ ROLE_INCLUDE = re.compile(
 
 ROLE_EXCLUDE = re.compile(
     r"sales|account manager|account executive|marketing|marketeer|recruit|\bhr\b|finance|legal|"
-    r"receptionist|warehouse|internship|\bstage\b|\bintern\b|frontend|front-end|front end|"
+    r"receptionist|warehouse|internship|\bstage\b|\bintern\b|stagiair|afstudeer|"
+    r"working student|frontend|front-end|front end|"
     r"trader|business consultant|business develop|customer success|servicedesk|director|\bvp\b|"
     r"head of|chief|commercial|werkstudent|praktik|initiativ|open application|wordpress|"
     r"product manager|manager\b(?!.*(engineer|software|technical))|"

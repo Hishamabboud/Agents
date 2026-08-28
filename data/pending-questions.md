@@ -22,13 +22,6 @@ https://bluegreen.recruitee.com/o/mendix-medior-developer
   (held because: no profile-backed answer)
   answer: 
 
-## Bluecrux — AI Engineer
-https://bluecrux.recruitee.com/o/ai-engineer
-
-- **As this role requires flexibility between our two offices and some external locations, a valid driver's license is needed. Do you have a valid licence for driving in Belgium?**
-  (held because: no profile-backed answer)
-  answer: 
-
 ## DeepHealth — Junior Software Engineer, Clinical AI
 https://deephealth.recruitee.com/o/junior-software-engineer-clinical-ai
 
@@ -42,17 +35,6 @@ https://deephealth.recruitee.com/o/junior-software-engineer-clinical-ai
 
 - **Do you have hands-on programming experience through professional work, university coursework/projects, internships, or other relevant projects?**
   (held because: no profile-backed answer)
-  answer: 
-
-## BV Enersee — Backend Software Developer (Energy, Time Series & Data Flows)
-https://enersee.recruitee.com/o/backend-software-developer-energy-time-series-data-flows
-
-- **Please share a github link or something comparable - we are looking forward to seeing your work!**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **Do you speak fluent English and at least one of these other languages: German, French or Dutch?**
-  (held because: rule produced a yes/no for a free-text field - needs a real answer)
   answer: 
 
 ## Customs Support Group — Customs AI Integration & Automation Engineer (Spain)
@@ -81,6 +63,17 @@ https://eventim.recruitee.com/o/site-reliability-engineer
   (held because: no profile-backed answer)
   answer: 
 
+## BV Enersee — Backend Software Developer (Energy, Time Series & Data Flows)
+https://enersee.recruitee.com/o/backend-software-developer-energy-time-series-data-flows
+
+- **Please share a github link or something comparable - we are looking forward to seeing your work!**
+  (held because: no profile-backed answer)
+  answer: 
+
+- **Do you speak fluent English and at least one of these other languages: German, French or Dutch?**
+  (held because: rule produced a yes/no for a free-text field - needs a real answer)
+  answer: 
+
 ## Greenchoice — Energie Data Developer Consument
 https://greenchoice.recruitee.com/o/energie-data-developer-consument
 
@@ -100,17 +93,17 @@ https://greenchoice.recruitee.com/o/energie-data-developer-consument
   (held because: no profile-backed answer)
   answer: 
 
-## Itility B.V. — DevOps Engineer / Site Reliability Engineer (SRE)
-https://itilitybv.recruitee.com/o/devops-engineer-site-reliability-engineer-sre
-
-- **Hoe vaardig ben je in het Nederlands?**
-  (held because: no profile-backed answer)
-  answer: 
-
 ## itsme® — Data Engineer
 https://itsme.recruitee.com/o/data-engineer
 
 - **Do you live in Belgium?**
+  (held because: no profile-backed answer)
+  answer: 
+
+## Itility B.V. — DevOps Engineer / Site Reliability Engineer (SRE)
+https://itilitybv.recruitee.com/o/devops-engineer-site-reliability-engineer-sre
+
+- **Hoe vaardig ben je in het Nederlands?**
   (held because: no profile-backed answer)
   answer: 
 
@@ -150,8 +143,8 @@ https://rtl.recruitee.com/o/data-platform-engineer
   (held because: no profile-backed answer)
   answer: 
 
-## Swisscom — DevOps Engineer IAM (Ping IDM)
-https://swisscom.recruitee.com/o/devops-engineer-iam-ping-idm
+## Swisscom — DevOps Engineer IAM (Ping DS/IDM)
+https://swisscom.recruitee.com/o/devops-engineer-iam-ping-dsidm
 
 - **Nationality**
   (held because: no profile-backed answer)
@@ -199,6 +192,21 @@ https://twipe.recruitee.com/o/backend-engineer
 https://vwml.recruitee.com/o/data-engineer-1
 
 - **Hoe ben je op deze website terecht gekomen?**
+  (held because: no profile-backed answer)
+  answer: 
+
+## Vitestro — Freelance Integration Developer | Apache Camel + Quarkus LIS Integration Gateway
+https://vitestro.recruitee.com/o/freelance-integration-developer-apache-camel-quarkus-lis-integration-gateway
+
+- **Do you have a valid KVK registration and VAT (BTW) number?**
+  (held because: no profile-backed answer)
+  answer: 
+
+- **Do you have production experience with Apache Camel, or demonstrable depth with a comparable enterprise integration framework (e.g. Spring Integration, MuleSoft, Red Hat Fuse) with genuine willingness**
+  (held because: no profile-backed answer)
+  answer: 
+
+- **Do you have experience with Quarkus, or comparable experience with another JVM native-image/cloud-native framework (e.g. Spring Boot with GraalVM, Micronaut)**
   (held because: no profile-backed answer)
   answer: 
 
