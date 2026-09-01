@@ -13317,5 +13317,26 @@
     "offer_id": 2723891,
     "offer_slug": "ai-automation-engineer-bij-proforto",
     "recruitee_api_url": "https://proforto.recruitee.com/api/offers/ai-automation-engineer-bij-proforto/candidates"
+  },
+  {
+    "id": 652,
+    "company": "PharmaPartners",
+    "role": "Software Engineer",
+    "url": "https://pharmapartners.recruitee.com/o/software-engineer-6",
+    "date_applied": "2026-08-26T00:00:00",
+    "score": 8,
+    "status": "applied",
+    "ats": "manual",
+    "location": "Oosterhout",
+    "country": "NL",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "notes": "Applied by Hisham directly, NOT via the pipeline. PharmaPartners was never discovered by any sweep despite a live 19-role Recruitee board -- a discovery miss, not a reachability one. Phone contact first, then interview invite.",
+    "email_used": "hiaham123@hotmail.com",
+    "outcome": "interview",
+    "outcome_date": "2026-08-26",
+    "outcome_note": "Loek Schook. First kennismaking ONSITE at the Oosterhout office, ~60 min. Single slot offered: Friday 4 Sept 10:00 -- clashes with Van Mossel's Friday option.",
+    "letter_tailored": false,
+    "letter_matched_on": null,
+    "response": null
   }
 ]
