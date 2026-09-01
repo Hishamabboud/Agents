@@ -36,6 +36,8 @@ _RULES = [
      r".{0,40}(netherlands|nederland|\beu\b|europe)(?!.{0,20}\bkm\b)", "yes", "bool"),
     # Work authorisation, all sourced from preferences.md "Visa: Not needed (I have work
     # authorization in NL)". These phrasings were each blocking real applications.
+    (r"do you live in (belgium|belgi\u00eb|germany|duitsland|france|frankrijk|"
+     r"united kingdom|spain|spanje)", "no", "bool"),
     (r"eligible to work|permission to work|valid work permit|work permit for|"
      r"eu citizenship|arbeidsvergunning|"
      r"valid permit.{0,10}(to work|/visa)|eu passport|werkvergunning|"
@@ -54,14 +56,16 @@ _RULES = [
     # "Heb je eerder in loondienst gewerkt voor RTL Nederland of DPG Media?" contains the
     # word "Nederland" inside a COMPANY NAME, and the broad Dutch-language rule below
     # answered it "yes" - a false statement about employment history.
-    (r"(previously worked|eerder.{0,25}gewerkt|ooit gewerkt|worked for)", "no", "bool"),
+    (r"(previously worked|eerder.{0,25}gewerkt|ooit gewerkt|worked for|"
+     r"verleden.{0,30}gewerkt)", "no", "bool"),
 
     (r"languages you speak|which languages|welke talen|talenkennis",
      "English (fluent), Dutch (fluent), Arabic (fluent)", "text"),
     # --- language. The specific free-text phrasings must come BEFORE the broad yes/no
     # rule below, which otherwise answers "Languages you speak" with "yes".
-    (r"(which|what|welk).{0,25}(level|niveau).{0,25}(dutch|nederlands)",
-     "Fluent - professional working proficiency in both speech and writing.", "text"),
+    (r"(proficiency|vaardig|niveau|level).{0,30}(dutch|nederlands)|"
+     r"(dutch|nederlands).{0,20}(proficiency|niveau|level)",
+     "Professional / Native - fluent in speech and writing", "text"),
     # Require language CONTEXT, never the bare country/language word: the word "Nederland"
     # also appears inside company names ("RTL Nederland"), where "yes" would be a false
     # answer to a question about something else entirely.
@@ -84,12 +88,13 @@ _RULES = [
 
     # --- commercial commitments (set by Hisham in preferences.md, never inferred)
     (r"salar|bruto per maand|gross monthly|loonverwachting", None, "salary"),
-    (r"(hoeveel uur|hours per week|uur per week|beschikbaar.{0,20}uur)",
+    (r"(hoeveel uur|hours per week|uur per week|beschikbaar.{0,20}uur|how many hours)",
      "40 hours per week (full-time)", "text"),
     (r"(vast dienstverband|loondienst|permanent employment|contract of employment|"
      r"fulltime|full.time) (position|functie|role)?", "yes", "bool"),
-    (r"(when (can|are) you (able to )?start|beschikbaar per|wanneer.{0,15}beginnen|"
-     r"availability|notice period|opzegtermijn|start date)", None, "notice"),
+    (r"(when (can|are|would) you (be )?(able to |available to )?start|beschikbaar per|"
+     r"wanneer.{0,15}beginnen|availability|notice period|period of notice|opzegtermijn|"
+     r"start.?date|starting date|first possible start)", None, "notice"),
 
     # Willingness to be onsite where the role is. Applying to a role in that city already
     # asserts this; it is not a new claim. Distinct from "do you LIVE within X km of <town>",
@@ -101,7 +106,9 @@ _RULES = [
     (r"(how did you|hoe (ben je|heb je)|via welk kanaal|waar heb je).{0,40}"
      r"(vacature|vacancy|job|find|found|terechtgekomen|gevonden)|"
      # bare Personio labels: "How did you hear from us?", "Through which channel..."
-     r"how did you hear|through which channel|hoe heb je ons|van wie heb je",
+     r"how did you hear|through which channel|hoe heb je ons|van wie heb je|"
+     r"where did you (come across|find|hear)|how did you (learn|find out) about|"
+     r"hoe ben je op deze (website|vacature|pagina)",
      "LinkedIn", "choice"),
 
     # --- marketing vs. legal consent
@@ -158,7 +165,8 @@ def answer_for(question, kind, options=None, salary=None, notice=None):
             return None, str(ans).lower() in ("yes", "true", "1"), None
         if kind in ("single_choice", "multi_choice"):
             opts = [o.get("body") or "" for o in (options or [])]
-            pick = next((o for o in opts if ans.lower() in o.lower()), None)
+            pick = next((o for o in opts
+                         if ans.lower() in o.lower() or o.lower() in ans.lower()), None)
             if not pick:      # no matching option -> fall back to an "other" option
                 pick = next((o for o in opts
                              if re.search(r"^(other|anders|overig)", o.strip(), re.I)), None)

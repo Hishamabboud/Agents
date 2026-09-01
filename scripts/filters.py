@@ -234,7 +234,13 @@ ROLE_EXCLUDE = re.compile(
     r"working student|frontend|front-end|front end|"
     r"trader|business consultant|business develop|customer success|servicedesk|director|\bvp\b|"
     r"head of|chief|commercial|werkstudent|praktik|initiativ|open application|wordpress|"
-    r"product manager|manager\b(?!.*(engineer|software|technical))|"
+    r"product manager|"
+    # People-management titles. The old lookahead let "manager" through whenever
+    # "software"/"engineering" followed it, so SIDN's "Manager Software Engineering" --
+    # a team-lead role -- passed as an engineering job in round 37.
+    r"\bmanager\s+(software|engineering|development|ict|it|data|team)\b|"
+    r"\b(software|engineering|development|delivery|it)\s+manager\b|"
+    r"manager\b(?!.*(engineer|software|technical))|"
     # Dutch "ontwikkelaar" means developer, but ALSO property/area developer. Dura Vermeer's
     # "Gebiedsontwikkelaar" (urban area development, a construction role) matched the
     # software pattern in round 33.

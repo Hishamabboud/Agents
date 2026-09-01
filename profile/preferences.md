@@ -106,3 +106,20 @@
   The one allowed page is a JS-rendered Nuxt shell with no server-side results. Reaching
   results would mean violating robots.txt or executing JS against an internal API. Dropped.
 - **werk.nl** remains untried (open robots.txt, JS-rendered search).
+
+### Indeed NL — rate-limited as of round 37 (2026-08-26)
+
+After two consecutive rounds of ~100 queries each (rounds 36 and 37), nl.indeed.com began
+returning **HTTP 403 with a "Security Check" challenge page** to every request, including
+the page-1 URLs its robots.txt explicitly allows for Claude-User. The sweep returned 0
+companies.
+
+This is bot-detection triggered by OUR request volume, not a policy change on their side.
+The mistake was scaling from 10 queries to 100 while keeping a ~1.6s delay: roughly 100
+requests in under 3 minutes from one address.
+
+Do NOT attempt to work around it — no UA rotation, no proxies, no delay-jitter tricks
+dressed up as politeness. That is the same line we hold on CAPTCHAs and login walls.
+
+If resuming later: wait several days, cap at ~15-20 queries per round, and use a 5-10s
+delay. Treat the earlier 100-query sweep as the thing that broke it, not as a target.

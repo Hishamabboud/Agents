@@ -4,22 +4,22 @@ Each role below has a REQUIRED screening question the profile cannot honestly
 answer. Write your answer under the question, then re-run the round; recurring
 questions can be moved into profile/answers.md so they never come back.
 
-## ABF — Software Developer
-https://abfgroup.recruitee.com/o/software-developer
+## Creative Clicks B.V. — Junior Data Engineer
+https://creativeclicks.recruitee.com/o/junior-data-engineer
 
-- **Where did you come across this vacancy?**
+- **We are working on a hybrid setup, coming to our Amsterdam office 4 times a week. Does this match your job search criteria?**
   (held because: no profile-backed answer)
   answer: 
 
-## Blue Green — Medior Mendix Developer
-https://bluegreen.recruitee.com/o/mendix-medior-developer
+## BV Enersee — Backend Software Developer (Energy, Time Series & Data Flows)
+https://enersee.recruitee.com/o/backend-software-developer-energy-time-series-data-flows
 
-- **Hoeveel jaar ervaring met Mendix heb je?**
+- **Please share a github link or something comparable - we are looking forward to seeing your work!**
   (held because: no profile-backed answer)
   answer: 
 
-- **Hoeveel platform punten heb je?**
-  (held because: no profile-backed answer)
+- **Do you speak fluent English and at least one of these other languages: German, French or Dutch?**
+  (held because: rule produced a yes/no for a free-text field - needs a real answer)
   answer: 
 
 ## DeepHealth — Junior Software Engineer, Clinical AI
@@ -29,18 +29,7 @@ https://deephealth.recruitee.com/o/junior-software-engineer-clinical-ai
   (held because: no profile-backed answer)
   answer: 
 
-- **When would you be available to start a new position?**
-  (held because: no profile-backed answer)
-  answer: 
-
 - **Do you have hands-on programming experience through professional work, university coursework/projects, internships, or other relevant projects?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## Customs Support Group — Customs AI Integration & Automation Engineer (Spain)
-https://customssupport.recruitee.com/o/customs-ai-integration-automation-engineer-spain-3
-
-- **What's Your period of notice?**
   (held because: no profile-backed answer)
   answer: 
 
@@ -57,21 +46,6 @@ https://eventim.recruitee.com/o/site-reliability-engineer
 
 - **Tell us about a production infrastructure issue you solved. How did you investigate it, fix it and prevent it from happening again?**
   (held because: needs Hisham's own words)
-  answer: 
-
-- **What is your first possible starting date?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## BV Enersee — Backend Software Developer (Energy, Time Series & Data Flows)
-https://enersee.recruitee.com/o/backend-software-developer-energy-time-series-data-flows
-
-- **Please share a github link or something comparable - we are looking forward to seeing your work!**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **Do you speak fluent English and at least one of these other languages: German, French or Dutch?**
-  (held because: rule produced a yes/no for a free-text field - needs a real answer)
   answer: 
 
 ## Greenchoice — Energie Data Developer Consument
@@ -93,53 +67,17 @@ https://greenchoice.recruitee.com/o/energie-data-developer-consument
   (held because: no profile-backed answer)
   answer: 
 
-## itsme® — Data Engineer
-https://itsme.recruitee.com/o/data-engineer
-
-- **Do you live in Belgium?**
-  (held because: no profile-backed answer)
-  answer: 
-
 ## Itility B.V. — DevOps Engineer / Site Reliability Engineer (SRE)
 https://itilitybv.recruitee.com/o/devops-engineer-site-reliability-engineer-sre
 
 - **Hoe vaardig ben je in het Nederlands?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## LEGALFLY — Junior Product Engineer
-https://legalfly.recruitee.com/o/junior-product-engineer
-
-- **What is your relevant experience regarding this position?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## Modderkolk — Software Engineer
-https://modderkolk.recruitee.com/o/software-engineer-3
-
-- **Hoe ben je op de 'werkenbij' website van Modderkolk terecht gekomen?**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **Hoe wil je dat we contact met je opnemen?**
-  (held because: no profile-backed answer)
+  (held because: no option matches 'Professional / Native - fluent in speech and writing' (options: ['Niet', 'Conversatie', 'Beroepsmatig', 'Moedertaal of tweetalig ']))
   answer: 
 
 ## Profitap — QA Engineer
 https://profitap.recruitee.com/o/qa-engineer-3
 
-- **What would be a suitable startdate for you?**
-  (held because: no profile-backed answer)
-  answer: 
-
 - **Are you open to relocating to the Eindhoven Area? (The Netherlands)**
-  (held because: no profile-backed answer)
-  answer: 
-
-## RTL — Data Platform Engineer
-https://rtl.recruitee.com/o/data-platform-engineer
-
-- **Heb je in het verleden al voor RTL of DPG Media gewerkt?**
   (held because: no profile-backed answer)
   answer: 
 
@@ -156,43 +94,6 @@ https://swisscom.recruitee.com/o/devops-engineer-iam-ping-dsidm
 
 - **Gender**
   (held because: not in the profile)
-  answer: 
-
-## Twipe — Freelance Backend Engineer
-https://twipe.recruitee.com/o/freelance-backend-engineer
-
-- **Why are you interested in this role at Twipe?**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **At Twipe, we value a hybrid work policy to connect with our colleagues. Are you open to commute to our office in Leuven, Belgium at least 3 days a week?**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **We are looking to build the future of news on the long term with you. Are you open to a permanent employee contract?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## Twipe — Backend Engineer
-https://twipe.recruitee.com/o/backend-engineer
-
-- **Why are you interested in this role at Twipe?**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **At Twipe, we value a hybrid work policy to connect with our colleagues. Are you open to commute to our office in Leuven, Belgium at least 3 days a week?**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **We are looking to build the future of news on the long term with you. Are you open to a permanent employee contract?**
-  (held because: no profile-backed answer)
-  answer: 
-
-## VolkerWessels Infra Digital — Data Engineer
-https://vwml.recruitee.com/o/data-engineer-1
-
-- **Hoe ben je op deze website terecht gekomen?**
-  (held because: no profile-backed answer)
   answer: 
 
 ## Vitestro — Freelance Integration Developer | Apache Camel + Quarkus LIS Integration Gateway
@@ -217,14 +118,6 @@ https://xomnia.recruitee.com/o/medior-data-engineer
   (held because: no profile-backed answer)
   answer: 
 
-- **What is your proficiency in Dutch?**
-  (held because: no option matches 'yes' (options: ['Elementary', 'Intermediate', 'Professional / Native']))
-  answer: 
-
 - **How many hours would you want to work?**
-  (held because: no profile-backed answer)
-  answer: 
-
-- **How did you learn about Xomnia?**
-  (held because: no profile-backed answer)
+  (held because: no option matches '40 hours per week (full-time)' (options: ['40 (FT)', '32', '36 (4*9)', 'Not sure yet']))
   answer: 
