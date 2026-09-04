@@ -5012,5 +5012,42 @@
     "location": "Amsterdam",
     "response": null,
     "candidate_id": "130055451"
+  },
+  {
+    "id": 284,
+    "company": "Portbase",
+    "role": "Full-Stack Developer",
+    "url": "https://werkenbij.portbase.com/o/full-stack-developer",
+    "date_applied": "2026-09-04T06:12:12.768785",
+    "score": 7,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/portbase-full-stack-developer.md",
+    "screenshot": null,
+    "notes": "Applied via Recruitee API. Candidate ID 130055667. HTTP 201.",
+    "email_used": "hiaham123@hotmail.com",
+    "offer_id": 2324137,
+    "offer_slug": "full-stack-developer",
+    "recruitee_api_url": "https://portbase.recruitee.com/api/offers/full-stack-developer/candidates",
+    "location": "Rotterdam",
+    "response": null,
+    "candidate_id": "130055667"
+  },
+  {
+    "id": 285,
+    "company": "ALFA PRO (via Guidewell)",
+    "role": "Fullstack Developer (C#/.NET)",
+    "url": "https://guidewell.nl/vacature/fullstack-developer-45k-60k-sierteelt-leiden/",
+    "date_applied": "2026-09-04T06:16:13.300293",
+    "score": 8,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": null,
+    "screenshot": null,
+    "notes": "Applied via Guidewell vacancy form (WordPress admin-post, multipart). HTTP 200. vacancy_id=730. Agency handles recruitment exclusively for this employer; form accepts CV only, no cover letter field.",
+    "email_used": "hiaham123@hotmail.com",
+    "vacancy_id": 730,
+    "location": "Leiden",
+    "response": null
   }
 ]
