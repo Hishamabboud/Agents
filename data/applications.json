@@ -4992,5 +4992,25 @@
     "location": "Naarden",
     "response": null,
     "candidate_id": "125447106"
+  },
+  {
+    "id": 283,
+    "company": "Budget Thuis",
+    "role": "Full-Stack Software Engineer",
+    "url": "https://werkenbijbudgetthuis.nl/o/full-stack-software-engineer",
+    "date_applied": "2026-09-04T06:07:07.361416",
+    "score": 9,
+    "status": "applied",
+    "resume_file": "/home/user/Agents/profile/Hisham Abboud CV.pdf",
+    "cover_letter_file": "/home/user/Agents/output/cover-letters/budget-thuis-full-stack-software-engineer.md",
+    "screenshot": null,
+    "notes": "Applied via Recruitee API. Candidate ID 130055451. HTTP 201.",
+    "email_used": "hiaham123@hotmail.com",
+    "offer_id": 2687743,
+    "offer_slug": "full-stack-software-engineer",
+    "recruitee_api_url": "https://budgetthuis.recruitee.com/api/offers/full-stack-software-engineer/candidates",
+    "location": "Amsterdam",
+    "response": null,
+    "candidate_id": "130055451"
   }
 ]
