@@ -192,10 +192,32 @@ def requires_dutch(text: str) -> bool:
 
 # --- Dedupe helpers ---------------------------------------------------------
 
+# Brand names that belong to an already-tracked legal entity. Job boards list
+# the brand while applications.json records the entity, so without this map a
+# role already applied to reads as new (e.g. Squla is FutureWhiz, applied
+# 2026-06-25).
+COMPANY_ALIASES = {
+    "squla": "futurewhiz",
+    "scoyo": "futurewhiz",
+    "bimcollab": "kubus",
+    "independer": "dpgmedia",
+    "speedhive": "mylaps",
+    "sporthive": "mylaps",
+    "tournamentsoftware": "visualreality",
+}
+
+
 def normalize_company(name: str) -> str:
     """Normalize a company name so 'CM.com' and 'cm com' collide."""
     cleaned = re.sub(r"\b(b\.?v\.?|n\.?v\.?|holding|group|nederland|netherlands)\b", " ", (name or "").lower())
-    return re.sub(r"[^a-z0-9]", "", cleaned)
+    # Listings often join a parent and a brand ("KUBUS / BIMcollab"); resolve
+    # each part so either half matches the tracked entity.
+    for part in re.split(r"[/|,]|\s+-\s+", cleaned):
+        part_key = re.sub(r"[^a-z0-9]", "", part)
+        if part_key in COMPANY_ALIASES:
+            return COMPANY_ALIASES[part_key]
+    key = re.sub(r"[^a-z0-9]", "", cleaned)
+    return COMPANY_ALIASES.get(key, key)
 
 
 def load_applied() -> tuple[set[str], set[str]]:
