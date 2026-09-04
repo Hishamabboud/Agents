@@ -34,3 +34,8 @@ Thumbs.db
 
 # PDF resume (may contain personal info)
 profile/resume.pdf
+
+# Generated search output
+data/new-jobs.json
+data/new-scored.json
+data/new-scored-all.json

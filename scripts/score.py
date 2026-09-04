@@ -98,16 +98,15 @@ def load_preferences() -> dict:
     return prefs
 
 
-def load_raw_jobs() -> list[dict]:
-    """Load scraped jobs from raw-jobs.json."""
-    raw_path = DATA_DIR / "raw-jobs.json"
-    if not raw_path.exists():
-        print("ERROR: raw-jobs.json not found. Run search.py first.")
+def load_raw_jobs(input_path: Path) -> list[dict]:
+    """Load scraped jobs from the given search output file."""
+    if not input_path.exists():
+        print(f"ERROR: {input_path.name} not found. Run a search script first.")
         sys.exit(1)
     try:
-        return json.loads(raw_path.read_text())
+        return json.loads(input_path.read_text())
     except json.JSONDecodeError as e:
-        print(f"ERROR: Invalid JSON in raw-jobs.json: {e}")
+        print(f"ERROR: Invalid JSON in {input_path.name}: {e}")
         sys.exit(1)
 
 
@@ -265,6 +264,8 @@ def score_job(job: dict, resume_text: str, resume_skills: set, prefs: dict) -> d
 def main():
     parser = argparse.ArgumentParser(description="Job matching scorer")
     parser.add_argument("--min-score", type=float, default=7.0, help="Minimum score threshold")
+    parser.add_argument("--input", type=str, default="data/raw-jobs.json", help="Search output to score")
+    parser.add_argument("--output", type=str, default="data/scored-jobs.json", help="Where to write qualifying jobs")
     args = parser.parse_args()
 
     print("Loading profile data...")
@@ -275,7 +276,7 @@ def main():
     print(f"  Target roles: {prefs['target_roles']}")
 
     print("\nLoading jobs...")
-    raw_jobs = load_raw_jobs()
+    raw_jobs = load_raw_jobs(BASE_DIR / args.input)
     applied_urls = load_applied_jobs()
     print(f"  Raw jobs: {len(raw_jobs)}")
     print(f"  Already applied: {len(applied_urls)}")
@@ -309,12 +310,13 @@ def main():
 
     # Save scored jobs
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    scored_path = DATA_DIR / "scored-jobs.json"
+    scored_path = BASE_DIR / args.output
+    scored_path.parent.mkdir(parents=True, exist_ok=True)
     scored_path.write_text(json.dumps(qualifying, indent=2, ensure_ascii=False))
     print(f"\nSaved {len(qualifying)} qualifying jobs to {scored_path}")
 
     # Also save all scores for reference
-    all_scored_path = DATA_DIR / "all-scored-jobs.json"
+    all_scored_path = scored_path.with_name(scored_path.stem + "-all.json")
     all_scored_path.write_text(json.dumps(scored_jobs, indent=2, ensure_ascii=False))
     print(f"Saved all {len(scored_jobs)} scored jobs to {all_scored_path}")
 
